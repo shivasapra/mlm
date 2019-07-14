@@ -7,7 +7,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <title>MLM Software</title>
+    <title>{{ $titlePage }}</title>
     <link rel="apple-touch-icon" sizes="60x60" href=" {{asset('app/images/ico/apple-icon-60.png')}}">
     <link rel="apple-touch-icon" sizes="76x76" href=" {{asset('app/images/ico/apple-icon-76.png')}}">
     <link rel="apple-touch-icon" sizes="120x120" href=" {{asset('app/images/ico/apple-icon-120.png')}}">

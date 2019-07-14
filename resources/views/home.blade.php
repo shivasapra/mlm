@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.app', ['titlePage' => __('Dashboard')])
 @section('content-header')
     <div class="alert alert-success text-center" role="alert">
         Your Referral Link: <a href="javascript:void(0)" class="alert-link">https://onlinesensor.com/balrajaggarwal</a>
