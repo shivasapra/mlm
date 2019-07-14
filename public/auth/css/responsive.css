@@ -1,0 +1,152 @@
+@media only screen and (max-width:767px){
+	body{
+		font-size:13px;
+	}
+	h1, h2{
+	font-size:1.4rem;
+	font-weight:700;
+	}
+	h3{
+		font-size:1.1rem;
+		font-weight:700;
+	}
+	h4, h5{
+		font-size:14px;
+		font-weight:500;
+	}
+	p{
+		font-family: 'Open Sans', sans-serif;
+		color:#696666;
+		line-height:19px;
+		font-size:13px;
+	}
+	.h4{
+		font-size:15px;
+	}
+	.text-left-xs{
+		text-align:left !important;
+	}
+	.text-center-xs{
+		text-align:center !important;
+	}
+	.mt-xs-1{
+		margin-top:1rem !important;
+	}
+	.pl-xs-1{
+		padding-left:1rem !important;
+	}
+	.navbar{
+		padding:0;
+	}
+	.navbar-toggler{
+		border:1px solid rgba(255,255,255,1);
+	}
+	.navbar-toggler-icon{
+		color:#fff;
+		padding-top:5px;
+	}
+	.navbar-nav {
+    background-color: rgba(0,0,0,0.95);
+	}
+	.nav-gradient {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+	}
+	#carouselExampleIndicators .carousel-inner .carousel-item {
+    height: 465px;
+	}
+	.carousel-caption span{
+		padding:1rem;
+	}
+	.carousel-caption{
+		width:270px;
+	}
+	.banner {
+    height: 250px;
+	}
+	.btn-success{
+		font-size:13px;
+		padding:6px 12px;
+	}
+	.tag-line::after{
+		border-bottom:2px solid #ccc;
+	}
+	.working-hour {
+    padding: 1.8rem;
+    border: 3px solid #fff;
+	}
+	.timetable .table td {
+    padding: .70rem 0rem;
+	}
+	.timetable table span{
+		font-size:1rem;
+	}
+	.event {
+    padding: 1.5rem !important;
+	}
+	.package-point-ul li {
+    margin: 6px 0px;
+   	}
+   	footer ul li a {
+    font-size: 14px;
+    margin: 2px 0;
+	}
+	.footer-social li img {
+    width: 35px;
+	}
+	.registration h4 {
+    margin-top: 0.1rem;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px){
+	body{
+		font-size:14px;
+	}
+	h1, h2{
+	font-size:1.7rem;
+	font-weight:700;
+	}
+	h3{
+		font-size:1.4rem;
+		font-weight:700;
+	}
+	h4, h5{
+		font-size:14px;
+		font-weight:500;
+	}
+	p{
+		font-family: 'Open Sans', sans-serif;
+		color:#696666;
+		line-height:19px;
+		font-size:13px;
+	}
+	.h4{
+		font-size:16px;
+	}
+	.navbar-toggler{
+		border:1px solid rgba(255,255,255,1);
+	}
+	.navbar-toggler-icon{
+		color:#fff;
+		padding-top:5px;
+	}
+	.navbar-nav {
+    background-color: rgba(0,0,0,0.95);
+	}
+	.nav-gradient {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape){
+	.navbar-nav {
+    background-color:transparent;
+	}
+	nav.navbar {
+    padding: 5px 0;
+	}
+	nav .nav-item a {
+    font-size: 13px;
+    padding: .5rem 0.7rem !important;
+	}
+}
