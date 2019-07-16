@@ -37,6 +37,20 @@ class UserController extends Controller
         return redirect()->back()->with('user',$user);
     }
 
+    public function updateEmail(Request $request,User $user){
+            $user->email = $request->new_email;
+            $user->save();
+            Session::flash('success','Email Updated!!');
+            return redirect()->back()->with('user',$user);
+    }
+
+    public function updateMobile(Request $request,User $user){
+        $user->details->mobile = $request->new_mobile;
+        $user->details->save();
+        Session::flash('success','Mobile Number Updated!!');
+        return redirect()->back()->with('user',$user);
+}
+
     public function updatePassword(Request $request,User $user){
         if (Hash::check($request->old_password,Auth::user()->password)) {
             $v = Validator::make($request->all(), [

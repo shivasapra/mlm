@@ -74,7 +74,7 @@
                 <h4><span>Skype ID</span> : <input type="text" class="form-control" name="skype_id" value="{{$user->details->skype_id}}"/></h4>
                 {{-- <h4><input type="checkbox"> Hide my name, comment from everyone and contribute anonymousl</h4> --}}
                 <h4><span>PAN NO</span> : <input type="text" class="form-control" name="pan_no" value="{{$user->details->pan_no}}"/></h4>
-                <h4 class="mb-2"><span>Security Pin*</span> : <input type="password" class="form-control" name="security_pin" required/>
+                <h4 class="mb-2"><span>Security Pin*</span> : <input type="password" class="form-control" name="security_pin" value=" " required/>
                 <i class="text-danger">(To save changes, you must enter your personal pin here)</i></h4>
                 <div><input type="checkbox"> I agree to be a part of the OnlineSensor Reward Fixed Amount Fundraising option and also agree to spend 2/3rd of the funds raised, towards giving rewards to the contributors. I give this right to the company to use 2/3rd of the funds raised by me towards providing rewards to the contributors from any of the third parties associated with the company, as per the terms and policies.</div>
                 <button type="submit" class="btn btn-primary mt-1">Update Profile</button>
@@ -104,23 +104,28 @@
         </div>
         <div class="tab-pane fade" id="change-email-mobile" role="tabpanel" aria-labelledby="contact-tab">
         <div class="row details">
-        <div class="col-md-6">
-            <h2>Change Email</h2>
-            <form method="post" action="" class="form-inline">
-            <h4><span>Current Email id </span> : <input type="email" placeholder="" value="balrajaggarwal002@gmail.com" name="" required disabled class="form-control"/></h4>
-            <h4><span>New Email id </span> : <input type="email" placeholder="" value="" name="" required class="form-control"/></h4>
-            <button type="submit" class="btn btn-primary mt-1">Update Profile</button>
+          <div class="col-md-6">
+            <form method="post" action="{{route('update.email',$user)}}" class="form-inline">
+              @csrf
+              <h2>Change Email</h2>
+              <h4><span>Current Email id </span> : <input type="email" placeholder="" value="{{$user->email}}" name="" required disabled class="form-control"/></h4>
+              <h4><span>New Email id </span> : <input type="email" placeholder="" value="" name="new_email" required class="form-control"/></h4>
+              <button type="submit" class="btn btn-info">Update Email</button>
             </form>
+          </div>
+          <div class="col-md-6">
+            <form method="post" action="{{route('update.mobile',$user)}}" class="form-inline">
+                @csrf
+                <h2>Change Mobile Number</h2>
+                <h4><span>Current Mobile Number </span> : <input type="number" placeholder="" value="{{$user->details->mobile}}" name="" required disabled class="form-control"/></h4>
+                <h4><span>Enter New Mobile Number </span> : <input type="number" placeholder="" value="" name="new_mobile" required class="form-control"/></h4>
+                <button type="submit" class="btn btn-info">Update Mobile</button>
+              </form>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6">
-            <h2>Change Mobile Number</h2>
-            <form method="post" action="" class="form-inline">
-            <h4><span>Enter New Mobile Number </span> : <input type="number" placeholder="" value="" name="" required class="form-control"/></h4>
-            <button type="submit" class="btn btn-primary mt-1">Send OTP</button>
-            </form>
-        </div>
-        </div>
-        </div>
+        
+        
         <div class="tab-pane fade" id="change-security-pin" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row">
         <div class="col-md-12 details">
