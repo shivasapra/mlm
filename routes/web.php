@@ -21,3 +21,4 @@ Route::post('/update-profile/{user}', 'UserController@updateProfile')->name('upd
 Route::post('/update-password/{user}', 'UserController@updatePassword')->name('update.password');
 Route::post('/update-email/{user}', 'UserController@updateEmail')->name('update.email');
 Route::post('/update-mobile/{user}', 'UserController@updateMobile')->name('update.mobile');
+Route::post('/update-pin/{user}', 'UserController@updatePin')->name('update.pin');

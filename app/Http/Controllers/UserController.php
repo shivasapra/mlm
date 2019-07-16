@@ -49,7 +49,26 @@ class UserController extends Controller
         $user->details->save();
         Session::flash('success','Mobile Number Updated!!');
         return redirect()->back()->with('user',$user);
-}
+    }
+
+    public function updatePin(Request $request,User $user){
+        if($request->old_pin == $user->details->security_pin){
+            if($request->new_pin == $request->new_pin_confirm){
+                $user->details->security_pin = $request->new_pin;
+                $user->details->save();
+                Session::flash('success','Pin Changed!!');
+                return redirect()->back()->with('user',$user);    
+            }
+            else{
+                Session::flash('warning','Wrong Confirmation!!');
+                return redirect()->back()->with('user',$user);    
+            }
+        }
+        else{
+            Session::flash('warning','Incorrect Old Pin!!');
+            return redirect()->back()->with('user',$user);
+        }
+    }
 
     public function updatePassword(Request $request,User $user){
         if (Hash::check($request->old_password,Auth::user()->password)) {

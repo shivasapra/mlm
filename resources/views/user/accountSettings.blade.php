@@ -129,12 +129,13 @@
         <div class="tab-pane fade" id="change-security-pin" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row">
         <div class="col-md-12 details">
-            <form method="post" action="" class="form-inline">
-            <h4><span>Enter Security Pin * </span> : <input type="password" placeholder="" value="" name="" required class="form-control"/></h4>
-            <h4><span>New Security Pin * </span> : <input type="password" placeholder="" value="" name="" required class="form-control"/></h4>
-            <h4><span>Confirm New Security Pin * </span> : <input type="password" placeholder="" value="" name="" required class="form-control"/> &nbsp;
-            <a href="#">Forgot Security Pin ?</a></h4>
-            <button type="submit" class="btn btn-primary mt-1">Update Pin</button>
+            <form method="post" action="{{route('update.pin',$user)}}" class="form-inline">
+              @csrf
+              <h4><span>Enter Security Pin * </span> : <input type="password" placeholder="" value="" name="old_pin" required class="form-control"/></h4>
+              <h4><span>New Security Pin * </span> : <input type="password" placeholder="" value="" name="new_pin" required class="form-control"/></h4>
+              <h4><span>Confirm New Security Pin * </span> : <input type="password" placeholder="" value="" name="new_pin_confirm" required class="form-control"/> &nbsp;
+              {{-- <a href="#">Forgot Security Pin ?</a></h4> --}}
+              <button type="submit" class="btn btn-primary mt-1">Update Pin</button>
             </form>
         </div>
         </div>
