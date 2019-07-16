@@ -22,3 +22,7 @@ Route::post('/update-password/{user}', 'UserController@updatePassword')->name('u
 Route::post('/update-email/{user}', 'UserController@updateEmail')->name('update.email');
 Route::post('/update-mobile/{user}', 'UserController@updateMobile')->name('update.mobile');
 Route::post('/update-pin/{user}', 'UserController@updatePin')->name('update.pin');
+
+Route::get('/assignment-settings/{user}', 'AssignmentController@index')->name('assignment.settings');
+Route::post('/update-BankTransfer/{user}', 'AssignmentController@updateBankTransfer')->name('update.bankTransfer');
+Route::post('/update-paypal/{user}', 'AssignmentController@updatePaypal')->name('update.paypal');

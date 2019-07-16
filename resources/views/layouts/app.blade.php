@@ -177,7 +177,7 @@
                 <!--  </li>-->
                 <!--</ul>-->
             </li>
-            <li class=" nav-item"><a href="assignment-settings.php"><i class="icon-settings"></i><span class="menu-title">Assignment Settings</span></a>
+            <li class=" nav-item"><a href="{{route('assignment.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Assignment Settings</span></a>
             </li>
             <li class=" nav-item"><a href="campaign.php"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a>
             </li>

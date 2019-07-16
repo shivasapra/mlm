@@ -13,7 +13,7 @@ use Auth;
 class UserController extends Controller
 {
     public function accountSettings(User $user){
-        return view('user.accountSettings')->with('user',$user);
+        return view('accountSettings')->with('user',$user);
     }
 
     public function updateProfile(Request $request,User $user){
