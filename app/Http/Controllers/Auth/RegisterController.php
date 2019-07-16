@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Details;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -68,14 +69,14 @@ class RegisterController extends Controller
         $user->email = $data['email'];
         $user->password = $data['password'];
         $user->save();
-        $detail = new App\Details;
+        $detail = new Details;
         $detail->user_id = $user->id;
         $detail->username = $data['username'];
         $detail->full_name = $data['name'];
         $detail->country = $data['country'];
         $detail->mobile = $data['mobile'];
         $detail->invited_by = explode('/',$data['url'])[3];
-        $detail->invited_by_email = App\Details::where('username',$detail->invited_by)->first()->user->email;
+        $detail->invited_by_email = Details::where('username',$detail->invited_by)->first()->user->email;
         $detail->promotional_url = 'http://test.com/'.$data['username'];
         $detail->save();
 

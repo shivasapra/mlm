@@ -29,7 +29,7 @@
 	                        <div class="col-md-6">
         	                    <div class="form-group">
         	                        <label>Username</label>
-        	                        <input id="name" type="text" placeholder="Enter Username" class="form-control" name="username"  required autocomplete="name" autofocus>
+        	                        <input id="name" type="text" placeholder="Enter Username" class="form-control" name="username" value="{{ old('username') }}"  required autocomplete="name" autofocus>
         	                    </div>
         	                    
         	                    <div class="form-group">
@@ -52,11 +52,11 @@
         	                    </div>
         	                    <div class="form-group">
         	                        <label>Mobile Number</label>
-        	                        <input type="number" class="form-control" name="mobile" placeholder="Enter Mobile Number" required/>
+        	                        <input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
         	                    </div>
                                 <div class="form-group">
                                     <label>Referral URL</label>
-                                    <input type="text" class="form-control" name="url" placeholder="Enter Referral Url" required/>
+                                    <input type="text" class="form-control" name="url" value="{{ old('url') }}" placeholder="Enter Referral Url" required/>
                                 </div>
         	                    <div class="form-group">
         	                        <label>Confirm Password</label>
