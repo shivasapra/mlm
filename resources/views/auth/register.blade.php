@@ -17,6 +17,8 @@
 	</head>
 	<body>
 		<section>
+				<form class="form" method="POST" action="{{ route('register') }}">
+						@csrf
 	        <div class="login-bg h-100vh">
 	            <div class="container">
 	            <div class="row justify-content-center h-100vh">
@@ -26,31 +28,31 @@
 	                    <div class="row">
 	                        <div class="col-md-6">
         	                    <div class="form-group">
-        	                        <label>Name</label>
-        	                        <input id="name" type="text" placeholder="Enter Full Name.." class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+        	                        <label>Username</label>
+        	                        <input id="name" type="text" placeholder="Enter Username" class="form-control" name="username"  required autocomplete="name" autofocus>
         	                    </div>
         	                    
         	                    <div class="form-group">
         	                        <label>Email id</label>
-        	                        <input id="email" type="email" placeholder="Enter Email..." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+        	                        <input id="email" type="email" placeholder="Enter Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
         	                    </div>
         	                    <div class="form-group">
         	                        <label>Country</label>
-									<input type="text" name="country" class="form-control" placeholder="Country..." required/>
+									<input type="text" name="country" class="form-control" placeholder="Country" required/>
         	                    </div>
         	                    <div class="form-group">
         	                        <label>Password</label>
-        	                        <input id="password" placeholder="Enter Password.." type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+        	                        <input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
         	                    </div>
         	                </div>
         	                <div class="col-md-6">
         	                    <div class="form-group">
         	                        <label>Full Name</label>
-        	                        <input type="text" class="form-control" name="full_name" placeholder="Enter Full Name" required/>
+        	                        <input id="name" type="text" placeholder="Enter Full Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
         	                    </div>
         	                    <div class="form-group">
         	                        <label>Mobile Number</label>
-        	                        <input type="number" class="form-control" name="mobile_number" placeholder="Enter Mobile Number" required/>
+        	                        <input type="number" class="form-control" name="mobile" placeholder="Enter Mobile Number" required/>
         	                    </div>
                                 <div class="form-group">
                                     <label>Referral URL</label>
@@ -58,7 +60,7 @@
                                 </div>
         	                    <div class="form-group">
         	                        <label>Confirm Password</label>
-        	                        <input id="password-confirm" placeholder="Confirm Password..." type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+        	                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 								</div>
         	                </div>
         	                <div class="col-md-12">
@@ -94,7 +96,8 @@
 	                </div>
 	            </div>
 	            </div>
-	        </div>  
+			</div> 
+				</form> 
 		</section>
 
 	<!-- required javascript -->

@@ -62,11 +62,23 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+    {   
+        $user = new User;
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->save();
+        $detail = new App\Details;
+        $detail->user_id = $user->id;
+        $detail->username = $data['username'];
+        $detail->full_name = $data['name'];
+        $detail->country = $data['country'];
+        $detail->mobile = $data['mobile'];
+        $detail->invited_by = explode('/',$data['url'])[3];
+        $detail->invited_by_email = App\Details::where('username',$detail->invited_by)->first()->user->email;
+        $detail->promotional_url = 'http://test.com/'.$data['username'];
+        $detail->save();
+
+        return $user;
     }
 }

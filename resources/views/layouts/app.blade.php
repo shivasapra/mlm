@@ -209,7 +209,13 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="icon-document-text"></i><span class="menu-title">Latest Updates</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="icon-sign-out"></i><span class="menu-title">Log Out</span></a>
+            <li class=" nav-item">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                            @csrf
+                          </form>
+                          <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="icon-sign-out"></i>
+                                <p>{{ __('Logout') }}</p><a href="#"></a>
             </li>
             </ul>
         </div>
