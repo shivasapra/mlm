@@ -61,7 +61,7 @@
                 <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
                 <h4><span>Promotional URL</span> : {{$user->details->promotional_url}}</h4>
                 <h4><span>Full Name </span> : <input type="text" placeholder="" value="{{$user->details->full_name}}" required disabled class="form-control"/></h4>
-                <h4><span>Sex </span> : <select class="form-control" name="sex"><option>---Select---</option><option value="Male" selected>Male</option><option value="Female">Female</option><option value="Transgender">Transgender</option></select></h4>
+                <h4><span>Sex </span> : <select class="form-control" name="sex"><option>---Select---</option><option value="Male" {{($user->details->sex == "Male")?'selected':''}}>Male</option><option value="Female" {{($user->details->sex == "Female")?'selected':''}}>Female</option><option value="Transgender" {{($user->details->sex == "Transgender")?'selected':''}}>Transgender</option></select></h4>
                 <h4><span>DOB </span> : <input type="date" placeholder="" value="{{Carbon\Carbon::now()->toDateString()}}" class="form-control"/></h4>
                 <h4><span>Address </span> : <textarea name="address" class="form-control" style="width:300px;">{{$user->details->address}}</textarea></h4>
                 <h4><span>Country</span> : <select class="form-control" name="country" disabled><option>{{$user->details->country}}</option></select></h4>

@@ -40,4 +40,14 @@ class User extends Authenticatable
     public function details(){
         return $this->hasOne('App\Details');
     }
+
+    public function bankTransfer(){
+        return $this->hasOne('App\BankTransfer');
+    }
+    public function paypal(){
+        return $this->hasOne('App\Paypal');
+    }
+    public function perfectMoney(){
+        return $this->hasOne('App\PerfectMoney');
+    }
 }
