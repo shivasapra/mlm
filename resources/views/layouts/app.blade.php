@@ -169,7 +169,7 @@
             <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <li class="nav-item"><a href="index.php"><i class="icon-home3"></i><span class="menu-title">Dashboard</span><!-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">2</span> --></a>
             </li>
-            <li class=" nav-item"><a href="account-settings.php"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a>
+            <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a>
                 <!--<ul class="menu-content">-->
                 <!--  <li><a href="#" class="menu-item">1 column</a>-->
                 <!--  </li>-->
