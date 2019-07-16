@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 use App\Details;
+use Illuminate\Support\Facades\Hash;
+use Session;
+use Auth;
 
 class UserController extends Controller
 {
@@ -25,5 +29,25 @@ class UserController extends Controller
         $details->pan_no = $request->pan_no;
         $details->save();
         return redirect()->back()->with('user',$user);
+    }
+
+    public function updatePassword(Request $request,User $user){
+        if (Hash::check($request->old_password,Auth::user()->password)) {
+            $v = Validator::make($request->all(), [
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            if ($v->fails()) {
+                Session::flash('warning','Wrong Confirmation!!');
+                return redirect()->back()->with('user',$user);
+            }
+            else{
+                $user->password = bcrypt($request->password);
+                Session::flash('success','Password Changed!!');
+                return redirect()->back()->with('user',$user);
+            }
+        }else{
+            Session::flash('warning','Incorrect Old Password');
+            return redirect()->back()->with('user',$user);
+        }
     }
 }

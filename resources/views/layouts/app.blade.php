@@ -35,7 +35,7 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/style.css')}}">
     <!-- END Custom CSS-->
-
+    <link href="{{ asset('app/css/toastr.min.css') }}" rel="stylesheet">
     <!-- include summernote css/js -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
     @yield('css')
@@ -401,6 +401,21 @@
             $("#embedShow").click(function(){
                 $("#embedDiv").toggle();
             })
+        </script>
+        <script src="{{ asset('app/js/toastr.min.js') }}"></script>
+        <script>
+            @if(Session::has('success'))
+                toastr.success("{{Session::get('success')}}")
+            @endif
+            @if(Session::has('info'))
+                toastr.info("{{Session::get('info')}}")
+            @endif
+            @if(Session::has('warning'))
+                toastr.warning("{{Session::get('warning')}}")
+            @endif
+            @if(Session::has('danger'))
+                toastr.danger("{{Session::get('danger')}}")
+            @endif
         </script>
         @yield('js')
     </body>

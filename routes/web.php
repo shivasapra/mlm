@@ -18,3 +18,4 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/account-settings/{user}', 'UserController@accountSettings')->name('account.settings');
 Route::post('/update-profile/{user}', 'UserController@updateProfile')->name('update.profile');
+Route::post('/update-password/{user}', 'UserController@updatePassword')->name('update.password');

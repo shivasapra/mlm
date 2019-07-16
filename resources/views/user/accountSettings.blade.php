@@ -92,11 +92,12 @@
         <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="contact-tab">
         <div class="row">
         <div class="col-md-12 details">
-            <form method="post" action="" class="form-inline">
-            <h4><span>Enter Current Password * </span> : <input type="password" placeholder="" value="" name="" required class="form-control"/></h4>
-            <h4><span>Enter New Password * </span> : <input type="password" placeholder="" value="" name="" required class="form-control"/></h4>
-            <h4><span>Confirm New Password * </span> : <input type="password" placeholder="" value="" name="" required class="form-control"/></h4>
-            <button type="submit" class="btn btn-primary mt-1">Update Profile</button>
+            <form method="post" action="{{route('update.password',$user)}}" class="form-inline">
+              @csrf
+              <h4><span>Enter Current Password * </span> : <input type="password" placeholder="Enter Current Password" value="" name="old_password" required class="form-control"/></h4>
+              <h4><span>Enter New Password * </span> : <input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"></h4>
+              <h4><span>Confirm New Password * </span> : <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"></h4>
+              <button type="submit" class="btn btn-primary mt-1">Update Password</button>
             </form>
         </div>
         </div>
