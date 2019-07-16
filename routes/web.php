@@ -27,3 +27,7 @@ Route::get('/assignment-settings/{user}', 'AssignmentController@index')->name('a
 Route::post('/update-BankTransfer/{user}', 'AssignmentController@updateBankTransfer')->name('update.bankTransfer');
 Route::post('/update-Paypal/{user}', 'AssignmentController@updatePaypal')->name('update.paypal');
 Route::post('/update-PerfectMoney/{user}', 'AssignmentController@updatePerfectMoney')->name('update.perfectMoney');
+Route::post('/update-payza/{user}', 'AssignmentController@updatePayza')->name('update.payza');
+Route::post('/update-skrill/{user}', 'AssignmentController@updateSkrill')->name('update.skrill');
+Route::post('/update-bkash/{user}', 'AssignmentController@updateBkash')->name('update.bkash');
+Route::post('/update-solidTrust/{user}', 'AssignmentController@updateSolidTrust')->name('update.solidTrust');

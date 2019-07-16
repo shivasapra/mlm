@@ -196,7 +196,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Update Now</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </div>
     </form>
@@ -271,7 +271,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Update Now</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </div>
     </form>
@@ -283,18 +283,19 @@
     <div class="card">
     <div class="card-header bg-light h4 p-1">Payza Payment</div>
     <div class="card-body p-1">
-    <form method="post" action="">
+    <form method="post" action="{{route('update.payza',$user)}}">
+        @csrf
       <div class="form-group">
         <div class="row">
           <div class="col-md-4">
             <label>Handling Currency</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
+            <select class="form-control" name="currency">
               <option>Select Currency</option>
-              <option value="1">USD</option>
-              <option value="2">INR</option>
-              <option value="3">IDR</option>
+              <option value="USD"  {{($user->payza != null and $user->payza->currency == 'USD')? 'selected' : ' ' }}>USD</option>
+              <option value="INR" {{($user->payza != null and $user->payza->currency == 'INR')? 'selected' : ' ' }}>INR</option>
+              <option value="IDR" {{($user->payza != null and $user->payza->currency == 'IDR')? 'selected' : ' ' }}>IDR</option>
             </select>
           </div>
         </div>
@@ -305,8 +306,8 @@
             <label>Payza Account Email-ID</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Payza Account Email-ID" class="form-control" class="form-control" value="balrajaggarwal"/>
-            <span class="text-danger">Please enter a valid email address</span>
+            <input type="text" placeholder="Payza Account Email-ID" class="form-control" value="{{($user->payza == null)? " ": $user->payza->account_email_id }}" name="account_email_id" class="form-control" value="balrajaggarwal"/>
+            {{-- <span class="text-danger">Please enter a valid email address</span> --}}
           </div>
         </div>
       </div>
@@ -316,7 +317,7 @@
             <label>Account Name</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Enter Account Name" class="form-control" class="form-control"/>
+            <input type="text" placeholder="Enter Account Name" class="form-control" value="{{($user->payza == null)? " ": $user->payza->account_name }}" name="account_name" class="form-control"/>
           </div>
         </div>
       </div>
@@ -326,9 +327,9 @@
             <label>Status</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
-              <option value="in-active">In-Active</option>
-              <option value="active">Active</option>
+            <select class="form-control" name="status">
+              <option value="0" {{($user->payza != null and $user->payza->status == 1)? 'selected' : ' ' }}>In-Active</option>
+              <option value="1" {{($user->payza != null and $user->payza->status == 1)? 'selected' : ' ' }}>Active</option>
             </select>
           </div>
         </div>
@@ -339,13 +340,13 @@
             <label>Security Pin *</label> :
           </div>
           <div class="col-md-8">
-            <input type="password" placeholder="" class="form-control" class="form-control" name="********"/>
+            <input type="password" placeholder="" class="form-control" class="form-control" name="security_pin"/>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Update Now</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </div>
     </form>
@@ -357,18 +358,19 @@
     <div class="card">
     <div class="card-header bg-light h4 p-1">Skrill Payment</div>
     <div class="card-body p-1">
-    <form method="post" action="">
+    <form method="post" action="{{route('update.skrill',$user)}}">
+        @csrf
       <div class="form-group">
         <div class="row">
           <div class="col-md-4">
             <label>Handling Currency</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
+            <select class="form-control" name="currency">
               <option>Select Currency</option>
-              <option value="1">USD</option>
-              <option value="2">INR</option>
-              <option value="3">IDR</option>
+              <option value="USD" {{($user->skrill != null and $user->skrill->currency == 'USD')? 'selected' : ' ' }}>USD</option>
+              <option value="INR" {{($user->skrill != null and $user->skrill->currency == 'INR')? 'selected' : ' ' }}>INR</option>
+              <option value="IDR" {{($user->skrill != null and $user->skrill->currency == 'IDR')? 'selected' : ' ' }}>IDR</option>
             </select>
           </div>
         </div>
@@ -379,8 +381,8 @@
             <label>Skrill Account Email-ID</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Payza Account Email-ID" class="form-control" class="form-control" value="balrajaggarwal"/>
-            <span class="text-danger">Please enter a valid email address</span>
+            <input type="text" placeholder="Payza Account Email-ID" name="account_email_id"  class="form-control" class="form-control" value="{{($user->skrill == null)? " ": $user->skrill->account_email_id }}"/>
+            {{-- <span class="text-danger">Please enter a valid email address</span> --}}
           </div>
         </div>
       </div>
@@ -390,7 +392,7 @@
             <label>Account Name</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Enter Account Name" class="form-control" class="form-control"/>
+            <input type="text" placeholder="Enter Account Name" name="account_name" value="{{($user->skrill == null)? " ": $user->skrill->account_name }}" class="form-control" class="form-control"/>
           </div>
         </div>
       </div>
@@ -400,9 +402,9 @@
             <label>Status</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
-              <option value="in-active">In-Active</option>
-              <option value="active">Active</option>
+            <select class="form-control" name="status">
+              <option value="0" {{($user->skrill != null and $user->skrill->status == 0)? 'selected' : ' ' }}>In-Active</option>
+              <option value="1" {{($user->skrill != null and $user->skrill->status == 1)? 'selected' : ' ' }}>Active</option>
             </select>
           </div>
         </div>
@@ -413,13 +415,13 @@
             <label>Security Pin *</label> :
           </div>
           <div class="col-md-8">
-            <input type="password" placeholder="" class="form-control" class="form-control" name="********"/>
+            <input type="password" placeholder="" class="form-control" class="form-control" name="security_pin"/>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Update Now</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </div>
     </form>
@@ -431,18 +433,19 @@
     <div class="card">
     <div class="card-header bg-light h4 p-1">BKash Payment</div>
     <div class="card-body p-1">
-    <form method="post" action="">
+    <form method="post" action="{{route('update.bkash',$user)}}">
+        @csrf
       <div class="form-group">
         <div class="row">
           <div class="col-md-4">
             <label>Handling Currency</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
+            <select class="form-control" name="currency">
               <option>Select Currency</option>
-              <option value="1">USD</option>
-              <option value="2">INR</option>
-              <option value="3">IDR</option>
+              <option value="USD" {{($user->bkash != null and $user->bkash->currency == 'USD')? 'selected' : ' ' }}>USD</option>
+              <option value="INR" {{($user->bkash != null and $user->bkash->currency == 'INR')? 'selected' : ' ' }}>INR</option>
+              <option value="IDR" {{($user->bkash != null and $user->bkash->currency == 'IDR')? 'selected' : ' ' }}>IDR</option>
             </select>
           </div>
         </div>
@@ -453,8 +456,8 @@
             <label>BKash Account Number</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="BKash Account Number" class="form-control" class="form-control" value="balrajaggarwal"/>
-            <span class="text-danger">Please enter the Account Number</span>
+            <input type="text" placeholder="BKash Account Number" name="account_no" value="{{($user->bkash == null)? " ": $user->bkash->account_no }}" class="form-control" class="form-control" value="balrajaggarwal"/>
+            {{-- <span class="text-danger">Please enter the Account Number</span> --}}
           </div>
         </div>
       </div>
@@ -464,7 +467,7 @@
             <label>Account Name</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Enter Account Name" class="form-control" class="form-control"/>
+            <input type="text" placeholder="Enter Account Name" name="account_name" value="{{($user->bkash == null)? " ": $user->bkash->account_name }}" class="form-control" class="form-control"/>
           </div>
         </div>
       </div>
@@ -474,9 +477,9 @@
             <label>Status</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
-              <option value="in-active">In-Active</option>
-              <option value="active">Active</option>
+            <select class="form-control" name="status">
+              <option value="0" {{($user->bkash != null and $user->bkash->status == 0)? 'selected' : ' ' }}>In-Active</option>
+              <option value="1" {{($user->bkash != null and $user->bkash->status == 1)? 'selected' : ' ' }}>Active</option>
             </select>
           </div>
         </div>
@@ -487,13 +490,13 @@
             <label>Security Pin *</label> :
           </div>
           <div class="col-md-8">
-            <input type="password" placeholder="" class="form-control" class="form-control" name="********"/>
+            <input type="password" placeholder="" class="form-control"  class="form-control" name="security_pin"/>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Update Now</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </div>
     </form>
@@ -505,18 +508,19 @@
     <div class="card">
     <div class="card-header bg-light h4 p-1">Solid Trust Payment</div>
     <div class="card-body p-1">
-    <form method="post" action="">
+    <form method="post" action="{{route('update.solidTrust',$user)}}">
+        @csrf
       <div class="form-group">
         <div class="row">
           <div class="col-md-4">
             <label>Handling Currency</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
+            <select class="form-control" name="currency">
               <option>Select Currency</option>
-              <option value="1">USD</option>
-              <option value="2">INR</option>
-              <option value="3">IDR</option>
+              <option value="USD" {{($user->solidTrust != null and $user->solidTrust->currency == 'USD')? 'selected' : ' ' }}>USD</option>
+              <option value="INR" {{($user->solidTrust != null and $user->solidTrust->currency == 'INR')? 'selected' : ' ' }}>INR</option>
+              <option value="IDR" {{($user->solidTrust != null and $user->solidTrust->currency == 'IDR')? 'selected' : ' ' }}>IDR</option>
             </select>
           </div>
         </div>
@@ -527,7 +531,7 @@
             <label>Solid Trust Pay Account User Name</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Solid Trust Pay Account User Name" class="form-control" class="form-control" value="balrajaggarwal"/>
+            <input type="text" placeholder="Solid Trust Pay Account User Name"  value="{{($user->solidTrust == null)? " ": $user->solidTrust->account_user_name }}" name="account_user_name" class="form-control" class="form-control" />
           </div>
         </div>
       </div>
@@ -537,7 +541,7 @@
             <label>Account Name</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Enter Account Name" class="form-control" class="form-control"/>
+            <input type="text" placeholder="Enter Account Name" name="account_name"  value="{{($user->solidTrust == null)? " ": $user->solidTrust->account_name }}" class="form-control" class="form-control"/>
           </div>
         </div>
       </div>
@@ -547,9 +551,9 @@
             <label>Status</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
-              <option value="in-active">In-Active</option>
-              <option value="active">Active</option>
+            <select class="form-control" name="status">
+              <option value="0" {{($user->solidTrust != null and $user->solidTrust->status == 0)? 'selected' : ' ' }}>In-Active</option>
+              <option value="1" {{($user->solidTrust != null and $user->solidTrust->status == 1)? 'selected' : ' ' }}>Active</option>
             </select>
           </div>
         </div>
@@ -560,13 +564,13 @@
             <label>Security Pin *</label> :
           </div>
           <div class="col-md-8">
-            <input type="password" placeholder="" class="form-control" class="form-control" name="********"/>
+            <input type="password" placeholder="" class="form-control" class="form-control" name="security_pin"/>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Update Now</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </div>
     </form>
