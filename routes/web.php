@@ -25,4 +25,5 @@ Route::post('/update-pin/{user}', 'UserController@updatePin')->name('update.pin'
 
 Route::get('/assignment-settings/{user}', 'AssignmentController@index')->name('assignment.settings');
 Route::post('/update-BankTransfer/{user}', 'AssignmentController@updateBankTransfer')->name('update.bankTransfer');
-Route::post('/update-paypal/{user}', 'AssignmentController@updatePaypal')->name('update.paypal');
+Route::post('/update-Paypal/{user}', 'AssignmentController@updatePaypal')->name('update.paypal');
+Route::post('/update-PerfectMoney/{user}', 'AssignmentController@updatePerfectMoney')->name('update.perfectMoney');

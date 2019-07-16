@@ -144,7 +144,7 @@
           <div class="col-md-8">
             <select class="form-control" name="currency">
               <option>Select Currency</option>
-              <option value="USD" {{($user->paypal != null and $user->paypal->currency == 'USD')? 'selected' : ' ' }}>USD</option>
+              <option value="USD"  {{($user->paypal != null and $user->paypal->currency == 'USD')? 'selected' : ' ' }}>USD</option>
               <option value="INR" {{($user->paypal != null and $user->paypal->currency == 'INR')? 'selected' : ' ' }}>INR</option>
               <option value="IDR" {{($user->paypal != null and $user->paypal->currency == 'IDR')? 'selected' : ' ' }}>IDR</option>
             </select>
@@ -208,18 +208,19 @@
     <div class="card">
     <div class="card-header bg-light h4 p-1">Perfect Money</div>
     <div class="card-body p-1">
-    <form method="post" action="">
+    <form method="post" action="{{route('update.perfectMoney',$user)}}">
+        @csrf
       <div class="form-group">
         <div class="row">
           <div class="col-md-4">
             <label>Handling Currency</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
+            <select class="form-control" name="currency">
               <option>Select Currency</option>
-              <option value="1">USD</option>
-              <option value="2">INR</option>
-              <option value="3">IDR</option>
+              <option value="USD" {{($user->perfectMoney != null and $user->perfectMoney->currency == 'USD')? 'selected' : ' ' }}>USD</option>
+              <option value="INR" {{($user->perfectMoney != null and $user->perfectMoney->currency == 'INR')? 'selected' : ' ' }}>INR</option>
+              <option value="IDR" {{($user->perfectMoney != null and $user->perfectMoney->currency == 'IDR')? 'selected' : ' ' }}>IDR</option>
             </select>
           </div>
         </div>
@@ -230,8 +231,8 @@
             <label>Perfect Money Account ID</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Paypal Account ID" class="form-control" class="form-control" value="UAF$741"/>
-            <span class="text-danger">Please Enter the valid Perfect Money ID Ex:U1234567</span>
+            <input type="text" placeholder="Paypal Account ID"  value="{{($user->perfectMoney == null)? " ": $user->perfectMoney->account_id }}" class="form-control" class="form-control" name="account_id"/>
+            {{-- <span class="text-danger">Please Enter the valid Perfect Money ID Ex:U1234567</span> --}}
           </div>
         </div>
       </div>
@@ -241,7 +242,7 @@
             <label>Account Name</label> :
           </div>
           <div class="col-md-8">
-            <input type="text" placeholder="Enter Account Name" class="form-control" class="form-control"/>
+            <input type="text" placeholder="Enter Account Name" class="form-control" value="{{($user->perfectMoney == null)? " ": $user->perfectMoney->account_name }}" class="form-control" name="account_name"/>
           </div>
         </div>
       </div>
@@ -251,9 +252,9 @@
             <label>Status</label> :
           </div>
           <div class="col-md-8">
-            <select class="form-control">
-              <option value="in-active">In-Active</option>
-              <option value="active">Active</option>
+            <select class="form-control" name="status">
+              <option value="0" {{($user->perfectMoney != null and $user->perfectMoney->status == 0)? 'selected' : ' ' }}>In-Active</option>
+              <option value="1" {{($user->perfectMoney != null and $user->perfectMoney->status == 1)? 'selected' : ' ' }}>Active</option>
             </select>
           </div>
         </div>
@@ -264,7 +265,7 @@
             <label>Security Pin *</label> :
           </div>
           <div class="col-md-8">
-            <input type="password" placeholder="" class="form-control" class="form-control" name="********"/>
+            <input type="password" placeholder="" class="form-control" class="form-control" name="security_pin"/>
           </div>
         </div>
       </div>

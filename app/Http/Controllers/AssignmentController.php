@@ -5,6 +5,7 @@ use App\User;
 use Session;
 use App\BankTransfer;
 use App\Paypal;
+use App\PerfectMoney;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
@@ -46,6 +47,24 @@ class AssignmentController extends Controller
             $paypal->status = $request->status;
             $paypal->save();
             Session::flash('success','Paypal Details Updated');
+            return redirect()->back();
+        }
+        else{
+            Session::flash('warning','Wrong Security Pin!!');
+            return redirect()->back();
+        }
+    }
+
+    public function updatePerfectMoney(Request $request,User $user){
+        if($user->details->security_pin == $request->security_pin){
+        if($user->perfectMoney != null) { $perfectMoney =  $user->perfectMoney; } else { $perfectMoney =  new PerfectMoney; } 
+            $perfectMoney->user_id = $user->id;
+            $perfectMoney->currency = $request->currency;
+            $perfectMoney->account_id = $request->account_id;
+            $perfectMoney->account_name = $request->account_name;
+            $perfectMoney->status = $request->status;
+            $perfectMoney->save();
+            Session::flash('success','Perfect Money Details Updated');
             return redirect()->back();
         }
         else{
