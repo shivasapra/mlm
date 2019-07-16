@@ -17,17 +17,23 @@ class UserController extends Controller
     }
 
     public function updateProfile(Request $request,User $user){
-        $details = $user->details;
-        $details->sex = $request->sex;
-        $details->DOB = $request->DOB;
-        $details->address = $request->address;
-        $details->state = $request->state;
-        $details->district = $request->district;
-        $details->city = $request->city;
-        $details->postal_code = $request->postal_code;
-        $details->skype_id = $request->skype_id;
-        $details->pan_no = $request->pan_no;
-        $details->save();
+        if($request->security_pin == Auth::user()->details->security_pin){
+            $details = $user->details;
+            $details->sex = $request->sex;
+            $details->DOB = $request->DOB;
+            $details->address = $request->address;
+            $details->state = $request->state;
+            $details->district = $request->district;
+            $details->city = $request->city;
+            $details->postal_code = $request->postal_code;
+            $details->skype_id = $request->skype_id;
+            $details->pan_no = $request->pan_no;
+            $details->save();
+            Session::flash('success','Details Updated!!');
+        }
+        else{
+            Session::flash('warning','Wrong Security Pin!!');
+        }
         return redirect()->back()->with('user',$user);
     }
 

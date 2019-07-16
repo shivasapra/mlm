@@ -74,8 +74,8 @@
                 <h4><span>Skype ID</span> : <input type="text" class="form-control" name="skype_id" value="{{$user->details->skype_id}}"/></h4>
                 {{-- <h4><input type="checkbox"> Hide my name, comment from everyone and contribute anonymousl</h4> --}}
                 <h4><span>PAN NO</span> : <input type="text" class="form-control" name="pan_no" value="{{$user->details->pan_no}}"/></h4>
-                {{-- <h4 class="mb-2"><span>Security Pin*</span> : <input type="password" class="form-control" name="pin" value="aslamkhan"/> --}}
-                {{-- <i class="text-danger">(To save changes, you must enter your personal pin here)</i></h4> --}}
+                <h4 class="mb-2"><span>Security Pin*</span> : <input type="password" class="form-control" name="security_pin" required/>
+                <i class="text-danger">(To save changes, you must enter your personal pin here)</i></h4>
                 <div><input type="checkbox"> I agree to be a part of the OnlineSensor Reward Fixed Amount Fundraising option and also agree to spend 2/3rd of the funds raised, towards giving rewards to the contributors. I give this right to the company to use 2/3rd of the funds raised by me towards providing rewards to the contributors from any of the third parties associated with the company, as per the terms and policies.</div>
                 <button type="submit" class="btn btn-primary mt-1">Update Profile</button>
             </div>

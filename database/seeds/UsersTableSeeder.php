@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
         $detail->invited_by = 'testing';
         $detail->invited_by_email = 'testing@gmail.com';
         $detail->promotional_url = 'http://test.com/shivasapra';
+        $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 
     }
