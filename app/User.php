@@ -50,4 +50,17 @@ class User extends Authenticatable
     public function perfectMoney(){
         return $this->hasOne('App\PerfectMoney');
     }
+
+    public function payza(){
+        return $this->hasOne('App\Payza');
+    }
+    public function skrill(){
+        return $this->hasOne('App\Skrill');
+    }
+    public function bkash(){
+        return $this->hasOne('App\Bkash');
+    }
+    public function solidTrust(){
+        return $this->hasOne('App\SolidTrust');
+    }
 }
