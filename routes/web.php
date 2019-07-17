@@ -36,3 +36,6 @@ Route::post('/update-solidTrust/{user}', 'AssignmentController@updateSolidTrust'
 Route::post('/identity-proof/upload/{user}','UserController@identityProof')->name('identity.proof.upload');
 Route::post('/address-proof/upload/{user}','UserController@addressProof')->name('address.proof.upload');
 Route::post('/tax-proof/upload/{user}','UserController@taxProof')->name('tax.proof.upload');
+
+Route::get('/add-campaign/{user}','CampaignController@create')->name('add.campaign');
+Route::get('/MyCampaign/{user}','CampaignController@index')->name('my.campaign');

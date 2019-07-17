@@ -179,7 +179,7 @@
             </li>
             <li class=" nav-item"><a href="{{route('assignment.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Assignment Settings</span></a>
             </li>
-            <li class=" nav-item"><a href="campaign.php"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a>
+            <li class=" nav-item"><a href="{{route('my.campaign',Auth::user())}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a>
             </li>
             
             <li class=" nav-item"><a href="get-package.php"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
