@@ -32,7 +32,7 @@
       <li>Tax documents or students IDs are not allowed</li>
     </ul>
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
-    <form method="{{action(route('identity.proof.upload',$user))}}" action="post">
+    <form action="{{route('identity.proof.upload',$user)}}" method="post">
     @csrf
         <label class="pr-2"><input type="radio" name="identity_proof" value="Driving License" required> Driving License</label>
         <label class="pr-2"><input type="radio" name="identity_proof" value="Passport" required> Passport</label>
@@ -53,7 +53,7 @@
       <li>Please Make sure your name and address on the document matches the one we have on file</li>
     </ul>
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
-    <form method="{{action(route('address.proof.upload',$user))}}" action="post">
+    <form action="{{route('address.proof.upload',$user)}}" method="post">
     @csrf
         <label class="pr-2"><input type="radio" name="address_proof" value="Bank Statement" required> Bank Statement</label>
         <label class="pr-2"><input type="radio" name="address_proof" value="Credit Card Statement" required> Credit Card Statement</label>
@@ -72,7 +72,7 @@
     <ul>
       <li>PAN Card applicable for Indians and Tax Identification Number for other country residents</li>
     </ul>
-    <form method="{{action(route('tax.proof.upload',$user))}}" action="post">
+    <form action="{{route('tax.proof.upload',$user)}}" method="post">
     @csrf
     <div class="mt-2 mb-2">
       <input type="file" name="tax_p" class="form-control"/ required>

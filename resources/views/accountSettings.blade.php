@@ -146,16 +146,24 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th>Sno.</th>
                   <th>Created On</th>
                   <th>Proof For</th>
                   <th>Document Type</th>
-                  <th>Verification</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td colspan="4" class="text-center">No Data Found</td>
-                </tr>
+                @if($user->kyc != null)
+                <?php $i = 1; ?>
+                @foreach($user->KYC as $k)
+                  <tr>
+                    <th>{{$i++}}</th>
+                    <td>{{$k->created_at}}</td>
+                    <td>{{$k->proof_for}}</td>
+                    <td>{{$k->type}}</td>
+                  </tr>
+                @endforeach
+                @endif
               </tbody>
             </table>
           </div>

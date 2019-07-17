@@ -64,6 +64,6 @@ class User extends Authenticatable
         return $this->hasOne('App\SolidTrust');
     }
     public function KYC(){
-        return $this->hasMany('App\SolidTrust');
+        return $this->hasMany('App\KYC');
     }
 }

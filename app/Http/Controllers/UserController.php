@@ -95,24 +95,31 @@ class UserController extends Controller
     }
 
     public function identityProof(Request $request, User $user, KYC $kyc){
-
+        $kyc->user_id = $user->id;
         $kyc->proof_for = 'Identity';
         $kyc->type = $request->identity_proof;
+        $kyc->proof = 'test';
         $kyc->save();
-
+        Session::flash('success','Identity Poof Uploaded');
         return redirect()->back()->with('user',$user);
     }
 
     public function addressProof(Request $request, User $user, KYC $kyc){
+        $kyc->user_id = $user->id;
         $kyc->proof_for = 'Address';
         $kyc->type = $request->address_proof;
+        $kyc->proof = 'test';
         $kyc->save();
+        Session::flash('success','Address Poof Uploaded');
         return redirect()->back()->with('user',$user);
     }
 
     public function taxProof(Request $request, User $user, KYC $kyc){
+        $kyc->user_id = $user->id;
         $kyc->proof_for = 'Tax ID';
+        $kyc->proof = 'test';
         $kyc->save();
+        Session::flash('success','Tax Id Uploaded');
         return redirect()->back()->with('user',$user);
     }
 }
