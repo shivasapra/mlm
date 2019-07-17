@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Auth;
+use App\KYC;
 
 class UserController extends Controller
 {
@@ -93,15 +94,25 @@ class UserController extends Controller
         return view('KYC')->with('user',$user);
     }
 
-    public function identityProof(User $user){
+    public function identityProof(Request $request, User $user, KYC $kyc){
+
+        $kyc->proof_for = 'Identity';
+        $kyc->type = $request->identity_proof;
+        $kyc->save();
+
         return redirect()->back()->with('user',$user);
     }
 
-    public function addressProof(User $user){
+    public function addressProof(Request $request, User $user, KYC $kyc){
+        $kyc->proof_for = 'Address';
+        $kyc->type = $request->address_proof;
+        $kyc->save();
         return redirect()->back()->with('user',$user);
     }
 
-    public function taxProof(User $user){
+    public function taxProof(Request $request, User $user, KYC $kyc){
+        $kyc->proof_for = 'Tax ID';
+        $kyc->save();
         return redirect()->back()->with('user',$user);
     }
 }

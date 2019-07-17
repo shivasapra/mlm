@@ -34,11 +34,11 @@
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
     <form method="{{action(route('identity.proof.upload',$user))}}" action="post">
     @csrf
-        <label class="pr-2"><input type="radio" name="identity_proof" value="Driving License"> Driving License</label>
-        <label class="pr-2"><input type="radio" name="identity_proof" value="Passport"> Passport</label>
-        <label><input type="radio" name="identity_proof" value="National Id"> National Id</label>
+        <label class="pr-2"><input type="radio" name="identity_proof" value="Driving License" required> Driving License</label>
+        <label class="pr-2"><input type="radio" name="identity_proof" value="Passport" required> Passport</label>
+        <label><input type="radio" name="identity_proof" value="National Id" required> National Id</label>
         <div class="mt-2 mb-2">
-        <input type="file" name="identity_p" class="form-control"/>
+        <input type="file" name="identity_p" class="form-control"/ required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -55,12 +55,12 @@
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
     <form method="{{action(route('address.proof.upload',$user))}}" action="post">
     @csrf
-        <label class="pr-2"><input type="radio" name="address_proof" value="Bank Statement"> Bank Statement</label>
-        <label class="pr-2"><input type="radio" name="address_proof" value="Credit Card Statement"> Credit Card Statement</label>
-        <label class="pr-2"><input type="radio" name="address_proof" value="Utility Bill"> Utility Bill</label>
-        <label class="pr-2"><input type="radio" name="address_proof" value="Phone Bill"> Phone Bill</label>
+        <label class="pr-2"><input type="radio" name="address_proof" value="Bank Statement" required> Bank Statement</label>
+        <label class="pr-2"><input type="radio" name="address_proof" value="Credit Card Statement" required> Credit Card Statement</label>
+        <label class="pr-2"><input type="radio" name="address_proof" value="Utility Bill" required> Utility Bill</label>
+        <label class="pr-2"><input type="radio" name="address_proof" value="Phone Bill" required> Phone Bill</label>
         <div class="mt-2 mb-2">
-        <input type="file" name="address_p" class="form-control"/>
+        <input type="file" name="address_p" class="form-control"/ required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -75,7 +75,7 @@
     <form method="{{action(route('tax.proof.upload',$user))}}" action="post">
     @csrf
     <div class="mt-2 mb-2">
-      <input type="file" name="tax_p" class="form-control"/>
+      <input type="file" name="tax_p" class="form-control"/ required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
