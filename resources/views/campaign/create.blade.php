@@ -145,7 +145,7 @@
                 <div class="col-md-9">
                   <input type="file" id="upload_campaign_image" name="" value style="display:none;"/>
                   <label for="upload_campaign_image" class="btn btn-danger"><i class="icon-upload"></i> Upload</label><br>
-                  <img src="images/upload-image.jpg" alt="upload image" class="img-fluid"/>
+                  <img src="{{asset('app/images/upload-image.jpg')}}" alt="upload image" class="img-fluid"/>
                   <div class="bg-light p-1 mt-2"><p class="m-0">TIP Project image needs to be at least 1200px by 650px. We suggest using a photograph with a clean and simple design. File dimensions : at least 1200px (wide) by 650px (high) - Max file size : 5MB - Accepted file formats : JPG, PNG or GIF.</p></div>
                 </div>
               </div>

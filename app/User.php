@@ -66,4 +66,8 @@ class User extends Authenticatable
     public function KYC(){
         return $this->hasMany('App\KYC');
     }
+
+    public function campaigns(){
+        return $this->hasMany('App\Campaign');
+    }
 }
