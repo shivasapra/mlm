@@ -141,7 +141,7 @@
         </div>
         </div>
         <div class="tab-pane fade" id="verify-identity" role="tabpanel" aria-labelledby="contact-tab">
-          <div class="text-right mb-1"><a href="upload-kyc-proof.php" class="btn btn-primary">Upload Proof</a></div>
+          <div class="text-right mb-1"><a href="{{route('KYC',$user)}}" class="btn btn-primary">Upload Proof</a></div>
           <div class="table-responsive">
             <table class="table table-bordered">
               <thead>

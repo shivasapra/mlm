@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
-use App\Details;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Auth;
@@ -88,5 +87,9 @@ class UserController extends Controller
             Session::flash('warning','Incorrect Old Password');
             return redirect()->back()->with('user',$user);
         }
+    }
+
+    public function KYC(User $user){
+        return view('KYC')->with('user',$user);
     }
 }
