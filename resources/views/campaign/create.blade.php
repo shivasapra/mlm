@@ -19,7 +19,7 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="home-tab">
-            <form method="{{route('campaign.store',$user)}}" action="post">
+            <form method="post" action="{{route('campaign.store',$user)}}" enctype="multipart/form-data">
               @csrf
             <div class="form-group mt-2">
               <div class="row">
@@ -122,7 +122,7 @@
                       </select>
                     </div>
                   </div>
-                  <input type="number" name="fundraising_target" class="form-control" name="" value="0">
+                  <input type="number" name="fundraising_target" class="form-control" name="" value="">
                 </div>
                 <span class="text-danger">Enter Minimum target amount 50000 INR ₹</span>
                 </div>
@@ -131,7 +131,7 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3"><label>Short URL *</label></div>
-                <div class="col-md-9"><input type="text" placeholder="" name="short_url" value="" class="form-control" disabled/></div>
+                <div class="col-md-9"><input type="text" placeholder="" name="short_url" value="{{$short_url}}" class="form-control" readonly/></div>
               </div>
             </div>
             <div class="form-group">
@@ -144,7 +144,7 @@
               <div class="row">
                 <div class="col-md-3"><label>Upload your campaign image</label></div>
                 <div class="col-md-9">
-                  <input type="file" id="upload_campaign_image" name="" value style="display:none;"/>
+                  <input type="file" id="upload_campaign_image" name="image" value style="display:none;"/>
                   <label for="upload_campaign_image" class="btn btn-danger"><i class="icon-upload"></i> Upload</label><br>
                   <img src="{{asset('app/images/upload-image.jpg')}}" alt="upload image" class="img-fluid"/>
                   <div class="bg-light p-1 mt-2"><p class="m-0">TIP Project image needs to be at least 1200px by 650px. We suggest using a photograph with a clean and simple design. File dimensions : at least 1200px (wide) by 650px (high) - Max file size : 5MB - Accepted file formats : JPG, PNG or GIF.</p></div>

@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Campaign;
+use Session;
+
 
 class CampaignController extends Controller
 {
     public function create(User $user){
-        return view('campaign.create')->with('user',$user);
+        $short_url = 'http://'.str_random(7).'.com';
+        return view('campaign.create')->with('user',$user)->with('short_url',$short_url);
     }
 
     public function index(User $user){
@@ -21,7 +24,7 @@ class CampaignController extends Controller
        $campaign->campaign_id = str_random(10);
        $campaign->category = $request->category;
        $campaign->title = $request->title;
-       $campaign->fundraising_target = $request->fundraising_target;
+       $campaign->fundraising_targe = $request->fundraising_target;
        $campaign->short_url = $request->short_url;
        $campaign->currency = $request->currency;
        $campaign->description = $request->description;
@@ -31,6 +34,10 @@ class CampaignController extends Controller
        if($request->video == 'youtube'){
             $campaign->video = $request->youtube_value;
         }
+        $image = $request->image;
+        $image_new_name = time().$image->getClientOriginalName();
+        $image->move('uploads/campaign',$image_new_name);
+        $campaign->image = 'uploads/campaign/'.$image_new_name;
         $campaign->website_url = $request->website_url;
         $campaign->twitter_url = $request->twitter_url;
         $campaign->linkedin_url = $request->linkedin_url;

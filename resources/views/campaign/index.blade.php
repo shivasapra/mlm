@@ -33,15 +33,15 @@
 @foreach($user->campaigns as $campaign)
     <div class="row">
     <div class="col-md-4">
-        <img src="{{asset('app/images/portfolio.jpg')}}" alt="portfolio" class="img-fluid"/>
+        <img src="{{asset($campaign->image)}}" alt="portfolio" class="img-fluid"/>
     </div>
     <div class="col-md-8">
         <h2>Help me raise funds ({{$campaign->campaign_id}})</h2>
         <span class="mr-1"><b>Created On</b> : {{$campaign->created_at}}</span>
         <span class="mr-1"><b>Last Updated On</b> : {{$campaign->updated_at}}</span>
         {{-- <span><b>Status</b> : Published</span> --}}
-        <p class="mt-1">Fund : ₹ 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_target}} </p>
-        <p><b>Campaign URL</b> : {{$user->promotional_url}}/{{$campaign->campaign_id}}</p>
+        <p class="mt-1">Fund : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_targe}} </p>
+        <p><b>Campaign URL</b> : {{$user->details->promotional_url}}/{{$campaign->campaign_id}}</p>
         <a href="" class="btn btn-danger">Edit</a>
         <a href="" class="btn btn-primary">View</a>
     </div>
