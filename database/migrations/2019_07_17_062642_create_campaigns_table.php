@@ -16,10 +16,12 @@ class CreateCampaignsTable extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
+            $table->string('campaign_id');
             $table->string('category');
             $table->string('title');
-            $table->bigInteger('fundraising_targe');
+            $table->bigInteger('fundraising_target');
             $table->string('short_url');
+            $table->string('currency');
             $table->longText('description');
             $table->string('image');
             $table->string('video');
