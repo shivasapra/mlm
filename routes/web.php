@@ -40,3 +40,4 @@ Route::post('/tax-proof/upload/{user}','UserController@taxProof')->name('tax.pro
 Route::get('/add-campaign/{user}','CampaignController@create')->name('add.campaign');
 Route::get('/MyCampaign/{user}','CampaignController@index')->name('my.campaign');
 Route::post('/Campaign/Store/{user}','CampaignController@store')->name('campaign.store');
+Route::get('/Campaign/view/{campaign}','CampaignController@show')->name('campaign.view');

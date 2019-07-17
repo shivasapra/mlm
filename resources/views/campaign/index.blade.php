@@ -40,10 +40,10 @@
         <span class="mr-1"><b>Created On</b> : {{$campaign->created_at}}</span>
         <span class="mr-1"><b>Last Updated On</b> : {{$campaign->updated_at}}</span>
         {{-- <span><b>Status</b> : Published</span> --}}
-        <p class="mt-1">Fund : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_targe}} </p>
+        <p class="mt-1"><b>Fund</b> : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_targe}} </p>
         <p><b>Campaign URL</b> : {{$user->details->promotional_url}}/{{$campaign->campaign_id}}</p>
         <a href="" class="btn btn-danger">Edit</a>
-        <a href="" class="btn btn-primary">View</a>
+        <a href="{{route('campaign.view',$campaign)}}" class="btn btn-primary">View</a>
     </div>
     </div>
     <hr>

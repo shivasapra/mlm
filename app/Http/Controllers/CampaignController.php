@@ -47,4 +47,8 @@ class CampaignController extends Controller
         return redirect()->route('my.campaign',$user);
 
     }
+
+    public function show(Campaign $campaign){
+        return view('campaign.show')->with('campaign',$campaign);
+    }
 }
