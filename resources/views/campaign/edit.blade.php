@@ -5,9 +5,9 @@
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#edit-campaign" role="tab">Edit/Update Campaign</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#campaign-preferences" role="tab">Campaign Preferences</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#campaign-perks" role="tab">Campaign Perks</a>
         </li>
@@ -868,7 +868,7 @@
           </div>
         </div>
 
-        <div class="tab-pane fade show" id="campaign-preferences" role="tabpanel">
+        {{-- <div class="tab-pane fade show" id="campaign-preferences" role="tabpanel">
             <form method="" action="">
                 <div class="form-group mt-2">
                     <div class="row">
@@ -896,7 +896,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary" name="">Save</button>
             </form>
-        </div>
+        </div> --}}
 
         <div class="tab-pane fade show" id="campaign-perks" role="tabpanel">
             <div class="row mt-2">
