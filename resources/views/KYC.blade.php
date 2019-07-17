@@ -7,7 +7,7 @@
       <li>Upload the file for the chosen document.</li>
       <li><b>Warning:Submitting fake or altered documents will result in account suspension.</b></li>
     </ol>
-    <p class="text-danger">Please note that file must be submitted in the format JPG,JPEG,PNG,BMP,GIF OR PDF, and the file size is limited to 2.5 MB.</p>
+    {{-- <p class="text-danger">Please note that file must be submitted in the format JPG,JPEG,PNG,BMP,GIF OR PDF, and the file size is limited to 2.5 MB.</p> --}}
 
   <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
   <li class="nav-item">
@@ -32,15 +32,16 @@
       <li>Tax documents or students IDs are not allowed</li>
     </ul>
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
-    <form method="" action="">
-    <label class="pr-2"><input type="radio" name="proof" value=""> Driving License</label>
-    <label class="pr-2"><input type="radio" name="proof" value=""> Passport</label>
-    <label><input type="radio" name="proof" value=""> National Id</label>
-    <div class="mt-2 mb-2">
-      <input type="file" name="" class="form-control"/>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <form method="{{action(route('identity.proof.upload',$user))}}" action="post">
+    @csrf
+        <label class="pr-2"><input type="radio" name="identity_proof" value="Driving License"> Driving License</label>
+        <label class="pr-2"><input type="radio" name="identity_proof" value="Passport"> Passport</label>
+        <label><input type="radio" name="identity_proof" value="National Id"> National Id</label>
+        <div class="mt-2 mb-2">
+        <input type="file" name="identity_p" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
 
   <div class="tab-pane fade" id="address-proof" role="tabpanel" aria-labelledby="profile-tab">
@@ -52,16 +53,17 @@
       <li>Please Make sure your name and address on the document matches the one we have on file</li>
     </ul>
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
-    <form method="" action="">
-    <label class="pr-2"><input type="radio" name="proof" value=""> Bank Statement</label>
-    <label class="pr-2"><input type="radio" name="proof" value=""> Credit Card Statement</label>
-    <label class="pr-2"><input type="radio" name="proof" value=""> Utility Bill</label>
-    <label class="pr-2"><input type="radio" name="proof" value=""> Phone Bill</label>
-    <div class="mt-2 mb-2">
-      <input type="file" name="" class="form-control"/>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <form method="{{action(route('address.proof.upload',$user))}}" action="post">
+    @csrf
+        <label class="pr-2"><input type="radio" name="address_proof" value="Bank Statement"> Bank Statement</label>
+        <label class="pr-2"><input type="radio" name="address_proof" value="Credit Card Statement"> Credit Card Statement</label>
+        <label class="pr-2"><input type="radio" name="address_proof" value="Utility Bill"> Utility Bill</label>
+        <label class="pr-2"><input type="radio" name="address_proof" value="Phone Bill"> Phone Bill</label>
+        <div class="mt-2 mb-2">
+        <input type="file" name="address_p" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
 
   <div class="tab-pane fade" id="tax-proof" role="tabpanel" aria-labelledby="contact-tab">
@@ -70,9 +72,10 @@
     <ul>
       <li>PAN Card applicable for Indians and Tax Identification Number for other country residents</li>
     </ul>
-    <form method="" action="">
+    <form method="{{action(route('tax.proof.upload',$user))}}" action="post">
+    @csrf
     <div class="mt-2 mb-2">
-      <input type="file" name="" class="form-control"/>
+      <input type="file" name="tax_p" class="form-control"/>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

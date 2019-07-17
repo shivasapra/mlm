@@ -32,3 +32,7 @@ Route::post('/update-payza/{user}', 'AssignmentController@updatePayza')->name('u
 Route::post('/update-skrill/{user}', 'AssignmentController@updateSkrill')->name('update.skrill');
 Route::post('/update-bkash/{user}', 'AssignmentController@updateBkash')->name('update.bkash');
 Route::post('/update-solidTrust/{user}', 'AssignmentController@updateSolidTrust')->name('update.solidTrust');
+
+Route::post('/identity-proof/upload/{user}','UserController@identityProof')->name('identity.proof.upload');
+Route::post('/address-proof/upload/{user}','UserController@addressProof')->name('address.proof.upload');
+Route::post('/tax-proof/upload/{user}','UserController@taxProof')->name('tax.proof.upload');

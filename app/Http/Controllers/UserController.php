@@ -92,4 +92,16 @@ class UserController extends Controller
     public function KYC(User $user){
         return view('KYC')->with('user',$user);
     }
+
+    public function identityProof(User $user){
+        return redirect()->back()->with('user',$user);
+    }
+
+    public function addressProof(User $user){
+        return redirect()->back()->with('user',$user);
+    }
+
+    public function taxProof(User $user){
+        return redirect()->back()->with('user',$user);
+    }
 }
