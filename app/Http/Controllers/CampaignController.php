@@ -51,4 +51,8 @@ class CampaignController extends Controller
     public function show(Campaign $campaign){
         return view('campaign.show')->with('campaign',$campaign);
     }
+
+    public function edit(Campaign $campaign){
+        return view('campaign.edit')->with('campaign',$campaign);
+    }
 }

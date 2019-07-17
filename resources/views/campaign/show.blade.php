@@ -23,12 +23,12 @@
                     </div>
                 </div> <hr>
                 <p>Hi Everyone, <br> {!!$campaign->description!!} </p>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-12 text-right">
                     <a href="#" class="btn btn-primary bg-facebook"><i class="icon-facebook-square"></i> Share</a>
                     <a href="#" class="btn btn-primary bg-twitter"><i class="icon-twitter"></i> Tweet</a>
                     </div>
-                </div>
+                </div> --}}
                 <hr>
                 <div class="bg-light p-1 col-md-6 text-center mb-2 border-right">
                     <a href="javascript:void(0)" id="embedShow" class="badge bg-info">Embed</a><br>
@@ -72,7 +72,7 @@
                         <span><i class="icon-tag"></i> {{$campaign->category}}</span>
                         <hr>
                         <h3>{{$campaign->currency}}0000 <small>of {{$campaign->currency}}{{$campaign->fundraising_targe}}</small></h3>
-                        <h6>Received Test Contributions</h6>
+                        <h6>Received 16 Contributions</h6>
                         <div class="progress">
                           <div class="progress-bar progress-bar-striped bg-success" style="width:20%"></div>
                         </div>

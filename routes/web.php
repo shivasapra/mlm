@@ -41,3 +41,4 @@ Route::get('/add-campaign/{user}','CampaignController@create')->name('add.campai
 Route::get('/MyCampaign/{user}','CampaignController@index')->name('my.campaign');
 Route::post('/Campaign/Store/{user}','CampaignController@store')->name('campaign.store');
 Route::get('/Campaign/view/{campaign}','CampaignController@show')->name('campaign.view');
+Route::get('/Campaign/edit/{campaign}','CampaignController@edit')->name('campaign.edit');

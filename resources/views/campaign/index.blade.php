@@ -42,7 +42,7 @@
         {{-- <span><b>Status</b> : Published</span> --}}
         <p class="mt-1"><b>Fund</b> : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_targe}} </p>
         <p><b>Campaign URL</b> : {{$user->details->promotional_url}}/{{$campaign->campaign_id}}</p>
-        <a href="" class="btn btn-danger">Edit</a>
+        <a href="{{route('campaign.edit',$campaign)}}" class="btn btn-danger">Edit</a>
         <a href="{{route('campaign.view',$campaign)}}" class="btn btn-primary">View</a>
     </div>
     </div>
