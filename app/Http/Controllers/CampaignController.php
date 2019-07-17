@@ -55,4 +55,27 @@ class CampaignController extends Controller
     public function edit(Campaign $campaign){
         return view('campaign.edit')->with('campaign',$campaign);
     }
+
+    public function update(Request $request, Campaign $campaign){
+       $campaign->title = $request->title;
+       $campaign->fundraising_targe = $request->fundraising_target;
+       $campaign->description = $request->description;
+       if($request->video == 'vimeo'){
+           $campaign->video = $request->vimeo_value;
+       }
+       if($request->video == 'youtube'){
+            $campaign->video = $request->youtube_value;
+        }
+        $image = $request->image;
+        $image_new_name = time().$image->getClientOriginalName();
+        $image->move('uploads/campaign',$image_new_name);
+        $campaign->image = 'uploads/campaign/'.$image_new_name;
+        $campaign->website_url = $request->website_url;
+        $campaign->twitter_url = $request->twitter_url;
+        $campaign->linkedin_url = $request->linkedin_url;
+        $campaign->facebook_url = $request->facebook_url;
+        $campaign->save();
+        Session::flash('success','Campaign Updated!!!');
+        return redirect()->back()->with('campaign',$campaign);
+    }
 }

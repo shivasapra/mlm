@@ -27,12 +27,12 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="edit-campaign" role="tabpanel" aria-labelledby="home-tab">
           <h3 class="mt-2">Recipient</h3>
-          <p class="text-muted">TIP Who should funds be sent to?</p>
+          {{-- <p class="text-muted">TIP Who should funds be sent to?</p> --}}
           <ul class="nav nav-tabs tabs-design mt-2" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#all" role="tab">All</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#someone-else" role="tab">Someone Else</a>
             </li>
             <li class="nav-item">
@@ -40,94 +40,48 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#charity" role="tab">A Charity</a>
-            </li>
+            </li> --}}
           </ul>
           <div id="myTabContent1" class="tab-content">
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="home-tab">
-              <form method="" action="">
+                <form method="post" action="{{route('campaign.update',$campaign)}}" enctype="multipart/form-data">
+                    @csrf
                 <div class="form-group mt-2">
                   <div class="row">
                     <div class="col-md-3"><label>Full Name</label></div>
-                    <div class="col-md-9">Balraj Aggarwal</div>
+                    <div class="col-md-9">{{$campaign->user->details->full_name}}</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>Email Address</label></div>
-                    <div class="col-md-9">balrajaggarwal002@gmail.com</div>
+                    <div class="col-md-9">{{$campaign->user->email}}</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>State</label></div>
-                    <div class="col-md-9">Chandigarh</div>
+                    <div class="col-md-9">{{$campaign->user->details->state}}</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>Country</label></div>
-                    <div class="col-md-9">India</div>
+                    <div class="col-md-9">{{$campaign->user->details->country}}</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>My Campaign Category *</label></div>
                     <div class="col-md-9">
-                      <select class="form-control">
-                        <option value="1" >Adoption</option>
-                        <option value="2" >Animals</option>
-                        <option value="3" >Art</option>
-                        <option value="4" >Buy a Car</option>
-                        <option value="5" >Buy a Home</option>
-                        <option value="6" >Cancer Treatment</option>
-                        <option value="7" >Churches & Religious Organizations</option>
-                        <option value="8" >Organizations</option>
-                        <option value="9" >Community</option>
-                        <option value="10" >Crafts</option>
-                        <option value="11" >Creative Projects</option>
-                        <option value="12" >Dance</option>
-                        <option value="13" >Design</option>
-                        <option value="14" >Design a Website</option>
-                        <option value="15" >Develop a Software</option>
-                        <option value="16" >Education</option>
-                        <option value="17" >Emergencies</option>
-                        <option value="18" >Events</option>
-                        <option value="19" >Family</option>
-                        <option value="20" >Fashion</option>
-                        <option value="21" >Film/Video</option>
-                        <option value="22" >Food</option>
-                        <option value="23" >For Individuals</option>
-                        <option value="24" >For Kids</option>
-                        <option value="25" >Fraternities and Sororities</option>
-                        <option value="26" >Games</option>
-                        <option value="27" >Get Out of Debt</option>
-                        <option value="28" >Groups</option>
-                        <option value="29" >Holidays</option>
-                        <option value="30" >Medical & Health</option>
-                        <option value="31" >Memorials & Funerals</option>
-                        <option value="32" >Military & Veterans</option>
-                        <option value="33" >Neighbours</option>
-                        <option value="34" >Nonprofits & Charity</option>
-                        <option value="35" >Pets</option>
-                        <option value="36" >Politics and Public Office</option>
-                        <option value="37" >Publish a Book</option>
-                        <option value="38" >Repay a Loan</option>
-                        <option value="39" >Run/Walk/Rides</option>
-                        <option value="40" selected>Schools</option>
-                        <option value="41" >Sports</option>
-                        <option value="42" >To Fund My Business</option>
-                        <option value="43" >To Have a Good Life</option>
-                        <option value="44" >To Start a Business</option>
-                        <option value="45" >Trip</option>
-                        <option value="46" >Weddings & Honeymoons</option>
-                      </select>
+                        <input type="text" class="form-control" name="category" value="{{$campaign->category}}" readonly>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>Title of your Campaign *</label></div>
-                    <div class="col-md-9"><input type="text" placeholder="" name="" value="" class="form-control"/></div>
+                    <div class="col-md-9"><input type="text" placeholder="" name="title" value="{{$campaign->title}}" class="form-control"/></div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -137,40 +91,34 @@
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <div class="input-group-text">
-                            <select class="form-control">
-                              <option value="2" data-minigoal = "50000" selected='selected'>INR ₹</option>
-                              <option value="1" data-minigoal = "1000" >USD $</option>
-                              <option value="9" data-minigoal = "1000" >EUR €</option>
-                              <option value="10" data-minigoal = "1000" >GBP £</option>
-                              <option value="13" data-minigoal = "1" >BTC ฿</option>
-                            </select>
+                                <input type="text" class="form-control" name="currency" value="{{$campaign->currency}}" readonly>
                           </div>
                         </div>
-                        <input type="number" class="form-control" name="" value="0">
+                        <input type="number" class="form-control" name="fundraising_target" value="{{$campaign->fundraising_targe}}">
                       </div>
-                      <span class="text-danger">Enter Minimum target amount 50000 INR ₹</span>
+                      {{-- <span class="text-danger">Enter Minimum target amount 50000 INR ₹</span> --}}
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>Short URL *</label></div>
-                    <div class="col-md-9"><input type="text" placeholder="" name="" value="" class="form-control" disabled/></div>
+                    <div class="col-md-9"><input type="text" placeholder="" name="short_url" value="{{$campaign->short_url}}" class="form-control" readonly/></div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>Story of the Project/Campaign *</label></div>
-                    <div class="col-md-9"><textarea id="summernote" name="editordata" class="form-control" value=""></textarea></div>
+                    <div class="col-md-9"><textarea id="summernote" name="description" class="form-control" value="">{{$campaign->description}}</textarea></div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3"><label>Upload your campaign image</label></div>
                     <div class="col-md-9">
-                      <input type="file" id="upload_campaign_image" name="" value style="display:none;"/>
+                      <input type="file" id="upload_campaign_image" name="image" value style="display:none;"/>
                       <label for="upload_campaign_image" class="btn btn-danger"><i class="icon-upload"></i> Upload</label><br>
-                      <img src="images/upload-image.jpg" alt="upload image" class="img-fluid"/>
+                      <img src="{{asset($campaign->image)}}" alt="upload image" class="img-fluid"/>
                       <div class="bg-light p-1 mt-2"><p class="m-0">TIP Project image needs to be at least 1200px by 650px. We suggest using a photograph with a clean and simple design. File dimensions : at least 1200px (wide) by 650px (high) - Max file size : 5MB - Accepted file formats : JPG, PNG or GIF.</p></div>
                     </div>
                   </div>
@@ -183,19 +131,19 @@
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <div class="input-group-text pl-1 pr-1">
-                            <input type="radio" name="video"/>
+                            <input type="radio" value="vimeo" name="video" @if(strpos($campaign->video,'vimeo')) checked @endif />
                           </div>
                         </div>
-                        <input type="text" class="form-control" name="" value="http://www.vimeo.com/">
+                        <input type="text" class="form-control" name="vimeo_value" @if(strpos($campaign->video,'vimeo')) value="{{$campaign->video}}" @endif>
                       </div>
                       <label class="mt-1">YouTube Video</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <div class="input-group-text pl-1 pr-1">
-                            <input type="radio" name="video"/>
+                            <input type="radio" value="youtube" name="video" @if(strpos($campaign->video,'youtube')) checked @endif />
                           </div>
                         </div>
-                        <input type="text" class="form-control" name="" value="http://www.youtube.com/watch?v=">
+                        <input type="text" class="form-control" name="youtube_value" @if(strpos($campaign->video,'youtube')) value="{{$campaign->video}}" @endif>
                       </div>
                       <div class="bg-light p-1 mt-2">
                         <ul class="pl-1 l-height-auto">
@@ -215,13 +163,13 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-4"><label>Your Website URL</label></div>
-                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="" value="" class="form-control"/></div>
+                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="website_url" value="{{$campaign->website_url}}" class="form-control"/></div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-4"><label>Your LinkedIn URL</label></div>
-                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="" value="" class="form-control"/></div>
+                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="linkedin_url" value="{{$campaign->linkedin_url}}" class="form-control"/></div>
                       </div>
                     </div>
                   </div>
@@ -231,13 +179,13 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-4"><label>Your Facebook URL</label></div>
-                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="" value="" class="form-control"/></div>
+                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="facebook_url" value="{{$campaign->facebook_url}}" class="form-control"/></div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-4"><label>Your Twitter URL</label></div>
-                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="" value="" class="form-control"/></div>
+                        <div class="col-md-8"><input type="text" placeholder="www.yourerbsite.com" name="twitter_url" value="{{$campaign->twitter_url}}" class="form-control"/></div>
                       </div>
                     </div>
                   </div>
@@ -251,10 +199,10 @@
                     </p>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Create Campaign</button>
+                <button type="submit" class="btn btn-primary">Update</button>
               </form>
             </div>
-            <div class="tab-pane fade show" id="someone-else" role="tabpanel" aria-labelledby="home-tab">
+            {{-- <div class="tab-pane fade show" id="someone-else" role="tabpanel" aria-labelledby="home-tab">
               <form method="" action="">
                 <div class="form-group mt-2">
                   <div class="row">
@@ -916,7 +864,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Create Campaign</button>
               </form>
-            </div>
+            </div> --}}
           </div>
         </div>
 
