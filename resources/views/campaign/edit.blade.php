@@ -921,7 +921,7 @@
                       {{-- <span class="mr-1"><b>Status</b> : Draft</span> --}}
                       <span><b>Number Available</b> : {{$perk->number_available}}</span>
                       <p><b>Contribution Amount</b> : {{$perk->currency}}{{$perk->amount}}</p>
-                      @if($perk->shippings != null)
+                      @if($perk->shippings->count()>0)
                       <h3>Shipping Location</h3>
                       @foreach($perk->shippings as $shipping)
                         <p><b>{{$shipping->shipping_address}}</b> : {{$shipping->currency}}{{$shipping->shipping_fee}}</p>

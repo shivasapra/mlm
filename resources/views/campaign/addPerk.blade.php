@@ -7,7 +7,7 @@
 <div class="row">
 <div class="col-md-3"><label>Perk Type</label></div>
 <div class="col-md-9">
-    <select name="type" class="form-control">
+    <select name="type" class="form-control" onchange="removeShipping(this)">
         <option value="Product">Product</option>
         <option value="Service">Service</option>
     </select>
@@ -74,7 +74,7 @@
 <div class="form-group">
 <div class="row" id="shipping">
 <div class="col-md-3"><label>Shipping Location</label></div>
-<div class="col-md-9"><input type="checkbox" id="perk-shipping-location-show" placeholder="" name="shipping"/>
+<div class="col-md-9"><input type="checkbox" id="perk-shipping-location-show" onclick="cl();" placeholder="" name="shipping"/>
 <div id="perk-shipping-location-div" class="mt-1" style="display:none;">
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -125,12 +125,18 @@
 </form>
 @endsection
 @section('js')
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function(){
         $('#perk-shipping-location-show').click(function(){
             $('#perk-shipping-location-div').toggle();
         });
     });
+</script> --}}
+
+<script>
+    function cl(){
+        $('#perk-shipping-location-div').toggle();
+    }
 </script>
 
 <script type="text/javascript">
@@ -169,6 +175,64 @@
 <script>
     function removePerkLocation(temp){
         $(temp).parents('.deleteRow').remove();
+    }
+</script>
+
+<script>
+    function removeShipping(temp){
+        var val = temp.value;
+        if (val == 'Service') {
+            $('#shipping').html('');
+        }
+        if(val == 'Product'){
+            data = 
+            '<div class="col-md-3"><label>Shipping Location</label></div>'+
+            '<div class="col-md-9"><input type="checkbox" id="perk-shipping-location-show" onclick="cl();" placeholder="" name="shipping"/>'+
+            '<div id="perk-shipping-location-div" class="mt-1" style="display:none;">'+
+                    '<div class="table-responsive">'+
+                        '<table class="table table-bordered">'+
+                            '<thead>'+
+                                '<tr>'+
+                                    '<th>Shipping Address</th>'+
+                                    '<th>Shipping Fee</th>'+
+                                    '<th><button type="button" onclick="addPerkLocation();" class="btn btn-warning">Add Location</button></th>'+
+                                '</tr>'+
+                            '</thead>'+
+                            '<tbody id="perkRowAdd">'+
+                                '<tr>'+
+                                    '<td>'+
+                                        '<select class="form-control" name="shipping_address[]">'+
+                                            '<option value="World Wide">World Wide</option>'+
+                                            '<option value="India">India</option>'+
+                                            '<option value="USA">USA</option>'+
+                                            '<option value="Dubai">Dubai</option>'+
+                                        '</select>'+
+                                    '</td>'+
+                                    '<td>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                            '<select class="form-control" name="currencyy[]">'+
+                                                '<option value="INR ₹" data-minigoal = "50000" selected>INR ₹</option>'+
+                                                '<option value="USD $" data-minigoal = "1000" >USD $</option>'+
+                                                '<option value="EUR €" data-minigoal = "1000" >EUR €</option>'+
+                                                '<option value="GBP £" data-minigoal = "1000" >GBP £</option>'+
+                                                '<option value="BTC ฿" data-minigoal = "1" >BTC ฿</option>'+
+                                            '</select>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="number" class="form-control" name="shipping_fee[]" >'+
+                                        '</div>  '+
+                                    '</td>'+
+                                    '<td>&nbsp;</td>'+
+                                '</tr>'+
+                            '</tbody>'+
+                        '</table>'+
+                    '</div>'+
+            '</div>'+
+            '</div>';
+            $('#shipping').html(data);
+        }
     }
 </script>
 @stop
