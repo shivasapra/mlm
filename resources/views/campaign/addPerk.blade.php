@@ -137,27 +137,27 @@
     function addPerkLocation(){
         var data= '<tr class="deleteRow">'+
         '<td>'+
-            '<select class="form-control" name="country">'+
-                '<option value="">World Wide</option>'+
-                '<option value="">India</option>'+
-                '<option value="">USA</option>'+
-                '<option value="">Dubai</option>'+
+            '<select class="form-control" name="shipping_address[]">'+
+                '<option value="World Wide">World Wide</option>'+
+                '<option value="India">India</option>'+
+                '<option value="USA">USA</option>'+
+                '<option value="Dubai">Dubai</option>'+
             '</select>'+
         '</td>'+
         '<td>'+
         '<div class="input-group">'+
             '<div class="input-group-prepend">'+
                 '<div class="input-group-text">'+
-                '<select class="form-control">'+
-                    '<option value="2" data-minigoal = "50000" selected>INR ₹</option>'+
-                    '<option value="1" data-minigoal = "1000" >USD $</option>'+
-                    '<option value="9" data-minigoal = "1000" >EUR €</option>'+
-                    '<option value="10" data-minigoal = "1000" >GBP £</option>'+
-                    '<option value="13" data-minigoal = "1" >BTC ฿</option>'+
+                '<select class="form-control" name="currencyy[]">'+
+                    '<option value="INR ₹" data-minigoal = "50000" selected>INR ₹</option>'+
+                    '<option value="USD $" data-minigoal = "1000" >USD $</option>'+
+                    '<option value="EUR €" data-minigoal = "1000" >EUR €</option>'+
+                    '<option value="GBP £" data-minigoal = "1000" >GBP £</option>'+
+                    '<option value="BTC ฿" data-minigoal = "1" >BTC ฿</option>'+
                 '</select>'+
                 '</div>'+
             '</div>'+
-            '<input type="number" class="form-control" name="" value="0">'+
+            '<input type="number" class="form-control" name="shipping_fee[]" >'+
             '</div>  '+
         '</td>'+
         '<td><a href="javascript:void(0)" onclick="removePerkLocation(this)"><i class="icon-cross"></i></a></td>'+

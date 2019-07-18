@@ -910,20 +910,26 @@
                     <a href="{{route('add.perk',$campaign)}}" class="btn btn-success">Add Perk</a>
                   </div>
                 </div><hr>
-                <div class="row">
-                  <div class="col-md-4">
-                    <img src="{{asset('app/images/portfolio.jpg')}}" alt="portfolio" class="img-fluid"/>
-                  </div>
-                  <div class="col-md-8">
-                    <h2>Help me raise funds (FDGZFKYZ)</h2>
-                    <span class="mr-1"><b>Created On</b> : 27-Jan-2016 05:33:05</span>
-                    <span class="mr-1"><b>Status</b> : Draft</span>
-                    <span><b>Assigned / Max Perks</b> : 0/1</span>
-                    <p><b>Contribution Amount</b> : 500 INR</p>
-                    <p>Shipping Location</p>
-                    <p><b>Barbados</b> : 20 INR</p>
-                  </div>
-                </div><hr>
+                @foreach($campaign->perks as $perk)
+                  <div class="row">
+                    <div class="col-md-4">
+                      <img src="{{asset($perk->image)}}" alt="portfolio" class="img-fluid"/>
+                    </div>
+                    <div class="col-md-8">
+                      <h2>{{$perk->name}} <span class="small">({{$perk->type}})</span></h2>
+                      <span class="mr-1"><b>Delivery Date</b> : {{$perk->delivery_date}}</span>
+                      {{-- <span class="mr-1"><b>Status</b> : Draft</span> --}}
+                      <span><b>Number Available</b> : {{$perk->number_available}}</span>
+                      <p><b>Contribution Amount</b> : {{$perk->currency}}{{$perk->amount}}</p>
+                      @if($perk->shippings != null)
+                      <h3>Shipping Location</h3>
+                      @foreach($perk->shippings as $shipping)
+                        <p><b>{{$shipping->shipping_address}}</b> : {{$shipping->currency}}{{$shipping->shipping_fee}}</p>
+                      @endforeach
+                      @endif
+                    </div>
+                  </div><hr>
+                @endforeach
                 <div class="row">
                   <div class="col-md-12 text-right">
                     <ul class="pagination">

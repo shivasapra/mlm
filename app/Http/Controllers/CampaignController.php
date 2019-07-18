@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Campaign;
 use App\Perk;
+use App\Shipping;
 use Session;
 
 
@@ -99,9 +100,16 @@ class CampaignController extends Controller
         $perk->image = 'uploads/perk/'.$image_new_name;
         $perk->save();
         if ($request->shipping == 'on') {
-            // 
+            foreach ($request->shipping_address as $index => $s) {
+                $shipping = new Shipping;
+                $shipping->perk_id = $perk->id;
+                $shipping->shipping_address = $request->shipping_address[$index];
+                $shipping->currency = $request->currencyy[$index];
+                $shipping->shipping_fee = $request->shipping_fee[$index];
+                $shipping->save();
+            }
         }
         Session::flash('success','Perk Added');
-        return redirect()->route('campaign.edit')->with('campaign',$campaign);
+        return redirect()->route('campaign.edit',$campaign)->with('campaign',$campaign);
     }
 }
