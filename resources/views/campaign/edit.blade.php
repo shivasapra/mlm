@@ -912,7 +912,7 @@
                 </div><hr>
                 <div class="row">
                   <div class="col-md-4">
-                    <img src="images/portfolio.jpg" alt="portfolio" class="img-fluid"/>
+                    <img src="{{asset('app/images/portfolio.jpg')}}" alt="portfolio" class="img-fluid"/>
                   </div>
                   <div class="col-md-8">
                     <h2>Help me raise funds (FDGZFKYZ)</h2>

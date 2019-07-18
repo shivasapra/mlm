@@ -11,4 +11,8 @@ class Campaign extends Model
     public function user(){
         return $this->belongsto('App\User');
     } 
+
+    public function perks(){
+        return $this->hasMany('App\Perk');
+    } 
 }
