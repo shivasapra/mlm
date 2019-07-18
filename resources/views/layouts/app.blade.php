@@ -350,53 +350,6 @@
             });
         </script>
         
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('#perk-shipping-location-show').click(function(){
-                    $('#perk-shipping-location-div').toggle();
-                });
-            });
-        </script>
-        
-        <script type="text/javascript">
-            function addPerkLocation(){
-                var data= '<tr class="deleteRow">'+
-                '<td>'+
-                    '<select class="form-control" name="country">'+
-                        '<option value="">World Wide</option>'+
-                        '<option value="">India</option>'+
-                        '<option value="">USA</option>'+
-                        '<option value="">Dubai</option>'+
-                    '</select>'+
-                '</td>'+
-                '<td>'+
-                '<div class="input-group">'+
-                    '<div class="input-group-prepend">'+
-                        '<div class="input-group-text">'+
-                        '<select class="form-control">'+
-                            '<option value="2" data-minigoal = "50000" selected>INR ₹</option>'+
-                            '<option value="1" data-minigoal = "1000" >USD $</option>'+
-                            '<option value="9" data-minigoal = "1000" >EUR €</option>'+
-                            '<option value="10" data-minigoal = "1000" >GBP £</option>'+
-                            '<option value="13" data-minigoal = "1" >BTC ฿</option>'+
-                        '</select>'+
-                        '</div>'+
-                    '</div>'+
-                    '<input type="number" class="form-control" name="" value="0">'+
-                    '</div>  '+
-                '</td>'+
-                '<td><a href="javascript:void(0)" onclick="removePerkLocation(this)"><i class="icon-cross"></i></a></td>'+
-            '</tr>';
-            $("#perkRowAdd").append(data);
-            }
-        </script>
-        
-        <script>
-            function removePerkLocation(temp){
-                $(temp).parents('.deleteRow').remove();
-            }
-        </script>
-        
         <script>
             $("#embedShow").click(function(){
                 $("#embedDiv").toggle();

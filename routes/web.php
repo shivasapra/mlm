@@ -43,3 +43,6 @@ Route::post('/Campaign/Store/{user}','CampaignController@store')->name('campaign
 Route::get('/Campaign/view/{campaign}','CampaignController@show')->name('campaign.view');
 Route::get('/Campaign/edit/{campaign}','CampaignController@edit')->name('campaign.edit');
 Route::post('/Campaign/update/{campaign}','CampaignController@update')->name('campaign.update');
+
+Route::get('/add-perk/{campaign}','CampaignController@addPerk')->name('add.perk');
+Route::post('/store-perk/{campaign}','CampaignController@storePerk')->name('perk.store');

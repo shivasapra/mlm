@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Campaign;
+use App\Perk;
 use Session;
 
 
@@ -77,5 +78,30 @@ class CampaignController extends Controller
         $campaign->save();
         Session::flash('success','Campaign Updated!!!');
         return redirect()->back()->with('campaign',$campaign);
+    }
+
+    public function addPerk(Campaign $campaign){
+        return view('campaign.addPerk')->with('campaign',$campaign);
+    }
+
+    public function storePerk(Campaign $campaign,Perk $perk, Request $request){
+        $perk->campaign_id = $campaign->id;
+        $perk->type = $request->type;
+        $perk->name = $request->name;
+        $perk->description = $request->description;
+        $perk->currency = $request->currency;
+        $perk->amount = $request->amount;
+        $perk->number_available = $request->number_available;
+        $perk->delivery_date = $request->delivery_date;
+        $image = $request->image;
+        $image_new_name = time().$image->getClientOriginalName();
+        $image->move('uploads/perk',$image_new_name);
+        $perk->image = 'uploads/perk/'.$image_new_name;
+        $perk->save();
+        if ($request->shipping == 'on') {
+            // 
+        }
+        Session::flash('success','Perk Added');
+        return redirect()->route('campaign.edit')->with('campaign',$campaign);
     }
 }

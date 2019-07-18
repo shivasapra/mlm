@@ -907,7 +907,7 @@
                     </form>
                   </div>
                   <div class="col-md-3 text-right">
-                    <a href="add-perk.php" class="btn btn-success">Add Perk</a>
+                    <a href="{{route('add.perk',$campaign)}}" class="btn btn-success">Add Perk</a>
                   </div>
                 </div><hr>
                 <div class="row">
