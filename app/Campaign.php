@@ -19,4 +19,8 @@ class Campaign extends Model
     public function images(){
         return $this->hasMany('App\Images');
     } 
+
+    public function updates(){
+        return $this->hasMany('App\CampaignUpdates');
+    } 
 }

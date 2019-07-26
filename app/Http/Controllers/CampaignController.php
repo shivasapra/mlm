@@ -9,6 +9,7 @@ use App\Perk;
 use App\Shipping;
 use Session;
 use App\Images;
+use App\CampaignUpdates;
 
 
 class CampaignController extends Controller
@@ -169,7 +170,30 @@ class CampaignController extends Controller
     public function submitImageForApproval(Images $image){
         $image->status = 1 ;
         $image->save();
-        Session::flash('success','Submitted For Approval');
+        Session::flash('success','Image Submitted For Approval');
+        return redirect()->back();
+    }
+
+    public function addUpdate(Request $request,Campaign $campaign,CampaignUpdates $update){
+        $update->campaign_id = $campaign->id;
+        $update->message = $request->updateMessage;
+        $update->status = 0;
+        $update->save();
+
+        Session::flash('success','Perk Added');
+        return redirect()->back();
+    }
+
+    public function removeUpdate(CampaignUpdates $update){
+        $update->delete();
+        Session::flash('success','Update Removed');
+        return redirect()->back();
+    }
+
+    public function submitUpdateForApproval(CampaignUpdates $update){
+        $update->status = 1 ;
+        $update->save();
+        Session::flash('success','Update Submitted For Approval');
         return redirect()->back();
     }
 }

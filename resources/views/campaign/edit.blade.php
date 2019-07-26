@@ -1027,12 +1027,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</td>
-                                    <td><span class="badge badge-warning">Draft</span></td>
-                                    <td><a hrf="#" class="btn btn-info">Submit for Approval</a> &nbsp;&nbsp; <a href="#" class="btn btn-danger">Delete</a></td>
-                                </tr>
-                            </tbody>
+                                @if($campaign->updates != null)
+                                  @foreach($campaign->updates as $update)
+                                    <tr>
+                                        <td>{!! $update->message !!}</td>
+                                        <td>
+                                          @if($update->status == 0)
+                                            <span class="badge bg-info"> {{__('--')}} </span>
+                                          @elseif($update->status == 1)
+                                            <span class="badge bg-warning"> {{__('Submitted')}} </span>
+                                          @else
+                                            <span class="badge success"> {{__('Approve')}} </span>
+                                          @endif
+                                        </td>
+                                        <td>
+                                          @if($update->status == 0)
+                                            <a href="{{route('submit.update.for.approval',$update)}}" class="btn btn-info">Submit for Approval</a>
+                                            <br>
+                                          @endif
+                                           <a href="{{route('remove.update',$update)}}" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                  @endforeach
+                                @endif
+                              </tbody>
                         </table>
                     </div>
                 </div>
@@ -1155,6 +1173,31 @@
               </div>
             </form>
           </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addUpdate">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Add Update</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="{{route('add.update',$campaign)}}" method="post" enctype="multipart/form-data">
+              @csrf
+            <!-- Modal body -->
+            <div class="modal-body">
+              <textarea id="summernote4" name="updateMessage" class="form-control"></textarea>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" >Save</button>
+            </div>
+          </form>
+        </div>
         </div>
     </div>
 @stop

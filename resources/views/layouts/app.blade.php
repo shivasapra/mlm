@@ -237,32 +237,8 @@
             <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2019 <a href="#" target="_blank" class="text-bold-800 grey darken-2">MLM Software </a>, All rights reserved. </span><span class="float-md-right d-xs-block d-md-inline-block">Designed by <a href="#">Himsoft Solution </a></span></p>
         </footer>
         
-        <!-- The Perk Update -->
-        <div class="modal fade" id="addUpdate">
-            <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
         
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">Add Update</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
         
-                <!-- Modal body -->
-                <div class="modal-body">
-                <form method="" action="">
-                    <textarea id="summernote4" name="editordata" class="form-control" value=""></textarea>
-                </form>
-                </div>
-        
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-                </div>
-        
-            </div>
-            </div>
-        </div>
         
         
         <!-- The Modal -->
