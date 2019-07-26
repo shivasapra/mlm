@@ -183,7 +183,7 @@
             <li class=" nav-item"><a href="{{route('my.campaign',Auth::user())}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a>
             </li>
             
-            <li class=" nav-item"><a href="get-package.php"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
+            <li class=" nav-item"><a href="{{route('contribution.packages',Auth::user())}}"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
             </li>
 
             <li class=" nav-item"><a href="pending-assignments.php"><i class="icon-compass3"></i><span class="menu-title">My Assignments</span></a>
@@ -241,34 +241,8 @@
         
         
         
-        <!-- The Modal -->
-        <div class="modal fade" id="contributionViewModal">
-            <div class="modal-dialog">
-            <div class="modal-content">
         
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">Details</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
         
-                <!-- Modal body -->
-                <div class="modal-body">
-                <p>Topup On14-02-2016 18:54:49 <br>
-                Activated On14-02-2016 18:54:49 <br>
-                Payment TypeOS Contribution Wallet <br>
-                WalletOS Contribution Wallet <br>
-                Amount1625 INR </p>
-                </div>
-        
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-        
-            </div>
-            </div>
-        </div>
         
         
         

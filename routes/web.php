@@ -56,3 +56,6 @@ Route::get('/submit-image-for-approval/{image}','CampaignController@submitImageF
 Route::post('/add-update/{campaign}','CampaignController@addUpdate')->name('add.update');
 Route::get('/remove-update/{update}','CampaignController@removeUpdate')->name('remove.update');
 Route::get('/submit-update-for-approval/{update}','CampaignController@submitUpdateForApproval')->name('submit.update.for.approval');
+
+Route::get('/contribution-packages/{user}','ContributionController@packages')->name('contribution.packages');
+Route::get('/contribution-donations/{user}','ContributionController@donations')->name('contribution.donations');
