@@ -12,7 +12,7 @@
           <a class="nav-link" data-toggle="tab" href="#campaign-perks" role="tab">Campaign Perks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#campaign-images-videos" role="tab">Campaign Images/Videos</a>
+          <a class="nav-link" data-toggle="tab" href="#campaign-images-videos" role="tab">Campaign Images</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#campaign-updates" role="tab">Campaign Updates</a>
@@ -946,8 +946,8 @@
         <div class="tab-pane fade show" id="campaign-images-videos" role="tabpanel">
             <div class="row mt-2">
                 <div class="col-md-12 text-right">
-                <a href="" class="btn btn-warning">Add Video</a>
-                <a href="#" class="btn btn-danger">Add Image</a>
+                {{-- <a href="" class="btn btn-warning">Add Video</a> --}}
+                <a href="javascript:void(0)" class="btn btn-success" data-toggle="modal" data-target="#addImage">Add Image</a>
                 </div>
             </div><hr>
             <div class="row">
@@ -956,17 +956,35 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Image/Video</th>
+                                    <th>Image</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><img src="images/fund-saving.jpg" alt="portfolio" class="img-fluid"/></td>
-                                    <td><span class="badge badge-warning">Draft</span></td>
-                                    <td><a hrf="#" class="btn btn-info">Submit for Approval</a> &nbsp;&nbsp; <a href="#" class="btn btn-danger">Delete</a></td>
-                                </tr>
+                              @if($campaign->images != null)
+                                @foreach($campaign->images as $image)
+                                  <tr>
+                                      <td><img src="{{asset($image->image)}}" alt="portfolio" style="height:200px;" class="img-fluid"/></td>
+                                      <td>
+                                        @if($image->status == 0)
+                                          <span class="badge bg-info"> {{__('--')}} </span>
+                                        @elseif($image->status == 1)
+                                          <span class="badge bg-warning"> {{__('Submitted')}} </span>
+                                        @else
+                                          <span class="badge success"> {{__('Approve')}} </span>
+                                        @endif
+                                      </td>
+                                      <td>
+                                        @if($image->status == 0)
+                                          <a href="{{route('submit.image.for.approval',$image)}}" class="btn btn-info">Submit for Approval</a>
+                                          &nbsp;&nbsp; 
+                                        @endif
+                                         <a href="{{route('remove.image',$image)}}" class="btn btn-danger">Delete</a>
+                                      </td>
+                                  </tr>
+                                @endforeach
+                              @endif
                             </tbody>
                         </table>
                     </div>
@@ -1113,6 +1131,30 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="modal fade" id="addImage">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <form action="{{route('add.image',$campaign)}}" method="post" enctype="multipart/form-data">
+              @csrf
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Add Image</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+      
+              <!-- Modal body -->
+              <div class="modal-body">
+                <input type="file" name="image" id="" class="form-control">
+              </div>
+      
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="Submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
     </div>
 @stop

@@ -48,3 +48,7 @@ Route::get('/add-perk/{campaign}','CampaignController@addPerk')->name('add.perk'
 Route::post('/store-perk/{campaign}','CampaignController@storePerk')->name('perk.store');
 Route::get('/edit-perk/{perk}','CampaignController@editPerk')->name('perk.edit');
 Route::post('/update-perk/{perk}','CampaignController@updatePerk')->name('perk.update');
+
+Route::post('/add-image/{campaign}','CampaignController@addImage')->name('add.image');
+Route::get('/remove-image/{image}','CampaignController@removeImage')->name('remove.image');
+Route::get('/submit-image-for-approval/{image}','CampaignController@submitImageForApproval')->name('submit.image.for.approval');

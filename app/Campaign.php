@@ -15,4 +15,8 @@ class Campaign extends Model
     public function perks(){
         return $this->hasMany('App\Perk');
     } 
+
+    public function images(){
+        return $this->hasMany('App\Images');
+    } 
 }

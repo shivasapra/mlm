@@ -8,6 +8,7 @@ use App\Campaign;
 use App\Perk;
 use App\Shipping;
 use Session;
+use App\Images;
 
 
 class CampaignController extends Controller
@@ -110,7 +111,7 @@ class CampaignController extends Controller
             }
         }
         Session::flash('success','Perk Added');
-        return redirect()->route('campaign.edit',$campaign)->with('campaign',$campaign);
+        return redirect()->route('campaign.edit',$campaign);
     }
 
     public function editPerk(Perk $perk){
@@ -142,6 +143,33 @@ class CampaignController extends Controller
             }
         }
         Session::flash('success','Perk Added');
-        return redirect()->route('campaign.edit',$campaign)->with('campaign',$campaign);
+        return redirect()->back();
+    }
+
+    public function addImage(Request $request,Campaign $campaign,Images $image){
+        $image->campaign_id = $campaign->id;
+
+        $img = $request->image;
+        $img_new_name = time().$img->getClientOriginalName();
+        $img->move('uploads/campaign/images',$img_new_name);
+        $image->image = 'uploads/campaign/images/'.$img_new_name;
+        $image->status = 0;
+        $image->save();
+
+        Session::flash('success','Perk Added');
+        return redirect()->back();
+    }
+
+    public function removeImage(Images $image){
+        $image->delete();
+        Session::flash('success','Image Removed');
+        return redirect()->back();
+    }
+
+    public function submitImageForApproval(Images $image){
+        $image->status = 1 ;
+        $image->save();
+        Session::flash('success','Submitted For Approval');
+        return redirect()->back();
     }
 }
