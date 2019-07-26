@@ -9,108 +9,64 @@
             <a class="nav-link active" href="{{route('contribution.donations',Auth::user())}}">My Contribution/Donation</a>
         </li>
     </ul>
-    
     <div class="row">
+        {{-- @foreach($user->donations as $donation)
+            @if($donation->package == 'BASIC')
+        @endforeach --}}
         <div class="col-md-4">
-            <a href="javascript:void(0)" data-toggle="modal" data-target="#contributionViewModal">
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag">Basic</div>
-                            <h6 class="text-muted mt-1">DOU : 14-02-2016 18:54:49</h6>
-                            <h2>Amount: INR 26,000.00</h2>
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal3.png')}}" alt="gold medal" class="media-object"/>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
+            @foreach($user->donations()->where('package','Basic')->get()->reverse() as $donation)
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#contributionViewModal">
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag standard-gradient">Standard</div>
-                            <h6 class="text-muted mt-1">DOU : 18-08-2016 10:25:00</h6>
-                            <h2>Amount: INR 7,800.00</h2>
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal2.png')}}" alt="gold medal" class="media-object"/>
+                    <div class="contribute-div">
+                        <div class="media overflow-visible">
+                            <div class="media-body media-middle overflow-visible">
+                                <div class="heading-tag @if($donation->package == 'STANDARD') standard-gradient @elseif($donation->package == 'Premium') premium-gradient @endif">{{$donation->package}}</div>
+                                <h6 class="text-muted mt-1">DOU : {{$donation->created_at}}</h6>
+                                <h2>Amount: INR {{$donation->amount}}</h2>
+                            </div>
+                            <div class="media-right">
+                                <img src="{{asset('app/images/medal'.$donation->level.'.png')}}" alt="gold medal" class="media-object"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
         <div class="col-md-4">
+            @foreach($user->donations()->where('package','STANDARD')->get()->reverse() as $donation)
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#contributionViewModal">
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag premium-gradient">Premium</div>
-                            <h6 class="text-muted mt-1">DOU : 18-08-2016 10:14:03</h6>
-                            <h2>Amount: INR 6,500.00</h2>
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                    <div class="contribute-div">
+                        <div class="media overflow-visible">
+                            <div class="media-body media-middle overflow-visible">
+                                <div class="heading-tag @if($donation->package == 'STANDARD') standard-gradient @elseif($donation->package == 'Premium') premium-gradient @endif">{{$donation->package}}</div>
+                                <h6 class="text-muted mt-1">DOU : {{$donation->created_at}}</h6>
+                                <h2>Amount: INR {{$donation->amount}}</h2>
+                            </div>
+                            <div class="media-right">
+                                <img src="{{asset('app/images/medal'.$donation->level.'.png')}}" alt="gold medal" class="media-object"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#contributionViewModal">
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag standard-gradient">Standard</div>
-                            <h6 class="text-muted mt-1">DOU : 18-08-2016 10:25:00</h6>
-                            <h2>Amount: INR 7,800.00</h2>
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal2.png')}}" alt="gold medal" class="media-object"/>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
         <div class="col-md-4">
+            @foreach($user->donations()->where('package','Premium')->get()->reverse() as $donation)
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#contributionViewModal">
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag premium-gradient">Premium</div>
-                            <h6 class="text-muted mt-1">DOU : 18-08-2016 10:14:03</h6>
-                            <h2>Amount: INR 6,500.00</h2>
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                    <div class="contribute-div">
+                        <div class="media overflow-visible">
+                            <div class="media-body media-middle overflow-visible">
+                                <div class="heading-tag @if($donation->package == 'STANDARD') standard-gradient @elseif($donation->package == 'Premium') premium-gradient @endif">{{$donation->package}}</div>
+                                <h6 class="text-muted mt-1">DOU : {{$donation->created_at}}</h6>
+                                <h2>Amount: INR {{$donation->amount}}</h2>
+                            </div>
+                            <div class="media-right">
+                                <img src="{{asset('app/images/medal'.$donation->level.'.png')}}" alt="gold medal" class="media-object"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
-    </div>
-    <div class="row">
-            <a href="javascript:void(0)" data-toggle="modal" data-target="#contributionViewModal">
-            <div class="col-md-4">
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag premium-gradient">Premium</div>
-                            <h6 class="text-muted mt-1">DOU : 18-08-2016 10:14:03</h6>
-                            <h2>Amount: INR 6,500.00</h2>
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
     </div>
     
     <div class="modal fade" id="contributionViewModal">
