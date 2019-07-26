@@ -916,7 +916,7 @@
                       <img src="{{asset($perk->image)}}" alt="portfolio" class="img-fluid"/>
                     </div>
                     <div class="col-md-8">
-                      <h2>{{$perk->name}} <span class="small">({{$perk->type}})</span></h2>
+                      <h2>{{$perk->name}} <span class="small">({{$perk->type}})</span> <a href="{{route('perk.edit',$perk)}}" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
                       <span class="mr-1"><b>Delivery Date</b> : {{$perk->delivery_date}}</span>
                       {{-- <span class="mr-1"><b>Status</b> : Draft</span> --}}
                       <span><b>Number Available</b> : {{$perk->number_available}}</span>

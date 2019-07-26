@@ -112,4 +112,36 @@ class CampaignController extends Controller
         Session::flash('success','Perk Added');
         return redirect()->route('campaign.edit',$campaign)->with('campaign',$campaign);
     }
+
+    public function editPerk(Perk $perk){
+        return view('campaign.editPerk')->with('perk',$perk);
+    }
+
+    public function updatePerk(Perk $perk, Request $request){
+        
+        
+        $perk->name = $request->name;
+        $perk->description = $request->description;
+        $perk->currency = $request->currency;
+        $perk->amount = $request->amount;
+        $perk->number_available = $request->number_available;
+        $perk->delivery_date = $request->delivery_date;
+        $image = $request->image;
+        $image_new_name = time().$image->getClientOriginalName();
+        $image->move('uploads/perk',$image_new_name);
+        $perk->image = 'uploads/perk/'.$image_new_name;
+        $perk->save();
+        if ($request->shipping == 'on') {
+            foreach ($request->shipping_address as $index => $s) {
+                $shipping = new Shipping;
+                $shipping->perk_id = $perk->id;
+                $shipping->shipping_address = $request->shipping_address[$index];
+                $shipping->currency = $request->currencyy[$index];
+                $shipping->shipping_fee = $request->shipping_fee[$index];
+                $shipping->save();
+            }
+        }
+        Session::flash('success','Perk Added');
+        return redirect()->route('campaign.edit',$campaign)->with('campaign',$campaign);
+    }
 }

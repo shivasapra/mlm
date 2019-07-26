@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href=" {{asset('app/vendors/css/extensions/pace.css')}}">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
+    <link rel="stylesheet" href="{{asset('app/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href=" {{asset('app/css/bootstrap-extended.css')}}">
     <link rel="stylesheet" type="text/css" href=" {{asset('app/css/app.css')}}">
     <link rel="stylesheet" type="text/css" href=" {{asset('app/css/colors.css')}}">
