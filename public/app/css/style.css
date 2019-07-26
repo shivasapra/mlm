@@ -189,12 +189,12 @@ table{
     text-transform: uppercase;
     background-image: linear-gradient(to left, #8adc32 0%, #25c7a2 95%);
     color: #fff;
-    padding: 10px 25px;
+    padding: 10px 20px;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
     display: inline-block;
     margin-bottom: 10px;
-    font-size: 19px;
+    font-size: 15px;
     font-weight: 600;
     margin-left: -20px;
 }
@@ -206,7 +206,7 @@ table{
 }
 .contribute-div h2{
     font-family: 'Lato', sans-serif;
-    font-size: 22px;
+    font-size: 19px;
     font-weight: 600;
     color:#000;
 }

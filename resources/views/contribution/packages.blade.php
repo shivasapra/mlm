@@ -20,13 +20,21 @@
                             <h2>INR {{$package->amount}}</h2>
                             @if($user->donations->count() == 0 and $package->level == 1)
                                 <span class="badge bg-info">Contribute Now</span>
-                            @endif
-                            @if($user->donations()->where('package',$package->package)->orderBy('id','desc')->first() != null)
-                                @if($user->donations()->where('package',$package->package)->orderBy('id','desc')->first()->level == $package->level)
-                                    <span class="badge bg-warning">Current Status</span>
-                                @endif
-                                @if($user->donations()->where('package',$package->package)->pluck('level')->contains($package->level))
-                                    <h6 class="text-muted">{{$user->donations()->where('package',$package->package)->where('level',$package->level)->first()->created_at}}</h6>
+                            @else
+                                @if($user->donations()->where('package',$package->package)->orderBy('id','desc')->first() != null)
+                                    @if(($user->donations()->where('package',$package->package)->orderBy('id','desc')->first()->level)+1 == $package->level )
+                                        <span class="badge bg-info">Contribute Now</span>
+                                    @endif
+                                    @if($user->donations()->where('package',$package->package)->pluck('level')->contains($package->level))
+                                        <h6 class="text-muted">{{$user->donations()->where('package',$package->package)->where('level',$package->level)->first()->created_at}}</h6>
+                                    @endif
+                                    @if($user->donations()->where('package',$package->package)->orderBy('id','desc')->first()->level == $package->level)
+                                        <span class="badge bg-danger">Current Status</span>
+                                    @endif
+                                @else
+                                    @if($package->level == 1)
+                                        <span class="badge bg-info">Contribute Now</span>
+                                    @endif
                                 @endif
                             @endif
                             
