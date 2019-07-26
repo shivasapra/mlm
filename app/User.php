@@ -69,4 +69,7 @@ class User extends Authenticatable
     public function campaigns(){
         return $this->hasMany('App\Campaign');
     }
+    public function donations(){
+        return $this->hasMany('App\Donation');
+    }
 }
