@@ -55,9 +55,13 @@
 @section('js')
     <script>
         function contribute(temp){
+            console.log('shiva');
+            
             var obj = JSON.parse($(temp).find('.package').val());
+            console.log(obj);
+            
             var modal = 
-            '<div class="modal fade" id="contributionViewModal">'+
+            '<div class="modal fade" id="contributeModal">'+
                 '<div class="modal-dialog">'+
                     '<div class="modal-content">'+
                         '<!-- Modal Header -->'+
@@ -65,20 +69,20 @@
                         '<h4 class="modal-title">Details</h4>'+
                         '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
                         '</div>'+
-                
+                    '<form action="{{route("contribute")}}" method="post">'+
+                    '@csrf'+
                         '<!-- Modal body -->'+
                         '<div class="modal-body">'+
-                        '<p>Topup On: '+ obj["created_at"]+' <br>'+
-                        'Activated On: '+ obj["created_at"]+'<br>'+
-                        'Payment Type: OS Contribution Wallet <br>'+
-                        'WalletOS:  Contribution Wallet <br>'+
-                        'Amount: '+ obj["amount"] +'INR</p>'+
+                        '<input type="hidden" value="'+obj["id"]+'" name="package_id">'+
+                        '<p>Are You Sure You Want To Invest INR '+obj["amount"]+' in '+obj["package"]+' Package?</p>'+
                         '</div>'+
                 
                         '<!-- Modal footer -->'+
                         '<div class="modal-footer">'+
+                        '<button type="submit" class="btn btn-info">Yes</button>  '+
                         '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
                         '</div>'+
+                    '</form>'+
                     '</div>'+
                 '</div>'+
             '</div>';

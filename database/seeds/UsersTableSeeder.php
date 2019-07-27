@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
 
         $coordinates = new App\Coordinates;
         $coordinates->user_id = $user->id;
-        $coordinates->row = 0;
+        $coordinates->row = 1;
         $coordinates->column = 1000;
         $coordinates->save();
 

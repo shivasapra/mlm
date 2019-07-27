@@ -59,3 +59,5 @@ Route::get('/submit-update-for-approval/{update}','CampaignController@submitUpda
 
 Route::get('/contribution-packages/{user}','ContributionController@packages')->name('contribution.packages');
 Route::get('/contribution-donations/{user}','ContributionController@donations')->name('contribution.donations');
+
+Route::post('/contribute/','ContributionController@contribute')->name('contribute');
