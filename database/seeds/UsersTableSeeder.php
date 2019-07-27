@@ -33,6 +33,7 @@ class UsersTableSeeder extends Seeder
         $coordinates->user_id = $user->id;
         $coordinates->row = 0;
         $coordinates->column = 1000;
+        $coordinates->save();
 
     }
 }
