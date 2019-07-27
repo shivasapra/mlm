@@ -278,7 +278,28 @@ table{
 .wallet-div h2{
     font-family:'Lato', sans-serif;
 }
-
+.home-tree-view ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.home-tree-view ul li {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding:10px;
+}
+.home-tree-view ul li a{
+    font-size:12px;
+}
+.li-width-100 {
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin-top: 30px;
+}
+.li-width-100 li{
+    width:100% !important;
+}
 
 
 

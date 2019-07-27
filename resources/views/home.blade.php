@@ -450,4 +450,125 @@
             </div>
         </div>
     </div>
+
+    <?php $user = Auth::user();
+        $level_one = array();
+        $child_one_children = array();
+        $child_two_children = array();
+        $child_three_children = array();
+        $child_four_children = array();
+        $child_five_children = array();
+        foreach(collect(explode(',', $user->coordinates->children)) as $c){
+            array_push($level_one, $c) ;
+        }
+        foreach(collect($level_one[0]) as $c){
+            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                array_push($child_one_children,$c);
+            }
+        }
+
+        foreach(collect($level_one[1]) as $c){
+            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                array_push($child_two_children,$c);
+            }
+        }
+    ?>
+<div class="row">
+    <div class="home-tree-view">
+        <ul class="text-center mb-2">
+            <a href="#"><i class="icon-user"></i><br>{{$user->name}}</a>
+        </ul>
+        <ul class="text-center">
+            <li>
+                <a href="#"><i class="icon-user"></i><br>@if(array_key_exists(0,$level_one) ){{App\User::find($level_one[0])->name}}@else &nbsp; @endif</a><br>
+                <ul class="text-center li-width-100">
+                    @foreach(collect($child_one_children) as $c)
+                        <li>
+                            <a href="#"><i class="icon-user"></i><br>{{App\User::find($c)->name}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-user"></i><br>@if(array_key_exists(1,$level_one) ){{App\User::find($level_one[1])->name}}@else &nbsp; @endif</a><br>
+                <ul class="text-center li-width-100">
+                    @foreach(collect($child_two_children) as $c)
+                        <li>
+                            <a href="#"><i class="icon-user"></i><br>{{App\User::find($c)->name}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-user"></i><br>@if(array_key_exists(2,$level_one)){{App\User::find($level_one[2])->name}}@else &nbsp; @endif</a><br>
+                <ul class="text-center li-width-100">
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-user"></i><br>@if( array_key_exists(3,$level_one)){{App\User::find($level_one[3])->name}}@else &nbsp; @endif</a><br>
+                <ul class="text-center li-width-100">
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-user"></i><br>@if(array_key_exists(4,$level_one) ){{App\User::find($level_one[4])->name}}@else &nbsp; @endif</a><br>
+                <ul class="text-center li-width-100">
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-user"></i><br>No Name</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    {{-- <div class="row">
+        <div class="text-center">
+                {{ $admin->name }} <br>
+            @foreach(collect(explode(',', $admin->coordinates->children)) as $c)
+                {{App\User::find($c)->name}} <span class="mr-2">&nbsp;</span>
+            @endforeach
+        </div>
+    </div> --}}
 @endsection
