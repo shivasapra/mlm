@@ -29,5 +29,10 @@ class UsersTableSeeder extends Seeder
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 
+        $coordinates = new App\Coordinates;
+        $coordinates->user_id = $user->id;
+        $coordinates->row = 0;
+        $coordinates->column = 1000;
+
     }
 }

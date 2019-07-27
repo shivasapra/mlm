@@ -72,4 +72,7 @@ class User extends Authenticatable
     public function donations(){
         return $this->hasMany('App\Donation');
     }
+    public function coordinates(){
+        return $this->hasOne('App\Coordinates');
+    }
 }
