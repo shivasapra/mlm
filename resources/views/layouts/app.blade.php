@@ -48,11 +48,11 @@
         <nav class="header-navbar navbar navbar-with-menu navbar-fixed-top navbar-semi-dark navbar-shadow">
         <div class="navbar-wrapper">
             <div class="navbar-header">
-            <ul class="nav navbar-nav">
-                <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
-                <li class="nav-item"><a href="index.php" class="navbar-brand nav-link"><img alt="branding logo" src="{{asset('app/images/logo.png')}}" data-expand="{{asset('app/images/logo.png')}}" data-collapse="{{asset('app/images/logo/robust-logo-small.png')}}" class="brand-logo img-fluid"></a></li>
-                <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li>
-            </ul>
+                <ul class="nav navbar-nav">
+                    <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
+                    <li class="nav-item"><a href="index.php" class="navbar-brand nav-link"><img alt="galaxy crowd" src="{{asset('app/images/galaxy-crowd-white.png')}}" data-expand="{{asset('app/images/galaxy-crowd-white.png')}}" data-collapse=" {{asset('app/images/galaxy-crowd-small.png')}}" class="brand-logo img-fluid"></a></li>
+                    <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li>
+                  </ul>
             </div>
             <div class="navbar-container content container-fluid">
             <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
