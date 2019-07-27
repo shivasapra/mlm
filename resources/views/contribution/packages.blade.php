@@ -56,7 +56,32 @@
     <script>
         function contribute(temp){
             var obj = JSON.parse($(temp).find('.package').val());
-            var modal = '';
+            var modal = 
+            '<div class="modal fade" id="contributionViewModal">'+
+                '<div class="modal-dialog">'+
+                    '<div class="modal-content">'+
+                        '<!-- Modal Header -->'+
+                        '<div class="modal-header">'+
+                        '<h4 class="modal-title">Details</h4>'+
+                        '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                        '</div>'+
+                
+                        '<!-- Modal body -->'+
+                        '<div class="modal-body">'+
+                        '<p>Topup On: '+ obj["created_at"]+' <br>'+
+                        'Activated On: '+ obj["created_at"]+'<br>'+
+                        'Payment Type: OS Contribution Wallet <br>'+
+                        'WalletOS:  Contribution Wallet <br>'+
+                        'Amount: '+ obj["amount"] +'INR</p>'+
+                        '</div>'+
+                
+                        '<!-- Modal footer -->'+
+                        '<div class="modal-footer">'+
+                        '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
             $('#modalDisplay').html(modal);
             $('#modalButton').click();
         }

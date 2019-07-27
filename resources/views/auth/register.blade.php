@@ -24,7 +24,7 @@
 	            <div class="row justify-content-center h-100vh">
 	                <div class="col-md-8 p-0 align-self-center">
 	                    <div class="login-box">
-	                    <img src="{{asset('auth/images/logo.png')}}" alt="logo" class="img-fluid"/><hr>
+	                    <img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
 	                    <div class="row">
 	                        <div class="col-md-6">
         	                    <div class="form-group">
@@ -55,8 +55,8 @@
         	                        <input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
         	                    </div>
                                 <div class="form-group">
-                                    <label>Referral URL</label>
-                                    <input type="text" class="form-control" name="url" value="{{ old('url') }}" placeholder="Enter Referral Url" required/>
+                                    <label>Referral Code</label>
+                                    <input type="text" class="form-control" name="referral_code" value="{{ old('referral_code') }}" placeholder="Enter Referral Code" required/>
                                 </div>
         	                    <div class="form-group">
         	                        <label>Confirm Password</label>

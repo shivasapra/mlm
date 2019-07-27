@@ -22,7 +22,7 @@
                     <div class="row justify-content-center h-100vh">
                         <div class="col-md-4 p-0 align-self-center">
                             <div class="login-box">
-                            <img src="{{asset('auth/images/logo.png')}}" alt="logo" class="img-fluid"/><hr>
+                            <img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">

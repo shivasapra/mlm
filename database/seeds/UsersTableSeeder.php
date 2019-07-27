@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         $detail->mobile = '9027289261';
         $detail->invited_by = 'testing';
         $detail->invited_by_email = 'testing@gmail.com';
-        $detail->promotional_url = 'http://test.com/shivasapra';
+        $detail->promotional_url = 'http://galaxycrowd.com/shivasapra';
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 

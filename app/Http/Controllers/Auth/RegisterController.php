@@ -75,9 +75,9 @@ class RegisterController extends Controller
         $detail->full_name = $data['name'];
         $detail->country = $data['country'];
         $detail->mobile = $data['mobile'];
-        $detail->invited_by = explode('/',$data['url'])[3];
+        $detail->invited_by = $data['referral_code'];
         $detail->invited_by_email = Details::where('username',$detail->invited_by)->first()->user->email;
-        $detail->promotional_url = 'http://test.com/'.$data['username'];
+        $detail->promotional_url = 'http://galaxycrowd.com/'.$data['username'];
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 
