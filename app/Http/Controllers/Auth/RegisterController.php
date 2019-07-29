@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Details;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -53,6 +52,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'username' => ['unique:details'],
         ]);
     }
 
@@ -72,8 +72,10 @@ class RegisterController extends Controller
         $detail = new Details;
         $detail->user_id = $user->id;
         $detail->username = $data['username'];
+        $detail->cause = $data['cause'];
         $detail->full_name = $data['name'];
         $detail->country = $data['country'];
+        $detail->city = $data['city'];
         $detail->mobile = $data['mobile'];
         $detail->invited_by = $data['referral_code'];
         $detail->invited_by_email = Details::where('username',$detail->invited_by)->first()->user->email;

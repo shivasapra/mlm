@@ -65,6 +65,11 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="text-right">
+                            <a href="{{ route('register') }}" class="text-light">
+                                <small class=""><b>+ </b>{{ __('Create new account') }}</small>
+                            </a>
+                        </div>
                         </div>
                     </div>
                     </div>

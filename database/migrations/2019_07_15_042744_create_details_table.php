@@ -18,6 +18,7 @@ class CreateDetailsTable extends Migration
             $table->integer('user_id');
             $table->string('username')->nullable();
             $table->string('full_name')->nullable();
+            $table->string('cause')->nullable();
             $table->string('invited_by')->nullable();
             $table->string('invited_by_email')->nullable();
             $table->string('promotional_url')->nullable();

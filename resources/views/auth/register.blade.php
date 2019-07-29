@@ -24,14 +24,17 @@
 	            <div class="row justify-content-center h-100vh">
 	                <div class="col-md-8 p-0 align-self-center">
 	                    <div class="login-box">
-	                    <img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
+						<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
 	                    <div class="row">
 	                        <div class="col-md-6">
-        	                    <div class="form-group">
-        	                        <label>Username</label>
-        	                        <input id="name" type="text" placeholder="Enter Username" class="form-control" name="username" value="{{ old('username') }}"  required autocomplete="name" autofocus>
-        	                    </div>
-        	                    
+								<div class="form-group">
+									<label>Referral Code</label>
+									<input type="text" class="form-control" name="referral_code" value="{{ old('referral_code') }}" placeholder="Enter Referral Code" required/>
+								</div>
+								<div class="form-group">
+									<label>Cause</label>
+									<input id="cause" type="text" placeholder="Enter Cause" class="form-control" name="cause" value="{{ old('cause') }}"  required autocomplete="cause" autofocus>
+								</div>
         	                    <div class="form-group">
         	                        <label>Email id</label>
         	                        <input id="email" type="email" placeholder="Enter Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -46,6 +49,10 @@
         	                    </div>
         	                </div>
         	                <div class="col-md-6">
+								<div class="form-group">
+									<label>Username</label>
+									<input id="name" type="text" placeholder="Enter Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  required autocomplete="username" autofocus>
+								</div>
         	                    <div class="form-group">
         	                        <label>Full Name</label>
         	                        <input id="name" type="text" placeholder="Enter Full Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -55,9 +62,9 @@
         	                        <input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
         	                    </div>
                                 <div class="form-group">
-                                    <label>Referral Code</label>
-                                    <input type="text" class="form-control" name="referral_code" value="{{ old('referral_code') }}" placeholder="Enter Referral Code" required/>
-                                </div>
+									<label>City</label>
+									<input type="text" name="city" class="form-control" placeholder="City" required/>
+								</div>
         	                    <div class="form-group">
         	                        <label>Confirm Password</label>
         	                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
