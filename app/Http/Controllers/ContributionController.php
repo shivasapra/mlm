@@ -57,11 +57,12 @@ class ContributionController extends Controller
                 $super_parent_user->coordinates->save();
             }
 
-            $data = ['parent_user' => $parent_user, 'user' => Auth::user()];
+            $parent_amount = (25/100) * $donation->amount;
+            $data = ['parent_user' => $parent_user, 'user' => Auth::user(), 'amount'=> $parent_amount];
             $contactEmail = $parent_user->email;
             Mail::send('emails.parents', $data, function($message) use ($contactEmail)
             {  
-                $message->to($contactEmail)->subject('New User Added!!');
+                $message->to($contactEmail)->subject('Contribution Amount!!');
             });
         }
         return redirect()->back();

@@ -65,12 +65,12 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                               <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 40px; line-height: 50px; font-weight: 300; letter-spacing: -1.5px;">Hi <b>{{$parent_user->name}}</b>,</span><hr>
                            </font>
                            <font>
-                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #26ace2;font-weight:700; font-size: 50px;text-transform:uppercase;">A New User Is Added With Your Referral Code</span><br>
+                           <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #26ace2;font-weight:700; font-size: 50px;text-transform:uppercase;">A Sum Of INR {{$amount}} is Contributed To You</span><br>
                               {{-- <span style="color:#333;font-size:23px;font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif;font-weight:600;">For Your Support!!</span> --}}
                            </font>
                            <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                            <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
-                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">Details:<br>
+                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">By:<br>
                                 <strong>Name:</strong> {{$user->name}} <br>
                                 <strong>Username:</strong> {{$user->details->username}}<br>
                                 <strong>Email:</strong> {{$user->email}}<br>
