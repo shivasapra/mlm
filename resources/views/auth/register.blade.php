@@ -29,7 +29,7 @@
 	                        <div class="col-md-6">
 								<div class="form-group">
 									<label>Referral Code</label>
-									<input type="text" class="form-control" name="referral_code" value="{{ old('referral_code') }}" placeholder="Enter Referral Code" required/>
+									<input type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Enter Referral Code" required/>
 								</div>
 								<div class="form-group">
 									<label>Cause</label>
@@ -63,11 +63,11 @@
         	                    </div>
                                 <div class="form-group">
 									<label>City</label>
-									<input type="text" name="city" class="form-control" placeholder="City" required/>
+									<input type="text" name="city" class="form-control" placeholder="City" value="{{ old('city') }}" required/>
 								</div>
         	                    <div class="form-group">
         	                        <label>Confirm Password</label>
-        	                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+        	                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" value="{{ old('country') }}" name="password_confirmation" required autocomplete="new-password">
 								</div>
         	                </div>
         	                <div class="col-md-12">

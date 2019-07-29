@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Details;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Session;
 class RegisterController extends Controller
 {
     /*
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'username' => ['unique:details'],
+            'referral_code' => ['exists:details,username']
         ]);
     }
 
@@ -64,6 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
+        
         $user = new User;
         $user->name = $data['name'];
         $user->email = $data['email'];
