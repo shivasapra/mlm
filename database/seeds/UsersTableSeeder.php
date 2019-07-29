@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = new App\user;
+        $user = new App\User;
         $user->name = 'Shiva Sapra';
         $user->email = 'shivasapra24@gmail.com';
         $user->password = bcrypt('password');
