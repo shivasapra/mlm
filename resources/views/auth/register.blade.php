@@ -41,7 +41,7 @@
         	                    </div>
         	                    <div class="form-group">
         	                        <label>Country</label>
-									<input type="text" name="country" class="form-control" placeholder="Country" required/>
+									<input type="text" name="country" class="form-control" placeholder="Country" value="{{ old('country') }}" required/>
         	                    </div>
         	                    <div class="form-group">
         	                        <label>Password</label>
@@ -67,7 +67,7 @@
 								</div>
         	                    <div class="form-group">
         	                        <label>Confirm Password</label>
-        	                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" value="{{ old('country') }}" name="password_confirmation" required autocomplete="new-password">
+        	                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control"  name="password_confirmation" required autocomplete="new-password">
 								</div>
         	                </div>
         	                <div class="col-md-12">

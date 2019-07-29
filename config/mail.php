@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreply@galaxycrowd.com', 'name' => 'Galaxy Crowd'],
+    
 
     /*
     |--------------------------------------------------------------------------
