@@ -31,11 +31,9 @@
 
             if(array_key_exists(0,$level_one) ){
                 foreach(collect($level_one[0]) as $c){
-                    if(App\User::find($c)->coordinates != null){
-                        if(App\User::find($c)->coordinates->children != null){
-                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                                array_push($child_one_children,$c);
-                            }
+                    if(App\User::find($c)->coordinates->children != null){
+                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                            array_push($child_one_children,$c);
                         }
                     }
                 }
@@ -43,11 +41,9 @@
 
             if(array_key_exists(1,$level_one) ){
                 foreach(collect($level_one[1]) as $c){
-                    if(App\User::find($c)->coordinates != null){
-                        if(App\User::find($c)->coordinates->children != null){
-                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                                array_push($child_two_children,$c);
-                            }
+                    if(App\User::find($c)->coordinates->children != null){
+                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                            array_push($child_two_children,$c);
                         }
                     }
                 }
@@ -55,11 +51,9 @@
 
             if(array_key_exists(2,$level_one) ){
                 foreach(collect($level_one[2]) as $c){
-                    if(App\User::find($c)->coordinates != null){
-                        if(App\User::find($c)->coordinates->children != null){
-                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                                array_push($child_three_children,$c);
-                            }
+                    if(App\User::find($c)->coordinates->children != null){
+                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                            array_push($child_three_children,$c);
                         }
                     }
                 }
@@ -67,11 +61,9 @@
 
             if(array_key_exists(3,$level_one) ){
                 foreach(collect($level_one[3]) as $c){
-                    if(App\User::find($c)->coordinates != null){
-                        if(App\User::find($c)->coordinates->children != null){
-                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                                array_push($child_four_children,$c);
-                            }
+                    if(App\User::find($c)->coordinates->children != null){
+                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                            array_push($child_four_children,$c);
                         }
                     }
                 }
@@ -79,11 +71,9 @@
 
             if(array_key_exists(4,$level_one) ){
                 foreach(collect($level_one[4]) as $c){
-                    if(App\User::find($c)->coordinates != null){
-                        if(App\User::find($c)->coordinates->children != null){
-                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                                array_push($child_five_children,$c);
-                            }
+                    if(App\User::find($c)->coordinates->children != null){
+                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                            array_push($child_five_children,$c);
                         }
                     }
                 }
