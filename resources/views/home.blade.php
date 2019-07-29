@@ -1,9 +1,9 @@
 @extends('layouts.app', ['titlePage' => __('Dashboard')])
 @section('content-header')
     <div class="alert alert-success text-center" role="alert">
-        Your Referral Link: <a href="javascript:void(0)" class="alert-link">https://onlinesensor.com/balrajaggarwal</a>
+        Your Referral Link: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->details->promotional_url}}</a>
     </div>
-    <div class="alert alert-warning text-center alert-dismissible show" role="alert">
+    {{-- <div class="alert alert-warning text-center alert-dismissible show" role="alert">
       Your mobile is not verified. Please verify your mobile <a href="#" class="alert-link">Verify Now</a> 
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -14,7 +14,142 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>
+    </div> --}}
+    @if(Auth::user()->coordinates != null)
+        <?php $user = Auth::user();
+            $level_one = array();
+            $child_one_children = array();
+            $child_two_children = array();
+            $child_three_children = array();
+            $child_four_children = array();
+            $child_five_children = array();
+            if($user->coordinates->children != null){
+                foreach(collect(explode(',', $user->coordinates->children)) as $c){
+                    array_push($level_one, $c) ;
+                }
+            }
+
+            if(array_key_exists(0,$level_one) ){
+                foreach(collect($level_one[0]) as $c){
+                    if(App\User::find($c)->coordinates != null){
+                        if(App\User::find($c)->coordinates->children != null){
+                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                                array_push($child_one_children,$c);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(array_key_exists(1,$level_one) ){
+                foreach(collect($level_one[1]) as $c){
+                    if(App\User::find($c)->coordinates != null){
+                        if(App\User::find($c)->coordinates->children != null){
+                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                                array_push($child_two_children,$c);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(array_key_exists(2,$level_one) ){
+                foreach(collect($level_one[2]) as $c){
+                    if(App\User::find($c)->coordinates != null){
+                        if(App\User::find($c)->coordinates->children != null){
+                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                                array_push($child_three_children,$c);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(array_key_exists(3,$level_one) ){
+                foreach(collect($level_one[3]) as $c){
+                    if(App\User::find($c)->coordinates != null){
+                        if(App\User::find($c)->coordinates->children != null){
+                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                                array_push($child_four_children,$c);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(array_key_exists(4,$level_one) ){
+                foreach(collect($level_one[4]) as $c){
+                    if(App\User::find($c)->coordinates != null){
+                        if(App\User::find($c)->coordinates->children != null){
+                            foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
+                                array_push($child_five_children,$c);
+                            }
+                        }
+                    }
+                }
+            }
+        ?>
+        <div class="row">
+            <div class="home-tree-view">
+                <ul class="text-center mb-3">
+                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$user->name}}
+                </ul>
+                <ul class="text-center ul-after-top-line">
+                    <li>
+                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(0,$level_one) ){{App\User::find($level_one[0])->name}}@else -- @endif<br>
+                        <ul class="text-center li-width-100 ul-after-top-line-none">
+                            @foreach(collect($child_one_children) as $c)
+                                <li>
+                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li>
+                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(1,$level_one) ){{App\User::find($level_one[1])->name}}@else -- @endif<br>
+                        <ul class="text-center li-width-100 ul-after-top-line-none">
+                            @foreach(collect($child_two_children) as $c)
+                                <li>
+                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li>
+                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(2,$level_one)){{App\User::find($level_one[2])->name}}@else -- @endif<br>
+                        <ul class="text-center li-width-100 ul-after-top-line-none ul-after-top-line-height56">
+                            @foreach(collect($child_three_children) as $c)
+                                <li>
+                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li>
+                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if( array_key_exists(3,$level_one)){{App\User::find($level_one[3])->name}}@else -- @endif<br>
+                        <ul class="text-center li-width-100 ul-after-top-line-none">
+                            @foreach(collect($child_four_children) as $c)
+                                <li>
+                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li>
+                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(4,$level_one) ){{App\User::find($level_one[4])->name}}@else -- @endif<br>
+                        <ul class="text-center li-width-100 ul-after-top-line-none">
+                            @foreach(collect($child_five_children) as $c)
+                                <li>
+                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    @endif
+    <hr>
 @endsection
 @section('content-body')
     <div class="row">
@@ -451,115 +586,6 @@
         </div>
     </div>
 
-    <?php $user = Auth::user();
-        $level_one = array();
-        $child_one_children = array();
-        $child_two_children = array();
-        $child_three_children = array();
-        $child_four_children = array();
-        $child_five_children = array();
-        foreach(collect(explode(',', $user->coordinates->children)) as $c){
-            array_push($level_one, $c) ;
-        }
-
-        if(array_key_exists(0,$level_one) ){
-            foreach(collect($level_one[0]) as $c){
-                foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                    array_push($child_one_children,$c);
-                }
-            }
-        }
-
-        if(array_key_exists(1,$level_one) ){
-            foreach(collect($level_one[1]) as $c){
-                foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                    array_push($child_two_children,$c);
-                }
-            }
-        }
-
-        if(array_key_exists(2,$level_one) ){
-            foreach(collect($level_one[2]) as $c){
-                foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                    array_push($child_three_children,$c);
-                }
-            }
-        }
-
-        if(array_key_exists(3,$level_one) ){
-            foreach(collect($level_one[3]) as $c){
-                foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                    array_push($child_four_children,$c);
-                }
-            }
-        }
-
-        if(array_key_exists(4,$level_one) ){
-            foreach(collect($level_one[4]) as $c){
-                foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                    array_push($child_five_children,$c);
-                }
-            }
-        }
-    ?>
-<div class="row">
-    <div class="home-tree-view">
-        <ul class="text-center mb-3">
-            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$user->name}}
-        </ul>
-        <ul class="text-center ul-after-top-line">
-            <li>
-                <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(0,$level_one) ){{App\User::find($level_one[0])->name}}@else Not Assigned @endif<br>
-                <ul class="text-center li-width-100 ul-after-top-line-none">
-                    @foreach(collect($child_one_children) as $c)
-                        <li>
-                            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-            <li>
-                <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(1,$level_one) ){{App\User::find($level_one[1])->name}}@else Not Assigned @endif<br>
-                <ul class="text-center li-width-100 ul-after-top-line-none">
-                    @foreach(collect($child_two_children) as $c)
-                        <li>
-                            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-            <li>
-                <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(2,$level_one)){{App\User::find($level_one[2])->name}}@else Not Assigned @endif<br>
-                <ul class="text-center li-width-100 ul-after-top-line-none ul-after-top-line-height56">
-                    @foreach(collect($child_three_children) as $c)
-                        <li>
-                            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-            <li>
-                <img src="{{asset('app/images/user.png')}}" alt=""><br>@if( array_key_exists(3,$level_one)){{App\User::find($level_one[3])->name}}@else Not Assigned @endif<br>
-                <ul class="text-center li-width-100 ul-after-top-line-none">
-                    @foreach(collect($child_four_children) as $c)
-                        <li>
-                            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-            <li>
-                <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(4,$level_one) ){{App\User::find($level_one[4])->name}}@else Not Assigned @endif<br>
-                <ul class="text-center li-width-100 ul-after-top-line-none">
-                    @foreach(collect($child_five_children) as $c)
-                        <li>
-                            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
+    
 
 @endsection
