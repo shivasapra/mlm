@@ -25,51 +25,82 @@
 	                <div class="col-md-8 p-0 align-self-center">
 	                    <div class="login-box">
 						<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
-	                    <div class="row">
-	                        <div class="col-md-6">
+						<div class="row">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label>Referral Code</label>
 									<input type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Enter Referral Code" required/>
 								</div>
+							</div>
+							<div class="col-md-6">
 								<div class="form-group">
 									<label>Cause</label>
-									<input id="cause" type="text" placeholder="Enter Cause" class="form-control" name="cause" value="{{ old('cause') }}"  required autocomplete="cause" autofocus>
+									<select name="cause" id="cause" class="form-control">
+										<option value="">--Select--</option>
+										<option value="Education">Education</option>
+										<option value="Holiday">Holiday</option>
+										<option value="Personal">Personal</option>
+									</select>
 								</div>
-        	                    <div class="form-group">
-        	                        <label>Email id</label>
-        	                        <input id="email" type="email" placeholder="Enter Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-        	                    </div>
-        	                    <div class="form-group">
-        	                        <label>Country</label>
-									<input type="text" name="country" class="form-control" placeholder="Country" value="{{ old('country') }}" required/>
-        	                    </div>
-        	                    <div class="form-group">
-        	                        <label>Password</label>
-        	                        <input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-        	                    </div>
-        	                </div>
-        	                <div class="col-md-6">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label>Username</label>
 									<input id="name" type="text" placeholder="Enter Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  required autocomplete="username" autofocus>
 								</div>
-        	                    <div class="form-group">
-        	                        <label>Full Name</label>
-        	                        <input id="name" type="text" placeholder="Enter Full Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-        	                    </div>
-        	                    <div class="form-group">
-        	                        <label>Mobile Number</label>
-        	                        <input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
-        	                    </div>
-                                <div class="form-group">
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Full Name</label>
+									<input id="name" type="text" placeholder="Enter Full Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Email id</label>
+									<input id="email" type="email" placeholder="Enter Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Mobile Number</label>
+									<input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Country</label>
+									<input type="text" name="country" class="form-control" placeholder="Country" value="{{ old('country') }}" required/>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
 									<label>City</label>
 									<input type="text" name="city" class="form-control" placeholder="City" value="{{ old('city') }}" required/>
 								</div>
-        	                    <div class="form-group">
-        	                        <label>Confirm Password</label>
-        	                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control"  name="password_confirmation" required autocomplete="new-password">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Password</label>
+									<input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 								</div>
-        	                </div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Confirm Password</label>
+									<input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control"  name="password_confirmation" required autocomplete="new-password">
+								</div>
+							</div>
+						</div>
+	                    <div class="row">
         	                <div class="col-md-12">
         	                    <div class="form-group">
         	                        <div class="custom-control custom-checkbox mt-3 mt-4">
