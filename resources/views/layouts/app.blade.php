@@ -204,6 +204,9 @@
             <li class=" nav-item"><a href="#"><i class="icon-bar-graph-2"></i><span class="menu-title">Security</span></a>
             </li>
 
+            <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a>
+            </li>
+
             <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
             </li>
             <li class=" nav-item"><a href="#"><i class="icon-support"></i><span class="menu-title">Support</span></a>

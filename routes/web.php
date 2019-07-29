@@ -61,3 +61,5 @@ Route::get('/contribution-packages/{user}','ContributionController@packages')->n
 Route::get('/contribution-donations/{user}','ContributionController@donations')->name('contribution.donations');
 
 Route::post('/contribute/','ContributionController@contribute')->name('contribute');
+
+Route::post('/Settings','SettingsController@settings')->name('settings');
