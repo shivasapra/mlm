@@ -67,7 +67,7 @@ return [
     | transport layer security protocol should provide great security.
     |
     */
-
+    'from' => ['address' => 'noreply@galaxycrowd.com', 'name' => 'Galaxy Crowd'],
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
@@ -95,7 +95,7 @@ return [
     | been provided here, which will work well on most of your systems.
     |
     */
-
+    
     'sendmail' => '/usr/sbin/sendmail -bs',
 
     /*
