@@ -86,8 +86,8 @@ class RegisterController extends Controller
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 
-        $data = ['user' => $user, 'security_pin'=> $detail->security_pin];
         $contactEmail = $data['email'];
+        $data = ['user' => $user, 'security_pin'=> $detail->security_pin];
         Mail::send('emails.registered', $data, function($message) use ($contactEmail)
         {  
             $message->to($contactEmail)->subject('Registered!!');
