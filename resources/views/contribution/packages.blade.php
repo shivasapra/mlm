@@ -9,7 +9,7 @@
             <a class="nav-link" href="{{route('contribution.donations',Auth::user())}}">My Contribution/Donation</a>
         </li>
     </ul>
-    @foreach ($packages->reverse()->chunk(3) as $chunk)
+    {{-- @foreach ($packages->reverse()->chunk(3) as $chunk)
         <div class="row">
             @foreach ($chunk->reverse() as $package)
                 <div class="col-md-4">
@@ -45,20 +45,23 @@
                     </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
-    @endforeach
-    {{-- <div class="row">
+            @endforeach --}}
+        {{-- </div>
+    @endforeach --}}
+    <div class="row">
         <div class="col-md-6">
             <div class="contribute-div">
                 <div class="media overflow-visible">
                     <div class="media-body media-middle overflow-visible">
                         <div class="heading-tag">Basic</div>
-                        <h2>INR 26,000.00</h2>
+                        <h2>INR {{App\Settings::first()->basic_amount}}</h2>
                         @if($user->donations()->where('package','BASIC')->first() != null)
                             <h6 class="text-muted">{{$user->donations()->where('package','BASIC')->first()->created_at}}</h6>
                         @else
-                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value=""></a>
+                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->basic_amount}}">
+                                <input type="hidden" class="packagee" name="package" value="BASIC">
+                            </a>
                         @endif
                     </div>
                     <div class="media-right">
@@ -72,11 +75,14 @@
                 <div class="media overflow-visible">
                     <div class="media-body media-middle overflow-visible">
                         <div class="heading-tag standard-gradient">Standard</div>
-                        <h2>INR 26,000.00</h2>
+                        <h2>INR {{App\Settings::first()->standard_amount}}</h2>
                         @if($user->donations()->where('package','STANDARD')->first() != null)
                             <h6 class="text-muted">{{$user->donations()->where('package','STANDARD')->first()->created_at}}</h6>
                         @else
-                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value=""></a>
+                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
+                                <input type="hidden" class="packagee" name="package" value="STANDARD">
+                            </a>
                         @endif
                     </div>
                     <div class="media-right">
@@ -85,7 +91,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <button type="button" id="modalButton" data-toggle="modal" data-target="#contributeModal" style="display:none;"></button>
     <div id="modalDisplay"></div>
@@ -93,10 +99,13 @@
 @section('js')
     <script>
         function contribute(temp){
-            console.log('shiva');
             
-            var obj = JSON.parse($(temp).find('.package').val());
-            console.log(obj);
+            var amount = $(temp).find('.amount').val();
+            var packages = $(temp).find('.packagee').val();
+            console.log(amount);
+            console.log(packages);
+            
+            
             
             var modal = 
             '<div class="modal fade" id="contributeModal">'+
@@ -111,8 +120,9 @@
                     '@csrf'+
                         '<!-- Modal body -->'+
                         '<div class="modal-body">'+
-                        '<input type="hidden" value="'+obj["id"]+'" name="package_id">'+
-                        '<p>Are You Sure You Want To Invest INR '+obj["amount"]+' in '+obj["package"]+' Package?</p>'+
+                        '<input type="hidden" value="'+ packages +'" name="package">'+
+                        '<input type="hidden" value="'+ amount +'" name="amount">'+
+                        '<p>Are You Sure You Want To Invest INR '+amount+' in '+packages+' Package?</p>'+
                         '</div>'+
                 
                         '<!-- Modal footer -->'+

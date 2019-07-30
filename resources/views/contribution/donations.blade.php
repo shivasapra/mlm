@@ -23,7 +23,7 @@
                                     <h2>Amount: INR {{$d->amount}}</h2>
                                 </div>
                                 <div class="media-right">
-                                    <img src="{{asset('app/images/medal'.$d->level.'.png')}}" alt="gold medal" class="media-object"/>
+                                    <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
                                 </div>
                             </div>
                         </div>

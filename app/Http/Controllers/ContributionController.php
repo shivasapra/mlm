@@ -23,11 +23,9 @@ class ContributionController extends Controller
     }
 
     public function contribute(Request $request,Donation $donation){
-        $package = ContributionPackages::find($request->package_id);
         $donation->user_id = Auth::user()->id;
-        $donation->package = $package->package;
-        $donation->level = $package->level;
-        $donation->amount = $package->amount;
+        $donation->package = $request->package;
+        $donation->amount = $request->amount;
         $donation->save();
 
         if(Auth::user()->coordinates == null){
@@ -57,7 +55,7 @@ class ContributionController extends Controller
                 $super_parent_user->coordinates->super_children = ($super_parent_user->coordinates->super_children == null) ? Auth::user()->id : $super_parent_user->coordinates->super_children.','.Auth::user()->id;
                 $super_parent_user->coordinates->save();
 
-                $super_parent_amount = (Settings::first()->level_one_percentage/100) * $donation->amount;
+                $super_parent_amount = Settings::first()->level_one_percentage;
                 $data = ['super_parent_user' => $super_parent_user, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
                 $contactEmail = $super_parent_user->email;
                 Mail::send('emails.superParents', $data, function($message) use ($contactEmail)
@@ -66,7 +64,7 @@ class ContributionController extends Controller
                 });
             }
 
-            $parent_amount = (Settings::first()->level_two_percentage/100) * $donation->amount;
+            $parent_amount = Settings::first()->level_two_percentage;
             $data = ['parent_user' => $parent_user, 'user' => Auth::user(), 'amount'=> $parent_amount];
             $contactEmail = $parent_user->email;
             Mail::send('emails.parents', $data, function($message) use ($contactEmail)
