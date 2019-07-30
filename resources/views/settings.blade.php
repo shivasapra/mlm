@@ -64,7 +64,7 @@
         console.log(cause);
         
         var params = 'cause='+cause;
-        var Url = "http://127.0.0.1:8000/save-cause";
+        var Url = "http://buildatwill.com/galaxycrowd/mlm/public/save-cause";
         var xhr = new XMLHttpRequest();
         xhr.open('GET', Url+"?"+params, true);
         xhr.send();

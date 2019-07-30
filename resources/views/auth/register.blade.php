@@ -37,9 +37,9 @@
 									<label>Cause</label>
 									<select name="cause" id="cause" class="form-control">
 										<option value="">--Select--</option>
-										<option value="Education">Education</option>
-										<option value="Holiday">Holiday</option>
-										<option value="Personal">Personal</option>
+										@foreach(App\Cause::all() as $cause)
+											<option value="{{$cause->name}}">{{$cause->name}}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
