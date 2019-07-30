@@ -15,8 +15,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('level_one_percentage')->nullable();
-            $table->string('level_two_percentage')->nullable();
+            $table->float('level_one_percentage')->nullable();
+            $table->float('level_two_percentage')->nullable();
             $table->timestamps();
         });
     }

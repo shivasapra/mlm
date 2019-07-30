@@ -62,4 +62,6 @@ Route::get('/contribution-donations/{user}','ContributionController@donations')-
 
 Route::post('/contribute/','ContributionController@contribute')->name('contribute');
 
-Route::post('/Settings','SettingsController@settings')->name('settings');
+Route::get('/Settings','SettingsController@settings')->name('settings');
+Route::post('/Save-Settings','SettingsController@Save')->name('settings.save');
+Route::get('/Cause-Delete/{id}','SettingsController@CauseDelete')->name('cause.delete');

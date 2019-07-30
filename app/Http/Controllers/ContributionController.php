@@ -9,6 +9,7 @@ use App\Donation;
 use App\Coordinates;
 use App\Details;
 use Auth;
+use App\Settings;
 use Mail;
 
 class ContributionController extends Controller
@@ -56,7 +57,7 @@ class ContributionController extends Controller
                 $super_parent_user->coordinates->super_children = ($super_parent_user->coordinates->super_children == null) ? Auth::user()->id : $super_parent_user->coordinates->super_children.','.Auth::user()->id;
                 $super_parent_user->coordinates->save();
 
-                $super_parent_amount = (70/100) * $donation->amount;
+                $super_parent_amount = (Settings::first()->level_one_percentage/100) * $donation->amount;
                 $data = ['super_parent_user' => $super_parent_user, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
                 $contactEmail = $super_parent_user->email;
                 Mail::send('emails.superParents', $data, function($message) use ($contactEmail)
@@ -65,7 +66,7 @@ class ContributionController extends Controller
                 });
             }
 
-            $parent_amount = (25/100) * $donation->amount;
+            $parent_amount = (Settings::first()->level_two_percentage/100) * $donation->amount;
             $data = ['parent_user' => $parent_user, 'user' => Auth::user(), 'amount'=> $parent_amount];
             $contactEmail = $parent_user->email;
             Mail::send('emails.parents', $data, function($message) use ($contactEmail)
