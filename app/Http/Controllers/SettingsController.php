@@ -36,4 +36,12 @@ class SettingsController extends Controller
         Session::flash('success','Deleted');
         return redirect()->back();
     }
+
+    public function CauseSave(Request $request){
+        $cause = new Cause;
+        $cause->name = $request->cause;
+        $cause->save();
+        
+        return $cause;
+    }
 }

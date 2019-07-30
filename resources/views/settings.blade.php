@@ -21,7 +21,7 @@
 </form><br>
 <h1>Causes</h1><hr>
  <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" id="load">
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>
@@ -42,14 +42,52 @@
             </tbody>
         </table>
     </div>
+    <form onsubmit="saveCause(this);" action="javascript:void(0)" method="post" id="form">
     <div class="col-md-3">
         <div class="form-group">
             <label for="cause"><b>Add Cause:</b></label>
-            <input type="text" name="cause" class="form-control">
+            <input type="text" id="cause" onkeyup="test(this)" name="cause" class="form-control">
         </div>
     </div><br>
     <div class="col-md-1">
-        <button class="btn btn-sm btn-info">Save</button>
+        <button id="button" type="submit" class="btn btn-sm btn-info">Save</button>
     </div>
+    </form>
  </div>
+@stop
+@section('js')
+<script>
+    function saveCause(test){
+  
+        $('#button').attr('disabled','disabled');
+        var cause= $(test).find('#cause').val();
+        console.log(cause);
+        
+        var params = 'cause='+cause;
+        var Url = "http://127.0.0.1:8000/save-cause";
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', Url+"?"+params, true);
+        xhr.send();
+        xhr.onreadystatechange = processRequest;
+        function processRequest(e) {
+            var response1 = JSON.parse(xhr.responseText);
+            if (response1){
+                $('#button').removeAttr('disabled');
+                $("#load").load(" #load > *");
+                $('#cause').val('');
+            }
+        }
+       
+    }
+
+    function test(temp){
+      if (temp.value.trim() == '') {
+      $('#button').attr('disabled','disabled');
+      }
+      else{
+        $('#button').removeAttr('disabled');
+      }
+    }
+
+</script>
 @stop
