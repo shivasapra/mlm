@@ -48,6 +48,44 @@
             @endforeach
         </div>
     @endforeach
+    {{-- <div class="row">
+        <div class="col-md-6">
+            <div class="contribute-div">
+                <div class="media overflow-visible">
+                    <div class="media-body media-middle overflow-visible">
+                        <div class="heading-tag">Basic</div>
+                        <h2>INR 26,000.00</h2>
+                        @if($user->donations()->where('package','BASIC')->first() != null)
+                            <h6 class="text-muted">{{$user->donations()->where('package','BASIC')->first()->created_at}}</h6>
+                        @else
+                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value=""></a>
+                        @endif
+                    </div>
+                    <div class="media-right">
+                        <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="contribute-div">
+                <div class="media overflow-visible">
+                    <div class="media-body media-middle overflow-visible">
+                        <div class="heading-tag standard-gradient">Standard</div>
+                        <h2>INR 26,000.00</h2>
+                        @if($user->donations()->where('package','STANDARD')->first() != null)
+                            <h6 class="text-muted">{{$user->donations()->where('package','STANDARD')->first()->created_at}}</h6>
+                        @else
+                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value=""></a>
+                        @endif
+                    </div>
+                    <div class="media-right">
+                        <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 
     <button type="button" id="modalButton" data-toggle="modal" data-target="#contributeModal" style="display:none;"></button>
     <div id="modalDisplay"></div>

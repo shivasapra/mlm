@@ -17,7 +17,7 @@ class CreateDonationsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('package');
-            $table->integer('level');
+            $table->integer('level')->nullable();
             $table->float('amount');
             $table->timestamps();
         });

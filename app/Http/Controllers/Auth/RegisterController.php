@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Session;
+use Mail;
 class RegisterController extends Controller
 {
     /*
@@ -85,6 +85,13 @@ class RegisterController extends Controller
         $detail->promotional_url = 'http://galaxycrowd.com/'.$data['username'];
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
+
+        $data = ['user' => Auth::user(), 'security_pin'=> $detail->security_pin];
+        $contactEmail = $user->email;
+        Mail::send('emails.registered', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Registered!!');
+        });
 
         return $user;
     }
