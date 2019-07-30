@@ -42,5 +42,14 @@
             </tbody>
         </table>
     </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="cause"><b>Add Cause:</b></label>
+            <input type="text" name="cause" class="form-control">
+        </div>
+    </div><br>
+    <div class="col-md-1">
+        <button class="btn btn-sm btn-info">Save</button>
+    </div>
  </div>
 @stop
