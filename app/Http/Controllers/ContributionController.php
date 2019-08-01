@@ -49,6 +49,8 @@ class ContributionController extends Controller
                     if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
                         //
                     }
+                }else{
+                    $super_duper_parent_user = null;
                 }
             }
         }
