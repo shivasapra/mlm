@@ -75,4 +75,17 @@ class User extends Authenticatable
     public function coordinates(){
         return $this->hasOne('App\Coordinates');
     }
+
+    public function findChildren($id){
+        $children = array();
+        foreach(collect(explode(',',User::find($id)->coordinates->children)) as $child){
+            if($child){
+                array_push($children,User::find($child)->name);
+            }
+        }
+        while(count($children)<5){
+            array_push($children,'--');
+        }
+        return $children;
+    }
 }

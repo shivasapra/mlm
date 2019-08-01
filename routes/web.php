@@ -12,7 +12,7 @@
 */
 
 
-
+Route::get('/test','ContributionController@matrix');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

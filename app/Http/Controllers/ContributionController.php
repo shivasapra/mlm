@@ -96,4 +96,25 @@ class ContributionController extends Controller
         $donation->save();
         return redirect()->back();
     }
+
+    // public function matrix(){
+    //     $user = Auth::user();
+    //     $arr = array(
+    //         $user->name => $this->findChildren($user->id),
+
+    //     );
+    //     // $array = array(
+    //     //     'shiva Sapra'=>['Vineet Chauhan','Aslam Khan'],
+    //     //     'vineet Chauhan'=>['Ashish Sapra','Jagdish Ranjha']
+    //     // );
+    //     dd($arr);
+    // }
+
+    // private function findChildren($id){
+    //     $children = array();
+    //     foreach(collect(explode(',',User::find($id)->coordinates->children)) as $child){
+    //         array_push($children,User::find($child)->name);
+    //     }
+    //     return $children;
+    // }
 }

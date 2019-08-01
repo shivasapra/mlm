@@ -16,131 +16,77 @@
       </button>
     </div> --}}
     @if(Auth::user()->coordinates != null)
-        <?php $user = Auth::user();
-            $level_one = array();
-            $child_one_children = array();
-            $child_two_children = array();
-            $child_three_children = array();
-            $child_four_children = array();
-            $child_five_children = array();
-            if($user->coordinates->children != null){
-                foreach(collect(explode(',', $user->coordinates->children)) as $c){
-                    array_push($level_one, $c) ;
-                }
-            }
-
-            if(array_key_exists(0,$level_one) ){
-                foreach(collect($level_one[0]) as $c){
-                    if(App\User::find($c)->coordinates->children != null){
-                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                            array_push($child_one_children,$c);
-                        }
-                    }
-                }
-            }
-
-            if(array_key_exists(1,$level_one) ){
-                foreach(collect($level_one[1]) as $c){
-                    if(App\User::find($c)->coordinates->children != null){
-                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                            array_push($child_two_children,$c);
-                        }
-                    }
-                }
-            }
-
-            if(array_key_exists(2,$level_one) ){
-                foreach(collect($level_one[2]) as $c){
-                    if(App\User::find($c)->coordinates->children != null){
-                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                            array_push($child_three_children,$c);
-                        }
-                    }
-                }
-            }
-
-            if(array_key_exists(3,$level_one) ){
-                foreach(collect($level_one[3]) as $c){
-                    if(App\User::find($c)->coordinates->children != null){
-                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                            array_push($child_four_children,$c);
-                        }
-                    }
-                }
-            }
-
-            if(array_key_exists(4,$level_one) ){
-                foreach(collect($level_one[4]) as $c){
-                    if(App\User::find($c)->coordinates->children != null){
-                        foreach(collect(explode(',', App\User::find($c)->coordinates->children)) as $c){
-                            array_push($child_five_children,$c);
-                        }
-                    }
-                }
-            }
-        ?>
+        <?php $user = Auth::user();?>
         <div class="row">
             <div class="home-tree-view">
                 <ul class="text-center mb-3">
                     <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$user->name}}
                 </ul>
                 <ul class="text-center ul-after-top-line">
-                    <li>
-                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(0,$level_one) ){{App\User::find($level_one[0])->name}}@else -- @endif<br>
-                        <ul class="text-center li-width-100 ul-after-top-line-none">
-                            @foreach(collect($child_one_children) as $c)
-                                <li>
-                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(1,$level_one) ){{App\User::find($level_one[1])->name}}@else -- @endif<br>
-                        <ul class="text-center li-width-100 ul-after-top-line-none">
-                            @foreach(collect($child_two_children) as $c)
-                                <li>
-                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(2,$level_one)){{App\User::find($level_one[2])->name}}@else -- @endif<br>
-                        <ul class="text-center li-width-100 ul-after-top-line-none ul-after-top-line-height56">
-                            @foreach(collect($child_three_children) as $c)
-                                <li>
-                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if( array_key_exists(3,$level_one)){{App\User::find($level_one[3])->name}}@else -- @endif<br>
-                        <ul class="text-center li-width-100 ul-after-top-line-none">
-                            @foreach(collect($child_four_children) as $c)
-                                <li>
-                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{asset('app/images/user.png')}}" alt=""><br>@if(array_key_exists(4,$level_one) ){{App\User::find($level_one[4])->name}}@else -- @endif<br>
-                        <ul class="text-center li-width-100 ul-after-top-line-none">
-                            @foreach(collect($child_five_children) as $c)
-                                <li>
-                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{App\User::find($c)->name}}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    @foreach(collect($user->findChildren($user->id)) as $name)
+                        <li>
+                            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$name}}<br>
+                            @if($name != '--')
+                            <ul class="text-center li-width-100 ul-after-top-line-none">
+                                @foreach(collect($user->findChildren(App\User::where('name',$name)->first()->id)) as $c)
+                                    @if($c != '--')
+                                        <a href="javascript:void(0)" onclick="displayTree(this);" style="color:black">
+                                            <input type="hidden" class="user_name" value="{{$c}}">
+                                            <input type="hidden" class="user_id" value="{{App\User::where('name',$c)->first()->id}}">
+                                            <li>
+                                                <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$c}}
+                                            </li>
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </ul>
+                            @endif
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
     @endif
     <hr>
+    <div id="childre">
+
+            <?php $children = array() ?>
+    </div>
+    
+            <div class="modal fade" id="contributionViewModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Children</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="home-tree-view">
+                                <ul class="text-center mb-3">
+                                    <img src="{{asset("app/images/user.png")}}" alt=""><br><span class="name"></span>
+                                </ul>
+                                <ul class="text-center ul-after-top-line">
+                                    @foreach(collect($children) as $name)
+                                        <li>
+                                            <img src="{{asset("app/images/user.png")}}" alt=""><br>{{$name}}<br>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 @endsection
+
 @section('content-body')
     <div class="row">
         <div class="col-xl-3 col-lg-6 col-xs-12">
@@ -576,6 +522,31 @@
         </div>
     </div>
 
-    
+    <button type="button" id="modalButton" data-toggle="modal" data-target="#contributionViewModal" style="display:none;"></button>
+    <div id="modalDisplay"></div>
 
 @endsection
+@section('js')
+    <script>
+        function displayTree(temp){
+            var name = $(temp).find('.user_name').val();
+            var user_id = $(temp).find('.user_id').val();
+            <?php
+            $children = array();
+            foreach(collect(explode(',',App\User::find(1)->coordinates->children)) as $child){
+                if($child){
+                    array_push($children,App\User::find($child)->name);
+                }
+            }
+            while(count($children)<5){
+                array_push($children,'--');
+            }
+            ?>
+            
+            $('.name').html(name);
+            $('#childre').html();
+            $('#modalButton').click();
+        }
+
+    </script>
+@stop
