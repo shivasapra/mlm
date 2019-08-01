@@ -84,7 +84,7 @@ class User extends Authenticatable
             }
         }
         while(count($children)<5){
-            array_push($children,'--');
+            array_push($children,'N/A');
         }
         return $children;
     }

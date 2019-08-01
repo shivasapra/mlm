@@ -16,75 +16,59 @@
       </button>
     </div> --}}
     @if(Auth::user()->coordinates != null)
-        <?php $user = Auth::user();?>
-        <div class="row">
-            <div class="home-tree-view">
-                <ul class="text-center mb-3">
-                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$user->name}}
-                </ul>
-                <ul class="text-center ul-after-top-line">
+    <?php $user = Auth::user();?>
+    {{-- <div class="row">
+        <div class="home-tree-view">
+            <ul class="text-center mb-3">
+                <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$user->name}}
+            </ul>
+            <ul class="text-center ul-after-top-line">
+                @foreach(collect($user->findChildren($user->id)) as $name)
+                    <li>
+                        <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$name}}<br>
+                        @if($name != '--')
+                        <ul class="text-center li-width-100 ul-after-top-line-none">
+                            @foreach(collect($user->findChildren(App\User::where('name',$name)->first()->id)) as $c)
+                                <li>
+                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$c}}
+                                </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div> --}}
+    <div class="row tree-view">
+        <ul>
+            <li><a href="#">{{$user->name}}</a>
+                <ul>
                     @foreach(collect($user->findChildren($user->id)) as $name)
-                        <li>
-                            <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$name}}<br>
-                            @if($name != '--')
-                            <ul class="text-center li-width-100 ul-after-top-line-none">
+                    <li><a href="#">{{$name}}</a>
+                        @if($name != 'N/A')
+                            <ul>
                                 @foreach(collect($user->findChildren(App\User::where('name',$name)->first()->id)) as $c)
-                                    @if($c != '--')
-                                        <a href="javascript:void(0)" onclick="displayTree(this);" style="color:black">
-                                            <input type="hidden" class="user_name" value="{{$c}}">
-                                            <input type="hidden" class="user_id" value="{{App\User::where('name',$c)->first()->id}}">
-                                            <li>
-                                                <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$c}}
-                                            </li>
-                                        </a>
-                                    @endif
+                                    <li><a href="#">{{$c}}</a>
+                                        @if($c != 'N/A')
+                                            <ul>
+                                                @foreach(collect($user->findChildren(App\User::where('name',$c)->first()->id)) as $d)
+                                                    <li><a href="#">{{$d}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
                                 @endforeach
                             </ul>
-                            @endif
-                        </li>
+                        @endif
+                    </li>
                     @endforeach
                 </ul>
-            </div>
-        </div>
+            </li>
+        </ul>
+    </div>
     @endif
     <hr>
-    <div id="childre">
-
-            <?php $children = array() ?>
-    </div>
-    
-            <div class="modal fade" id="contributionViewModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                        <h4 class="modal-title">Children</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="home-tree-view">
-                                <ul class="text-center mb-3">
-                                    <img src="{{asset("app/images/user.png")}}" alt=""><br><span class="name"></span>
-                                </ul>
-                                <ul class="text-center ul-after-top-line">
-                                    @foreach(collect($children) as $name)
-                                        <li>
-                                            <img src="{{asset("app/images/user.png")}}" alt=""><br>{{$name}}<br>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 @endsection
 
 @section('content-body')
@@ -526,27 +510,3 @@
     <div id="modalDisplay"></div>
 
 @endsection
-@section('js')
-    <script>
-        function displayTree(temp){
-            var name = $(temp).find('.user_name').val();
-            var user_id = $(temp).find('.user_id').val();
-            <?php
-            $children = array();
-            foreach(collect(explode(',',App\User::find(1)->coordinates->children)) as $child){
-                if($child){
-                    array_push($children,App\User::find($child)->name);
-                }
-            }
-            while(count($children)<5){
-                array_push($children,'--');
-            }
-            ?>
-            
-            $('.name').html(name);
-            $('#childre').html();
-            $('#modalButton').click();
-        }
-
-    </script>
-@stop
