@@ -186,10 +186,10 @@
             <li class=" nav-item"><a href="{{route('contribution.packages',Auth::user())}}"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
             </li>
 
-            <li class=" nav-item"><a href="pending-assignments.php"><i class="icon-compass3"></i><span class="menu-title">My Assignments</span></a>
-            </li>
+            {{-- <li class=" nav-item"><a href="pending-assignments.php"><i class="icon-compass3"></i><span class="menu-title">My Assignments</span></a>
+            </li> --}}
 
-            <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a>
+            {{-- <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a>
             </li>
 
             <li class=" nav-item"><a href="withdrawals.php"><i class="icon-eye6"></i><span class="menu-title">Withdrawals</span></a>
@@ -202,14 +202,13 @@
             </li>
 
             <li class=" nav-item"><a href="#"><i class="icon-bar-graph-2"></i><span class="menu-title">Security</span></a>
-            </li>
+            </li> --}}
             @if(Auth::user()->admin)
                 <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a>
                 </li>
+                <li class=" nav-item"><a href="{{route('epins',Auth::user())}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
+                </li>
             @endif
-            <li class=" nav-item"><a href="{{route('epins',Auth::user())}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
-            </li>
-
             <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
             </li>
             <li class=" nav-item"><a href="#"><i class="icon-support"></i><span class="menu-title">Support</span></a>

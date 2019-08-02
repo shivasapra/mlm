@@ -134,6 +134,19 @@ class ContributionController extends Controller
         return view('contribution.viewer')->with('user',$user);
     }
 
+    public function UsernameSearch(Request $request){
+        if($request->ajax()){
+            $output= "";
+            $usernames = Details::where('username','LIKE','%'.$request->search."%")->get();
+            if($usernames){
+                    foreach ($usernames as $key => $product) {
+                        $output.='<option onClick="UsernameAssign(this)" value="'.$product->username.'">'.$product->username.'</option>';
+                    }
+                return Response($output);
+            }
+        }
+    }
+
     // public function matrix(){
     //     $user = Auth::user();
     //     $arr = array(

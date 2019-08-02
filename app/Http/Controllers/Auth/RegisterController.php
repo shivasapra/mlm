@@ -86,10 +86,6 @@ class RegisterController extends Controller
         $detail->promotional_url = 'http://galaxycrowd.com/'.$data['username'];
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
-
-        // $e = Epin::where('epin',$data['epin'])->first();
-        // $e->used_by = $user->id;
-        // $e->save();
         
         $contactEmail = $data['email'];
         $data = ['user' => $user, 'security_pin'=> $detail->security_pin];

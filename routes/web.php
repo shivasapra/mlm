@@ -71,3 +71,5 @@ Route::get('/save-cause','SettingsController@CauseSave')->name('cause.save');
 Route::get('/epins/{user}','ContributionController@epins')->name('epins');
 Route::post('/generate-epin/{user}','ContributionController@generateEpin')->name('generate.epin');
 Route::get('/contribution-viewer/{user}','ContributionController@viewer')->name('contribution.viewer');
+
+Route::get('/searchUsername','ContributionController@UsernameSearch');

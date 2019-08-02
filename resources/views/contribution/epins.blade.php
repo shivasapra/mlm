@@ -1,4 +1,21 @@
 @extends('layouts.app', ['titlePage' => __('Epins')])
+@section('css')
+    <style>
+        .username_html {
+            background-color: #fff;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+        }
+        .username_html option {
+            border-bottom: 1px solid #f4f4f4;
+            padding: 7px 15px;
+        }
+        .username_html option:hover{
+            cursor: pointer;
+            background-color:#54458b;
+            color:#fff;
+        }
+    </style>
+@stop
 @if(Auth::user()->admin)
     @section('content-header')
         <h1>Generate Epin</h1><hr>
@@ -20,7 +37,32 @@
         </form>
     @stop
 @endif
+
 @section('content-body')
+<h1>Send Epins</h1><hr>
+<form action="" method="post">
+    @csrf
+    <div class="row">
+        <div class="col-md-3">
+            <label for="username">Username</label>
+            <div class="dropdown">	<div id="myDropdown" class="dropdown-content">
+            <input class="form-control username-name" onkeyup="UsernameDataExtract(this)" name="username" id="myInput" type="text" required="true" aria-required="true"/>
+            <div class="username_html"></div></div></div>
+        </div>
+        <div class="col-md-3">
+            <label for="epin_type">Epin Type</label>
+            <input type="text" name="epin_type" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label for="no_of_pins">No. Of Pins</label>
+            <input type="number" name="no_of_pins" class="form-control">
+        </div>
+        <div class="col-md-3"><br>
+            <button type="submit" class="btn btn-md btn-info">Send</button>
+        </div>
+    </div>
+</form>
+<br><br>
 <h1>Epins</h1><hr>
 <table class="table tabel-bordered">
     <thead>
@@ -57,4 +99,26 @@
         @endforeach
     </tbody>
 </table>
+
+@stop
+@section('js')
+    <script>
+        function UsernameDataExtract(test){
+            $value = test.value;
+            $.ajax({
+                type : 'get',
+                url : '{{URL::to('searchUsername')}}',
+                data:{'search':$value},
+                success:function(data){
+                    $(test).next(".username_html").html(data);
+                }
+            });
+        }
+        function UsernameAssign(temp){
+            var div = $(temp).closest(".dropdown-content");
+            div.find('.username-name').val(temp.value);
+            $(temp).closest(".username_html").html('');
+        }
+
+    </script>
 @stop
