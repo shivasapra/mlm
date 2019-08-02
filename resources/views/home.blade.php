@@ -15,60 +15,6 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div> --}}
-    @if(Auth::user()->coordinates != null)
-    <?php $user = Auth::user();?>
-    {{-- <div class="row">
-        <div class="home-tree-view">
-            <ul class="text-center mb-3">
-                <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$user->name}}
-            </ul>
-            <ul class="text-center ul-after-top-line">
-                @foreach(collect($user->findChildren($user->id)) as $name)
-                    <li>
-                        <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$name}}<br>
-                        @if($name != '--')
-                        <ul class="text-center li-width-100 ul-after-top-line-none">
-                            @foreach(collect($user->findChildren(App\User::where('name',$name)->first()->id)) as $c)
-                                <li>
-                                    <img src="{{asset('app/images/user.png')}}" alt=""><br>{{$c}}
-                                </li>
-                            @endforeach
-                        </ul>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </div> --}}
-    <div class="row tree-view">
-        <ul>
-            <li><a href="#">{{$user->name}}</a>
-                <ul>
-                    @foreach(collect($user->findChildren($user->id)) as $name)
-                    <li><a href="#">{{$name}}</a>
-                        @if($name != 'N/A')
-                            <ul>
-                                @foreach(collect($user->findChildren(App\User::where('name',$name)->first()->id)) as $c)
-                                    <li><a href="#">{{$c}}</a>
-                                        @if($c != 'N/A')
-                                            <ul>
-                                                @foreach(collect($user->findChildren(App\User::where('name',$c)->first()->id)) as $d)
-                                                    <li><a href="#">{{$d}}</a></li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </li>
-                    @endforeach
-                </ul>
-            </li>
-        </ul>
-    </div>
-    @endif
-    <hr>
 @endsection
 
 @section('content-body')

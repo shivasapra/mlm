@@ -130,6 +130,10 @@ class ContributionController extends Controller
         return view('contribution.epins')->with('user',$user);
     }
 
+    public function viewer(User $user){
+        return view('contribution.viewer')->with('user',$user);
+    }
+
     // public function matrix(){
     //     $user = Auth::user();
     //     $arr = array(

@@ -189,7 +189,7 @@
             <li class=" nav-item"><a href="pending-assignments.php"><i class="icon-compass3"></i><span class="menu-title">My Assignments</span></a>
             </li>
 
-            <li class=" nav-item"><a href="direct-contributors.php"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a>
+            <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a>
             </li>
 
             <li class=" nav-item"><a href="withdrawals.php"><i class="icon-eye6"></i><span class="menu-title">Withdrawals</span></a>
