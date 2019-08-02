@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
+use App\Epin;
 class RegisterController extends Controller
 {
     /*
@@ -92,7 +93,17 @@ class RegisterController extends Controller
         {  
             $message->to($contactEmail)->subject('Registered!!');
         });
-
+        for ($i= 0; $i < 30; $i++) { 
+            do {
+                $new_epin = str_random();
+            }
+            while(Epin::where('epin', $new_epin)->first());
+            $epin = new Epin;
+            $epin->user_id = $user->id;
+            $epin->epin = $new_epin;
+            $epin->save();
+        }
+        
         return $user;
     }
 }

@@ -26,10 +26,16 @@
 	                    <div class="login-box">
 						<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label>Referral Code</label>
-									<input type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Enter Referral Code" required/>
+									<input type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" required/>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Epin</label>
+									<input type="text" class="form-control @error('epin') is-invalid @enderror" name="epin" value="{{ old('epin') }}" placeholder="Epin" required/>
 								</div>
 							</div>
 							<div class="col-md-6">

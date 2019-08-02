@@ -88,4 +88,8 @@ class User extends Authenticatable
         }
         return $children;
     }
+
+    public function epins(){
+        return $this->hasMany('App\Epin');
+    }
 }
