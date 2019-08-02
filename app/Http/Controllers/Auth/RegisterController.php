@@ -56,7 +56,6 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'username' => ['unique:details'],
             'referral_code' => ['exists:details,username'],
-            'epin' => ['exists:epins']
         ]);
     }
 
@@ -88,9 +87,9 @@ class RegisterController extends Controller
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 
-        $e = Epin::where('epin',$data['epin'])->first();
-        $e->used_by = $user->id;
-        $e->save();
+        // $e = Epin::where('epin',$data['epin'])->first();
+        // $e->used_by = $user->id;
+        // $e->save();
         
         $contactEmail = $data['email'];
         $data = ['user' => $user, 'security_pin'=> $detail->security_pin];

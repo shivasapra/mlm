@@ -1,23 +1,25 @@
 @extends('layouts.app', ['titlePage' => __('Epins')])
-@section('content-header')
-<h1>Generate Epin</h1><hr>
-<form action="{{route('generate.epin',$user)}}" method="post">
-    @csrf
-    <div class="row">
-        <div class="col-md-4">
-            <label for="amount">Amount</label>
-            <input type="number" name="amount" class="form-control" required>
-        </div>
-        <div class="col-md-4">
-            <label for="no">Number Of EPins</label>
-            <input type="number" name="no" class="form-control" required>
-        </div>
-        <div class="col-md-4">
-            <br><button class="btn btn-info">Generate</button>
-        </div>
-    </div><br><br>
-</form>
-@stop
+@if(Auth::user()->admin)
+    @section('content-header')
+        <h1>Generate Epin</h1><hr>
+        <form action="{{route('generate.epin',$user)}}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="no">Number Of EPins</label>
+                    <input type="number" name="no" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <br><button class="btn btn-info">Generate</button>
+                </div>
+            </div><br><br>
+        </form>
+    @stop
+@endif
 @section('content-body')
 <h1>Epins</h1><hr>
 <table class="table tabel-bordered">

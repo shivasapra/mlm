@@ -203,9 +203,10 @@
 
             <li class=" nav-item"><a href="#"><i class="icon-bar-graph-2"></i><span class="menu-title">Security</span></a>
             </li>
-
-            <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a>
-            </li>
+            @if(Auth::user()->admin)
+                <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a>
+                </li>
+            @endif
             <li class=" nav-item"><a href="{{route('epins',Auth::user())}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
             </li>
 
