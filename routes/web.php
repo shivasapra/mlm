@@ -66,3 +66,6 @@ Route::get('/Settings','SettingsController@settings')->name('settings');
 Route::post('/Save-Settings','SettingsController@Save')->name('settings.save');
 Route::get('/Cause-Delete/{id}','SettingsController@CauseDelete')->name('cause.delete');
 Route::get('/save-cause','SettingsController@CauseSave')->name('cause.save');
+
+
+Route::get('/epins/{user}','ContributionController@epins')->name('epins');

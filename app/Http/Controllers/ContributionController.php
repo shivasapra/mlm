@@ -103,6 +103,10 @@ class ContributionController extends Controller
         return redirect()->back();
     }
 
+    public function epins(User $user){
+        return view('contribution.epins')->with('user',$user);
+    }
+
     // public function matrix(){
     //     $user = Auth::user();
     //     $arr = array(
