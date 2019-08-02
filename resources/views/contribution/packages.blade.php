@@ -5,9 +5,9 @@
         <li class="nav-item">
             <a class="nav-link active" href="{{route('contribution.packages',Auth::user())}}">Contribute to a Campaign</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{route('contribution.donations',Auth::user())}}">My Contribution/Donation</a>
-        </li>
+        </li> --}}
     </ul>
     {{-- @foreach ($packages->reverse()->chunk(3) as $chunk)
         <div class="row">
@@ -79,10 +79,12 @@
                         @if($user->donations()->where('package','STANDARD')->first() != null)
                             <h6 class="text-muted">{{$user->donations()->where('package','STANDARD')->first()->created_at}}</h6>
                         @else
-                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
-                                <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
-                                <input type="hidden" class="packagee" name="package" value="STANDARD">
-                            </a>
+                            @if(count(explode(',',$user->coordinates->children)) + count(explode(',',$user->coordinates->super_children)) == 30 )
+                                <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                    <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
+                                    <input type="hidden" class="packagee" name="package" value="STANDARD">
+                                </a>
+                            @endif
                         @endif
                     </div>
                     <div class="media-right">
