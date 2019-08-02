@@ -17,6 +17,7 @@ class CreateSettingsTable extends Migration
             $table->bigIncrements('id');
             $table->float('level_one_percentage')->nullable();
             $table->float('level_two_percentage')->nullable();
+            $table->float('level_three_percentage')->nullable();
             $table->float('basic_amount')->nullable();
             $table->float('standard_amount')->nullable();
             $table->timestamps();

@@ -4,15 +4,19 @@
 <form action="{{route('settings.save')}}" method="post">
     @csrf
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="form-group">
                 <label for="level_one_percentage">Level One Amount</label>
                 <input type="number" name="level_one_percentage" @if($settings != null) value="{{$settings->level_one_percentage}}" @endif class="form-control">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label for="level_two_percentage">Level Two Amount</label>
             <input type="number" name="level_two_percentage" @if($settings != null) value="{{$settings->level_two_percentage}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="level_three_percentage">Level Three Amount</label>
+            <input type="number" name="level_three_percentage" @if($settings != null) value="{{$settings->level_three_percentage}}" @endif class="form-control">
         </div>
         <div class="col-md-3">
             <label for="basic_amount">Basic Amount</label>

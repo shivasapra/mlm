@@ -29,25 +29,31 @@ class ContributionController extends Controller
         
         if(Auth::id() != 1){
             if($parent_user = Details::where('username',Auth::user()->details->invited_by)->first()->user){
-                $parent_amount = Settings::first()->level_two_percentage;
-                $data = ['parent_user' => $parent_user, 'user' => Auth::user(), 'amount'=> $parent_amount];
+                $parent_amount = Settings::first()->level_three_percentage;
+                $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
                 $contactEmail = $parent_user->email;
-                // Mail::send('emails.parents', $data, function($message) use ($contactEmail)
-                // {  
-                //     $message->to($contactEmail)->subject('Contribution Amount!!');
-                // });
+                Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+                {  
+                    $message->to($contactEmail)->subject('Contribution Amount!!');
+                });
 
                 if($super_parent_user = User::find($parent_user->coordinates->parent)){
-                    $super_parent_amount = Settings::first()->level_one_percentage;
-                    $data = ['super_parent_user' => $super_parent_user, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+                    $super_parent_amount = Settings::first()->level_two_percentage;
+                    $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
                     $contactEmail = $super_parent_user->email;
-                    // Mail::send('emails.superParents', $data, function($message) use ($contactEmail)
-                    // {  
-                    //     $message->to($contactEmail)->subject('Contribution Amount!!');
-                    // });
+                    Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+                    {  
+                        $message->to($contactEmail)->subject('Contribution Amount!!');
+                    });
 
                     if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
-                        //
+                        $super_duper_parent_amount = Settings::first()->level_one_percentage;
+                        $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+                        $contactEmail = $super_duper_parent_user->email;
+                        Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+                        {  
+                            $message->to($contactEmail)->subject('Contribution Amount!!');
+                        });
                     }
                 }else{
                     $super_duper_parent_user = null;
@@ -57,10 +63,10 @@ class ContributionController extends Controller
 
         $data = ['user'=>Auth::user()];
         $contactEmail = Auth::user()->email;
-        // Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
-        // {  
-        //     $message->to($contactEmail)->subject('Thankyou');
-        // });
+        Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Thankyou');
+        });
 
         if(Auth::user()->coordinates == null){
             $coordinates = new Coordinates;

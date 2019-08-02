@@ -23,6 +23,7 @@ class SettingsController extends Controller
 
         $settings->level_one_percentage = $request->level_one_percentage;
         $settings->level_two_percentage = $request->level_two_percentage;
+        $settings->level_three_percentage = $request->level_three_percentage;
         $settings->basic_amount = $request->basic_amount;
         $settings->standard_amount = $request->standard_amount;
         $settings->save();
