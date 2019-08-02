@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Epin;
 
 class UsersTableSeeder extends Seeder
 {
@@ -36,16 +35,7 @@ class UsersTableSeeder extends Seeder
         $coordinates->column = 1000;
         $coordinates->save();
 
-        for ($i= 0; $i < 30; $i++) { 
-            do {
-                $new_epin = str_random();
-            }
-            while(Epin::where('epin', $new_epin)->first());
-            $epin = new Epin;
-            $epin->user_id = $user->id;
-            $epin->epin = $new_epin;
-            $epin->save();
-        }
+        
 
     }
 }

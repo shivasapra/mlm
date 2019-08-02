@@ -11,6 +11,7 @@ use App\Details;
 use Auth;
 use App\Settings;
 use Mail;
+use App\Epin;
 
 class ContributionController extends Controller
 {
@@ -71,31 +72,38 @@ class ContributionController extends Controller
         if(Auth::user()->coordinates == null){
             $coordinates = new Coordinates;
             $coordinates->user_id = Auth::user()->id;
-            $coordinates->row = $parent_user->coordinates->row + 1 ;
-            if($parent_user->coordinates->children == null ){
-                $coordinates->column = $parent_user->coordinates->column - 2 ;
-                $coordinates->self_position_wrt_parent = 1;
-            }elseif(count(explode(',',$parent_user->coordinates->children)) == 5){
-                // we have to add this node in tree  one level down;
-            }else{
-                $coordinates->column = $parent_user->coordinates->column + count(explode(',',$parent_user->coordinates->children)) + (-2);
-                $coordinates->self_position_wrt_parent = count(explode(',',$parent_user->coordinates->children)) + 1;
-            }
-            $coordinates->parent = $parent_user->id;
-            
-            $parent_user->coordinates->children = ($parent_user->coordinates->children == null) ? Auth::user()->id : $parent_user->coordinates->children.','.Auth::user()->id;
-            $parent_user->coordinates->save();
-            
-            if($super_parent_user){
-                $coordinates->super_parent = $super_parent_user->id;
-                $super_parent_user->coordinates->super_children = ($super_parent_user->coordinates->super_children == null) ? Auth::user()->id : $super_parent_user->coordinates->super_children.','.Auth::user()->id;
-                $super_parent_user->coordinates->save();
-            }
+            if(count(explode(',',$parent_user->coordinates->children)) != 5){
+                if($parent_user->coordinates->children == null ){
+                    $coordinates->column = $parent_user->coordinates->column - 2 ;
+                    $coordinates->self_position_wrt_parent = 1;
+                }else{
+                    $coordinates->column = $parent_user->coordinates->column + count(explode(',',$parent_user->coordinates->children)) + (-2);
+                    $coordinates->self_position_wrt_parent = count(explode(',',$parent_user->coordinates->children)) + 1;
+                }
 
-            if($super_duper_parent_user){
-                $coordinates->super_duper_parent = $super_duper_parent_user->id;
-                $super_duper_parent_user->coordinates->super_duper_children = ($super_duper_parent_user->coordinates->super_duper_children == null) ? Auth::user()->id : $super_duper_parent_user->coordinates->super_duper_children.','.Auth::user()->id;
-                $super_duper_parent_user->coordinates->save();
+                $coordinates->row = $parent_user->coordinates->row + 1 ;
+                $coordinates->parent = $parent_user->id;
+                
+                $parent_user->coordinates->children = ($parent_user->coordinates->children == null) ? Auth::user()->id : $parent_user->coordinates->children.','.Auth::user()->id;
+                $parent_user->coordinates->save();
+                
+                if($super_parent_user){
+                    $coordinates->super_parent = $super_parent_user->id;
+                    $super_parent_user->coordinates->super_children = ($super_parent_user->coordinates->super_children == null) ? Auth::user()->id : $super_parent_user->coordinates->super_children.','.Auth::user()->id;
+                    $super_parent_user->coordinates->save();
+                }
+
+                if($super_duper_parent_user){
+                    $coordinates->super_duper_parent = $super_duper_parent_user->id;
+                    $super_duper_parent_user->coordinates->super_duper_children = ($super_duper_parent_user->coordinates->super_duper_children == null) ? Auth::user()->id : $super_duper_parent_user->coordinates->super_duper_children.','.Auth::user()->id;
+                    $super_duper_parent_user->coordinates->save();
+                }
+            }else{
+                if(count(explode(',',$parent_user->coordinates->super_children)) == 25){
+
+                }elseif(count(explode(',',$parent_user->coordinates->super_duper_children)) == 125){
+
+                }
             }
             $coordinates->save();
         }
@@ -104,6 +112,21 @@ class ContributionController extends Controller
     }
 
     public function epins(User $user){
+        return view('contribution.epins')->with('user',$user);
+    }
+
+    public function generateEpin(Request $request,User $user){
+        for ($i= 0; $i < $request->no; $i++) { 
+            do {
+                $new_epin = str_random();
+            }
+            while(Epin::where('epin', $new_epin)->first());
+            $epin = new Epin;
+            $epin->user_id = $user->id;
+            $epin->epin = $new_epin;
+            $epin->amount = $request->amount;
+            $epin->save();
+        }
         return view('contribution.epins')->with('user',$user);
     }
 

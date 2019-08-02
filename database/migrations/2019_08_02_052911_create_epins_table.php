@@ -18,6 +18,7 @@ class CreateEpinsTable extends Migration
             $table->integer('user_id');
             $table->string('epin');
             $table->integer('used_by')->nullable();
+            $table->float('amount');
             $table->timestamps();
         });
     }
