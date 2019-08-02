@@ -17,6 +17,7 @@ class CreateEpinsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('epin');
+            $table->integer('used_by')->nullable();
             $table->timestamps();
         });
     }

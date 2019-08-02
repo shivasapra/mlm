@@ -16,8 +16,20 @@
             <tr>
                 <th>{{$i++}}.</th>
                 <td>{{$epin->epin}}</td>
-                <td>{{"--"}}</td>
-                <td>{{"--"}}</td>
+                <td>
+                    @if($epin->used_by)
+                        {{App\User::find($epin->used_by)->name}}
+                    @else
+                        {{'--'}}    
+                    @endif
+                </td>
+                <td>
+                    @if($epin->used_by)
+                        {{App\User::find($epin->used_by)->created_at->toDateString()}}
+                    @else
+                        {{"--"}}
+                    @endif
+                </td>
             </tr>
         @endforeach
     </tbody>

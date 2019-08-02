@@ -79,11 +79,13 @@
                         @if($user->donations()->where('package','STANDARD')->first() != null)
                             <h6 class="text-muted">{{$user->donations()->where('package','STANDARD')->first()->created_at}}</h6>
                         @else
-                            @if(count(explode(',',$user->coordinates->children)) + count(explode(',',$user->coordinates->super_children)) == 30 )
-                                <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
-                                    <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
-                                    <input type="hidden" class="packagee" name="package" value="STANDARD">
-                                </a>
+                            @if($user->coordinates != null)
+                                @if(count(explode(',',$user->coordinates->children)) + count(explode(',',$user->coordinates->super_children)) == 30 )
+                                    <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                        <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
+                                        <input type="hidden" class="packagee" name="package" value="STANDARD">
+                                    </a>
+                                @endif
                             @endif
                         @endif
                     </div>
