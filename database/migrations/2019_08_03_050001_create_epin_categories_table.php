@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEpinsTable extends Migration
+class CreateEpinCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateEpinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('epins', function (Blueprint $table) {
+        Schema::create('epin_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('epin');
-            $table->integer('used_by')->nullable();
-            $table->float('amount');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateEpinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('epins');
+        Schema::dropIfExists('epin_categories');
     }
 }

@@ -18,19 +18,41 @@
 @stop
 @if(Auth::user()->admin)
     @section('content-header')
-        <h1>Generate Epin</h1><hr>
-        <form action="{{route('generate.epin',$user)}}" method="post">
+    <h1>Generate Epin Category</h1><hr>
+        <form action="{{route('generate.epinCategory')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-md-4">
+                    <label for="category">Category</label>
+                    <input type="text" name="category" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <br><button class="btn btn-info">Generate</button>
+                </div>
+            </div><br><br>
+        </form>
+        <h1>Generate Epin</h1><hr>
+        <form action="{{route('generate.epin')}}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="category">Category</label>
+                    <select name="category" class="form-control" required>
+                        <option value="">--Select--</option>
+                        @foreach(App\EpinCategory::all() as $category)
+                            <option value="{{$category->name}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
                     <label for="amount">Amount</label>
                     <input type="number" name="amount" class="form-control" required>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="no">Number Of EPins</label>
                     <input type="number" name="no" class="form-control" required>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <br><button class="btn btn-info">Generate</button>
                 </div>
             </div><br><br>
@@ -51,10 +73,15 @@
         </div>
         <div class="col-md-3">
             <label for="epin_type">Epin Type</label>
-            <input type="text" name="epin_type" class="form-control">
+            <select name="epin_type" class="form-control" required>
+                <option value="">--Select--</option>
+                @foreach(App\EpinCategory::all() as $category)
+                    <option value="{{$category->name}}">{{$category->name}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="col-md-3">
-            <label for="no_of_pins">No. Of Pins</label>
+            <label for="no_of_pins">Number Of Pins</label>
             <input type="number" name="no_of_pins" class="form-control">
         </div>
         <div class="col-md-3"><br>
