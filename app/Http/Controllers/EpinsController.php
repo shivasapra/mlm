@@ -18,7 +18,14 @@ class EpinsController extends Controller
         if(Auth::user()->admin){
             return view('epins')->with('categories',EpinCategory::all());
         }else{
-            return view('epins')->with('epins',Epin::where('sent_to',Auth::id())->get());
+            $epins = Epin::where('sent_to',Auth::id())->get();
+            $transferred_epins = array();
+            // dd(Transfer::where('to',Auth::id())->pluck('epin_id'));
+            foreach(Transfer::where('to',Auth::id())->pluck('epin_id') as $tran){
+                $e = Epin::find($tran);
+                array_push($transferred_epins,$e);
+            }
+            return view('epins')->with('epins',$epins->concat(collect($transferred_epins)));
         }
     }
 
