@@ -12,4 +12,7 @@ class Epin extends Model
         return $this->belongsTo('App\EpinCategory');
     }
 
+    public function transfers(){
+        return $this->hasMany('App\Transfer');
+    }
 }

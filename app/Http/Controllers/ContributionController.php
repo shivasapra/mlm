@@ -13,6 +13,7 @@ use App\Settings;
 use Mail;
 use App\Epin;
 use Carbon\Carbon;
+use App\Transfer;
 use Session;
 
 class ContributionController extends Controller
@@ -28,6 +29,9 @@ class ContributionController extends Controller
     public function contribute(Request $request,Donation $donation){
         $epin = Epin::where('epin',$request->epin)->first();
         if(!$epin->count() or $epin->used_by != null){
+            Session::flash('warning','Wrong Epin!!');
+            return redirect()->back();
+        }elseif($epin->transfers->count() and Transfer::where('epin_id',$epin->id)->orderBy('id','desc')->first()->to != Auth::id()){
             Session::flash('warning','Wrong Epin!!');
             return redirect()->back();
         }

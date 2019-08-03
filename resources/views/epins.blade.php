@@ -124,9 +124,9 @@
                         <th>Category</th>
                         <th>Rate</th>
                         <th>Remarks</th>
+                        <th class="text-center">Transferred To</th>
                         <th>Used By</th>
                         <th>Used At</th>
-                        <th class="text-center">Transferred To</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -146,6 +146,15 @@
                                     @endif
                                 </strong>
                             </td>
+                            <td class="text-center">
+                                @if(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->get()->count())
+                                    <strong>{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->first()->to)->details->username}}</strong>
+                                @else
+                                    <button onclick="transfer(this)" class="btn btn-sm btn-info">Transfer
+                                        <input type="hidden" class="epin_id" value="{{$epin->id}}">
+                                    </button>
+                                @endif
+                            </td>
                             <td>
                                 @if($epin->used_by)
                                     {{App\User::find($epin->used_by)->details->username}}@if($epin->used_by == Auth::id()) (You) @endif
@@ -158,15 +167,6 @@
                                     {{$epin->used_at}}
                                 @else
                                     {{__('N/A')}}
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                @if(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->get()->count())
-                                    <strong>{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->first()->to)->details->username}}</strong>
-                                @else
-                                    <button onclick="transfer(this)" class="btn btn-sm btn-info">Transfer
-                                        <input type="hidden" class="epin_id" value="{{$epin->id}}">
-                                    </button>
                                 @endif
                             </td>
                         </tr>
