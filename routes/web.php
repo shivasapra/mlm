@@ -68,7 +68,7 @@ Route::get('/Cause-Delete/{id}','SettingsController@CauseDelete')->name('cause.d
 Route::get('/save-cause','SettingsController@CauseSave')->name('cause.save');
 
 
-Route::get('/epins/{user}','ContributionController@epins')->name('epins');
+Route::get('/epins','ContributionController@epins')->name('epins');
 Route::post('/generate-epin','ContributionController@generateEpin')->name('generate.epin');
 Route::post('/generate-epin-category','ContributionController@generateEpinCategory')->name('generate.epinCategory');
 Route::get('/contribution-viewer/{user}','ContributionController@viewer')->name('contribution.viewer');

@@ -206,7 +206,7 @@
             @if(Auth::user()->admin)
                 <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a>
                 </li>
-                <li class=" nav-item"><a href="{{route('epins',Auth::user())}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
+                <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
                 </li>
             @endif
             <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>

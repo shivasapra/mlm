@@ -40,13 +40,13 @@
                     <select name="category" class="form-control" required>
                         <option value="">--Select--</option>
                         @foreach(App\EpinCategory::all() as $category)
-                            <option value="{{$category->name}}">{{$category->name}}</option>
+                            <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="amount">Amount</label>
-                    <input type="number" name="amount" class="form-control" required>
+                    <label for="rate">Rate</label>
+                    <input type="number" name="rate" class="form-control" required>
                 </div>
                 <div class="col-md-3">
                     <label for="no">Number Of EPins</label>
@@ -76,7 +76,7 @@
             <select name="epin_type" class="form-control" required>
                 <option value="">--Select--</option>
                 @foreach(App\EpinCategory::all() as $category)
-                    <option value="{{$category->name}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -95,15 +95,17 @@
     <thead>
         <tr>
             <th>Sno.</th>
+            <th>Category</th>
             <th>Epin</th>
             <th>Rate</th>
         </tr>
     </thead>
     <tbody>
         <?php $i =1; ?>
-        @foreach($user->epins as $epin)
+        @foreach($epins as $epin)
             <tr>
                 <th>{{$i++}}.</th>
+                <td>{{$epin->category->name}}</td>
                 <td>{{$epin->epin}}</td>
                 <td>{{$epin->rate}}</td>
             </tr>

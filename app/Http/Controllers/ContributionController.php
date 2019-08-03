@@ -12,6 +12,8 @@ use Auth;
 use App\Settings;
 use Mail;
 use App\Epin;
+use App\EpinCategory;
+use Session;
 
 class ContributionController extends Controller
 {
@@ -111,8 +113,8 @@ class ContributionController extends Controller
         return redirect()->back();
     }
 
-    public function epins(User $user){
-        return view('contribution.epins')->with('user',$user);
+    public function epins(){
+        return view('contribution.epins')->with('epins',Epin::all());
     }
 
     public function generateEpin(Request $request,User $user){
@@ -122,12 +124,20 @@ class ContributionController extends Controller
             }
             while(Epin::where('epin', $new_epin)->first());
             $epin = new Epin;
-            $epin->user_id = $user->id;
+            $epin->category_id = $request->category;
             $epin->epin = $new_epin;
-            $epin->amount = $request->amount;
+            $epin->rate = $request->rate;
             $epin->save();
         }
-        return view('contribution.epins')->with('user',$user);
+        Session::flash('success','Epins Genereted');
+        return redirect()->route('epins');
+    }
+
+    public function generateEpinCategory(Request $request,EpinCategory $category){
+        $category->name = $request->category;
+        $category->save();
+        Session::flash('success','Epin Category Genereted');
+        return redirect()->route('epins');
     }
 
     public function viewer(User $user){
