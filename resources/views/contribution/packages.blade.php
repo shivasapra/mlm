@@ -106,11 +106,6 @@
             
             var amount = $(temp).find('.amount').val();
             var packages = $(temp).find('.packagee').val();
-            console.log(amount);
-            console.log(packages);
-            
-            
-            
             var modal = 
             '<div class="modal fade" id="contributeModal">'+
                 '<div class="modal-dialog">'+
@@ -126,6 +121,7 @@
                         '<div class="modal-body">'+
                         '<input type="hidden" value="'+ packages +'" name="package">'+
                         '<input type="hidden" value="'+ amount +'" name="amount">'+
+                        '<input type="text" class="form-control" placeholder="Enter Epin" name="epin"><br>'+
                         '<p>Are You Sure You Want To Invest INR '+amount+' in '+packages+' Package?</p>'+
                         '</div>'+
                 

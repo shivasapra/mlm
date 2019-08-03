@@ -11,6 +11,9 @@ use App\Details;
 use Auth;
 use App\Settings;
 use Mail;
+use App\Epin;
+use Carbon\Carbon;
+use Session;
 
 class ContributionController extends Controller
 {
@@ -23,6 +26,15 @@ class ContributionController extends Controller
     }
 
     public function contribute(Request $request,Donation $donation){
+        $epin = Epin::where('epin',$request->epin)->first();
+        if(!$epin->count()){
+            Session::flash('warning','Wrong Epin!!');
+            return redirect()->back();
+        }
+        $epin->used_by = Auth::user()->id;
+        $epin->used_at = Carbon::now();
+        $epin->save();
+
         $donation->user_id = Auth::user()->id;
         $donation->package = $request->package;
         $donation->amount = $request->amount;
@@ -107,6 +119,7 @@ class ContributionController extends Controller
             $coordinates->save();
         }
         $donation->save();
+        
         return redirect()->back();
     }
 

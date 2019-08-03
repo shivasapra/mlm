@@ -1,6 +1,6 @@
 @extends('layouts.app', ['titlePage' => __('Contribution Viewer')])
 @section('content-body')
-<h1>Contribution Viewer</h1><hr>
+    <h1>Contribution Viewer</h1><hr>
     @if($user->coordinates != null)
         <div class="tree-view">
             <ul style="margin-top: 20px;">
