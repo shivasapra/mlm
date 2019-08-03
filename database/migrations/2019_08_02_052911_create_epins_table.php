@@ -17,6 +17,8 @@ class CreateEpinsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('epin_category_id');
             $table->string('epin');
+            $table->integer('sent_to')->nullable();
+            $table->integer('tranferred_to')->nullable();
             $table->timestamps();
         });
     }

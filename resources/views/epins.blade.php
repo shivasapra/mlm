@@ -98,6 +98,7 @@
             <th>Category</th>
             <th>Number Of Epins</th>
             <th>Rate</th>
+            <th>Details</th>
         </tr>
     </thead>
     <tbody>
@@ -108,6 +109,9 @@
                 <td>{{$category->name}}</td>
                 <td>{{$category->epins->count()}}</td>
                 <td>{{$category->rate}}</td>
+                <td>
+                    <a href="{{route('category.details',$category)}}" class="btn btn-sm btn-info">View</a>
+                </td>
             </tr>
         @endforeach
     </tbody>

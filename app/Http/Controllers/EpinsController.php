@@ -11,7 +11,7 @@ use Session;
 class EpinsController extends Controller
 {
     public function epins(){
-        return view('contribution.epins')->with('categories',EpinCategory::all());
+        return view('epins')->with('categories',EpinCategory::all());
     }
 
     public function generateEpin(Request $request,User $user){
@@ -35,5 +35,9 @@ class EpinsController extends Controller
         $category->save();
         Session::flash('success','Epin Category Genereted');
         return redirect()->route('epins');
+    }
+
+    public function CategoryDetails(EpinCategory $category){
+        return view('epinCategory')->with('category',$category);
     }
 }
