@@ -126,7 +126,7 @@
                         <th>Remarks</th>
                         <th>Used By</th>
                         <th>Used At</th>
-                        <th class="text-center">Transfer History</th>
+                        <th class="text-center">Transferred To</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -141,7 +141,7 @@
                                 @if($epin->sent_to == Auth::id())
                                     {{__('Sent By Admin')}}
                                 @else
-                                    {{__('')}}
+                                    {{__('Sent By ')}}{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('to',Auth::id())->first())->detials->username}}
                                 @endif
                             </td>
                             <td>
@@ -159,7 +159,13 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-info">View</button>
+                                @if(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->get()->count())
+                                    <strong>{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->first()->to)->details->username}}</strong>
+                                @else
+                                    <button onclick="transfer(this)" class="btn btn-sm btn-info">Transfer
+                                        <input type="hidden" class="epin_id" value="{{$epin->id}}">
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

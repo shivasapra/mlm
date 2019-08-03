@@ -10,6 +10,7 @@ use Session;
 use App\Details;
 use App\User;
 use Auth;
+use App\Transfer;
 
 class EpinsController extends Controller
 {
@@ -17,7 +18,7 @@ class EpinsController extends Controller
         if(Auth::user()->admin){
             return view('epins')->with('categories',EpinCategory::all());
         }else{
-            return view('epins')->with('epins',Epin::where('sent_to',Auth::id())->orWhere('tranferred_to',Auth::id())->get());
+            return view('epins')->with('epins',Epin::where('sent_to',Auth::id())->get());
         }
     }
 
@@ -56,10 +57,11 @@ class EpinsController extends Controller
         return redirect()->back();
     }
 
-    public function transferEpins(Request $request){
-        $epin = Epin::find($request->epin_id);
-        $epin->tranferred_to = Details::where('username',$request->username)->first()->user->id;
-        $epin->save();
+    public function transferEpins(Transfer $transfer, Request $request){
+        $transfer->epin_id = Epin::find($request->epin_id)->id;
+        $transfer->from = Auth::id();
+        $transfer->to = Details::where('username',$request->username)->first()->user->id;
+        $transfer->save();
         Session::flash('success','Epin Transferred!!');
         return redirect()->back();
     }
