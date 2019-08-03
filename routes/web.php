@@ -73,6 +73,7 @@ Route::post('/generate-epin','EpinsController@generateEpin')->name('generate.epi
 Route::post('/generate-epin-category','EpinsController@generateEpinCategory')->name('generate.epinCategory');
 Route::get('/Epin-Category-Details/{category}','EpinsController@CategoryDetails')->name('category.details');
 Route::post('/Send Epins','EpinsController@sendEpins')->name('epins.send');
+Route::post('/Transfer-Epin','EpinsController@transferEpins')->name('transfer.epin');
 
 Route::get('/user-epins','EpinsController@userEpins')->name('user.epins');
 

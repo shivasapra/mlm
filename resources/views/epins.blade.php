@@ -135,16 +135,26 @@
                             <td>{{$epin->EpinCategory->name}}</td>
                             <td>{{$epin->EpinCategory->rate}}</td>
                             <td>
-                                @if($epin->trasferred_to != Auth::id())
-                                    {{__('Sent By Admin')}}&nbsp; <button class="btn btn-sm btn-success">Transfer</button>
+                                @if($epin->tranferred_to != Auth::id())
+                                    {{__('Sent By Admin')}}&nbsp; 
+                                    @if(!$epin->tranferred_to)
+                                        <button class="btn btn-sm btn-success" onclick="transfer(this);">Transfer
+                                            <input type="hidden" class="epin_id" value="{{$epin->id}}">
+                                        </button>
+                                    @else
+                                    <br>
+                                        <strong>({{__('Transferred To')}} {{App\User::find($epin->tranferred_to)->details->username}})</strong>
+                                    @endif
                                 @else
-                                    {{__('Sent By ').App\User::find($epin->sent_to)->details->username}}
+                                    {{__('Sent By ')}}<strong>{{App\User::find($epin->sent_to)->details->username}}</strong>
                                 @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        <button type="button" id="modalButton" data-toggle="modal" data-target="#transferModal" style="display:none;"></button>
+        <div id="modalDisplay"></div>
     @stop
 @endif
 @section('js')
@@ -167,4 +177,41 @@
         }
 
     </script>
+    <script>
+            function transfer(temp){
+                
+                var epin_id = $(temp).find('.epin_id').val();
+                var modal = 
+                '<div class="modal fade" id="transferModal">'+
+                    '<div class="modal-dialog">'+
+                        '<div class="modal-content">'+
+                            '<!-- Modal Header -->'+
+                            '<div class="modal-header">'+
+                            '<h4 class="modal-title">Transfer Epin</h4>'+
+                            '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                            '</div>'+
+                        '<form action="{{route("transfer.epin")}}" method="post">'+
+                        '@csrf'+
+                            '<!-- Modal body -->'+
+                            '<div class="modal-body">'+
+                            '<input type="hidden" value="'+ epin_id +'" name="epin_id">'+
+                            '<label for="username">Username</label>'+
+                            '<div class="dropdown">	<div id="myDropdown" class="dropdown-content">'+
+                            '<input class="form-control username-name" onkeyup="UsernameDataExtract(this)" name="username" id="myInput" type="text" required="true" aria-required="true"/>'+
+                            '<div class="username_html"></div></div></div>'+
+                            '</div>'+
+                    
+                            '<!-- Modal footer -->'+
+                            '<div class="modal-footer">'+
+                            '<button type="submit" class="btn btn-success">Transfer</button>  '+
+                            '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
+                            '</div>'+
+                        '</form>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+                $('#modalDisplay').html(modal);
+                $('#modalButton').click();
+            }
+        </script>
 @stop

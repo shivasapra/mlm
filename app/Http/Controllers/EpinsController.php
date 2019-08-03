@@ -56,4 +56,12 @@ class EpinsController extends Controller
         return redirect()->back();
     }
 
+    public function transferEpins(Request $request){
+        $epin = Epin::find($request->epin_id);
+        $epin->tranferred_to = Details::where('username',$request->username)->first()->user->id;
+        $epin->save();
+        Session::flash('success','Epin Transferred!!');
+        return redirect()->back();
+    }
+
 }
