@@ -27,6 +27,10 @@
                     <input type="text" name="category" class="form-control" required>
                 </div>
                 <div class="col-md-4">
+                        <label for="rate">Rate</label>
+                        <input type="number" name="rate" class="form-control" required>
+                    </div>
+                <div class="col-md-4">
                     <br><button class="btn btn-info">Generate</button>
                 </div>
             </div><br><br>
@@ -43,10 +47,6 @@
                             <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="rate">Rate</label>
-                    <input type="number" name="rate" class="form-control" required>
                 </div>
                 <div class="col-md-3">
                     <label for="no">Number Of EPins</label>
@@ -96,18 +96,18 @@
         <tr>
             <th>Sno.</th>
             <th>Category</th>
-            <th>Epin</th>
+            <th>Number Of Epins</th>
             <th>Rate</th>
         </tr>
     </thead>
     <tbody>
         <?php $i =1; ?>
-        @foreach($epins as $epin)
+        @foreach($categories as $category)
             <tr>
                 <th>{{$i++}}.</th>
-                <td>{{$epin->category->name}}</td>
-                <td>{{$epin->epin}}</td>
-                <td>{{$epin->rate}}</td>
+                <td>{{$category->name}}</td>
+                <td>{{$category->epins->count()}}</td>
+                <td>{{$category->rate}}</td>
             </tr>
         @endforeach
     </tbody>

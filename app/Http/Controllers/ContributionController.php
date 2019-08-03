@@ -114,7 +114,7 @@ class ContributionController extends Controller
     }
 
     public function epins(){
-        return view('contribution.epins')->with('epins',Epin::all());
+        return view('contribution.epins')->with('categories',EpinCategory::all());
     }
 
     public function generateEpin(Request $request,User $user){
@@ -124,9 +124,8 @@ class ContributionController extends Controller
             }
             while(Epin::where('epin', $new_epin)->first());
             $epin = new Epin;
-            $epin->category_id = $request->category;
+            $epin->epin_category_id = $request->category;
             $epin->epin = $new_epin;
-            $epin->rate = $request->rate;
             $epin->save();
         }
         Session::flash('success','Epins Genereted');
@@ -135,6 +134,7 @@ class ContributionController extends Controller
 
     public function generateEpinCategory(Request $request,EpinCategory $category){
         $category->name = $request->category;
+        $category->rate = $request->rate;
         $category->save();
         Session::flash('success','Epin Category Genereted');
         return redirect()->route('epins');

@@ -16,6 +16,7 @@ class CreateEpinCategoriesTable extends Migration
         Schema::create('epin_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->float('rate');
             $table->timestamps();
         });
     }
