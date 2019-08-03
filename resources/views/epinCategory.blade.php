@@ -8,7 +8,9 @@
             <th>Epin</th>
             <th>Rate</th>
             <th>Sent To</th>
-            <th>Transferred To</th>
+            <th>Used By</th>
+            <th>Used At</th>
+            <th class="text-center">Transfer History</th>
         </tr>
     </thead>
     <tbody>
@@ -26,11 +28,21 @@
                     @endif
                 </td>
                 <td>
-                    @if($epin->tranferred_to)
-                        {{App\User::find($epin->tranferred_to)->details->username}}
+                    @if($epin->used_by)
+                        {{App\User::find($epin->used_by)->details->username}}
                     @else
                         {{__('N/A')}}
-                    @endif      
+                    @endif
+                </td>
+                <td>
+                    @if($epin->used_at)
+                        {{$epin->used_at}}
+                    @else
+                        {{__('N/A')}}
+                    @endif
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-info">View</button>
                 </td>
             </tr>
         @endforeach

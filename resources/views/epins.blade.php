@@ -124,6 +124,9 @@
                         <th>Category</th>
                         <th>Rate</th>
                         <th>Remarks</th>
+                        <th>Used By</th>
+                        <th>Used At</th>
+                        <th class="text-center">Transfer History</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -135,19 +138,28 @@
                             <td>{{$epin->EpinCategory->name}}</td>
                             <td>{{$epin->EpinCategory->rate}}</td>
                             <td>
-                                @if($epin->tranferred_to != Auth::id())
-                                    {{__('Sent By Admin')}}&nbsp; 
-                                    @if(!$epin->tranferred_to)
-                                        <button class="btn btn-sm btn-success" onclick="transfer(this);">Transfer
-                                            <input type="hidden" class="epin_id" value="{{$epin->id}}">
-                                        </button>
-                                    @else
-                                    <br>
-                                        <strong>({{__('Transferred To')}} {{App\User::find($epin->tranferred_to)->details->username}})</strong>
-                                    @endif
+                                @if($epin->sent_to == Auth::id())
+                                    {{__('Sent By Admin')}}
                                 @else
-                                    {{__('Sent By ')}}<strong>{{App\User::find($epin->sent_to)->details->username}}</strong>
+                                    {{__('')}}
                                 @endif
+                            </td>
+                            <td>
+                                @if($epin->used_by)
+                                    {{App\User::find($epin->used_by)->details->username}}@if($epin->used_by == Auth::id()) (You) @endif
+                                @else
+                                    {{__('N/A')}}
+                                @endif
+                            </td>
+                            <td>
+                                @if($epin->used_at)
+                                    {{$epin->used_at}}
+                                @else
+                                    {{__('N/A')}}
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-info">View</button>
                             </td>
                         </tr>
                     @endforeach

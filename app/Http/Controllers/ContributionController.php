@@ -27,7 +27,7 @@ class ContributionController extends Controller
 
     public function contribute(Request $request,Donation $donation){
         $epin = Epin::where('epin',$request->epin)->first();
-        if(!$epin->count()){
+        if(!$epin->count() or $epin->used_by != null){
             Session::flash('warning','Wrong Epin!!');
             return redirect()->back();
         }
