@@ -8,7 +8,7 @@ class Epin extends Model
 {
     protected $table = 'epins';
 
-    public function category(){
+    public function EpinCategory(){
         return $this->belongsTo('App\EpinCategory');
     }
 }

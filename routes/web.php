@@ -74,6 +74,7 @@ Route::post('/generate-epin-category','EpinsController@generateEpinCategory')->n
 Route::get('/Epin-Category-Details/{category}','EpinsController@CategoryDetails')->name('category.details');
 Route::post('/Send Epins','EpinsController@sendEpins')->name('epins.send');
 
+Route::get('/user-epins','EpinsController@userEpins')->name('user.epins');
 
 Route::get('/contribution-viewer/{user}','ContributionController@viewer')->name('contribution.viewer');
 

@@ -9,11 +9,16 @@ use App\EpinCategory;
 use Session;
 use App\Details;
 use App\User;
+use Auth;
 
 class EpinsController extends Controller
 {
     public function epins(){
-        return view('epins')->with('categories',EpinCategory::all());
+        if(Auth::user()->admin){
+            return view('epins')->with('categories',EpinCategory::all());
+        }else{
+            return view('epins')->with('epins',Epin::where('sent_to',Auth::id())->orWhere('tranferred_to',Auth::id())->get());
+        }
     }
 
     public function generateEpin(Request $request,User $user){
@@ -50,4 +55,5 @@ class EpinsController extends Controller
         Session::flash('success','Epins Sent!!');
         return redirect()->back();
     }
+
 }

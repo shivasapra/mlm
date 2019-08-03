@@ -18,8 +18,20 @@
                 <th>{{$i++}}.</th>
                 <td>{{$epin->epin}}</td>
                 <td>{{$category->rate}}</td>
-                <td>{{$epin->sent_to}}</td>
-                <td>{{$epin->transferred_to}}</td>
+                <td>
+                    @if($epin->sent_to)
+                        {{App\User::find($epin->sent_to)->details->username}}
+                    @else
+                        {{__('N/A')}}
+                    @endif
+                </td>
+                <td>
+                    @if($epin->tranferred_to)
+                        {{App\User::find($epin->tranferred_to)->details->username}}
+                    @else
+                        {{__('N/A')}}
+                    @endif      
+                </td>
             </tr>
         @endforeach
     </tbody>
