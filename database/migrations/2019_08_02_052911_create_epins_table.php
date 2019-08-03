@@ -15,9 +15,9 @@ class CreateEpinsTable extends Migration
     {
         Schema::create('epins', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('epin_category_id');
             $table->string('epin');
-            $table->integer('used_by')->nullable();
-            $table->float('amount');
+            $table->float('rate');
             $table->timestamps();
         });
     }

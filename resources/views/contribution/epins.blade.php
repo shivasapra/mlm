@@ -96,9 +96,7 @@
         <tr>
             <th>Sno.</th>
             <th>Epin</th>
-            <th>Amount</th>
-            <th>Used By</th>
-            <th>Used On</th>
+            <th>Rate</th>
         </tr>
     </thead>
     <tbody>
@@ -107,21 +105,7 @@
             <tr>
                 <th>{{$i++}}.</th>
                 <td>{{$epin->epin}}</td>
-                <td>{{$epin->amount}}</td>
-                <td>
-                    @if($epin->used_by)
-                        {{App\User::find($epin->used_by)->name}}
-                    @else
-                        {{'--'}}    
-                    @endif
-                </td>
-                <td>
-                    @if($epin->used_by)
-                        {{App\User::find($epin->used_by)->created_at}}
-                    @else
-                        {{"--"}}
-                    @endif
-                </td>
+                <td>{{$epin->rate}}</td>
             </tr>
         @endforeach
     </tbody>
