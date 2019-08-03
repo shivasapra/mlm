@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Epin;
 use App\EpinCategory;
 use Session;
+use App\Details;
+use App\User;
 
 class EpinsController extends Controller
 {
@@ -39,5 +41,13 @@ class EpinsController extends Controller
 
     public function CategoryDetails(EpinCategory $category){
         return view('epinCategory')->with('category',$category);
+    }
+
+    public function sendEpins(Request $request){
+        EpinCategory::find($request->epin_type)->epins()->where('sent_to',null)->orderBy('id','asc')
+                                            ->take($request->no_of_pins)
+                                            ->update(['sent_to'=>Details::where('username',$request->username)->first()->user->id]);
+        Session::flash('success','Epins Sent!!');
+        return redirect()->back();
     }
 }

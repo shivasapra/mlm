@@ -62,7 +62,7 @@
 
 @section('content-body')
 <h1>Send Epins</h1><hr>
-<form action="" method="post">
+<form action="{{route('epins.send')}}" method="post">
     @csrf
     <div class="row">
         <div class="col-md-3">

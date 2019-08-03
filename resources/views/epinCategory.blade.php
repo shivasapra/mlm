@@ -7,6 +7,8 @@
             <th>Sno.</th>
             <th>Epin</th>
             <th>Rate</th>
+            <th>Sent To</th>
+            <th>Transferred To</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +18,8 @@
                 <th>{{$i++}}.</th>
                 <td>{{$epin->epin}}</td>
                 <td>{{$category->rate}}</td>
+                <td>{{$epin->sent_to}}</td>
+                <td>{{$epin->transferred_to}}</td>
             </tr>
         @endforeach
     </tbody>
