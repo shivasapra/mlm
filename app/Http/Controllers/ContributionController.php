@@ -37,18 +37,7 @@ class ContributionController extends Controller
             $coordinates = $this->setCoordinates($parent_user);
         }
 
-        $parent_amount = Settings::first()->level_three_percentage;
-        $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-        $contactEmail = $parent_user->email;
-        $this->sendMail($data ,$contactEmail);
-        $super_parent_amount = Settings::first()->level_two_percentage;
-        $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
-        $contactEmail = $super_parent_user->email;
-        $this->sendMail($data ,$contactEmail);
-        $super_duper_parent_amount = Settings::first()->level_one_percentage;
-        $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-        $contactEmail = $super_duper_parent_user->email;
-        $this->sendMail($data ,$contactEmail);
+        
         
         return redirect()->back();
     }
@@ -155,13 +144,13 @@ class ContributionController extends Controller
         }
     }
 
-    private function sendMail($data, $contactEmail){
+    // private function sendMail($data, $contactEmail){
         
-        Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
-            {  
-                $message->to($contactEmail)->subject('Contribution Amount!!');
-            });
-    }
+    //     Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+    //         {  
+    //             $message->to($contactEmail)->subject('Contribution Amount!!');
+    //         });
+    // }
 
     // public function matrix(){
     //     $user = Auth::user();
