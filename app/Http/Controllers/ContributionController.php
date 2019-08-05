@@ -48,10 +48,7 @@ class ContributionController extends Controller
                 $parent_amount = Settings::first()->level_three_percentage;
                 $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
                 $contactEmail = $parent_user->email;
-                Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
-                {  
-                    $message->to($contactEmail)->subject('Contribution Amount!!');
-                });
+                $this->sendMail($data ,$contactEmail);
 
                 if($super_parent_user = User::find($parent_user->coordinates->parent)){
                     $super_parent_amount = Settings::first()->level_two_percentage;
@@ -114,9 +111,30 @@ class ContributionController extends Controller
                     $super_duper_parent_user->coordinates->save();
                 }
             }else{
-                if(count(explode(',',$parent_user->coordinates->super_children)) == 25){
-
-                }elseif(count(explode(',',$parent_user->coordinates->super_duper_children)) == 125){
+                $temp_parent = null;
+                foreach(collect(explode(',',$parent_user->coordinates->children)) as $i){
+                    if(count(explode(',',User::find($i)->coordinates->children)) < 5){
+                        $temp_parent = User::find($i);
+                        break;
+                    }
+                }
+                if($temp_parent == null){
+                    foreach(collect(explode(',',$parent_user->coordinates->super_children)) as $i){
+                        if(count(explode(',',User::find($i)->coordinates->children)) < 5){
+                            $temp_parent = User::find($i);
+                            break;
+                        }   
+                    }
+                }
+                if($temp_parent == null){
+                    foreach(collect(explode(',',$parent_user->coordinates->super_duper_children)) as $i){
+                        if(count(explode(',',User::find($i)->coordinates->children)) < 5){
+                            $temp_parent = User::find($i);
+                            break;
+                        }   
+                    }
+                }
+                if($temp_parent != null){
 
                 }
             }
@@ -144,6 +162,13 @@ class ContributionController extends Controller
                 return Response($output);
             }
         }
+    }
+
+    private function sendMail(){
+        Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+                {  
+                    $message->to($contactEmail)->subject('Contribution Amount!!');
+                });
     }
 
     // public function matrix(){

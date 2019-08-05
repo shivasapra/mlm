@@ -80,7 +80,7 @@ class User extends Authenticatable
         $children = array();
         foreach(collect(explode(',',User::find($id)->coordinates->children)) as $child){
             if($child){
-                array_push($children,User::find($child)->name);
+                array_push($children,User::find($child)->details->username);
             }
         }
         while(count($children)<5){
