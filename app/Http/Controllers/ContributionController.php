@@ -28,14 +28,13 @@ class ContributionController extends Controller
 
     public function contribute(Request $request, Donation $donation){
         
-        $this->verifyEpin($request);
-        $this->donate($request, $donation);
+        $epin = $this->verifyEpin($request);
+        $d = $this->donate($request, $donation);
         
 
         if(!Auth::user()->admin and Auth::user()->coordinates == null){
             $parent_user = $this->findParentUser();
-            $this->setCoordinates($parent_user);
-            
+            $coordinates = $this->setCoordinates($parent_user);
         }
         
         return redirect()->back();
@@ -54,6 +53,8 @@ class ContributionController extends Controller
         $epin->used_by = Auth::user()->id;
         $epin->used_at = Carbon::now();
         $epin->save();
+
+        return $epin;
     }
 
     private function donate($request, $donation){
@@ -67,6 +68,8 @@ class ContributionController extends Controller
         {  
             $message->to($contactEmail)->subject('Thankyou');
         });
+
+        return $donation;
     }
 
     private function findParentUser(){
@@ -114,6 +117,8 @@ class ContributionController extends Controller
             }
         }
         $coordinates->save();
+
+        return $coordinates;
     }
 
     
