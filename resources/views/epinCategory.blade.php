@@ -84,7 +84,7 @@
                                             '</thead>'+
                                             '<tbody>'+
                                                 '<?php $j = 1;?>'+
-                                                
+                                                    '@if($epin->transfers->count() > 0)'+
                                                         '@foreach($epin->transfers as $transfer)'+
                                                         '<tr>'+
                                                             '<td><b>{{$j++}}</b></td>'+
@@ -93,7 +93,7 @@
                                                             '<td>{{$transfer->created_at}}</td>'+
                                                         '</tr>'+
                                                         '@endforeach'+
-                                                    
+                                                    '@endif'+
                                             '</tbody>'+
                                             '</table>'+
                                 '</div>'+
