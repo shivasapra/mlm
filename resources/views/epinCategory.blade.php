@@ -68,7 +68,7 @@
                             '<div class="modal-content">'+
                                 '<!-- Modal Header -->'+
                                 '<div class="modal-header">'+
-                                '<h4 class="modal-title">Epin Sent By Admin To {{User::find($epin->sent_to)->details->username}}</h4>'+
+                                '<h4 class="modal-title">Epin Transfer History</h4>'+
                                 '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
                                 '</div>'+
                                 '<!-- Modal body -->'+
