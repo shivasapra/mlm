@@ -77,7 +77,7 @@ class ContributionController extends Controller
         if(count(explode(',',$temp->coordinates->children)) < 5){
             $parent_user = $temp;
         }else{
-            $collection = $temp->coordinates->children->concat($temp->coordinates->super_children)->concat($temp->coordinates->super_duper_children);
+            $collection = collect(explode(',',$temp->coordinates->children))->concat(collect(explode(',',$temp->coordinates->super_children)))->concat(collect(explode(',',$temp->coordinates->super_duper_children)));
             foreach($collection as $c){
                 if(count(explode(',',User::find($c)->coordinates->children)) < 5){
                     $parent_user = User::find($c);
@@ -142,24 +142,24 @@ class ContributionController extends Controller
         }
     }
 
-    private function sendMail($data, $contactEmail){
-        // $parent_amount = Settings::first()->level_three_percentage;
-        //         $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-        //         $contactEmail = $parent_user->email;
-        //         $this->sendMail($data ,$contactEmail);
-        // $super_parent_amount = Settings::first()->level_two_percentage;
-        //                     $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
-        //                     $contactEmail = $super_parent_user->email;
-        //                     $this->sendMail($data ,$contactEmail);
-        // $super_duper_parent_amount = Settings::first()->level_one_percentage;
-        //                         $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-        //                         $contactEmail = $super_duper_parent_user->email;
-        //                         $this->sendMail($data ,$contactEmail);
-        Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
-            {  
-                $message->to($contactEmail)->subject('Contribution Amount!!');
-            });
-    }
+    // private function sendMail($data, $contactEmail){
+    //     // $parent_amount = Settings::first()->level_three_percentage;
+    //     //         $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
+    //     //         $contactEmail = $parent_user->email;
+    //     //         $this->sendMail($data ,$contactEmail);
+    //     // $super_parent_amount = Settings::first()->level_two_percentage;
+    //     //                     $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+    //     //                     $contactEmail = $super_parent_user->email;
+    //     //                     $this->sendMail($data ,$contactEmail);
+    //     // $super_duper_parent_amount = Settings::first()->level_one_percentage;
+    //     //                         $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+    //     //                         $contactEmail = $super_duper_parent_user->email;
+    //     //                         $this->sendMail($data ,$contactEmail);
+    //     Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+    //         {  
+    //             $message->to($contactEmail)->subject('Contribution Amount!!');
+    //         });
+    // }
 
     // public function matrix(){
     //     $user = Auth::user();
