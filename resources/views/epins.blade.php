@@ -150,9 +150,13 @@
                                 @if(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->get()->count())
                                     <strong>{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->first()->to)->details->username}}</strong>
                                 @else
-                                    <button onclick="transfer(this)" class="btn btn-sm btn-info">Transfer
-                                        <input type="hidden" class="epin_id" value="{{$epin->id}}">
-                                    </button>
+                                    @if($epin->used_by == null)
+                                        <button onclick="transfer(this)" class="btn btn-sm btn-info">Transfer
+                                            <input type="hidden" class="epin_id" value="{{$epin->id}}">
+                                        </button>
+                                    @else
+                                        {{__('--')}}
+                                    @endif
                                 @endif
                             </td>
                             <td>
