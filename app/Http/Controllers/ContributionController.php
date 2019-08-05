@@ -26,6 +26,22 @@ class ContributionController extends Controller
         return view('contribution.donations')->with('user',$user);
     }
 
+    public function contribute(Request $request, Donation $donation){
+        
+        $this->verifyEpin($request);
+        $this->donate($request, $donation);
+        
+
+        if(!Auth::user()->admin and Auth::user()->coordinates == null){
+            $parent_user = $this->findParentUser();
+            $this->setCoordinates($parent_user);
+            
+        }
+        
+        return redirect()->back();
+    }
+
+
     private function verifyEpin($request){
         $epin = Epin::where('epin',$request->epin)->first();
         if(!$epin->count() or $epin->used_by != null){
@@ -53,59 +69,54 @@ class ContributionController extends Controller
         });
     }
 
-    public function contribute(Request $request, Donation $donation){
-        
-        $this->verifyEpin($request);
-        $this->donate($request, $donation);
-        
-        if(!Auth::user()->admin and Auth::user()->coordinates == null){
-            $coordinates = new Coordinates;
-            $coordinates->user_id = Auth::user()->id;
-
-            $temp = Details::where('username',Auth::user()->details->invited_by)->first()->user;
-            if(count(explode(',',$temp->coordinates->children)) < 5){
-                $parent_user = $temp;
-            }else{
-                $collection = $temp->coordinates->children->concat($temp->coordinates->super_children)->concat($temp->coordinates->super_duper_children);
-                foreach($collection as $c){
-                    if(count(explode(',',User::find($c)->coordinates->children)) < 5){
-                        $parent_user = User::find($c);
-                        break;
-                    }
+    private function findParentUser(){
+        $temp = Details::where('username',Auth::user()->details->invited_by)->first()->user;
+        if(count(explode(',',$temp->coordinates->children)) < 5){
+            $parent_user = $temp;
+        }else{
+            $collection = $temp->coordinates->children->concat($temp->coordinates->super_children)->concat($temp->coordinates->super_duper_children);
+            foreach($collection as $c){
+                if(count(explode(',',User::find($c)->coordinates->children)) < 5){
+                    $parent_user = User::find($c);
+                    break;
                 }
             }
-
-            $coordinates->row = $parent_user->coordinates->row + 1 ;
-            $coordinates->parent = $parent_user->id;
-
-            if($parent_user->coordinates->children == null ){
-                $coordinates->column = $parent_user->coordinates->column - 2 ;
-                $coordinates->self_position_wrt_parent = 1;
-            }else{
-                $coordinates->column = $parent_user->coordinates->column + count(explode(',',$parent_user->coordinates->children)) + (-2);
-                $coordinates->self_position_wrt_parent = count(explode(',',$parent_user->coordinates->children)) + 1;
-            }
-            $parent_user->coordinates->children = ($parent_user->coordinates->children == null) ? Auth::user()->id : $parent_user->coordinates->children.','.Auth::user()->id;
-            $parent_user->coordinates->save();
-
-
-            if($super_parent_user = User::find($parent_user->coordinates->parent)){
-                $coordinates->super_parent = $super_parent_user->id;
-                $super_parent_user->coordinates->super_children = ($super_parent_user->coordinates->super_children == null) ? Auth::user()->id : $super_parent_user->coordinates->super_children.','.Auth::user()->id;
-                $super_parent_user->coordinates->save();
-
-                if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
-                    $coordinates->super_duper_parent = $super_duper_parent_user->id;
-                    $super_duper_parent_user->coordinates->super_duper_children = ($super_duper_parent_user->coordinates->super_duper_children == null) ? Auth::user()->id : $super_duper_parent_user->coordinates->super_duper_children.','.Auth::user()->id;
-                    $super_duper_parent_user->coordinates->save();
-                }
-            }
-            $coordinates->save();
         }
-        
-        
-        return redirect()->back();
+        return $parent_user;
     }
+    
+    private function setCoordinates($parent_user){
+        $coordinates = new Coordinates;
+        $coordinates->user_id = Auth::user()->id;
+        $coordinates->row = $parent_user->coordinates->row + 1 ;
+        $coordinates->parent = $parent_user->id;
+
+        if($parent_user->coordinates->children == null ){
+            $coordinates->column = $parent_user->coordinates->column - 2 ;
+            $coordinates->self_position_wrt_parent = 1;
+        }else{
+            $coordinates->column = $parent_user->coordinates->column + count(explode(',',$parent_user->coordinates->children)) + (-2);
+            $coordinates->self_position_wrt_parent = count(explode(',',$parent_user->coordinates->children)) + 1;
+        }
+        $parent_user->coordinates->children = ($parent_user->coordinates->children == null) ? Auth::user()->id : $parent_user->coordinates->children.','.Auth::user()->id;
+        $parent_user->coordinates->save();
+
+
+        if($super_parent_user = User::find($parent_user->coordinates->parent)){
+            $coordinates->super_parent = $super_parent_user->id;
+            $super_parent_user->coordinates->super_children = ($super_parent_user->coordinates->super_children == null) ? Auth::user()->id : $super_parent_user->coordinates->super_children.','.Auth::user()->id;
+            $super_parent_user->coordinates->save();
+
+            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
+                $coordinates->super_duper_parent = $super_duper_parent_user->id;
+                $super_duper_parent_user->coordinates->super_duper_children = ($super_duper_parent_user->coordinates->super_duper_children == null) ? Auth::user()->id : $super_duper_parent_user->coordinates->super_duper_children.','.Auth::user()->id;
+                $super_duper_parent_user->coordinates->save();
+            }
+        }
+        $coordinates->save();
+    }
+
+    
 
     
 
