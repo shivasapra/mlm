@@ -26,7 +26,7 @@ class ContributionController extends Controller
         return view('contribution.donations')->with('user',$user);
     }
 
-    public function contribute(Request $request,Donation $donation){
+    private function verifyEpin($request){
         $epin = Epin::where('epin',$request->epin)->first();
         if(!$epin->count() or $epin->used_by != null){
             Session::flash('warning','Wrong Epin!!');
@@ -38,7 +38,9 @@ class ContributionController extends Controller
         $epin->used_by = Auth::user()->id;
         $epin->used_at = Carbon::now();
         $epin->save();
+    }
 
+    private function donate($request, $donation){
         $donation->user_id = Auth::user()->id;
         $donation->package = $request->package;
         $donation->amount = $request->amount;
@@ -49,8 +51,13 @@ class ContributionController extends Controller
         {  
             $message->to($contactEmail)->subject('Thankyou');
         });
+    }
 
-
+    public function contribute(Request $request, Donation $donation){
+        
+        $this->verifyEpin($request);
+        $this->donate($request, $donation);
+        
         if(!Auth::user()->admin and Auth::user()->coordinates == null){
             $coordinates = new Coordinates;
             $coordinates->user_id = Auth::user()->id;
