@@ -15,7 +15,7 @@ use App\Epin;
 use Carbon\Carbon;
 use App\Transfer;
 use Session;
-use App\Commission;
+use App\Commision;
 
 class ContributionController extends Controller
 {
@@ -92,7 +92,7 @@ class ContributionController extends Controller
     }
     
     private function commission($amount,$user){
-        $commission = new Commission;
+        $commission = new Commision;
         $commission->user_id = $user->id;
         $commission->amount = $amount;
         $commission->from = Auth::id();

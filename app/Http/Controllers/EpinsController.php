@@ -10,6 +10,7 @@ use Session;
 use App\Details;
 use App\User;
 use Auth;
+use App\Commission;
 use App\Transfer;
 
 class EpinsController extends Controller
@@ -87,8 +88,12 @@ class EpinsController extends Controller
                 $e = Epin::find($tran);
                 array_push($transferred_epins,$e);
             }
+
+            $commissions = Auth::user()->commissions;
         return view('wallet.wallets')->with('used_epins',$used_epins->concat(collect($transferred_used_epins)))
-                                    ->with('transferred_epins',$transferred_epins);
+                                        ->with('transferred_epins',$transferred_epins)
+                                        ->with('commissions',$commissions);
+
     }
 
 }
