@@ -1,3 +1,16 @@
+@php
+$activation_amount = 0;
+ foreach($used_epins as $e)   {
+    $activation_amount = $activation_amount + $e->EpinCategory->rate;
+ }
+
+ $transferred_amount = 0;
+ foreach($transferred_epins as $e)   {
+    $transferred_amount = $transferred_amount + $e->EpinCategory->rate;
+ }
+
+@endphp
+
 @extends('layouts.app', ['titlePage' => __('Wallets')])
 @section('content-body')
 <h1>Wallets</h1><hr>
@@ -17,15 +30,100 @@
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="activation" role="tabpanel" aria-labelledby="home-tab">
         <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>INR {{$activation_amount}}</h2>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="tab-pane fade show active" id="transfer" role="tabpanel" aria-labelledby="home-tab">
+        <br>
         <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Epin</th>
+                            <th>Category</th>
+                            <th>Rate</th>
+                            <th>Remarks</th>
+                            <th>Used</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $i =1; @endphp
+                        @foreach($used_epins as $e)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{$e->epin}}</td>
+                                <td>{{$e->EpinCategory->name}}</td>
+                                <td>{{$e->EpinCategory->rate}}</td>
+                                <td>{{__('Sent By ')}}
+                                    <strong>
+                                        @if($e->sent_to == Auth::id())
+                                            {{__('Admin')}}
+                                        @else
+                                            {{App\User::find(App\Transfer::where('epin_id',$e->id)->where('to',Auth::id())->first()->from)->details->username}}
+                                        @endif
+                                    </strong>
+                                </td>
+                                <td>
+                                    <strong>{{Carbon\Carbon::parse($e->used_at)->diffForHumans()}}</strong> <br>({{$e->used_at}})
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="tab-pane fade show active" id="withdrawal" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane fade show " id="transfer" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>INR {{$transferred_amount}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Epin</th>
+                            <th>Category</th>
+                            <th>Rate</th>
+                            <th>Transferred</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $i =1; @endphp
+                        @foreach($transferred_epins as $e)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{$e->epin}}</td>
+                                <td>{{$e->EpinCategory->name}}</td>
+                                <td>{{$e->EpinCategory->rate}}</td>
+                                <td>
+                                    <strong>{{Carbon\Carbon::parse(App\Transfer::where('from',Auth::id())->where('epin_id',$e->id)->first()->created_at)->diffForHumans()}}</strong><br>
+                                    ({{App\Transfer::where('from',Auth::id())->where('epin_id',$e->id)->first()->created_at}})
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade show" id="withdrawal" role="tabpanel" aria-labelledby="home-tab">
         <div class="row">
         </div>
     </div>

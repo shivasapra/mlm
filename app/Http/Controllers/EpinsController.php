@@ -20,7 +20,6 @@ class EpinsController extends Controller
         }else{
             $epins = Epin::where('sent_to',Auth::id())->get();
             $transferred_epins = array();
-            // dd(Transfer::where('to',Auth::id())->pluck('epin_id'));
             foreach(Transfer::where('to',Auth::id())->pluck('epin_id') as $tran){
                 $e = Epin::find($tran);
                 array_push($transferred_epins,$e);
@@ -74,7 +73,22 @@ class EpinsController extends Controller
     }
 
     public function wallets(){
-        return view('wallet.wallets');
+            $used_epins = Epin::where('sent_to',Auth::id())->where('used_by','!=',null)->get();
+            $transferred_used_epins = array();
+            foreach(Transfer::where('to',Auth::id())->pluck('epin_id') as $tran){
+                $e = Epin::find($tran);
+                if($e->used_by != null){
+                    array_push($transferred_used_epins,$e);
+                }
+            }
+
+            $transferred_epins = array();
+            foreach(Transfer::where('from',Auth::id())->pluck('epin_id') as $tran){
+                $e = Epin::find($tran);
+                array_push($transferred_epins,$e);
+            }
+        return view('wallet.wallets')->with('used_epins',$used_epins->concat(collect($transferred_used_epins)))
+                                    ->with('transferred_epins',$transferred_epins);
     }
 
 }
