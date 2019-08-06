@@ -73,4 +73,8 @@ class EpinsController extends Controller
         return redirect()->back();
     }
 
+    public function wallets(){
+        return view('wallet.wallets');
+    }
+
 }

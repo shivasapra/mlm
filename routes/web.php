@@ -81,6 +81,8 @@ Route::get('/contribution-viewer/{user}','ContributionController@viewer')->name(
 
 Route::get('/searchUsername','ContributionController@UsernameSearch');
 
-Route::get('/{username}',function(){
-    return view('userProfile');
-})->name('user.profile');
+// Route::get('/{username}',function(){
+//     return view('userProfile');
+// })->name('user.profile');
+
+Route::get('/wallets','EpinsController@wallets')->name('wallets');
