@@ -211,12 +211,12 @@
             </li>
             <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
             </li>
-            <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
+            {{-- <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
             </li>
             <li class=" nav-item"><a href="#"><i class="icon-support"></i><span class="menu-title">Support</span></a>
             </li>
             <li class=" nav-item"><a href="#"><i class="icon-document-text"></i><span class="menu-title">Latest Updates</span></a>
-            </li>
+            </li> --}}
             <li class=" nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                             @csrf

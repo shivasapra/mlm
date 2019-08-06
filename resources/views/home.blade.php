@@ -19,7 +19,7 @@
 
 @section('content-body')
     <div class="row">
-        <div class="col-xl-3 col-lg-6 col-xs-12">
+        {{-- <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-block">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
@@ -43,7 +43,7 @@
                         <div class="media">
                             <div class="media-body text-xs-left media-middle">
                                 <h5>Edit Your Profile</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
+                                <a href="{{route('account.settings',Auth::user())}}">View <i class="icon-angle-right"></i></a>
                             </div>
                             <div class="media-right media-middle">
                                 <i class="icon-user1 teal font-large-2 float-xs-right"></i>
@@ -59,8 +59,8 @@
                     <div class="card-block">
                         <div class="media">
                             <div class="media-body text-xs-left media-middle">
-                                <h5>Edit Campain</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
+                                <h5>Campaigns</h4>
+                                <a href="{{route('my.campaign',Auth::user())}}">View <i class="icon-angle-right"></i></a>
                             </div>
                             <div class="media-right media-middle">
                                 <i class="icon-diagram deep-orange font-large-2 float-xs-right"></i>
@@ -77,17 +77,17 @@
                         <div class="media">
                             <div class="media-body text-xs-left media-middle">
                                 <h5>Contribute / Donate</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
+                                <a href="{{route('contribution.packages',Auth::user())}}">View <i class="icon-angle-right"></i></a>
                             </div>
                             <div class="media-right media-middle">
-                                <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
+                                <i class="icon-whatshot pink font-large-2 float-xs-right"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
+        {{-- <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-block">
@@ -154,25 +154,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-block">
                         <div class="media">
                             <div class="media-body text-xs-left media-middle">
-                                <h5>Customer Care</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
+                                <h5>Assignment Setings</h4>
+                                <a href="{{route('assignment.settings',Auth::user())}}">View <i class="icon-angle-right"></i></a>
                             </div>
                             <div class="media-right media-middle">
-                                <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
+                                <i class="icon-settings red font-large-2 float-xs-right"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            <div class="col-xl-3 col-lg-6 col-xs-12">
+        {{-- <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-block">
@@ -188,7 +188,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!--/ stats -->
     <!--/ project charts -->
