@@ -15,6 +15,7 @@ use App\Epin;
 use Carbon\Carbon;
 use App\Transfer;
 use Session;
+use App\Commission;
 
 class ContributionController extends Controller
 {
@@ -90,6 +91,14 @@ class ContributionController extends Controller
         return $parent_user;
     }
     
+    private function commission($amount,$user){
+        $commission = new Commission;
+        $commission->user_id = $user->id;
+        $commission->amount = $amount;
+        $commission->from = Auth::id();
+        $commission->save();
+    }
+
     private function setCoordinates($parent_user){
         $coordinates = new Coordinates;
         $coordinates->user_id = Auth::user()->id;
@@ -106,10 +115,12 @@ class ContributionController extends Controller
         $parent_user->coordinates->children = ($parent_user->coordinates->children == null) ? Auth::user()->id : $parent_user->coordinates->children.','.Auth::user()->id;
         $parent_user->coordinates->save();
         $parent_amount = Settings::first()->level_three_percentage;
+
         $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
         $contactEmail = $parent_user->email;
         $this->sendMail($data ,$contactEmail);
-
+        $this->commission($parent_amount,$parent_user);
+        
 
         if($super_parent_user = User::find($parent_user->coordinates->parent)){
             $coordinates->super_parent = $super_parent_user->id;
@@ -119,6 +130,7 @@ class ContributionController extends Controller
             $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
             $contactEmail = $super_parent_user->email;
             $this->sendMail($data ,$contactEmail);
+            $this->commission($super_parent_amount,$super_parent_user);
 
             if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
                 $coordinates->super_duper_parent = $super_duper_parent_user->id;
@@ -129,6 +141,7 @@ class ContributionController extends Controller
                 $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = $super_duper_parent_user->email;
                 $this->sendMail($data ,$contactEmail);
+                $this->commission($super_duper_parent_amount,$super_duper_parent_user);
             }
         }
         $coordinates->save();
