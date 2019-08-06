@@ -12,9 +12,9 @@
         <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#change-password" role="tab" aria-controls="contact">Change Password</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#change-email-mobile" role="tab" aria-controls="contact">Change Email id/Mobile Number</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#change-security-pin" role="tab" aria-controls="contact">Change Security Pin</a>
         </li>
@@ -141,7 +141,9 @@
         </div>
         </div>
         <div class="tab-pane fade" id="verify-identity" role="tabpanel" aria-labelledby="contact-tab">
-          <div class="text-right mb-1"><a href="{{route('KYC',$user)}}" class="btn btn-primary">Upload Proof</a></div>
+          @if(Auth::user()->KYC->count()<3)
+            <div class="text-right mb-1"><a href="{{route('KYC',$user)}}" class="btn btn-primary">Upload Proof</a></div>
+          @endif
           <div class="table-responsive">
             <table class="table table-bordered">
               <thead>

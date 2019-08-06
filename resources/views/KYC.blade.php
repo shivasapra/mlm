@@ -10,19 +10,25 @@
     {{-- <p class="text-danger">Please note that file must be submitted in the format JPG,JPEG,PNG,BMP,GIF OR PDF, and the file size is limited to 2.5 MB.</p> --}}
 
   <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-  <li class="nav-item">
-  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#identity-proof" role="tab" aria-controls="home">Proof of Identity</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#address-proof" role="tab" aria-controls="profile">Proof of Address</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tax-proof" role="tab" aria-controls="profile">Tax id Proof</a>
-  </li>
+  @if(!Auth::user()->KYC->pluck('proof_for')->contains('Identity'))
+    <li class="nav-item">
+    <a class="nav-link " id="home-tab" data-toggle="tab" href="#identity-proof" role="tab" aria-controls="home">Proof of Identity</a>
+    </li>
+  @endif
+  @if(!Auth::user()->KYC->pluck('proof_for')->contains('Address'))
+    <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#address-proof" role="tab" aria-controls="profile">Proof of Address</a>
+    </li>
+  @endif
+  @if(!Auth::user()->KYC->pluck('proof_for')->contains('Tax ID'))
+    <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tax-proof" role="tab" aria-controls="profile">Tax id Proof</a>
+    </li>
+  @endif
   </ul>
 
   <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="identity-proof" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane fade show" id="identity-proof" role="tabpanel" aria-labelledby="home-tab">
     <h3 class="mt-2">Proof of Identity</h3>
     <p>In accordance with the industry standards and anti-money laundering regulations, OnlineSenosr requires all clients to provide their Personal information that must be confirmed by the supporting documents you send us.</p>
     <ul>

@@ -101,7 +101,7 @@ class UserController extends Controller
         $kyc->proof = 'test';
         $kyc->save();
         Session::flash('success','Identity Poof Uploaded');
-        return redirect()->back()->with('user',$user);
+        return redirect()->route('account.settings',$user);
     }
 
     public function addressProof(Request $request, User $user, KYC $kyc){
@@ -111,7 +111,7 @@ class UserController extends Controller
         $kyc->proof = 'test';
         $kyc->save();
         Session::flash('success','Address Poof Uploaded');
-        return redirect()->back()->with('user',$user);
+        return redirect()->route('account.settings',$user);
     }
 
     public function taxProof(Request $request, User $user, KYC $kyc){
@@ -120,6 +120,6 @@ class UserController extends Controller
         $kyc->proof = 'test';
         $kyc->save();
         Session::flash('success','Tax Id Uploaded');
-        return redirect()->back()->with('user',$user);
+        return redirect()->route('account.settings',$user);
     }
 }
