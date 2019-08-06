@@ -9,6 +9,11 @@ $activation_amount = 0;
     $transferred_amount = $transferred_amount + $e->EpinCategory->rate;
  }
 
+ $commision_amount = 0;
+ foreach($commisions as $c)   {
+    $commision_amount = $commision_amount + $c->amount;
+ }
+
 @endphp
 
 @extends('layouts.app', ['titlePage' => __('Wallets')])
@@ -59,7 +64,7 @@ $activation_amount = 0;
                         @php $i =1; @endphp
                         @foreach($used_epins as $e)
                             <tr>
-                                <td>{{$i++}}</td>
+                                <th>{{$i++}}.</th>
                                 <td>{{$e->epin}}</td>
                                 <td>{{$e->EpinCategory->name}}</td>
                                 <td>{{$e->EpinCategory->rate}}</td>
@@ -111,7 +116,7 @@ $activation_amount = 0;
                         @php $i =1; @endphp
                         @foreach($transferred_epins as $e)
                             <tr>
-                                <td>{{$i++}}</td>
+                                <th>{{$i++}}.</th>
                                 <td>{{$e->epin}}</td>
                                 <td>{{$e->EpinCategory->name}}</td>
                                 <td>{{$e->EpinCategory->rate}}</td>
@@ -135,7 +140,7 @@ $activation_amount = 0;
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2>INR 0</h2>
+                        <h2>INR {{$commission_amount}}</h2>
                     </div>
                 </div>
             </div>
@@ -147,9 +152,24 @@ $activation_amount = 0;
                     <thead>
                         <tr>
                             <th>Sno.</th>
+                            <th>Contribution By</th>
+                            <th>Amount</th>
+                            <th>Contributed</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php $i = 1; @endphp
+                        @foreach($commissions as $c)
+                            <tr>
+                                <th>{{$i++}}.</th>
+                                <td>{{App\User::find($c->from)->details->username}}</td>
+                                <td>{{$c->amount}}</td>
+                                <td>
+                                    <strong>{{Carbon\Carbon::parse($c->created_at)->diffForHumans()}}</strong><br>
+                                    ({{$c->created_at}})
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
