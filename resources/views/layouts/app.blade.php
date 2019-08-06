@@ -209,8 +209,10 @@
             @endif
             <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
             </li>
-            <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
-            </li>
+            @if(!Auth::user()->admin)
+                <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
+                </li>
+            @endif
             {{-- <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
             </li>
             <li class=" nav-item"><a href="#"><i class="icon-support"></i><span class="menu-title">Support</span></a>

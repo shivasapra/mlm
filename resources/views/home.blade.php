@@ -3,8 +3,8 @@
     <div class="alert alert-success text-center" role="alert">
         Your Profile Link: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->details->promotional_url}}</a>
     </div>
-    {{-- <div class="alert alert-warning text-center alert-dismissible show" role="alert">
-      Your mobile is not verified. Please verify your mobile <a href="#" class="alert-link">Verify Now</a> 
+    <div class="alert alert-warning text-center alert-dismissible show" role="alert">
+      Your Email is not verified. Please verify your Email <a href="#" class="alert-link">Verify Now</a> 
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -14,7 +14,7 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div> --}}
+    </div>
 @endsection
 
 @section('content-body')
