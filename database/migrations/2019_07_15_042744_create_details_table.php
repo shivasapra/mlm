@@ -35,6 +35,8 @@ class CreateDetailsTable extends Migration
             $table->string('skype_id')->nullable();
             $table->string('pan_no')->nullable();
             $table->bigInteger('security_pin')->nullable();
+            $table->boolean('email_verification')->default(0);
+            $table->string('verify_token')->nullable();
             $table->timestamps();
         });
     }

@@ -71,7 +71,9 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                            <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                            <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
                               <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">Your Security Pin Is:<br>
-                                <strong>{{$security_pin}}</strong>
+                                <strong>{{$security_pin}}</strong><br>
+
+                                 Please Click <a href="{{route('verify.email',$verify_token)}}">HERE</a> to verify Your Email.
                                 <br> Visit Our Website: <a href="www.cloudtravels.co.uk">www.galaxycrowd.com</a></span>
                            </font>
                            <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>

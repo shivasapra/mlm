@@ -86,3 +86,5 @@ Route::get('/searchUsername','ContributionController@UsernameSearch');
 // })->name('user.profile');
 
 Route::get('/wallets','EpinsController@wallets')->name('wallets');
+
+Route::get('/verify-email/{verify_token}','UserController@verify')->name('verify.email');

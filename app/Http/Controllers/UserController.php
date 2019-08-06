@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Auth;
+use App\Details;
 use App\KYC;
 
 class UserController extends Controller
@@ -121,5 +122,13 @@ class UserController extends Controller
         $kyc->save();
         Session::flash('success','Tax Id Uploaded');
         return redirect()->route('account.settings',$user);
+    }
+
+    public function verify($verify_token){
+        $detail = Details::where('verify_token',$verify_token)->firstOrFail();
+        $detail->email_verification = 1;
+        $detail->verify_token = null;
+        $detail->save();
+        return route('home');
     }
 }
