@@ -65,13 +65,7 @@ class ContributionController extends Controller
         $donation->package = $request->package;
         $donation->amount = $request->amount;
         $donation->save();
-        $data = ['user'=>Auth::user()];
-        $contactEmail = Auth::user()->email;
-        Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
-        {  
-            $message->to($contactEmail)->subject('Thankyou');
-        });
-
+        
         return $donation;
     }
 
@@ -170,10 +164,16 @@ class ContributionController extends Controller
         }
     }
 
-    private function sendMail($data, $contactEmail){
+    private function sendMail($data, $contactEmail, $from){
         Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
             {  
                 $message->to($contactEmail)->subject('Contribution Amount!!');
+            });
+
+        $data = ['user'=>Auth::user()];
+        Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
+            {  
+                $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
             });
     }
 
