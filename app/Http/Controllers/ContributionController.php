@@ -164,7 +164,7 @@ class ContributionController extends Controller
         }
     }
 
-    private function sendMail($data, $contactEmail, $from){
+    private function sendMail($data, $contactEmail){
         Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
             {  
                 $message->to($contactEmail)->subject('Contribution Amount!!');
