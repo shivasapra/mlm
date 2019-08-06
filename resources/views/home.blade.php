@@ -1,7 +1,7 @@
 @extends('layouts.app', ['titlePage' => __('Dashboard')])
 @section('content-header')
     <div class="alert alert-success text-center" role="alert">
-        Your Referral Link: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->details->promotional_url}}</a>
+        Your Profile Link: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->details->promotional_url}}</a>
     </div>
     {{-- <div class="alert alert-warning text-center alert-dismissible show" role="alert">
       Your mobile is not verified. Please verify your mobile <a href="#" class="alert-link">Verify Now</a> 

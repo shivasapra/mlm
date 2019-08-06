@@ -80,3 +80,7 @@ Route::get('/user-epins','EpinsController@userEpins')->name('user.epins');
 Route::get('/contribution-viewer/{user}','ContributionController@viewer')->name('contribution.viewer');
 
 Route::get('/searchUsername','ContributionController@UsernameSearch');
+
+Route::get('/{username}',function(){
+    return view('userProfile');
+})->name('user.profile');
