@@ -106,8 +106,12 @@ footer.navbar-border {
 footer.footer-transparent {
   border: none; }
 
-footer.footer-light {
-  background: #FFFFFF; }
+  footer.footer-light {
+    background: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    width: 85%;
+}
 
 footer.footer-dark {
   background: #1D2B36;
