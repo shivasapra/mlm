@@ -92,4 +92,8 @@ class User extends Authenticatable
     public function epins(){
         return $this->hasMany('App\Epin');
     }
+
+    public function commisions(){
+        return $this->hasMany('App\Commision');
+    }
 }
