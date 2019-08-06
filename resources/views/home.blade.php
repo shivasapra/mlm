@@ -87,6 +87,23 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-lg-6 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left media-middle">
+                                <h5>Contribution Viewer</h4>
+                                <a href="{{route('contribution.viewer',Auth::user())}}">View <i class="icon-angle-right"></i></a>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-grid2 red font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{-- <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
@@ -166,6 +183,57 @@
                             </div>
                             <div class="media-right media-middle">
                                 <i class="icon-settings red font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left media-middle">
+                                <h5>Setings</h4>
+                                <a href="{{route('settings')}}">View <i class="icon-angle-right"></i></a>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-settings green font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left media-middle">
+                                <h5>Epins</h4>
+                                <a href="{{route('epins')}}">View <i class="icon-angle-right"></i></a>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-compass2 purple font-large-2 float-xs-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left media-middle">
+                                <h5>Wallets</h4>
+                                <a href="{{route('wallets')}}">View <i class="icon-angle-right"></i></a>
+                            </div>
+                            <div class="media-right media-middle">
+                                <i class="icon-wallet blue font-large-2 float-xs-right"></i>
                             </div>
                         </div>
                     </div>
