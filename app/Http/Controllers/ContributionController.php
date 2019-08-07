@@ -66,6 +66,11 @@ class ContributionController extends Controller
         $donation->amount = $request->amount;
         $donation->save();
         
+        $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> Settings::first()->admin_amount];
+        $contactEmail = User::where('admin',1)->first()->email;
+        $this->sendMail($data ,$contactEmail);
+        $this->commission(Settings::first()->admin_amount,User::where('admin',1)->first());
+
         return $donation;
     }
 

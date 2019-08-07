@@ -1,9 +1,17 @@
 @extends('layouts.app', ['titlePage' => __('Settings')])
 @section('content-body')
-<h1>Percentage</h1><hr>
+<h1>Basic Package</h1><hr>
 <form action="{{route('settings.save')}}" method="post">
     @csrf
     <div class="row">
+        <div class="col-md-2">
+            <label for="basic_amount">Basic Package Amount</label>
+            <input type="number" name="basic_amount" @if($settings != null) value="{{$settings->basic_amount}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="admin_amount">Admin Amount</label>
+            <input type="number" name="admin_amount" @if($settings != null) value="{{$settings->admin_amount}}" @endif class="form-control">
+        </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label for="level_one_percentage">Level One Amount</label>
@@ -18,21 +26,46 @@
             <label for="level_three_percentage">Level Three Amount</label>
             <input type="number" name="level_three_percentage" @if($settings != null) value="{{$settings->level_three_percentage}}" @endif class="form-control">
         </div>
-        <div class="col-md-3">
-            <label for="basic_amount">Basic Amount</label>
-            <input type="number" name="basic_amount" @if($settings != null) value="{{$settings->basic_amount}}" @endif class="form-control">
-        </div>
-        <div class="col-md-3">
-            <label for="standard_amount">Standard Amount</label>
-            <input type="number" name="standard_amount" @if($settings != null) value="{{$settings->standard_amount}}" @endif class="form-control">
-        </div>
-    </div>
-    <div class="row">
-        <div class="text-center">
+        <br>
+        <div class="text-center col-md-2">
             <button type="submit" class="btn btn-md btn-info">Save</button>
         </div>
     </div>
 </form><br>
+
+<h1>Standard Package</h1><hr>
+<form action="{{route('settings.save')}}" method="post">
+    @csrf
+    <div class="row">
+        <div class="col-md-2">
+            <label for="standard_amount">Standard Package Amount</label>
+            <input type="number" name="standard_amount" @if($settings != null) value="{{$settings->standard_amount}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="admin_amount_standard">Admin Amount</label>
+            <input type="number" name="admin_amount_standard" @if($settings != null) value="{{$settings->admin_amount_standard}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="level_one_percentage_standard">Level One Amount</label>
+                <input type="number" name="level_one_percentage_standard" @if($settings != null) value="{{$settings->level_one_percentage_standard}}" @endif class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label for="level_two_percentage_standard">Level Two Amount</label>
+            <input type="number" name="level_two_percentage_standard" @if($settings != null) value="{{$settings->level_two_percentage_standard}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="level_three_percentage_standard">Level Three Amount</label>
+            <input type="number" name="level_three_percentage_standard" @if($settings != null) value="{{$settings->level_three_percentage_standard}}" @endif class="form-control">
+        </div>
+        <br>
+        <div class="text-center col-md-2">
+            <button type="submit" class="btn btn-md btn-info">Save</button>
+        </div>
+    </div>
+</form><br>
+
 <h1>Causes</h1><hr>
  <div class="row">
     <div class="col-md-4" id="load">
