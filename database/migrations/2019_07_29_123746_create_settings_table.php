@@ -20,12 +20,23 @@ class CreateSettingsTable extends Migration
             $table->float('level_three_percentage')->nullable();
             $table->float('admin_amount')->nullable();
             $table->float('basic_amount')->nullable();
+            $table->float('upgrade_wallet_amount')->nullable();
 
             $table->float('level_one_percentage_standard')->nullable();
             $table->float('level_two_percentage_standard')->nullable();
             $table->float('level_three_percentage_standard')->nullable();
             $table->float('admin_amount_standard')->nullable();
             $table->float('standard_amount')->nullable();
+            $table->float('upgrade_wallet_amount_standard')->nullable();
+
+            $table->float('level_one_percentage_premium')->nullable();
+            $table->float('level_two_percentage_premium')->nullable();
+            $table->float('level_three_percentage_premium')->nullable();
+            $table->float('admin_amount_premium')->nullable();
+            $table->float('premium_amount')->nullable();
+            $table->float('upgrade_wallet_amount_premium')->nullable();
+
+            $table->float('facilitation_percentage')->nullable();
             $table->timestamps();
         });
     }

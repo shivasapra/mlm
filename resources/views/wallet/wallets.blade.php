@@ -28,7 +28,7 @@ $activation_amount = 0;
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#transfer" role="tab" aria-controls="profile">Transfer Wallet</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#commission" role="tab" aria-controls="contact">Commission Wallet</a>
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#commission" role="tab" aria-controls="contact">Contribution Wallet</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#withdrawal" role="tab" aria-controls="contact">Withdrawal Wallet</a>

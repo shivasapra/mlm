@@ -48,6 +48,25 @@ class SettingsController extends Controller
 
         Session::flash('success','Saved!!');
         return redirect()->back();
+
+    }
+
+    public function savePremium(Request $request){
+        if(Settings::first() == null){
+            $settings = new Settings;
+        }else{
+            $settings = Settings::first();
+        }
+
+        $settings->level_one_percentage_premium = $request->level_one_percentage_premium;
+        $settings->level_two_percentage_premium = $request->level_two_percentage_premium;
+        $settings->level_three_percentage_premium = $request->level_three_percentage_premium;
+        $settings->admin_amount_premium = $request->admin_amount_premium;
+        $settings->premium_amount = $request->premium_amount;
+        $settings->save();
+
+        Session::flash('success','Saved!!');
+        return redirect()->back();
         
     }
 

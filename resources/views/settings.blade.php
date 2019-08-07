@@ -26,8 +26,13 @@
             <label for="level_three_percentage">Level Three Amount</label>
             <input type="number" name="level_three_percentage" @if($settings != null) value="{{$settings->level_three_percentage}}" @endif class="form-control">
         </div>
-        <br>
-        <div class="text-center col-md-2">
+        <div class="col-md-2">
+            <label for="upgrade_wallet_amount">Upgrade Wallet Amount</label>
+            <input type="number" name="upgrade_wallet_amount" @if($settings != null) value="{{$settings->upgrade_wallet_amount}}" @endif class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
             <button type="submit" class="btn btn-md btn-info">Save</button>
         </div>
     </div>
@@ -59,12 +64,64 @@
             <label for="level_three_percentage_standard">Level Three Amount</label>
             <input type="number" name="level_three_percentage_standard" @if($settings != null) value="{{$settings->level_three_percentage_standard}}" @endif class="form-control">
         </div>
-        <br>
-        <div class="text-center col-md-2">
+        <div class="col-md-2">
+            <label for="upgrade_wallet_amount_standard">Upgrade Wallet Amount</label>
+            <input type="number" name="upgrade_wallet_amount_standard" @if($settings != null) value="{{$settings->upgrade_wallet_amount_standard}}" @endif class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
             <button type="submit" class="btn btn-md btn-info">Save</button>
         </div>
     </div>
 </form><br>
+
+
+<h1>Premium Package</h1><hr>
+<form action="{{route('settings.savePremium')}}" method="post">
+    @csrf
+    <div class="row">
+        <div class="col-md-2">
+            <label for="premium_amount">Premium Package Amount</label>
+            <input type="number" name="premium_amount" @if($settings != null) value="{{$settings->premium_amount}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="admin_amount_premium">Admin Amount</label>
+            <input type="number" name="admin_amount_premium" @if($settings != null) value="{{$settings->admin_amount_premium}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="level_one_percentage_premium">Level One Amount</label>
+                <input type="number" name="level_one_percentage_premium" @if($settings != null) value="{{$settings->level_one_percentage_premium}}" @endif class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label for="level_two_percentage_premium">Level Two Amount</label>
+            <input type="number" name="level_two_percentage_premium" @if($settings != null) value="{{$settings->level_two_percentage_premium}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="level_three_percentage_premium">Level Three Amount</label>
+            <input type="number" name="level_three_percentage_premium" @if($settings != null) value="{{$settings->level_three_percentage_premium}}" @endif class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label for="upgrade_wallet_amount_premium">Upgrade Wallet Amount</label>
+            <input type="number" name="upgrade_wallet_amount_premium" @if($settings != null) value="{{$settings->upgrade_wallet_amount_premium}}" @endif class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <button type="submit" class="btn btn-md btn-info">Save</button>
+        </div>
+    </div>
+</form><br>
+
+<h1>Facilitation Percentage</h1><hr>
+ <div class="row">
+     <div class="col-md-3">
+            <label for="facilitation_percentage"><b>Facilitaion Percentage:</b></label>
+            <input type="text" id="facilitation_percentage" name="facilitation_percentage" class="form-control">
+     </div>
+ </div><br>
 
 <h1>Causes</h1><hr>
  <div class="row">
@@ -100,7 +157,9 @@
         <button id="button" type="submit" class="btn btn-sm btn-info">Save</button>
     </div>
     </form>
- </div>
+ </div><br>
+
+ 
 @stop
 @section('js')
 <script>
