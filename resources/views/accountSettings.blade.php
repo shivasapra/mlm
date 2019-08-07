@@ -19,6 +19,9 @@
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#change-security-pin" role="tab" aria-controls="contact">Change Security Pin</a>
         </li>
         <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#bank-transfer" role="tab" aria-controls="contact">Bank Transfer</a>
+        </li>
+        <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verify-identity" role="tab" aria-controls="contact">Verify Identity/KYC</a>
         </li>
         </ul>
@@ -139,6 +142,128 @@
             </form>
         </div>
         </div>
+        </div>
+        <div class="tab-pane fade" id="bank-transfer" role="tabpanel" aria-labelledby="contact-tab">
+            <form method="post" action="{{route('update.bankTransfer',$user)}}">
+                @csrf
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Handling Currency</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" name="currency">
+                      <option>Select Currency</option>
+                      <option value="USD" {{($user->bankTransfer != null and $user->bankTransfer->currency == 'USD')? 'selected' : ' ' }}>USD</option>
+                      <option value="INR" {{($user->bankTransfer != null and $user->bankTransfer->currency == 'INR')? 'selected' : ' ' }}>INR</option>
+                      <option value="IDR" {{($user->bankTransfer != null and $user->bankTransfer->currency == 'IDR')? 'selected' : ' ' }}>IDR</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Account type</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" name="account_type">
+                      <option>Select Account Type</option>
+                      <option value="Savings" {{($user->bankTransfer != null and $user->bankTransfer->account_type == 'Savings')? 'selected' : ' ' }}>Savings</option>
+                      <option value="Current" {{($user->bankTransfer != null and $user->bankTransfer->account_type == 'Current')? 'selected' : ' ' }}>Current</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Nick Name</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="Enter Nick Name" name="nick_name" class="form-control" value="{{($user->bankTransfer == null)? " ": $user->bankTransfer->nick_name }}" class="form-control"/>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Account Holder Name</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="Account Holder Name" name="account_holder_name" class="form-control" class="form-control" value="{{($user->bankTransfer == null)? " ": $user->bankTransfer->account_holder_name }}"/>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Account Number</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="Enter Account Number" name="account_no" class="form-control" value="{{($user->bankTransfer == null)? " ": $user->bankTransfer->account_no }}" class="form-control"/>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Bank Name</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="Enter Bank Name" name="bank_name" class="form-control" value="{{($user->bankTransfer == null)? " ": $user->bankTransfer->bank_name }}" class="form-control"/>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Bank Branch</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="Enter Bank Branch" name="bank_branch" value="{{($user->bankTransfer == null)? " ": $user->bankTransfer->bank_branch }}" class="form-control" class="form-control"/>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Bank/IFSC Code</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="Enter Bank/IFSC Code" name="IFSC_code" class="form-control" value="{{($user->bankTransfer == null)? " ": $user->bankTransfer->IFSC_code }}" class="form-control"/>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Status</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" name="status">
+                      <option value="0" {{($user->bankTransfer != null and $user->bankTransfer->status == 0)? 'selected' : ' ' }}>In-Active</option>
+                      <option value="1" {{($user->bankTransfer != null and $user->bankTransfer->status == 1)? 'selected' : ' ' }}>Active</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label>Security Pin *</label> :
+                  </div>
+                  <div class="col-md-8">
+                    <input type="password" placeholder="" class="form-control" class="form-control" name="security_pin"/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+              </div>
+            </form>
         </div>
         <div class="tab-pane fade" id="verify-identity" role="tabpanel" aria-labelledby="contact-tab">
           @if(Auth::user()->KYC->count()<3)
