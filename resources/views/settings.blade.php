@@ -1,7 +1,7 @@
 @extends('layouts.app', ['titlePage' => __('Settings')])
 @section('content-body')
 <h1>Basic Package</h1><hr>
-<form action="{{route('settings.save')}}" method="post">
+<form action="{{route('settings.saveBasic')}}" method="post">
     @csrf
     <div class="row">
         <div class="col-md-2">
@@ -34,7 +34,7 @@
 </form><br>
 
 <h1>Standard Package</h1><hr>
-<form action="{{route('settings.save')}}" method="post">
+<form action="{{route('settings.saveStandard')}}" method="post">
     @csrf
     <div class="row">
         <div class="col-md-2">
