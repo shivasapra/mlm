@@ -131,4 +131,12 @@ class UserController extends Controller
         $detail->save();
         return route('home');
     }
+
+    public function supportCreateTickets(){
+        return view('support.createTickets');
+    }
+
+    public function supportViewTickets(){
+        return view('support.viewTickets');
+    }
 }

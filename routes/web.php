@@ -91,3 +91,6 @@ Route::get('/searchUsername','ContributionController@UsernameSearch');
 Route::get('/wallets','EpinsController@wallets')->name('wallets');
 
 Route::get('/verify-email/{verify_token}','UserController@verify')->name('verify.email');
+
+Route::get('/support-create-tickets','UserController@supportCreateTickets')->name('support.createTickets');
+Route::get('/support-view-tickets','UserController@supportViewTickets')->name('support.viewTickets');
