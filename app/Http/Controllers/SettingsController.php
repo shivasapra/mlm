@@ -15,10 +15,8 @@ class SettingsController extends Controller
     }
 
     public function saveBasic(Request $request){
-        if(Settings::first() == null){
+        if(!$settings = Settings::first()){
             $settings = new Settings;
-        }else{
-            $settings = Settings::first();
         }
 
         $settings->level_one_percentage = $request->level_one_percentage;
@@ -34,10 +32,8 @@ class SettingsController extends Controller
     }
 
     public function saveStandard(Request $request){
-        if(Settings::first() == null){
+        if(!$settings = Settings::first()){
             $settings = new Settings;
-        }else{
-            $settings = Settings::first();
         }
 
         $settings->level_one_percentage_standard = $request->level_one_percentage_standard;
@@ -54,10 +50,8 @@ class SettingsController extends Controller
     }
 
     public function savePremium(Request $request){
-        if(Settings::first() == null){
+        if(!$settings = Settings::first()){
             $settings = new Settings;
-        }else{
-            $settings = Settings::first();
         }
 
         $settings->level_one_percentage_premium = $request->level_one_percentage_premium;
@@ -74,10 +68,8 @@ class SettingsController extends Controller
     }
 
     public function saveFacilitation(Request $request){
-        if(Settings::first() == null){
+        if(!$settings = Settings::first()){
             $settings = new Settings;
-        }else{
-            $settings = Settings::first();
         }
 
         $settings->facilitation_percentage = $request->facilitation_percentage;
