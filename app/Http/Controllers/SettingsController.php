@@ -48,6 +48,7 @@ class SettingsController extends Controller
 
         Session::flash('success','Saved!!');
         return redirect()->back();
+        
     }
 
     public function CauseDelete($id){

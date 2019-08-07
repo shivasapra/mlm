@@ -110,7 +110,7 @@
         	                <div class="col-md-12">
         	                    <div class="form-group">
         	                        <div class="custom-control custom-checkbox mt-3 mt-4">
-                                    <input type="checkbox" class="custom-control-input" id="customControlInline">
+                                    <input type="checkbox" class="custom-control-input" id="customControlInline" checked>
                                     <label class="custom-control-label text-muted" for="customControlInline">By signing up you agree to our Terms of Use and Privacy Policy.</label>
                                     </div>
         	                    </div>
