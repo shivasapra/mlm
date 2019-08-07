@@ -26,6 +26,7 @@ class SettingsController extends Controller
         $settings->level_three_percentage = $request->level_three_percentage;
         $settings->admin_amount = $request->admin_amount;
         $settings->basic_amount = $request->basic_amount;
+        $settings->upgrade_wallet_amount = $request->upgrade_wallet_amount;
         $settings->save();
 
         Session::flash('success','Saved!!');
@@ -44,6 +45,7 @@ class SettingsController extends Controller
         $settings->level_three_percentage_standard = $request->level_three_percentage_standard;
         $settings->admin_amount_standard = $request->admin_amount_standard;
         $settings->standard_amount = $request->standard_amount;
+        $settings->upgrade_wallet_amount_standard = $request->upgrade_wallet_amount_standard;
         $settings->save();
 
         Session::flash('success','Saved!!');
@@ -63,11 +65,26 @@ class SettingsController extends Controller
         $settings->level_three_percentage_premium = $request->level_three_percentage_premium;
         $settings->admin_amount_premium = $request->admin_amount_premium;
         $settings->premium_amount = $request->premium_amount;
+        $settings->upgrade_wallet_amount_premium = $request->upgrade_wallet_amount_premium;
         $settings->save();
 
         Session::flash('success','Saved!!');
         return redirect()->back();
         
+    }
+
+    public function saveFacilitation(Request $request){
+        if(Settings::first() == null){
+            $settings = new Settings;
+        }else{
+            $settings = Settings::first();
+        }
+
+        $settings->facilitation_percentage = $request->facilitation_percentage;
+        $settings->save();
+
+        Session::flash('success','Saved!!');
+        return redirect()->back();
     }
 
     public function CauseDelete($id){

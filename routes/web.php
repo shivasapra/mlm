@@ -66,6 +66,7 @@ Route::get('/Settings','SettingsController@settings')->name('settings');
 Route::post('/Save-Basic-Settings','SettingsController@saveBasic')->name('settings.saveBasic');
 Route::post('/Save-Standard-Settings','SettingsController@saveStandard')->name('settings.saveStandard');
 Route::post('/Save-Premium-Settings','SettingsController@savePremium')->name('settings.savePremium');
+Route::post('/Save-Facilitation','SettingsController@saveFacilitation')->name('settings.saveFacilitation');
 Route::get('/Cause-Delete/{id}','SettingsController@CauseDelete')->name('cause.delete');
 Route::get('/save-cause','SettingsController@CauseSave')->name('cause.save');
 

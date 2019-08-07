@@ -32,8 +32,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="text-center">
-            <button type="submit" class="btn btn-md btn-info">Save</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
 </form><br>
@@ -70,8 +70,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="text-center">
-            <button type="submit" class="btn btn-md btn-info">Save</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
 </form><br>
@@ -109,19 +109,25 @@
         </div>
     </div>
     <div class="row">
-        <div class="text-center">
-            <button type="submit" class="btn btn-md btn-info">Save</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
 </form><br>
 
 <h1>Facilitation Percentage</h1><hr>
- <div class="row">
-     <div class="col-md-3">
-            <label for="facilitation_percentage"><b>Facilitaion Percentage:</b></label>
-            <input type="text" id="facilitation_percentage" name="facilitation_percentage" class="form-control">
-     </div>
- </div><br>
+    <form action="{{route('settings.saveFacilitation')}}" method="post">
+        @csrf
+        <div class="row">
+            <div class="col-md-3">
+                    <label for="facilitation_percentage"><b>Facilitaion Percentage:</b></label>
+                    <input type="text" id="facilitation_percentage" @if($settings != null) value="{{$settings->facilitation_percentage}}" @endif  placeholder="Enter Percentage..." name="facilitation_percentage" class="form-control">
+            </div><br>
+            <div class="text-center col-md-1">
+                <button type="submit" class="btn btn-sm btn-info">Save</button>
+            </div>
+        </div><br><br><br>
+    </form>
 
 <h1>Causes</h1><hr>
  <div class="row">
