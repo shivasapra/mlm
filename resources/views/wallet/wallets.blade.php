@@ -147,7 +147,7 @@ $activation_amount = 0;
             </div>
             <div class="col-md-3">
                 <button class="btn btn-sm btn-info" type="button" id="withdraw" onclick="withdraw();">Withdraw Now</button>
-                <button class="btn btn-sm btn-info">Buy Pin</button>
+                <button class="btn btn-sm btn-info" type="button" id="buyPin" onclick="buyPin();">Buy Pin</button>
             </div>
         </div>
         <br>
@@ -216,8 +216,15 @@ $activation_amount = 0;
     function withdraw(){
         var fac = {{Settings::first()->facilitation_percentage}}
         swal({
-            text: "Enter Amount To Withdraw",
-            content: "input",
+            title: 'Withdraw Amount',
+            content: {
+            element: "input",
+            attributes: {
+            placeholder: "Enter Amount To Withdraw",
+            type: "number",
+            },
+        },
+            icon:'info',
         })
         .then(amount => {
             if (!amount) throw null;
@@ -225,6 +232,13 @@ $activation_amount = 0;
             swal({
                 title: "Withdraw",
                 text: `Amount: ${amount}\n Facilitation Charges: `+(fac/100)*amount,
+                // content: {
+                //     element: "input",
+                //     attributes: {
+                //     type: 'checkbox',
+                //     className: "form-control",
+                //     },
+                // },
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -241,6 +255,27 @@ $activation_amount = 0;
             }
             });
         });
+    }
+
+    function buyPin(){
+        swal({
+            title: "Buy Epins",
+            text: "Enter Amount To Buy Pins",
+            content: "input",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Request Sent!!", {
+                icon: "success",
+                });
+            } else {
+                swal("Process Cancelled ",{
+                    icon: "error",
+                });
+            }
+            });
     }
 </script>
 @stop
