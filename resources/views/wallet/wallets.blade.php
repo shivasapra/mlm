@@ -1,4 +1,5 @@
 @php
+use App\Settings;
 $activation_amount = 0;
  foreach($used_epins as $e)   {
     $activation_amount = $activation_amount + $e->EpinCategory->rate;
@@ -30,9 +31,9 @@ $activation_amount = 0;
     <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#commission" role="tab" aria-controls="contact">Contribution Wallet</a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#withdrawal" role="tab" aria-controls="contact">Withdrawal Wallet</a>
-    </li>
+    </li> --}}
 </ul>
 
 <div class="tab-content" id="myTabContent">
@@ -144,6 +145,10 @@ $activation_amount = 0;
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <button class="btn btn-sm btn-info" type="button" id="withdraw" onclick="withdraw();">Withdraw Now</button>
+                <button class="btn btn-sm btn-info">Buy Pin</button>
+            </div>
         </div>
         <br>
         <div class="row">
@@ -176,7 +181,7 @@ $activation_amount = 0;
         </div>
     </div>
 
-    <div class="tab-pane fade show" id="withdrawal" role="tabpanel" aria-labelledby="home-tab">
+    {{-- <div class="tab-pane fade show" id="withdrawal" role="tabpanel" aria-labelledby="home-tab">
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
@@ -202,6 +207,40 @@ $activation_amount = 0;
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
+@stop
+
+@section('js')
+<script>
+    function withdraw(){
+        var fac = {{Settings::first()->facilitation_percentage}}
+        swal({
+            text: "Enter Amount To Withdraw",
+            content: "input",
+        })
+        .then(amount => {
+            if (!amount) throw null;
+            
+            swal({
+                title: "Withdraw",
+                text: `Amount: ${amount}\n Facilitation Charges: `+(fac/100)*amount,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("Withdrawal Successfull", {
+                icon: "success",
+                });
+            } else {
+                swal("Withdrawal Process Cancelled ",{
+                    icon: "error",
+                });
+            }
+            });
+        });
+    }
+</script>
 @stop
