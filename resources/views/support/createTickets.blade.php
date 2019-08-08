@@ -75,7 +75,7 @@
                         <label>Attachment</label> :
                       </div>
                       <div class="col-md-9">
-                        <input type="file" class="form-control" name="attachment" required/>
+                        <input type="file" class="form-control" name="attachment" required accept="image/*"/>
                       </div>
                     </div>
                   </div>
