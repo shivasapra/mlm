@@ -268,7 +268,7 @@ $activation_amount = 0;
             },
         })
         .then(amount => {
-            if ((amount > {{$commission_amount}})){
+            if ((amount > {{$commission_amount}}) ||  amount == 0){
                 swal("Process Cancelled ",{
                     icon: "error",
                 });

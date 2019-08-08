@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\UserController;
+use App\EpinRequests;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +100,10 @@ Route::get('/support-view-tickets','UserController@supportViewTickets')->name('s
 Route::post('/store-ticket','UserController@storeTicket')->name('store.ticket');
 
 Route::get('/buy',function(Request $request){
-    
-    return $request->amount;
+    $ep_request = new EpinRequests;
+    $ep_request->user_id = Auth::id();
+    $ep_request->amount = $request->amount;
+    $ep_request->save();
+
+    return $ep_request;
 });
