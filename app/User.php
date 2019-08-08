@@ -100,4 +100,8 @@ class User extends Authenticatable
     public function tickets(){
         return $this->hasMany('App\Ticket');
     }
+
+    public function EpinRequests(){
+        return $this->hasMany('App\EpinRequests');
+    }
 }
