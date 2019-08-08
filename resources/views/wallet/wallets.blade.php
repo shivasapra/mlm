@@ -262,20 +262,38 @@ $activation_amount = 0;
             title: "Buy Epins",
             text: "Enter Amount To Buy Pins",
             content: "input",
-            buttons: true,
-            dangerMode: true,
+                buttons:{
+                cancel: true,
+                confirm: true,
+            },
         })
-        .then((willDelete) => {
-            if (willDelete) {
-                swal("Request Sent!!", {
-                icon: "success",
-                });
-            } else {
+        .then(amount => {
+            if ((amount > {{$commission_amount}})){
                 swal("Process Cancelled ",{
                     icon: "error",
                 });
             }
-            });
+            else{
+                return fetch(`http://127.0.0.1:8000/buy?amount=${amount}`);
+            }
+        })
+        .then(results => {
+            return results.json();
+        })
+        .then(amount => {
+            if(!amount){
+                swal({
+                    title: "Process Cancelled!!",
+                    icon: "error",
+                })    
+            }else{
+                
+                swal({
+                    title: "Request Sent!!",
+                    icon: "success",
+                })
+            }
+        })
     }
 </script>
 @stop
