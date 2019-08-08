@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,3 +95,4 @@ Route::get('/verify-email/{verify_token}','UserController@verify')->name('verify
 
 Route::get('/support-create-tickets','UserController@supportCreateTickets')->name('support.createTickets');
 Route::get('/support-view-tickets','UserController@supportViewTickets')->name('support.viewTickets');
+Route::get('/store-ticket','UserController@storeTicket')->name('store.ticket');

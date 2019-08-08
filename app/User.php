@@ -96,4 +96,8 @@ class User extends Authenticatable
     public function commissions(){
         return $this->hasMany('App\Commision');
     }
+
+    public function tickets(){
+        return $this->hasMany('App\Tickets');
+    }
 }

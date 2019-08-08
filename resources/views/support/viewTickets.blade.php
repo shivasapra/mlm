@@ -11,7 +11,7 @@
           {{-- <a class="nav-link btn btn-success float-right" href="#">Submit New Ticket</a> --}}
       </ul>
         
-       <form method="" action="">
+       {{-- <form method="" action="">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -45,17 +45,15 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> --}}
             <div class="table-responsive mt-2">
                 <table class="table table-bordered">
                     <thead class="bg-light">
                         <tr>
-                            <th>Ticket ID</th>
+                            <th>Sno.</th>
                             <th>Subject</th>
                             <th>Priority</th>
-                            <th>Status</th>
                             <th>Post Date</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

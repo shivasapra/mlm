@@ -11,24 +11,25 @@
         
         <div class="row">
             <div class="col-md-8">
-                <form method="post" action="">
+                <form method="post" action="{{route('store.ticket')}}">
+                  @csrf
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-3">
                         <label>Category</label> :
                       </div>
                       <div class="col-md-9">
-                        <select class="form-control">
+                        <select name="category" class="form-control" required>
                             <option value="">--- Select ---</option>
-                            <option value="1">Withdrawal </option>  
-                            <option value="2">Fund Transfer </option>  
-                            <option value="3">General </option>  
-                            <option value="4">Rewards </option>  
-                            <option value="5">Campaign Marketing </option>  
-                            <option value="6">Others </option>  
-                            <option value="7">Donation </option>  
-                            <option value="8">Contribution </option>  
-                            <option value="9">Account Activation </option>
+                            <option value="Withdrawal">Withdrawal </option>  
+                            <option value="Fund Transfer">Fund Transfer </option>  
+                            <option value="General">General </option>  
+                            <option value="Rewards">Rewards </option>  
+                            <option value="Campaign Marketing">Campaign Marketing </option>  
+                            <option value="Others">Others </option>  
+                            <option value="Donation">Donation </option>  
+                            <option value="Contribution">Contribution </option>  
+                            <option value="Account Activation">Account Activation </option>
                         </select>
                       </div>
                     </div>
@@ -39,7 +40,7 @@
                         <label>Priority</label> :
                       </div>
                       <div class="col-md-9">
-                        <select class="form-control">
+                        <select name="priority" class="form-control" required>
                           <option>--- Select Priority ---</option>
                           <option value="Low">Low</option>
                           <option value="Medium">Medium</option>
@@ -54,7 +55,7 @@
                         <label>Subject</label> :
                       </div>
                       <div class="col-md-9">
-                        <input type="text" placeholder="Enter Subject" class="form-control" name=""/>
+                        <input type="text" placeholder="Enter Subject" class="form-control" name="subject" required/>
                       </div>
                     </div>
                   </div>
@@ -64,7 +65,7 @@
                         <label>Message</label> :
                       </div>
                       <div class="col-md-9">
-                        <textarea placeholder="Enter Message" class="form-control" name="" style="height:120px;"></textarea>
+                        <textarea placeholder="Enter Message" class="form-control" name="message" required style="height:120px;"></textarea>
                       </div>
                     </div>
                   </div>
@@ -74,8 +75,7 @@
                         <label>Attachment</label> :
                       </div>
                       <div class="col-md-9">
-                        <input type="file" class="form-control" name=""/>
-                        <small>Supported file formats (jpg,jpeg,png,gif,docx,pdf,ppt,doc)</small>
+                        <input type="file" class="form-control" name="attachment" required/>
                       </div>
                     </div>
                   </div>

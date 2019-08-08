@@ -10,6 +10,7 @@ use Session;
 use Auth;
 use App\Details;
 use App\KYC;
+use App\Ticket;
 
 class UserController extends Controller
 {
@@ -138,5 +139,21 @@ class UserController extends Controller
 
     public function supportViewTickets(){
         return view('support.viewTickets');
+    }
+
+    public function storeTicket(Request $request, Ticket $ticket){
+        $ticket->user_id = Auth::id();
+        $ticket->category = $request->category;
+        $ticket->priority = $request->priority;
+        $ticket->subject = $request->subject;
+        $ticket->message = $request->message;
+
+        if($request->hasFile('attachment')){
+            $attachment = $request->attachment;
+            $attachment_new_name = time().$attachment->getClientOriginalName();
+            $attachment->move('uploads/ticket',$attachment_new_name);
+            $ticket->attachment = 'uploads/ticket/'.$attachment_new_name;
+        }
+        $ticket->save();
     }
 }
