@@ -75,6 +75,7 @@ Route::get('/save-cause','SettingsController@CauseSave')->name('cause.save');
 
 
 Route::get('/epins','EpinsController@epins')->name('epins');
+Route::get('/epin-requests','EpinsController@epinRequests')->name('epin.requests');
 Route::post('/generate-epin','EpinsController@generateEpin')->name('generate.epin');
 Route::post('/generate-epin-category','EpinsController@generateEpinCategory')->name('generate.epinCategory');
 Route::get('/Epin-Category-Details/{category}','EpinsController@CategoryDetails')->name('category.details');

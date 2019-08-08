@@ -17,6 +17,7 @@ class CreateEpinRequestsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->float('amount');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

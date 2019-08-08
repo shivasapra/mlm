@@ -96,4 +96,8 @@ class EpinsController extends Controller
 
     }
 
+    public function epinRequests(){
+        return view('epinRequests');
+    }
+
 }
