@@ -10,10 +10,16 @@ $activation_amount = 0;
     $transferred_amount = $transferred_amount + $e->EpinCategory->rate;
  }
 
- $commission_amount = 10000;
+ $purchase_amount = 0;
+ foreach(App\purchaseEpin::where('user_id',Auth::id())->get() as $e)   {
+    $purchase_amount = $purchase_amount + $e->epin->EpinCategory->rate;
+ }
+
+ $commission_amount = 0;
  foreach($commissions as $c)   {
     $commission_amount = $commission_amount + $c->amount;
  }
+ $commission_amount = $commission_amount - $purchase_amount;
 
 @endphp
 

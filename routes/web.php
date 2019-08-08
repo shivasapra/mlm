@@ -114,8 +114,11 @@ Route::get('/buy',function(Request $request){
         while(Epin::where('epin', $new_epin)->first());
         $epin->epin = $new_epin;
         $epin->save();
+
+        $p = new PurchaseEpin;
+        $p->epin_id = $epin->id;
+        $p->save();
     }
 
     return $epin;
-    // return Auth::user();
 });

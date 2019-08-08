@@ -137,12 +137,14 @@
                             <td>{{$epin->epin}}</td>
                             <td>{{$epin->EpinCategory->name}}</td>
                             <td>{{$epin->EpinCategory->rate}}</td>
-                            <td>{{__('Sent By ')}}
+                            <td>
                                 <strong>
-                                    @if($epin->sent_to == Auth::id())
-                                        {{__('Admin')}}
+                                    @if(App\purchaseEpin::where('epin_id',$epin->id)->first())
+                                        {{'Purchased'}}
+                                    @elseif($epin->sent_to == Auth::id())
+                                        {{__('Sent By ')}}{{__('Admin')}}
                                     @else
-                                        {{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('to',Auth::id())->first()->from)->details->username}}
+                                        {{__('Sent By ')}}{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('to',Auth::id())->first()->from)->details->username}}
                                     @endif
                                 </strong>
                             </td>

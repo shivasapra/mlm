@@ -15,4 +15,5 @@ class Epin extends Model
     public function transfers(){
         return $this->hasMany('App\Transfer');
     }
+
 }
