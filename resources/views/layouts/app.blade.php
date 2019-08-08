@@ -209,8 +209,8 @@
             @endif
             <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
             </li>
-            <li class=" nav-item"><a href="{{route('epin.requests')}}"><i class="icon-compass2"></i><span class="menu-title">Epin Requests</span></a>
-            </li>
+            {{-- <li class=" nav-item"><a href="{{route('epin.requests')}}"><i class="icon-compass2"></i><span class="menu-title">Epin Requests</span></a>
+            </li> --}}
             @if(!Auth::user()->admin)
                 <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
                 </li>

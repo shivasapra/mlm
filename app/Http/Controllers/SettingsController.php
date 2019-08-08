@@ -23,6 +23,9 @@ class SettingsController extends Controller
             $settings->level_one_percentage_standard = 0;
             $settings->level_one_percentage_premium = 0;
         }
+        else{
+            $settings->level_one_percentage = $request->level_one_percentage;
+        }
 
         
         $settings->level_two_percentage = $request->level_two_percentage;
@@ -44,6 +47,9 @@ class SettingsController extends Controller
             $settings->level_one_percentage = 0;
             $settings->level_one_percentage_standard = 0;
             $settings->level_one_percentage_premium = 0;
+        }
+        else{
+            $settings->level_one_percentage_standard = $request->level_one_percentage_standard;
         }
 
         $settings->level_one_percentage_standard = $request->level_one_percentage_standard;
@@ -68,6 +74,9 @@ class SettingsController extends Controller
             $settings->level_one_percentage = 0;
             $settings->level_one_percentage_standard = 0;
             $settings->level_one_percentage_premium = 0;
+        }
+        else{
+            $settings->level_one_percentage_premium = $request->level_one_percentage_premium;
         }
 
         $settings->level_one_percentage_premium = $request->level_one_percentage_premium;

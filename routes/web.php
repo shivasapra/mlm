@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\UserController;
 use App\EpinRequests;
+use App\Epin;
 use Illuminate\Http\Request;
 
 /*
@@ -101,10 +102,20 @@ Route::get('/support-view-tickets','UserController@supportViewTickets')->name('s
 Route::post('/store-ticket','UserController@storeTicket')->name('store.ticket');
 
 Route::get('/buy',function(Request $request){
-    $ep_request = new EpinRequests;
-    $ep_request->user_id = Auth::id();
-    $ep_request->amount = $request->amount;
-    $ep_request->save();
+    $e = Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first();
 
-    return $ep_request;
+    for ($i=0; $i <$request->amount ; $i++) { 
+        $epin = new Epin;
+        $epin->epin_category_id = $e->epin_category_id;
+        $epin->sent_to = Auth::id();
+        do {
+            $new_epin = str_random();
+        }
+        while(Epin::where('epin', $new_epin)->first());
+        $epin->epin = $new_epin;
+        $epin->save();
+    }
+
+    return $epin;
+    // return Auth::user();
 });

@@ -10,7 +10,7 @@ $activation_amount = 0;
     $transferred_amount = $transferred_amount + $e->EpinCategory->rate;
  }
 
- $commission_amount = 0;
+ $commission_amount = 10000;
  foreach($commissions as $c)   {
     $commission_amount = $commission_amount + $c->amount;
  }
@@ -258,9 +258,14 @@ $activation_amount = 0;
     }
 
     function buyPin(){
+       @if(App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->count())
+        @php 
+            $ep =  floor($commission_amount / App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first()->EpinCategory->rate );
+       
+        @endphp
         swal({
             title: "Buy Epins",
-            text: "Enter Amount To Buy Pins",
+            text: `Enter Number Of Epins To Buy\n You can Buy Max `+ {{$ep}} +` epins`,
             content: "input",
                 buttons:{
                 cancel: true,
@@ -268,8 +273,15 @@ $activation_amount = 0;
             },
         })
         .then(amount => {
-            if ((amount > {{$commission_amount}}) ||  amount == 0){
+            if ((amount > {{$ep}})){
                 swal("Process Cancelled ",{
+                    title: `You Can't Buy ${amount} Epins. You Don't Have Sufficient Funds`,
+                    icon: "error",
+                });
+            }
+            else if((amount == 0)){
+                swal("Process Cancelled ",{
+                    title: `Invalid`,
                     icon: "error",
                 });
             }
@@ -294,6 +306,7 @@ $activation_amount = 0;
                 })
             }
         })
+       @endif
     }
 </script>
 @stop
