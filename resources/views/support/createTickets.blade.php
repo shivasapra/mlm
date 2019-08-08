@@ -11,7 +11,7 @@
         
         <div class="row">
             <div class="col-md-8">
-                <form method="post" action="{{route('store.ticket')}}">
+                <form method="post" action="{{route('store.ticket')}}" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group">
                     <div class="row">
@@ -82,7 +82,7 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                       </div>
                     </div>
                   </div>

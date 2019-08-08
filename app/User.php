@@ -98,6 +98,6 @@ class User extends Authenticatable
     }
 
     public function tickets(){
-        return $this->hasMany('App\Tickets');
+        return $this->hasMany('App\Ticket');
     }
 }

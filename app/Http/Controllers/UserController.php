@@ -155,5 +155,8 @@ class UserController extends Controller
             $ticket->attachment = 'uploads/ticket/'.$attachment_new_name;
         }
         $ticket->save();
+
+        Session::flash('success','Ticket Added!!');
+        return redirect()->route('support.viewTickets');
     }
 }
