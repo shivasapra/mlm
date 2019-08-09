@@ -76,6 +76,14 @@ class User extends Authenticatable
         return $this->hasOne('App\Coordinates');
     }
 
+    public function StandardCoordinates(){
+        return $this->hasOne('App\StandardCoordinates');
+    }
+
+    public function PremiumCoordinates(){
+        return $this->hasOne('App\PremiumCoordinates');
+    }
+
     public function findChildren($id){
         $children = array();
         foreach(collect(explode(',',User::find($id)->coordinates->children)) as $child){
