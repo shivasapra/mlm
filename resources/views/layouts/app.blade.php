@@ -183,8 +183,8 @@
             <li class=" nav-item"><a href="{{route('my.campaign',Auth::user())}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a>
             </li>
             
-            <li class=" nav-item"><a href="{{route('contribution.packages',Auth::user())}}"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
-            </li>
+            {{-- <li class=" nav-item"><a href="{{route('contribution.packages',Auth::user())}}"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
+            </li> --}}
 
             {{-- <li class=" nav-item"><a href="pending-assignments.php"><i class="icon-compass3"></i><span class="menu-title">My Assignments</span></a>
             </li> --}}

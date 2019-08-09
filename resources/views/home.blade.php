@@ -146,8 +146,8 @@
                         <div class="media-body media-middle overflow-visible">
                             <div class="heading-tag standard-gradient">Standard</div>
                             <h2>INR {{App\Settings::first()->standard_amount}}</h2>
-                            @if($user->donations()->where('package','STANDARD')->first() != null)
-                                <h6 class="text-muted">{{$user->donations()->where('package','STANDARD')->first()->created_at}}</h6>
+                            @if(Auth::user()->donations()->where('package','STANDARD')->first() != null)
+                                <h6 class="text-muted">{{Auth::user()->donations()->where('package','STANDARD')->first()->created_at}}</h6>
                             @else
                                 <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                     <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
@@ -160,14 +160,14 @@
                         </div>
                     </div>
                 </div>
-            @elseif(Auth::user()->commissions->pluck('amount')->sum() > App\Settings::first()->upgrade_wallet_amount_standard and Auth::user()->commissions->pluck('amount')->sum()  < App\Settings::first()->upgrade_wallet_amount_premium )
+            @elseif(Auth::user()->commissions->pluck('amount')->sum() > App\Settings::first()->upgrade_wallet_amount_standard )
                 <div class="contribute-div">
                     <div class="media overflow-visible">
                         <div class="media-body media-middle overflow-visible">
                             <div class="heading-tag premium-gradient">Premium</div>
                             <h2>INR {{App\Settings::first()->premium_amount}}</h2>
-                            @if($user->donations()->where('package','Premium')->first() != null)
-                                <h6 class="text-muted">{{$user->donations()->where('package','Premium')->first()->created_at}}</h6>
+                            @if(Auth::user()->donations()->where('package','Premium')->first() != null)
+                                <h6 class="text-muted">{{Auth::user()->donations()->where('package','Premium')->first()->created_at}}</h6>
                             @else
                                 <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                     <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->premium_amount}}">
