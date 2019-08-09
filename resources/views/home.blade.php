@@ -23,23 +23,6 @@
 
 @section('content-body')
     <div class="row">
-        {{-- <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>Verification</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
@@ -56,8 +39,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-block">
@@ -80,23 +61,6 @@
                     <div class="card-block">
                         <div class="media">
                             <div class="media-body text-xs-left media-middle">
-                                <h5>Contribute / Donate</h4>
-                                <a href="{{route('contribution.packages',Auth::user())}}">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-whatshot pink font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
                                 <h5>Contribution Viewer</h4>
                                 <a href="{{route('contribution.viewer',Auth::user())}}">View <i class="icon-angle-right"></i></a>
                             </div>
@@ -107,93 +71,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        {{-- <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>Withdraw Funds</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>Fund Transfer</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>Assigned Donors</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>System Fees Code</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-bag2 pink font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>Assignment Setings</h4>
-                                <a href="{{route('assignment.settings',Auth::user())}}">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-settings red font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-block">
@@ -226,8 +103,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-block">
@@ -244,23 +119,27 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-xl-3 col-lg-6 col-xs-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>Add Fund</h4>
-                                <a href="#">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-ios-help-outline cyan font-large-2 float-xs-right"></i>
-                            </div>
-                        </div>
+        <div class="col-xl-3 col-lg-6 col-xs-12">
+            <div class="contribute-div">
+                <div class="media overflow-visible">
+                    <div class="media-body media-middle overflow-visible">
+                        <div class="heading-tag">Basic</div>
+                        <h2>INR {{App\Settings::first()->basic_amount}}</h2>
+                        @if(Auth::user()->donations()->where('package','BASIC')->first() != null)
+                            <h6 class="text-muted">{{Auth::user()->donations()->where('package','BASIC')->first()->created_at}}</h6>
+                        @else
+                            <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->basic_amount}}">
+                                <input type="hidden" class="packagee" name="package" value="BASIC">
+                            </a>
+                        @endif
+                    </div>
+                    <div class="media-right">
+                        <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
     <!--/ stats -->
     <!--/ project charts -->
