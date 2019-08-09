@@ -13,13 +13,6 @@
                                     <ul style="border-left: 1px solid gray; margin-top: 30px;">
                                         @foreach(collect($user->findChildren(Details::where('username',$name)->first()->user->id)) as $c)
                                             <li ><a href="#"><span class="@if($c != 'N/A') @if(Details::where('username',$c)->first()->invited_by == $user->details->username) text-danger @endif @endif">{{$c}}</span></a>
-                                                @if($c != 'N/A')
-                                                    <ul style="border-left: 1px solid gray; margin-top: 30px;">
-                                                        @foreach(collect($user->findChildren(Details::where('username',$c)->first()->user->id)) as $d)
-                                                            <li><a href="#"><span class="@if($d != 'N/A') @if(Details::where('username',$d)->first()->invited_by == $user->details->username) text-danger @endif @endif">{{$d}}</span></a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
                                             </li>
                                         @endforeach
                                     </ul>

@@ -22,20 +22,23 @@
             <label for="level_two_percentage">Level Two Amount</label>
             <input type="number" name="level_two_percentage" @if($settings != null) value="{{$settings->level_two_percentage}}" @endif class="form-control">
         </div>
-        <div class="col-md-2">
+        {{-- <div class="col-md-2">
             <label for="level_three_percentage">Level Three Amount</label>
             <input type="number" name="level_three_percentage" @if($settings != null) value="{{$settings->level_three_percentage}}" @endif class="form-control">
-        </div>
+        </div> --}}
         <div class="col-md-2">
             <label for="upgrade_wallet_amount">Upgrade Wallet Amount</label>
             <input type="number" name="upgrade_wallet_amount" @if($settings != null) value="{{$settings->upgrade_wallet_amount}}" @endif class="form-control">
         </div>
+        <div class="col-md-2 text-center">
+            <br><button type="submit" class="btn btn-sm btn-info">Save</button>
+        </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="text-right">
             <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
-    </div>
+    </div> --}}
 </form><br>
 
 <h1>Standard Package</h1><hr>
@@ -60,20 +63,23 @@
             <label for="level_two_percentage_standard">Level Two Amount</label>
             <input type="number" name="level_two_percentage_standard" @if($settings != null) value="{{$settings->level_two_percentage_standard}}" @endif class="form-control">
         </div>
-        <div class="col-md-2">
+        {{-- <div class="col-md-2">
             <label for="level_three_percentage_standard">Level Three Amount</label>
             <input type="number" name="level_three_percentage_standard" @if($settings != null) value="{{$settings->level_three_percentage_standard}}" @endif class="form-control">
-        </div>
+        </div> --}}
         <div class="col-md-2">
             <label for="upgrade_wallet_amount_standard">Upgrade Wallet Amount</label>
             <input type="number" name="upgrade_wallet_amount_standard" @if($settings != null) value="{{$settings->upgrade_wallet_amount_standard}}" @endif class="form-control">
         </div>
+        <div class="col-md-2 text-center">
+            <br><button type="submit" class="btn btn-sm btn-info">Save</button>
+        </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="text-right">
             <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
-    </div>
+    </div> --}}
 </form><br>
 
 
@@ -99,18 +105,16 @@
             <label for="level_two_percentage_premium">Level Two Amount</label>
             <input type="number" name="level_two_percentage_premium" @if($settings != null) value="{{$settings->level_two_percentage_premium}}" @endif class="form-control">
         </div>
-        <div class="col-md-2">
+        {{-- <div class="col-md-2">
             <label for="level_three_percentage_premium">Level Three Amount</label>
             <input type="number" name="level_three_percentage_premium" @if($settings != null) value="{{$settings->level_three_percentage_premium}}" @endif class="form-control">
-        </div>
+        </div> --}}
         <div class="col-md-2">
             <label for="upgrade_wallet_amount_premium">Upgrade Wallet Amount</label>
             <input type="number" name="upgrade_wallet_amount_premium" @if($settings != null) value="{{$settings->upgrade_wallet_amount_premium}}" @endif class="form-control">
         </div>
-    </div>
-    <div class="row">
-        <div class="text-right">
-            <button type="submit" class="btn btn-sm btn-info">Save</button>
+        <div class="col-md-2 text-center">
+            <br><button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
 </form><br>
