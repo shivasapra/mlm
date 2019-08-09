@@ -132,6 +132,10 @@
                                 <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                     <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->basic_amount}}">
                                     <input type="hidden" class="packagee" name="package" value="BASIC">
+                                    <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->first()) 
+                                                                                    value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->first()->epin}}"
+                                                                                @endif
+                                    >
                                 </a>
                             @endif
                         </div>
@@ -152,6 +156,10 @@
                                 <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                     <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
                                     <input type="hidden" class="packagee" name="package" value="STANDARD">
+                                    <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->first()) 
+                                                                                    value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->first()->epin}}"
+                                                                                @endif
+                                    >
                                 </a>
                             @endif
                         </div>
@@ -172,6 +180,10 @@
                                 <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                     <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->premium_amount}}">
                                     <input type="hidden" class="packagee" name="package" value="Premium">
+                                    <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->first()) 
+                                                                                    value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->first()->epin}}"
+                                                                                @endif
+                                    >
                                 </a>
                             @endif
                         </div>
@@ -447,7 +459,49 @@
         </div>
     </div>
 
-    <button type="button" id="modalButton" data-toggle="modal" data-target="#contributionViewModal" style="display:none;"></button>
-    <div id="modalDisplay"></div>
+    
 
+    <button type="button" id="modalButton" data-toggle="modal" data-target="#contributeModal" style="display:none;"></button>
+    <div id="modalDisplay"></div>
 @endsection
+
+@section('js')
+    <script>
+        function contribute(temp){
+            
+            var amount = $(temp).find('.amount').val();
+            var packages = $(temp).find('.packagee').val();
+            var epin =  $(temp).find('.ep').val();
+            var modal = 
+            '<div class="modal fade" id="contributeModal">'+
+                '<div class="modal-dialog">'+
+                    '<div class="modal-content">'+
+                        '<!-- Modal Header -->'+
+                        '<div class="modal-header">'+
+                        '<h4 class="modal-title">Details</h4>'+
+                        '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                        '</div>'+
+                    '<form action="{{route("contribute")}}" method="post">'+
+                    '@csrf'+
+                        '<!-- Modal body -->'+
+                        '<div class="modal-body">'+
+                        '<input type="hidden" value="'+ packages +'" name="package">'+
+                        '<input type="hidden" value="'+ amount +'" name="amount">'+
+                        '<input type="text" class="form-control" placeholder="Enter Epin" value="'+epin+'" name="epin"><br>'+
+                        '<p>Are You Sure You Want To Invest INR '+amount+' in '+packages+' Package?</p>'+
+                        '</div>'+
+                
+                        '<!-- Modal footer -->'+
+                        '<div class="modal-footer">'+
+                        '<button type="submit" class="btn btn-info">Yes</button>  '+
+                        '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
+                        '</div>'+
+                    '</form>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+            $('#modalDisplay').html(modal);
+            $('#modalButton').click();
+        }
+    </script>
+@stop

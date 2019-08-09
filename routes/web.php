@@ -3,6 +3,7 @@ use App\Http\Controllers\UserController;
 use App\EpinRequests;
 use App\Epin;
 use Illuminate\Http\Request;
+use App\EpinCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +108,7 @@ Route::get('/buy',function(Request $request){
     for ($i=0; $i <$request->amount ; $i++) { 
         $epin = new Epin;
         $epin->epin_category_id = $e->epin_category_id;
+        $epin->rate = EpinCategory::find($e->epin_category_id)->rate;
         $epin->sent_to = Auth::id();
         do {
             $new_epin = str_random();

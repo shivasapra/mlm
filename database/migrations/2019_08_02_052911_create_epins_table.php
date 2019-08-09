@@ -17,6 +17,7 @@ class CreateEpinsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('epin_category_id');
             $table->string('epin');
+            $table->float('rate');
             $table->integer('sent_to')->nullable();
             $table->integer('used_by')->nullable();
             $table->dateTime('used_at')->nullable();

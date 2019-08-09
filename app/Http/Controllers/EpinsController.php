@@ -38,6 +38,7 @@ class EpinsController extends Controller
             $epin = new Epin;
             $epin->epin_category_id = $request->category;
             $epin->epin = $new_epin;
+            $epin->rate = EpinCategory::find($request->category)->rate;
             $epin->save();
         }
         Session::flash('success','Epins Genereted');
