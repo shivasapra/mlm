@@ -472,6 +472,7 @@
             var amount = $(temp).find('.amount').val();
             var packages = $(temp).find('.packagee').val();
             var epin =  $(temp).find('.ep').val();
+            var route = '{{route("contribute")}}';
             var modal = 
             '<div class="modal fade" id="contributeModal">'+
                 '<div class="modal-dialog">'+
@@ -481,7 +482,7 @@
                         '<h4 class="modal-title">Details</h4>'+
                         '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
                         '</div>'+
-                    '<form action="{{route("contribute")}}" method="post">'+
+                    '<form action="'+route+'" method="post">'+
                     '@csrf'+
                         '<!-- Modal body -->'+
                         '<div class="modal-body">'+
