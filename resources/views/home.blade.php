@@ -473,6 +473,13 @@
             var packages = $(temp).find('.packagee').val();
             var epin =  $(temp).find('.ep').val();
             var route = '{{route("contribute")}}';
+            if(packages == 'BASIC'){
+                var a = '';
+            }else if(packages == 'STANDARD'){
+                var a = '_standard';
+            }else if(packages == 'Premium'){
+                var a = '_premium';
+            }
             var modal = 
             '<div class="modal fade" id="contributeModal">'+
                 '<div class="modal-dialog">'+
@@ -488,6 +495,7 @@
                         '<div class="modal-body">'+
                         '<input type="hidden" value="'+ packages +'" name="package">'+
                         '<input type="hidden" value="'+ amount +'" name="amount">'+
+                        '<input type="hidden" value="'+a+'" name="a">'+
                         '<input type="text" class="form-control" placeholder="Enter Epin" value="'+epin+'" name="epin"><br>'+
                         '<p>Are You Sure You Want To Invest INR '+amount+' in '+packages+' Package?</p>'+
                         '</div>'+

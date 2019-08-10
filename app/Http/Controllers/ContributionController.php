@@ -22,49 +22,22 @@ class ContributionController extends Controller
     public function donations(User $user){
         return view('contribution.donations')->with('user',$user);
     }
-    public function contribute(Request $request, Donation $donation){
-        
-        $epin = $this->verifyEpin($request);
-        if(!$epin){
-            Session::flash('warning','Wrong Epin!!');
-            return redirect()->back();
-        }
-        $d = $this->donate($request, $donation);
-        
-        if(!Auth::user()->admin and Auth::user()->coordinates == null){
-            $parent_user = $this->findParentUser();
-            $coordinates = $this->setCoordinates($parent_user);
-        }
-        
-        
-        return redirect()->back();
+
+    private function BasicContribution(){
+        $parent_user = $this->findParentUser();
+        $coordinates = $this->setCoordinates($parent_user);
     }
-    private function verifyEpin($request){
-        $epin = Epin::where('epin',$request->epin)->first();
-        if(!$epin or $epin->used_by != null){
-            
-            return false;
-        }elseif($epin->transfers->count() and Transfer::where('epin_id',$epin->id)->orderBy('id','desc')->first()->to != Auth::id()){
-            
-            return false;
-        }
-        $epin->used_by = Auth::user()->id;
-        $epin->used_at = Carbon::now();
-        $epin->save();
-        return $epin;
+
+    private function StandardContribution(){
+        $parent_user = $this->findParentUser();
+        $coordinates = $this->setCoordinates($parent_user);
     }
-    private function donate($request, $donation){
-        $donation->user_id = Auth::user()->id;
-        $donation->package = $request->package;
-        $donation->amount = $request->amount;
-        $donation->save();
-        
-        $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> Settings::first()->admin_amount];
-        $contactEmail = User::where('admin',1)->first()->email;
-        $this->sendMail($data ,$contactEmail);
-        $this->commission(Settings::first()->admin_amount,User::where('admin',1)->first());
-        return $donation;
+
+    private function PremiumContribution(){
+        $parent_user = $this->findParentUser();
+        $coordinates = $this->setCoordinates($parent_user);
     }
+
     private function findParentUser(){
         $temp = Details::where('username',Auth::user()->details->invited_by)->first()->user;
         if(count(explode(',',$temp->coordinates->children)) < 5){
@@ -80,6 +53,51 @@ class ContributionController extends Controller
         }
         return $parent_user;
     }
+
+    public function contribute(Request $request, Donation $donation){
+        $epin = $this->verifyEpin($request);
+        if(!$epin){
+            Session::flash('warning','Wrong Epin!!');
+            return redirect()->back();
+        }
+
+        $d = $this->donate($request, $donation);
+
+        if($request->package == 'BASIC'){
+            $this->BasicContribution();
+        }elseif($request->package == 'STANDARD'){
+            $this->StandardContribution();
+        }elseif($request->package == 'Premium'){
+            $this->PremiumContribution();
+        }
+
+        return redirect()->back();
+    }
+    private function verifyEpin($request){
+        $epin = Epin::where('epin',$request->epin)->first();
+        if(!$epin or $epin->used_by != null){
+            return false;
+        }elseif($epin->transfers->count() and Transfer::where('epin_id',$epin->id)->orderBy('id','desc')->first()->to != Auth::id()){
+            return false;
+        }
+        $epin->used_by = Auth::user()->id;
+        $epin->used_at = Carbon::now();
+        $epin->save();
+        return $epin;
+    }
+    private function donate($request, $donation){
+        $donation->user_id = Auth::user()->id;
+        $donation->package = $request->package;
+        $donation->amount = $request->amount;
+        $donation->save();
+        
+        $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> Settings::first()->admin_amount.$request->a];
+        $contactEmail = User::where('admin',1)->first()->email;
+        $this->sendMail($data ,$contactEmail);
+        $this->commission(Settings::first()->admin_amount.$request->a,User::where('admin',1)->first());
+        return $donation;
+    }
+    
     
     private function commission($amount,$user){
         $commission = new Commision;
