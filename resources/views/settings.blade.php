@@ -131,7 +131,7 @@
 
 <h1>Causes</h1><hr>
  <div class="row">
-    <div class="col-md-4" id="load">
+    <div class="col-md-4" id="loads">
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>
@@ -188,7 +188,7 @@
             }
         }
         $('#button').removeAttr('disabled');
-        $("#load").load(" #load > *");
+        $("#loads").load(" #loads > *");
         $('#cause').val('');
        
     }
