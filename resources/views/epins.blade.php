@@ -72,7 +72,9 @@
                         <select name="epin_type" class="form-control" required>
                             <option value="">--Select--</option>
                             @foreach(App\EpinCategory::all() as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @if($category->epins->where('sent_to','==',null)->count())
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -93,6 +95,7 @@
                         <th>Sno.</th>
                         <th>Category</th>
                         <th>Number Of Epins</th>
+                        <th>Sent Epins</th>
                         <th>Rate</th>
                         <th>Details</th>
                     </tr>
@@ -104,6 +107,7 @@
                             <th>{{$i++}}.</th>
                             <td>{{$category->name}}</td>
                             <td>{{$category->epins->count()}}</td>
+                            <td>{{$category->epins->where('sent_to','!=',null)->count()}}</td>
                             <td>{{$category->rate}}</td>
                             <td>
                                 <a href="{{route('category.details',$category)}}" class="btn btn-sm btn-info">View</a>
