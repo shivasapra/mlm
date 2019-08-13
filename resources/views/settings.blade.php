@@ -176,7 +176,7 @@
         console.log(cause);
         
         var params = 'cause='+cause;
-        var Url = "https://buildatwill.com/galaxycrowd/mlm/public/save-cause";
+        var Url = "https://galaxycrowd.com/app/mlm/public/save-cause";
         var xhr = new XMLHttpRequest();
         xhr.open('GET', Url+"?"+params, true);
         xhr.send();
