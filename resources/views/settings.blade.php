@@ -183,10 +183,13 @@
         xhr.onreadystatechange = processRequest;
         function processRequest(e) {
             var response1 = JSON.parse(xhr.responseText);
-                $('#button').removeAttr('disabled');
-                $("#load").load(" #load > *");
-                $('#cause').val('');
+            if (response1){
+               
+            }
         }
+        $('#button').removeAttr('disabled');
+        $("#load").load(" #load > *");
+        $('#cause').val('');
        
     }
     function test(temp){
