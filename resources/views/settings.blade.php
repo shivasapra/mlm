@@ -142,7 +142,7 @@
             </thead>
             <tbody>
                 <?php $i = 1; ?>
-                @foreach($causes as $cause)
+                @foreach(App\Cause::all() as $cause)
                     <tr>
                         <td><b>{{$i++}}.</b></td>
                         <td class="text-center">{{$cause->name}}</td>
