@@ -95,7 +95,7 @@
                         <th>Sno.</th>
                         <th>Category</th>
                         <th>Number Of Epins</th>
-                        <th>Sent Epins</th>
+                        <th>Available Epins</th>
                         <th>Rate</th>
                         <th>Details</th>
                     </tr>
@@ -107,7 +107,7 @@
                             <th>{{$i++}}.</th>
                             <td>{{$category->name}}</td>
                             <td>{{$category->epins->count()}}</td>
-                            <td>{{$category->epins->where('sent_to','!=',null)->count()}}</td>
+                            <td>{{$category->epins->where('sent_to',null)->count()}}</td>
                             <td>{{$category->rate}}</td>
                             <td>
                                 <a href="{{route('category.details',$category)}}" class="btn btn-sm btn-info">View</a>
