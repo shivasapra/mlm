@@ -130,8 +130,8 @@
     </form>
 
 <h1>Causes</h1><hr>
- <div class="row">
-    <div class="col-md-4" id="loads">
+ <div class="row" id="loads">
+    <div class="col-md-4" >
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>
@@ -187,9 +187,9 @@
                
             }
         }
-        $('#button').removeAttr('disabled');
+        // $('#button').removeAttr('disabled');
         $("#loads").load(" #loads > *");
-        $('#cause').val('');
+        // $('#cause').val('');
        
     }
     function test(temp){
