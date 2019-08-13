@@ -130,7 +130,7 @@
     </form>
 
 <h1>Causes</h1><hr>
- <div class="row" id="loads">
+ <div class="row">
     <div class="col-md-4" >
         <table class="table table-bordered table-responsive">
             <thead>
@@ -140,7 +140,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="loads">
                 <?php $i = 1; ?>
                 @foreach(App\Cause::all() as $cause)
                     <tr>
