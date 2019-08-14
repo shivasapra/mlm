@@ -37,18 +37,6 @@ class UsersTableSeeder extends Seeder
         $coordinates->column = 1000;
         $coordinates->save();
 
-        $standard_coordinates = new App\StandardCoordinates;
-        $standard_coordinates->user_id = $user->id;
-        $standard_coordinates->row = 1;
-        $standard_coordinates->column = 1000;
-        $standard_coordinates->save();
-
-        $premium_coordinates = new App\PremiumCoordinates;
-        $premium_coordinates->user_id = $user->id;
-        $premium_coordinates->row = 1;
-        $premium_coordinates->column = 1000;
-        $premium_coordinates->save();
-
         for ($i = 0; $i < 10; $i++) { 
             $user = new App\User;
             $user->name = $faker->name;
