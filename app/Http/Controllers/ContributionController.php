@@ -185,7 +185,7 @@ class ContributionController extends Controller
                         $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
                     });
 
-        }finally{
+        }catch (exception $e) {
             Session::flash('oops','Donation Successfull!! But Unable to Send Mail! Please Contact Support');
         }
     }
