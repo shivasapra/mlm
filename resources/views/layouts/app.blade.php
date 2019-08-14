@@ -334,6 +334,11 @@
                 toastr.danger("{{Session::get('danger')}}")
             @endif
         </script>
+        @if(Session::has('oops'))
+            <script>
+                swal(`{{Session::get('oops')}}`, "", "error");
+            </script>
+        @endif
         @yield('js')
     </body>
 </html>

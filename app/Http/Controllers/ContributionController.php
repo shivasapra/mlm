@@ -15,7 +15,8 @@ use App\Transfer;
 use Session;
 use App\Commision;
 class ContributionController extends Controller
-{
+{   
+
     public function packages(User $user){
         return view('contribution.packages')->with('user',$user)->with('packages',ContributionPackages::all());
     }
@@ -23,19 +24,19 @@ class ContributionController extends Controller
         return view('contribution.donations')->with('user',$user);
     }
 
-    private function BasicContribution(){
+    private function BasicContribution($collection){
         $parent_user = $this->findParentUser();
-        $coordinates = $this->setCoordinates($parent_user);
+        $coordinates = $this->setCoordinates($parent_user, $collection);
     }
 
-    private function StandardContribution(){
+    private function StandardContribution($collection){
         $parent_user = $this->findParentUser();
-        $coordinates = $this->setCoordinates($parent_user);
+        $coordinates = $this->setCoordinates($parent_user, $collection);
     }
 
-    private function PremiumContribution(){
+    private function PremiumContribution($collection){
         $parent_user = $this->findParentUser();
-        $coordinates = $this->setCoordinates($parent_user);
+        $coordinates = $this->setCoordinates($parent_user, $collection);
     }
 
     private function findParentUser(){
@@ -55,22 +56,28 @@ class ContributionController extends Controller
     }
 
     public function contribute(Request $request, Donation $donation){
+        $collection = collect();
         $epin = $this->verifyEpin($request);
         if(!$epin){
             Session::flash('warning','Wrong Epin!!');
             return redirect()->back();
         }
 
-        $d = $this->donate($request, $donation);
+        $d = $this->donate($request, $donation, $collection);
 
         if($request->package == 'BASIC'){
-            $this->BasicContribution();
+            $this->BasicContribution($collection);
         }elseif($request->package == 'STANDARD'){
-            $this->StandardContribution();
+            $this->StandardContribution($collection);
         }elseif($request->package == 'Premium'){
-            $this->PremiumContribution();
+            $this->PremiumContribution($collection);
         }
 
+        foreach($collection as $cd){
+            $this->sendMail($cd[0],$cd[1]);
+        }
+        
+        
         return redirect()->back();
     }
     private function verifyEpin($request){
@@ -85,7 +92,7 @@ class ContributionController extends Controller
         $epin->save();
         return $epin;
     }
-    private function donate($request, $donation){
+    private function donate($request, $donation, $collection){
         $donation->user_id = Auth::user()->id;
         $donation->package = $request->package;
         $donation->amount = $request->amount;
@@ -93,7 +100,7 @@ class ContributionController extends Controller
         
         $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> Settings::first()->admin_amount.$request->a];
         $contactEmail = User::where('admin',1)->first()->email;
-        $this->sendMail($data ,$contactEmail);
+        $collection->push([$data,$contactEmail]);
         $this->commission(Settings::first()->admin_amount.$request->a,User::where('admin',1)->first());
         return $donation;
     }
@@ -106,7 +113,7 @@ class ContributionController extends Controller
         $commission->from = Auth::id();
         $commission->save();
     }
-    private function setCoordinates($parent_user){
+    private function setCoordinates($parent_user, $collection){
         $coordinates = new Coordinates;
         $coordinates->user_id = Auth::user()->id;
         $coordinates->row = $parent_user->coordinates->row + 1 ;
@@ -123,7 +130,7 @@ class ContributionController extends Controller
         $parent_amount = Settings::first()->level_three_percentage;
         $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
         $contactEmail = $parent_user->email;
-        $this->sendMail($data ,$contactEmail);
+        $collection->push([$data,$contactEmail]);
         $this->commission($parent_amount,$parent_user);
         
         if($super_parent_user = User::find($parent_user->coordinates->parent)){
@@ -133,7 +140,7 @@ class ContributionController extends Controller
             $super_parent_amount = Settings::first()->level_two_percentage;
             $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
             $contactEmail = $super_parent_user->email;
-            $this->sendMail($data ,$contactEmail);
+            $collection->push([$data,$contactEmail]);
             $this->commission($super_parent_amount,$super_parent_user);
             if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
                 $coordinates->super_duper_parent = $super_duper_parent_user->id;
@@ -142,7 +149,7 @@ class ContributionController extends Controller
                 $super_duper_parent_amount = Settings::first()->level_one_percentage;
                 $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = $super_duper_parent_user->email;
-                $this->sendMail($data ,$contactEmail);
+                $collection->push([$data,$contactEmail]);
                 $this->commission($super_duper_parent_amount,$super_duper_parent_user);
             }
         }
@@ -167,15 +174,20 @@ class ContributionController extends Controller
         }
     }
     private function sendMail($data, $contactEmail){
-        Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
-            {  
-                $message->to($contactEmail)->subject('Contribution Amount!!');
-            });
-        $data = ['user'=>Auth::user()];
-        Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
-            {  
-                $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
-            });
+        try{
+                Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+                    {  
+                        $message->to($contactEmail)->subject('Contribution Amount!!');
+                    });
+                $data = ['user'=>Auth::user()];
+                Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
+                    {  
+                        $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
+                    });
+
+        }finally{
+            Session::flash('oops','Donation Successfull!! But Unable to Send Mail! Please Contact Support');
+        }
     }
     // public function matrix(){
     //     $user = Auth::user();
