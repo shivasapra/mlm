@@ -130,7 +130,7 @@ class UserController extends Controller
         $detail->email_verification = 1;
         $detail->verify_token = null;
         $detail->save();
-        return route('home');
+        return redirect()->route('home');
     }
 
     public function supportCreateTickets(){
