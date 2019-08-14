@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StandardCoordinates extends Model
 {
-    protected $table = 'standard_ coordinates';
+    protected $table = 'standard_coordinates';
 
     public function user(){
         return $this->belongsTo('App\User');
