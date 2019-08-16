@@ -10,6 +10,6 @@ class Cause extends Model
 
 
     public function subcauses(){
-        return $this->belongsTo('App\Subcause');
+        return $this->hasMany('App\Subcause');
     }
 }

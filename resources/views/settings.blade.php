@@ -147,7 +147,12 @@
                     @foreach(App\Cause::all() as $cause)
                         <tr>
                             <td><b>{{$i++}}.</b></td>
-                            <td class="text-center">{{$cause->name}}</td>
+                            <td class="text-center">
+                                <a href="javascript:void(0)" onclick="FindSubCause(this);">
+                                    <input type="hidden" class="cause_id" value="{{$cause->id}}">
+                                    {{$cause->name}}
+                                </a>
+                            </td>
                             <td><a href="{{route('cause.delete',['id'=> $cause->id])}}" class="btn btn-sm btn-danger">Delete</a></td>
                         </tr>
                     @endforeach
@@ -182,40 +187,45 @@
         </form>
     </div>
 </div>
-
- <div class="row">
-    <div class="col-md-4">
-        
-    </div>
-    
- </div><br>
-
- 
+<button type="button" id="modalButton" data-toggle="modal" data-target="#Modal" style="display:none;"></button>
+<div id="modalDisplay"></div>
 @stop
 @section('js')
 <script>
-    function saveCause(test){
-  
-        $('#button').attr('disabled','disabled');
-        var cause= $(test).find('#cause').val();
-        console.log(cause);
-        
-        var params = 'cause='+cause;
-        var Url = "https://galaxycrowd.com/app/mlm/public/save-cause";
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', Url+"?"+params, true);
-        xhr.send();
-        xhr.onreadystatechange = processRequest;
-        function processRequest(e) {
-            var response1 = JSON.parse(xhr.responseText);
-            if (response1){
-               
-            }
-        }
-        // $('#button').removeAttr('disabled');
-        $("#loads").load(" #loads > *");
-        // $('#cause').val('');
-       
+    function FindSubCause(temp){
+        var cause_id = $(temp).find('.cause_id').val();
+            @foreach(App\Cause::all() as $cause)
+            var fetched_cause_id = {!! json_encode($cause->id) !!}
+                if(fetched_cause_id == cause_id){
+                    var modal = 
+                    '<div class="modal fade" id="Modal">'+
+                        '<div class="modal-dialog">'+
+                            '<div class="modal-content">'+
+                                '<!-- Modal Header -->'+
+                                '<div class="modal-header">'+
+                                '<h4 class="modal-title">Subcauses</h4>'+
+                                '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                                '</div>'+
+                                '<!-- Modal body -->'+
+                                '<div class="modal-body">'+
+                                    '@if($cause->subcauses->count() > 0)'+
+                                        '@foreach($cause->subcauses as $c)'+
+                                            '<strong>{{$loop->index + 1}}. </strong>{{$c->name}}'+
+                                        '@endforeach'+
+                                    '@endif'+
+                                '</div>'+
+                        
+                                '<!-- Modal footer -->'+
+                                '<div class="modal-footer">'+
+                                '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+                    $('#modalDisplay').html(modal);
+                    $('#modalButton').click();
+                }
+          @endforeach
     }
     function test(temp){
       if (temp.value.trim() == '') {
