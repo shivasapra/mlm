@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="epin_type">Epin Type</label>
-                        <select name="epin_type" class="form-control" required>
+                        <select name="epin_type" class="form-control" required onchange="category(this);">
                             <option value="">--Select--</option>
                             @foreach(App\EpinCategory::all() as $category)
                                 @if($category->epins->where('sent_to','==',null)->count())
@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="no_of_pins">Number Of Pins</label>
-                        <input type="number" name="no_of_pins" class="form-control">
+                        <input type="number" name="no_of_pins" id="max" class="form-control">
                     </div>
                     <div class="col-md-3"><br>
                         <button type="submit" class="btn btn-md btn-info">Send</button>
@@ -242,6 +242,21 @@
                 '</div>';
                 $('#modalDisplay').html(modal);
                 $('#modalButton').click();
+            }
+        </script>
+
+        <script>
+            function category(temp){
+
+                var category_id = temp.value;
+				@foreach(App\EpinCategory::all() as $c)
+				var fetched_category_id = {!! json_encode($c->id) !!}
+			    	if(fetched_category_id == category_id){
+                            var max = {!! json_encode($c->epins->where('sent_to',null)->count()) !!}
+							$('#max').attr('max',max);
+                            
+						}
+			  @endforeach
             }
         </script>
 @stop
