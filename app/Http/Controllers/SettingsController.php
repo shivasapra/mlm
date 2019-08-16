@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Settings;
 use App\Cause;
+use App\Subcause;
 use Session;
 class SettingsController extends Controller
 {
@@ -98,6 +99,14 @@ class SettingsController extends Controller
         $cause->name = $request->cause;
         $cause->save();
         Session::flash('success','cause saved!!');
+        return redirect()->back();
+    }
+
+    public function SubCauseSave(Request $request,Subcause $s){
+        $s->cause_id = $request->cause;
+        $s->name = $request->subcause;
+        $s->save();
+        Session::flash('success','SubCause Saved');
         return redirect()->back();
     }
 }

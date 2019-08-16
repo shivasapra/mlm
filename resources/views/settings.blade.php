@@ -160,7 +160,7 @@
         </form>
     </div>
     <div class="col-md-6">
-        <form action="" method="post">
+        <form action="{{route('save.subcause')}}" method="post">
             @csrf
             <h1>Sub Causes</h1><hr>
             <div class="row">

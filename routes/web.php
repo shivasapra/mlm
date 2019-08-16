@@ -74,6 +74,7 @@ Route::post('/Save-Premium-Settings','SettingsController@savePremium')->name('se
 Route::post('/Save-Facilitation','SettingsController@saveFacilitation')->name('settings.saveFacilitation');
 Route::get('/Cause-Delete/{id}','SettingsController@CauseDelete')->name('cause.delete');
 Route::post('/save-cause','SettingsController@CauseSave')->name('save.cause');
+Route::post('/save-subcause','SettingsController@SubCauseSave')->name('save.subcause');
 
 
 Route::get('/epins','EpinsController@epins')->name('epins');
