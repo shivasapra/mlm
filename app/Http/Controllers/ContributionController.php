@@ -29,14 +29,66 @@ class ContributionController extends Controller
         $coordinates = $this->setCoordinates($parent_user, $collection);
     }
 
-    private function StandardContribution($collection){
-        $parent_user = $this->findParentUser();
-        $coordinates = $this->setCoordinates($parent_user, $collection);
+    private function StandardContribution($collection,$request){
+        $parent_user = User::find(Auth::user()->coordinates->parent);
+        $temp = 'level_three_percentage'.$request->a;
+        $parent_amount = Settings::first()->$temp;
+        $this->commission($parent_amount,$parent_user);
+
+        $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
+        $contactEmail = $parent_user->email;
+        $collection->push([$data,$contactEmail]);
+
+        if($super_parent_user = User::find($parent_user->coordinates->parent)){
+            $temp = 'level_two_percentage'.$request->a;
+            $super_parent_amount = Settings::first()->$temp;
+            $this->commission($super_parent_amount,$super_parent_user);
+
+            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+            $contactEmail = $super_parent_user->email;
+            $collection->push([$data,$contactEmail]);
+
+            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
+                $temp = 'level_one_percentage'.$request->a;
+                $super_duper_parent_amount = Settings::first()->$temp;
+                $this->commission($super_duper_parent_amount,$super_duper_parent_user);
+
+                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+                $contactEmail = $super_duper_parent_user->email;
+                $collection->push([$data,$contactEmail]);
+            }
+        }
     }
 
-    private function PremiumContribution($collection){
-        $parent_user = $this->findParentUser();
-        $coordinates = $this->setCoordinates($parent_user, $collection);
+    private function PremiumContribution($collection,$request){
+        $parent_user = User::find(Auth::user()->coordinates->parent);
+        $temp = 'level_three_percentage'.$request->a;
+        $parent_amount = Settings::first()->$temp;
+        $this->commission($parent_amount,$parent_user);
+
+        $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
+        $contactEmail = $parent_user->email;
+        $collection->push([$data,$contactEmail]);
+
+        if($super_parent_user = User::find($parent_user->coordinates->parent)){
+            $temp = 'level_two_percentage'.$request->a;
+            $super_parent_amount = Settings::first()->$temp;
+            $this->commission($super_parent_amount,$super_parent_user);
+
+            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+            $contactEmail = $super_parent_user->email;
+            $collection->push([$data,$contactEmail]);
+
+            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
+                $temp = 'level_one_percentage'.$request->a;
+                $super_duper_parent_amount = Settings::first()->$temp;
+                $this->commission($super_duper_parent_amount,$super_duper_parent_user);
+
+                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+                $contactEmail = $super_duper_parent_user->email;
+                $collection->push([$data,$contactEmail]);
+            }
+        }
     }
 
     private function findParentUser(){
@@ -68,9 +120,9 @@ class ContributionController extends Controller
         if($request->package == 'BASIC'){
             $this->BasicContribution($collection);
         }elseif($request->package == 'STANDARD'){
-            $this->StandardContribution($collection);
+            $this->StandardContribution($collection,$request);
         }elseif($request->package == 'Premium'){
-            $this->PremiumContribution($collection);
+            $this->PremiumContribution($collection,$request);
         }
 
         // foreach($collection as $cd){
@@ -101,7 +153,8 @@ class ContributionController extends Controller
         $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> Settings::first()->admin_amount.$request->a];
         $contactEmail = User::where('admin',1)->first()->email;
         $collection->push([$data,$contactEmail]);
-        $this->commission(Settings::first()->admin_amount.$request->a,User::where('admin',1)->first());
+        $temp = 'admin_amount'.$request->a;
+        $this->commission(Settings::first()->$temp,User::where('admin',1)->first());
         return $donation;
     }
     

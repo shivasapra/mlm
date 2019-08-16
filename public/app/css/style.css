@@ -185,16 +185,16 @@ table{
 .contribute-div img{
     width:120px;
 }
-.heading-tag{
+.heading-tag {
     text-transform: uppercase;
     background-image: linear-gradient(to left, #8adc32 0%, #25c7a2 95%);
     color: #fff;
-    padding: 10px 25px;
+    padding: 0px 12px;
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
     display: inline-block;
     margin-bottom: 10px;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 600;
     margin-left: -20px;
 }

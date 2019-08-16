@@ -119,83 +119,85 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-6 col-xs-12">
-            @if(Auth::user()->commissions->pluck('amount')->sum() < App\Settings::first()->upgrade_wallet_amount)
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag">Basic</div>
-                            <h2>INR {{App\Settings::first()->basic_amount}}</h2>
-                            @if(Auth::user()->donations()->where('package','BASIC')->first() != null)
-                                <h6 class="text-muted">{{Auth::user()->donations()->where('package','BASIC')->first()->created_at}}</h6>
-                            @else
-                                <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
-                                    <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->basic_amount}}">
-                                    <input type="hidden" class="packagee" name="package" value="BASIC">
-                                    <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->first()) 
-                                                                                    value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->first()->epin}}"
-                                                                                @endif
-                                    >
-                                </a>
-                            @endif
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
-                        </div>
-                    </div>
-                </div>
-            @elseif(Auth::user()->commissions->pluck('amount')->sum() > App\Settings::first()->upgrade_wallet_amount and Auth::user()->commissions->pluck('amount')->sum()  < App\Settings::first()->upgrade_wallet_amount_standard )
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag standard-gradient">Standard</div>
-                            <h2>INR {{App\Settings::first()->standard_amount}}</h2>
-                            @if(Auth::user()->donations()->where('package','STANDARD')->first() != null)
-                                <h6 class="text-muted">{{Auth::user()->donations()->where('package','STANDARD')->first()->created_at}}</h6>
-                            @else
-                                <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
-                                    <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
-                                    <input type="hidden" class="packagee" name="package" value="STANDARD">
-                                    <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->first()) 
-                                                                                    value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->first()->epin}}"
-                                                                                @endif
-                                    >
-                                </a>
-                            @endif
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+        @if(!Auth::user()->admin)
+            <div class="col-xl-3 col-lg-6 col-xs-12">
+                @if(Auth::user()->commissions->pluck('amount')->sum() < App\Settings::first()->upgrade_wallet_amount)
+                    <div class="contribute-div">
+                        <div class="media overflow-visible">
+                            <div class="media-body media-middle overflow-visible">
+                                <div class="heading-tag">Basic</div>
+                                <h2>INR {{App\Settings::first()->basic_amount}}</h2>
+                                @if(Auth::user()->donations()->where('package','BASIC')->first() != null)
+                                    <h6 class="text-muted">{{Auth::user()->donations()->where('package','BASIC')->first()->created_at}}</h6>
+                                @else
+                                    <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                        <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->basic_amount}}">
+                                        <input type="hidden" class="packagee" name="package" value="BASIC">
+                                        <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->first()) 
+                                                                                        value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->first()->epin}}"
+                                                                                    @endif
+                                        >
+                                    </a>
+                                @endif
+                            </div>
+                            <div class="media-right">
+                                <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @elseif(Auth::user()->commissions->pluck('amount')->sum() > App\Settings::first()->upgrade_wallet_amount_standard )
-                <div class="contribute-div">
-                    <div class="media overflow-visible">
-                        <div class="media-body media-middle overflow-visible">
-                            <div class="heading-tag premium-gradient">Premium</div>
-                            <h2>INR {{App\Settings::first()->premium_amount}}</h2>
-                            @if(Auth::user()->donations()->where('package','Premium')->first() != null)
-                                <h6 class="text-muted">{{Auth::user()->donations()->where('package','Premium')->first()->created_at}}</h6>
-                            @else
-                                <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
-                                    <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->premium_amount}}">
-                                    <input type="hidden" class="packagee" name="package" value="Premium">
-                                    <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->first()) 
-                                                                                    value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->first()->epin}}"
-                                                                                @endif
-                                    >
-                                </a>
-                            @endif
-                        </div>
-                        <div class="media-right">
-                            <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                @elseif(Auth::user()->commissions->pluck('amount')->sum() >= App\Settings::first()->upgrade_wallet_amount and Auth::user()->commissions->pluck('amount')->sum()  < App\Settings::first()->upgrade_wallet_amount_standard )
+                    <div class="contribute-div">
+                        <div class="media overflow-visible">
+                            <div class="media-body media-middle overflow-visible">
+                                <div class="heading-tag standard-gradient">Standard</div>
+                                <h2>INR {{App\Settings::first()->standard_amount}}</h2>
+                                @if(Auth::user()->donations()->where('package','STANDARD')->first() != null)
+                                    <h6 class="text-muted">{{Auth::user()->donations()->where('package','STANDARD')->first()->created_at}}</h6>
+                                @else
+                                    <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                        <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
+                                        <input type="hidden" class="packagee" name="package" value="STANDARD">
+                                        <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->first()) 
+                                                                                        value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->first()->epin}}"
+                                                                                    @endif
+                                        >
+                                    </a>
+                                @endif
+                            </div>
+                            <div class="media-right">
+                                <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @else
+                @elseif(Auth::user()->commissions->pluck('amount')->sum() >= App\Settings::first()->upgrade_wallet_amount_standard )
+                    <div class="contribute-div">
+                        <div class="media overflow-visible">
+                            <div class="media-body media-middle overflow-visible">
+                                <div class="heading-tag premium-gradient">Premium</div>
+                                <h2>INR {{App\Settings::first()->premium_amount}}</h2>
+                                @if(Auth::user()->donations()->where('package','Premium')->first() != null)
+                                    <h6 class="text-muted">{{Auth::user()->donations()->where('package','Premium')->first()->created_at}}</h6>
+                                @else
+                                    <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
+                                        <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->premium_amount}}">
+                                        <input type="hidden" class="packagee" name="package" value="Premium">
+                                        <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->first()) 
+                                                                                        value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->first()->epin}}"
+                                                                                    @endif
+                                        >
+                                    </a>
+                                @endif
+                            </div>
+                            <div class="media-right">
+                                <img src="{{asset('app/images/medal1.png')}}" alt="gold medal" class="media-object"/>
+                            </div>
+                        </div>
+                    </div>
+                @else
 
-            @endif
-        </div>
+                @endif
+            </div>
+        @endif
     </div>
     <!--/ stats -->
     <!--/ project charts -->
