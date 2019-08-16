@@ -152,7 +152,8 @@
             </tbody>
         </table>
     </div>
-    <form onsubmit="saveCause(this);" action="javascript:void(0)" method="post" id="form">
+    <form action="{{route('save.cause')}}" method="post" id="form">
+        @csrf
     <div class="col-md-3">
         <div class="form-group">
             <label for="cause"><b>Add Cause:</b></label>

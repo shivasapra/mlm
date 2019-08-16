@@ -97,7 +97,7 @@ class SettingsController extends Controller
         $cause = new Cause;
         $cause->name = $request->cause;
         $cause->save();
-        
-        return $cause;
+        Session::flash('success','cause saved!!');
+        return redirect()->back();
     }
 }

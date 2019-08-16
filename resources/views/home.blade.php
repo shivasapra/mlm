@@ -61,7 +61,7 @@
                     <div class="card-block">
                         <div class="media">
                             <div class="media-body text-xs-left media-middle">
-                                <h5>Contribution Viewer</h4>
+                                <h5>Contributors</h4>
                                 <a href="{{route('contribution.viewer',Auth::user())}}">View <i class="icon-angle-right"></i></a>
                             </div>
                             <div class="media-right media-middle">
@@ -71,21 +71,39 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="media">
-                            <div class="media-body text-xs-left media-middle">
-                                <h5>Setings</h4>
-                                <a href="{{route('settings')}}">View <i class="icon-angle-right"></i></a>
-                            </div>
-                            <div class="media-right media-middle">
-                                <i class="icon-settings green font-large-2 float-xs-right"></i>
+            @if(Auth::user()->admin)
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="media">
+                                <div class="media-body text-xs-left media-middle">
+                                    <h5>Setings</h4>
+                                    <a href="{{route('settings')}}">View <i class="icon-angle-right"></i></a>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-settings green font-large-2 float-xs-right"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="media">
+                                <div class="media-body text-xs-left media-middle">
+                                    <h5>Support Tickets</h4>
+                                    <a href="{{route('support.createTickets')}}">View <i class="icon-angle-right"></i></a>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-support green font-large-2 float-xs-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
         <div class="col-xl-3 col-lg-6 col-xs-12">
             <div class="card">
