@@ -215,6 +215,31 @@
 
                 @endif
             </div>
+        @else
+            <div class="col-xl-3 col-lg-6 col-xs-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Number Of Persons</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(App\Coordinates::where('id','!=',1)->pluck('row')->unique() as $r)
+                                    <tr>
+                                        <th>{{__('Level ')}}{{$r}}</th>
+                                        <td>
+                                            {{App\Coordinates::where('row',$r)->count()}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         @endif
     </div>
     <!--/ stats -->
