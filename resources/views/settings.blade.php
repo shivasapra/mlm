@@ -128,42 +128,66 @@
             </div>
         </div><br><br><br>
     </form>
-
-<h1>Causes</h1><hr>
- <div class="row">
-    <div class="col-md-4" id="loads">
-        <table class="table table-bordered table-responsive">
-            <thead>
-                <tr>
-                    <th>Sno.</th>
-                    <th class="text-center" style="width:75%">Cause</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody >
-                <?php $i = 1; ?>
-                @foreach(App\Cause::all() as $cause)
+    <hr><br>
+<div class="row">
+    <div class="col-md-6">
+        <form action="{{route('save.cause')}}" method="post" id="form">
+            @csrf
+            <h1>Causes</h1><hr>
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td><b>{{$i++}}.</b></td>
-                        <td class="text-center">{{$cause->name}}</td>
-                        <td><a href="{{route('cause.delete',['id'=> $cause->id])}}" class="btn btn-sm btn-danger">Delete</a></td>
+                        <th>Sno.</th>
+                        <th class="text-center" style="width:75%">Cause</th>
+                        <th>Action</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody >
+                    <?php $i = 1; ?>
+                    @foreach(App\Cause::all() as $cause)
+                        <tr>
+                            <td><b>{{$i++}}.</b></td>
+                            <td class="text-center">{{$cause->name}}</td>
+                            <td><a href="{{route('cause.delete',['id'=> $cause->id])}}" class="btn btn-sm btn-danger">Delete</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="col-md-10">
+                <input type="text" id="cause" placeholder="Enter Cause..." onkeyup="test(this)" class="form-control" name="cause">
+            </div>
+            <button id="button" type="submit" class="btn btn-md btn-info">Save</button>
+        </form>
     </div>
-    <form action="{{route('save.cause')}}" method="post" id="form">
-        @csrf
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="cause"><b>Add Cause:</b></label>
-            <input type="text" id="cause" onkeyup="test(this)" name="cause" class="form-control">
-        </div>
-    </div><br>
-    <div class="col-md-1">
-        <button id="button" type="submit" class="btn btn-sm btn-info">Save</button>
+    <div class="col-md-6">
+        <form action="" method="post">
+            @csrf
+            <h1>Sub Causes</h1><hr>
+            <div class="row">
+                <div class="col-md-5">
+                    <select name="cause" id="" class="form-control">
+                        <option value="">---Select Cause---</option>
+                        @foreach(App\Cause::all() as $cause)
+                            <option value="{{$cause->id}}">{{$cause->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" placeholder="Enter Sub Cause..." class="form-control" name="subcause">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-md btn-info">Save</button>
+                </div>
+            </div>
+        </form>
     </div>
-    </form>
+</div>
+
+ <div class="row">
+    <div class="col-md-4">
+        
+    </div>
+    
  </div><br>
 
  
