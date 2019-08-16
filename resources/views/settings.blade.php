@@ -210,7 +210,7 @@
                                 '<div class="modal-body">'+
                                     '@if($cause->subcauses->count() > 0)'+
                                         '@foreach($cause->subcauses as $c)'+
-                                            '<strong>{{$loop->index + 1}}. </strong>{{$c->name}}'+
+                                            '<strong>{{$loop->index + 1}}. </strong>{{$c->name}}<br>'+
                                         '@endforeach'+
                                     '@endif'+
                                 '</div>'+
