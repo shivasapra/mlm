@@ -58,4 +58,8 @@ class HomeController extends Controller
     public function rewards(){
         return view('rewards');
     }
+
+    public function users(){
+        return view('users')->with('users',User::all());
+    }
 }

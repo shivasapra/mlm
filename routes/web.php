@@ -104,6 +104,7 @@ Route::get('/support-view-tickets','UserController@supportViewTickets')->name('s
 Route::post('/store-ticket','UserController@storeTicket')->name('store.ticket');
 
 Route::get('/rewards','HomeController@rewards')->name('rewards');
+Route::get('/users','HomeController@users')->name('users');
 
 
 

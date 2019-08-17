@@ -11,7 +11,7 @@
                         @if(Auth::user()->coordinates->reward_one_achieved)
                             <span class="badge bg-info">Reward Achieved</span>
                         @else
-                            <h6>Complete 5 Members In STANDARD To Achieve This Reward</h6>
+                            <h6>Complete 5 Members In STANDARD Level 1 To Achieve This Reward</h6>
                         @endif
                     </div>
                     <div class="media-right">
@@ -29,7 +29,7 @@
                         @if(Auth::user()->coordinates->reward_two_achieved)
                             <span class="badge bg-success">Reward Achieved</span>
                         @else
-                            <h6>Complete 25 Members In STANDARD To Achieve This Reward</h6>
+                            <h6>Complete 25 Members In STANDARD Level 2 To Achieve This Reward</h6>
                         @endif
                     </div>
                     <div class="media-right">
@@ -47,7 +47,7 @@
                         @if(Auth::user()->coordinates->reward_three_achieved)
                             <span class="badge bg-success">Reward Achieved</span>
                         @else
-                            <h6>Complete 125 Members In STANDARD To Achieve This Reward</h6>
+                            <h6>Complete 125 Members In STANDARD Level 3 To Achieve This Reward</h6>
                         @endif
                     </div>
                     <div class="media-right">

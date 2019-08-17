@@ -170,6 +170,7 @@
             <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <li class="nav-item"><a href="{{route('home')}}"><i class="icon-home3"></i><span class="menu-title">Dashboard</span><!-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">2</span> --></a>
             </li>
+            <li class=" nav-item"><a href="{{route('users')}}"><i class="icon-users"></i><span class="menu-title">Users</span></a>
             <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a>
                 <!--<ul class="menu-content">-->
                 <!--  <li><a href="#" class="menu-item">1 column</a>-->
@@ -219,15 +220,15 @@
                     </li>
                 @endif
             @endif
-            @if(!Auth::user()->admin)
-                <li class=" nav-item"><a href="{{route('support.createTickets')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a>
-                </li>
-            @endif
             {{-- 
-            <li class=" nav-item"><a href="#"><i class="icon-document-text"></i><span class="menu-title">Latest Updates</span></a>
-            </li> --}}
-            <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
-            </li>
+                <li class=" nav-item"><a href="#"><i class="icon-document-text"></i><span class="menu-title">Latest Updates</span></a>
+                </li> --}}
+                <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
+                </li>
+                @if(!Auth::user()->admin)
+                    <li class=" nav-item"><a href="{{route('support.createTickets')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a>
+                    </li>
+                @endif
             
             <li class=" nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" >
