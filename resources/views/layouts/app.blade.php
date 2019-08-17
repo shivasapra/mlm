@@ -228,6 +228,9 @@
                 @if(!Auth::user()->admin)
                     <li class=" nav-item"><a href="{{route('support.createTickets')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a>
                     </li>
+                @else
+                    <li class=" nav-item"><a href="{{route('admin.ticket')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a>
+                    </li>
                 @endif
             
             <li class=" nav-item">

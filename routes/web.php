@@ -102,6 +102,8 @@ Route::get('/verify-email/{verify_token}','UserController@verify')->name('verify
 Route::get('/support-create-tickets','UserController@supportCreateTickets')->name('support.createTickets');
 Route::get('/support-view-tickets','UserController@supportViewTickets')->name('support.viewTickets');
 Route::post('/store-ticket','UserController@storeTicket')->name('store.ticket');
+Route::get('/tickets','UserController@tickets')->name('admin.ticket');
+Route::get('/approve-ticket/{t}','UserController@approveTicket')->name('approve.ticket');
 
 Route::get('/rewards','HomeController@rewards')->name('rewards');
 Route::get('/users','HomeController@users')->name('users');

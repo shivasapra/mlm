@@ -21,6 +21,7 @@ class CreateTicketsTable extends Migration
             $table->string('subject');
             $table->longText('message');
             $table->string('attachment');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

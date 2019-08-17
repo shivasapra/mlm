@@ -159,4 +159,16 @@ class UserController extends Controller
         Session::flash('success','Ticket Added!!');
         return redirect()->route('support.viewTickets');
     }
+
+    public function tickets(){
+        return view('support.tickets')->with('tickets',Ticket::all());
+    }
+
+    public function approveTickets(Ticket $t){
+        $t->status = 1;
+        $t->save();
+
+        Session::flash('success','Ticket Approved');
+        return redirect()->back();
+    }
 }
