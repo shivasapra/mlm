@@ -13,6 +13,8 @@
                     <th>Username</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Security Pin</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +24,8 @@
                         <td>{{$user->username}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->details->mobile}}</td>
+                        <td>{{$user->details->security_pin}}</td>
                     </tr>
                 @endforeach
             </tbody>
