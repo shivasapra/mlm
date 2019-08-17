@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
+use App\Cause;
 use App\Epin;
 class RegisterController extends Controller
 {
@@ -54,7 +55,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'username' => ['unique:details'],
             'referral_code' => ['exists:details,username'],
         ]);
     }
@@ -67,23 +67,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
+        $test_detail = Details::where('username','GCF00001')->get();
+        if ($test_detail->count()>0) {
+            $latest = Details::orderBy('id','desc')->take(1)->get();
+            $detail_prev_no = $latest[0]->username;
+            $username = 'GCF0000'.(substr($detail_prev_no,3,7)+1);
+        }
+        else{
+            $username = 'GCF00001';
+        }
         
         $user = new User;
         $user->name = $data['name'];
+        $user->username = $username;
         $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
         $user->save();
+
         $detail = new Details;
         $detail->user_id = $user->id;
-        $detail->username = $data['username'];
-        $detail->cause = $data['cause'];
+        $detail->username = $username;
+        $detail->cause = Cause::find($data['cause'])->name;
         $detail->full_name = $data['name'];
         $detail->country = $data['country'];
         $detail->city = $data['city'];
         $detail->mobile = $data['mobile'];
         $detail->invited_by = $data['referral_code'];
         $detail->invited_by_email = Details::where('username',$detail->invited_by)->first()->user->email;
-        $detail->promotional_url = 'http://galaxycrowd.com/'.$data['username'];
+        $detail->promotional_url = 'http://galaxycrowd.com/'.$username;
         $detail->security_pin = mt_rand(1000000, 9999999);
         do{
             $verify_token = str_random();

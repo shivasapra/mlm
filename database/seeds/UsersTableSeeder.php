@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         $user = new App\User;
         $user->name = 'Galaxy Crowd';
+        $user->username = 'GCF00001';
         $user->email = 'galaxycrowd@gmail.com';
         $user->admin = 1;
         $user->password = bcrypt('password');
@@ -21,13 +22,13 @@ class UsersTableSeeder extends Seeder
 
         $detail = new App\Details;
         $detail->user_id = $user->id;
-        $detail->username = 'galaxycrowd';
+        $detail->username = 'GCF00001';
         $detail->full_name = 'Galaxy Crowd';
         $detail->country = 'India';
         $detail->mobile = '123456789';
         $detail->invited_by = 'testing';
         $detail->invited_by_email = 'testing@gmail.com';
-        $detail->promotional_url = 'http://galaxycrowd.com/galaxycrowd';
+        $detail->promotional_url = 'http://galaxycrowd.com/GCF00001';
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 
@@ -41,41 +42,42 @@ class UsersTableSeeder extends Seeder
 
         $user = new App\User;
         $user->name = 'Shiva Sapra';
+        $user->username = 'GCF00002';
         $user->email = 'shivasapra24@gmail.com';
         $user->password = bcrypt('password');
         $user->save();
 
         $detail = new App\Details;
         $detail->user_id = $user->id;
-        $detail->username = 'shivasapra24';
+        $detail->username = 'GCF00002';
         $detail->full_name = 'Shiva Sapra';
         $detail->country = 'India';
         $detail->mobile = '9027289261';
-        $detail->invited_by = 'galaxycrowd';
+        $detail->invited_by = 'GCF00001';
         $detail->invited_by_email = 'galaxycrowd@gmail.com';
-        $detail->promotional_url = 'http://galaxycrowd.com/shivasapra24';
+        $detail->promotional_url = 'http://galaxycrowd.com/GCF00002';
         $detail->security_pin = mt_rand(1000000, 9999999);
         $detail->save();
 
-        for ($i = 0; $i < 10; $i++) { 
-            $user = new App\User;
-            $user->name = $faker->name;
-            $user->email = $faker->email;
-            $user->password = bcrypt('password');
-            $user->save();
+        // for ($i = 0; $i < 10; $i++) { 
+        //     $user = new App\User;
+        //     $user->name = $faker->name;
+        //     $user->email = $faker->email;
+        //     $user->password = bcrypt('password');
+        //     $user->save();
 
-            $detail = new App\Details;
-            $detail->user_id = $user->id;
-            $detail->username = $faker->username;
-            $detail->full_name = $user->name;
-            $detail->country = $faker->country;
-            $detail->mobile =  mt_rand(1000000, 9999999);
-            $detail->invited_by = 'galaxycrowd';
-            $detail->invited_by_email = 'galaxycrowd@gmail.com';
-            $detail->promotional_url = 'http://galaxycrowd.com/'.$detail->username;
-            $detail->security_pin = mt_rand(1000000, 9999999);
-            $detail->save();
-        }
+        //     $detail = new App\Details;
+        //     $detail->user_id = $user->id;
+        //     $detail->username = $faker->username;
+        //     $detail->full_name = $user->name;
+        //     $detail->country = $faker->country;
+        //     $detail->mobile =  mt_rand(1000000, 9999999);
+        //     $detail->invited_by = 'galaxycrowd';
+        //     $detail->invited_by_email = 'galaxycrowd@gmail.com';
+        //     $detail->promotional_url = 'http://galaxycrowd.com/'.$detail->username;
+        //     $detail->security_pin = mt_rand(1000000, 9999999);
+        //     $detail->save();
+        // }
         
         
 

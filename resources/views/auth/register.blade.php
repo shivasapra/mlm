@@ -41,10 +41,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Cause</label>
-									<select name="cause" id="cause" class="form-control">
+									<select name="cause" id="cause" class="form-control" onchange="insertSubcauses(this);">
 										<option value="">--Select--</option>
 										@foreach(App\Cause::all() as $cause)
-											<option value="{{$cause->name}}">{{$cause->name}}</option>
+											<option value="{{$cause->id}}">{{$cause->name}}</option>
 										@endforeach
 									</select>
 								</div>
@@ -53,8 +53,9 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Username</label>
-									<input id="name" type="text" placeholder="Enter Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  required autocomplete="username" autofocus>
+									<label>Sub Cause</label>
+									{{-- <input id="name" type="text" placeholder="Enter Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  required autocomplete="username" autofocus> --}}
+									<div id="insertSubcauses"></div>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -149,6 +150,24 @@
 	<script src="{{asset('auth/js/popper.min.js')}}"></script>
 	<script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
 	<!-- close -->
-	
+	<script>
+		function insertSubcauses(temp){
+			var cause_id = temp.value;
+				@foreach(App\Cause::all() as $cause)
+				var fetched_cause_id = {!! json_encode($cause->id) !!}
+					if(fetched_cause_id == cause_id){
+						var data = 
+							'<select name="subcause" id="subcause" class="form-control">'+
+								'<option value="">--Select--</option>'+
+								'@foreach($cause->subcauses as $sub)'+
+									'<option value="{{$sub->id}}">{{$sub->name}}</option>'+
+								'@endforeach'+
+							'</select>';
+						
+						$('#insertSubcauses').html(data);
+					}
+				@endforeach
+		}
+	</script>
 	</body>
 </html>	

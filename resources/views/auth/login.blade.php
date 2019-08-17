@@ -25,7 +25,7 @@
                             <img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="email">{{ __('E-Mail Address') }}</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     @error('email')
@@ -33,6 +33,15 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div> --}}
+                                <div class="form-group">
+                                        <label for="username">{{ __('Username') }}</label>
+                                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" required  autofocus>
+                                        @error('username')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="password">{{ __('Password') }}</label>
