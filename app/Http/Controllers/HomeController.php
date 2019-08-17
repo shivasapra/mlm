@@ -54,4 +54,8 @@ class HomeController extends Controller
         }
         return view('home');
     }
+
+    public function rewards(){
+        return view('rewards');
+    }
 }

@@ -213,6 +213,12 @@
             </li> --}}
             <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
             </li>
+            @if(Auth::user()->coordinates)
+                @if(Auth::user()->coordinates->eligible_for_reward)
+                    <li class=" nav-item"><a href="{{route('rewards')}}"><i class="icon-gift"></i><span class="menu-title">Rewards</span></a>
+                    </li>
+                @endif
+            @endif
             @if(!Auth::user()->admin)
                 <li class=" nav-item"><a href="{{route('support.createTickets')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a>
                 </li>

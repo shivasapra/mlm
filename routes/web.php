@@ -103,6 +103,10 @@ Route::get('/support-create-tickets','UserController@supportCreateTickets')->nam
 Route::get('/support-view-tickets','UserController@supportViewTickets')->name('support.viewTickets');
 Route::post('/store-ticket','UserController@storeTicket')->name('store.ticket');
 
+Route::get('/rewards','HomeController@rewards')->name('rewards');
+
+
+
 Route::get('/buy',function(Request $request){
     $e = Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first();
 
