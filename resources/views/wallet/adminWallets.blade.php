@@ -100,7 +100,7 @@
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
-                            <h2>INR {{App\PurchaseEpin::pluck('rate')->sum()}}</h2>
+                            <h2>INR {{App\purchaseEpin::pluck('rate')->sum()}}</h2>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(App\PurchaseEpin::all() as $p)
+                    @foreach(App\purchaseEpin::all() as $p)
                         <tr>
                             <th>{{$loop->index + 1}}</th>
                             <td>{{App\User::find($p->user_id)->username}}</td>
