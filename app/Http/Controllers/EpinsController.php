@@ -97,6 +97,10 @@ class EpinsController extends Controller
 
     }
 
+    public function adminWallets(){
+        return view('wallet.adminWallets');
+    }
+
     public function epinRequests(){
         return view('epinRequests');
     }

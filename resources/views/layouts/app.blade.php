@@ -214,8 +214,13 @@
             </li>
             {{-- <li class=" nav-item"><a href="{{route('epin.requests')}}"><i class="icon-compass2"></i><span class="menu-title">Epin Requests</span></a>
             </li> --}}
-            <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
-            </li>
+            @if(!Auth::user()->admin)
+                <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
+                </li>
+            @else
+                <li class=" nav-item"><a href="{{route('admin.wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
+                </li>
+            @endif
             @if(Auth::user()->coordinates)
                 @if(Auth::user()->coordinates->eligible_for_reward)
                     <li class=" nav-item"><a href="{{route('rewards')}}"><i class="icon-gift"></i><span class="menu-title">Rewards</span></a>
@@ -239,7 +244,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                             @csrf
                           </form>
-                          <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                          <a class="nav-link"  href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <i class="icon-sign-out"></i>
                                 <p>{{ __('Logout') }}</p><a href="#"></a>
             </li>
