@@ -164,7 +164,7 @@ class UserController extends Controller
         return view('support.tickets')->with('tickets',Ticket::all());
     }
 
-    public function approveTickets(Ticket $t){
+    public function approveTicket(Ticket $t){
         $t->status = 1;
         $t->save();
 

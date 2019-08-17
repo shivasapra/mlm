@@ -20,6 +20,7 @@
                         <th>Message</th>
                         <th>Attachment</th>
                         <th>Post Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,13 @@
                                 </button>
                             </td>
                             <td>{{$t->created_at->toDateString()}}</td>
+                            <td>
+                                @if($t->status)
+                                    <span class="text-success"><strong>{{__('Approved')}}</strong></span>
+                                @else
+                                    <span class="text-danger"><strong>{{__("Pending")}}</strong></span>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
