@@ -67,15 +67,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-        $test_detail = Details::where('username','GCF00001')->get();
-        if ($test_detail->count()>0) {
-            $latest = Details::orderBy('id','desc')->take(1)->get();
-            $detail_prev_no = $latest[0]->username;
-            $username = 'GCF0000'.(substr($detail_prev_no,3,7)+1);
-        }
-        else{
-            $username = 'GCF00001';
-        }
+
+        do{
+            $username = 'GCF'.mt_rand(1000000, 9999999);
+        }while(User::where('username',$username)->first());
         
         $user = new User;
         $user->name = $data['name'];
