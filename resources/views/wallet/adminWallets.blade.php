@@ -113,7 +113,7 @@
                         <th>Username</th>
                         <th>Epin</th>
                         <th>Amount</th>
-                        <td>Time</td>
+                        <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
