@@ -128,6 +128,8 @@ Route::get('/buy',function(Request $request){
 
         $p = new PurchaseEpin;
         $p->epin_id = $epin->id;
+        $p->user_id = Auth::id();
+        $p->rate = $epin->EpinCategory->rate;
         $p->save();
     }
 
