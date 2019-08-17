@@ -4,7 +4,7 @@
         Your Profile Link: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->details->promotional_url}}</a>
     </div>
     @if(!Auth::user()->admin)
-        @if(Auth::user()->coordintes)
+        @if(Auth::user()->coordinates)
             @if(!Auth::user()->coordinates->eligible_for_reward)
                 @php
                     $days = 7 - Carbon\Carbon::parse(Carbon\Carbon::now()->toDateString())->diffIndays(Carbon\Carbon::parse(Auth::user()->created_at->toDateString()))
