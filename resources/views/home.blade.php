@@ -3,13 +3,15 @@
     <div class="alert alert-success text-center" role="alert">
         Your Profile Link: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->details->promotional_url}}</a>
     </div>
-    @php
-    $days = 7 - Carbon\Carbon::parse(Carbon\Carbon::now()->toDateString())->diffIndays(Carbon\Carbon::parse(Auth::user()->created_at->toDateString()))
-    @endphp
-    @if($days <= 7 and $days > 0)
-        <div class="alert alert-info text-center" role="alert">
-            Complete 5 Members in level one within {{$days}} days to unlock Reward Section.
-        </div>
+    @if(!Auth::user()->admin)
+        @php
+        $days = 7 - Carbon\Carbon::parse(Carbon\Carbon::now()->toDateString())->diffIndays(Carbon\Carbon::parse(Auth::user()->created_at->toDateString()))
+        @endphp
+        @if($days <= 7 and $days > 0)
+            <div class="alert alert-info text-center" role="alert">
+                Complete 5 Members in level one within {{$days}} days to unlock Reward Section.
+            </div>
+        @endif
     @endif
     @if(!Auth::user()->details->email_verification)
         <div class="alert alert-warning text-center alert-dismissible show" role="alert">
