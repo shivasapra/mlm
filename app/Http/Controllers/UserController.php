@@ -100,6 +100,15 @@ class UserController extends Controller
         $kyc->user_id = $user->id;
         $kyc->proof_for = 'Identity';
         $kyc->type = $request->identity_proof;
+
+        if($request->hasFile('identity_p')){
+            $attachment = $request->identity_p;
+            $attachment_new_name = time().$attachment->getClientOriginalName();
+            $attachment->move('uploads/proof',$attachment_new_name);
+            $kyc->proof = 'uploads/proof/'.$attachment_new_name;
+        }
+
+
         $kyc->proof = 'test';
         $kyc->save();
         Session::flash('success','Identity Poof Uploaded');
@@ -110,7 +119,16 @@ class UserController extends Controller
         $kyc->user_id = $user->id;
         $kyc->proof_for = 'Address';
         $kyc->type = $request->address_proof;
-        $kyc->proof = 'test';
+        
+        
+        if($request->hasFile('address_p')){
+            $attachment = $request->address_p;
+            $attachment_new_name = time().$attachment->getClientOriginalName();
+            $attachment->move('uploads/proof',$attachment_new_name);
+            $kyc->proof = 'uploads/proof/'.$attachment_new_name;
+        }
+
+
         $kyc->save();
         Session::flash('success','Address Poof Uploaded');
         return redirect()->route('account.settings',$user);
@@ -119,7 +137,15 @@ class UserController extends Controller
     public function taxProof(Request $request, User $user, KYC $kyc){
         $kyc->user_id = $user->id;
         $kyc->proof_for = 'Tax ID';
-        $kyc->proof = 'test';
+        
+        
+        if($request->hasFile('tax_p')){
+            $attachment = $request->tax_p;
+            $attachment_new_name = time().$attachment->getClientOriginalName();
+            $attachment->move('uploads/proof',$attachment_new_name);
+            $kyc->proof = 'uploads/proof/'.$attachment_new_name;
+        }
+
         $kyc->save();
         Session::flash('success','Tax Id Uploaded');
         return redirect()->route('account.settings',$user);

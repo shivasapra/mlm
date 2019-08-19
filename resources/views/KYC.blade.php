@@ -38,13 +38,13 @@
       <li>Tax documents or students IDs are not allowed</li>
     </ul>
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
-    <form action="{{route('identity.proof.upload',$user)}}" method="post">
+    <form action="{{route('identity.proof.upload',$user)}}" method="post" enctype="multipart/form-data">
     @csrf
         <label class="pr-2"><input type="radio" name="identity_proof" value="Driving License" required> Driving License</label>
         <label class="pr-2"><input type="radio" name="identity_proof" value="Passport" required> Passport</label>
         <label><input type="radio" name="identity_proof" value="National Id" required> National Id</label>
         <div class="mt-2 mb-2">
-        <input type="file" name="identity_p" class="form-control"/ required>
+        <input type="file" name="identity_p" class="form-control"/ required accept="image/*">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -59,14 +59,14 @@
       <li>Please Make sure your name and address on the document matches the one we have on file</li>
     </ul>
     <p class="text-danger">Please select the type of photo ID that you are submitting.</p>
-    <form action="{{route('address.proof.upload',$user)}}" method="post">
+    <form action="{{route('address.proof.upload',$user)}}" method="post" enctype="multipart/form-data">
     @csrf
         <label class="pr-2"><input type="radio" name="address_proof" value="Bank Statement" required> Bank Statement</label>
         <label class="pr-2"><input type="radio" name="address_proof" value="Credit Card Statement" required> Credit Card Statement</label>
         <label class="pr-2"><input type="radio" name="address_proof" value="Utility Bill" required> Utility Bill</label>
         <label class="pr-2"><input type="radio" name="address_proof" value="Phone Bill" required> Phone Bill</label>
         <div class="mt-2 mb-2">
-        <input type="file" name="address_p" class="form-control"/ required>
+        <input type="file" name="address_p" class="form-control"/ required accept="image/*">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -78,10 +78,10 @@
     <ul>
       <li>PAN Card applicable for Indians and Tax Identification Number for other country residents</li>
     </ul>
-    <form action="{{route('tax.proof.upload',$user)}}" method="post">
+    <form action="{{route('tax.proof.upload',$user)}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mt-2 mb-2">
-      <input type="file" name="tax_p" class="form-control"/ required>
+      <input type="file" name="tax_p" class="form-control"/ required accept="image/*">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
