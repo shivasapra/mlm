@@ -103,11 +103,6 @@ class ContributionController extends Controller
                     break;
                 }
             }
-            $parent_amount = Settings::first()->level_three_percentage;
-            $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-            $contactEmail = $parent_user->email;
-            $collection->push([$data,$contactEmail]);
-            $this->commission($parent_amount,$parent_user,0);
         }
         return $parent_user;
     }
