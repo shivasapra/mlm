@@ -87,6 +87,25 @@ class SettingsController extends Controller
         Session::flash('success','Saved!!');
         return redirect()->back();
     }
+
+    public function saveRewards(Request $request){
+        if(!$settings = Settings::first()){
+            $settings = new Settings;
+        }
+        $settings->reward_one_prize = $request->reward_one_prize;
+        $settings->reward_two_prize = $request->reward_two_prize;
+        $settings->reward_three_prize = $request->reward_three_prize;
+
+        $settings->reward_one_tc = $request->reward_one_tc;
+        $settings->reward_two_tc = $request->reward_two_tc;
+        $settings->reward_three_tc = $request->reward_three_tc;
+
+        $settings->save();
+        
+        Session::flash('success','Saved!!');
+        return redirect()->back();
+    }
+
     public function CauseDelete($id){
         $cause = Cause::find($id);
         $cause->delete();

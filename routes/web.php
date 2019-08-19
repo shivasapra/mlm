@@ -72,6 +72,9 @@ Route::post('/Save-Basic-Settings','SettingsController@saveBasic')->name('settin
 Route::post('/Save-Standard-Settings','SettingsController@saveStandard')->name('settings.saveStandard');
 Route::post('/Save-Premium-Settings','SettingsController@savePremium')->name('settings.savePremium');
 Route::post('/Save-Facilitation','SettingsController@saveFacilitation')->name('settings.saveFacilitation');
+Route::post('/Save-Rewards','SettingsController@saveRewards')->name('settings.saveRewards');
+
+
 Route::get('/Cause-Delete/{id}','SettingsController@CauseDelete')->name('cause.delete');
 Route::post('/save-cause','SettingsController@CauseSave')->name('save.cause');
 Route::post('/save-subcause','SettingsController@SubCauseSave')->name('save.subcause');

@@ -130,7 +130,7 @@
     </form><br>
 
 <h1>Rewards</h1><hr>
-    <form action="">
+    <form action="{{route('settings.saveRewards')}}" method="post">
         @csrf
         <div class="row">
             <div class="col-md-4">
