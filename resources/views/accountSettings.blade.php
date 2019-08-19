@@ -313,7 +313,7 @@
       function proof(temp){
               var proof = JSON.parse($(temp).find('.proof').val());
               var base_url = window.location.origin;
-              var attachment = base_url+"/"+proof["proof"];
+              var attachment = base_url+"/app/galaxycrowd/public/"+proof["proof"];
               console.log(attachment);
               
               var modal =
