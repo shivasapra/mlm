@@ -77,7 +77,7 @@ class RegisterController extends Controller
         $user->username = $username;
         $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
-        $user->save();
+        // $user->save();
 
         $detail = new Details;
         $detail->user_id = $user->id;
@@ -95,15 +95,15 @@ class RegisterController extends Controller
             $verify_token = str_random();
         }while(Details::where('verify_token',$verify_token)->first());
         $detail->verify_token = $verify_token;
-        $detail->save();
+        // $detail->save();
         
-        // $contactEmail = $data['email'];
-        // $data = ['user' => $user, 'security_pin'=> $detail->security_pin, 'verify_token'=> $detail->verify_token];
-        // Mail::send('emails.registered', $data, function($message) use ($contactEmail)
-        // {  
-        //     $message->to($contactEmail)->subject('Registered!!');
-        // });
-        
+        $contactEmail = $data['email'];
+        $data = ['user' => $user, 'security_pin'=> $detail->security_pin, 'verify_token'=> $detail->verify_token];
+        Mail::send('emails.registered', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Registered!!');
+        });
+        dd();
         return $user;
     }
 }
