@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
-use Auth;
 use App\Cause;
 use App\Epin;
 class RegisterController extends Controller
@@ -77,9 +76,8 @@ class RegisterController extends Controller
         $user->name = $data['name'];
         $user->username = $username;
         $user->email = $data['email'];
-        $email = $data['email'];
         $user->password = bcrypt($data['password']);
-        // $user->save();
+        $user->save();
 
         $detail = new Details;
         $detail->user_id = $user->id;
@@ -97,22 +95,15 @@ class RegisterController extends Controller
             $verify_token = str_random();
         }while(Details::where('verify_token',$verify_token)->first());
         $detail->verify_token = $verify_token;
-        // $detail->save();
-        $contactEmail = $email;
-        $data = ['user'=>Auth::user()];
-        Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
-        {  
-            $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
-        });
-
-
-        $contactEmail = $email;
+        $detail->save();
+        
+        $contactEmail = $data['email'];
         $data = ['user' => $user, 'security_pin'=> $detail->security_pin, 'verify_token'=> $detail->verify_token];
         Mail::send('emails.registered', $data, function($message) use ($contactEmail)
         {  
             $message->to($contactEmail)->subject('Registered!!');
         });
-        dd();
+        
         return $user;
     }
 }

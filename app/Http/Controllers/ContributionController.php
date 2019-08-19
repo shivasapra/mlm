@@ -125,9 +125,9 @@ class ContributionController extends Controller
             $this->PremiumContribution($collection,$request);
         }
 
-        // foreach($collection as $cd){
-        //     $this->sendMail($cd[0],$cd[1]);
-        // }
+        foreach($collection as $cd){
+            $this->sendMail($cd[0],$cd[1]);
+        }
         
         
         return redirect()->back();
@@ -227,22 +227,22 @@ class ContributionController extends Controller
             }
         }
     }
-    // private function sendMail($data, $contactEmail){
-    //     try{
-    //             Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
-    //                 {  
-    //                     $message->to($contactEmail)->subject('Contribution Amount!!');
-    //                 });
-    //             $data = ['user'=>Auth::user()];
-    //             Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
-    //                 {  
-    //                     $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
-    //                 });
+    private function sendMail($data, $contactEmail){
+        try{
+                Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+                    {  
+                        $message->to($contactEmail)->subject('Contribution Amount!!');
+                    });
+                $data = ['user'=>Auth::user()];
+                Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
+                    {  
+                        $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
+                    });
 
-    //     }catch (exception $e) {
-    //         Session::flash('oops','Donation Successfull!! But Unable to Send Mail! Please Contact Support');
-    //     }
-    // }
+        }catch (exception $e) {
+            Session::flash('oops','Donation Successfull!! But Unable to Send Mail! Please Contact Support');
+        }
+    }
     // public function matrix(){
     //     $user = Auth::user();
     //     $arr = array(
