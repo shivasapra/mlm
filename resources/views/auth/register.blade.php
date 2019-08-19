@@ -41,7 +41,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Cause</label>
-									<select name="cause" id="cause" class="form-control" onchange="insertSubcauses(this);">
+									<select name="cause" id="cause" required class="form-control" onchange="insertSubcauses(this);">
 										<option value="">--Select--</option>
 										@foreach(App\Cause::all() as $cause)
 											<option value="{{$cause->id}}">{{$cause->name}}</option>
@@ -111,7 +111,7 @@
         	                <div class="col-md-12">
         	                    <div class="form-group">
         	                        <div class="custom-control custom-checkbox mt-3 mt-4">
-                                    <input type="checkbox" class="custom-control-input" id="customControlInline" checked>
+                                    <input type="checkbox" class="custom-control-input" required id="customControlInline" checked>
                                     <label class="custom-control-label text-muted" for="customControlInline">By signing up you agree to our Terms of Use and Privacy Policy.</label>
                                     </div>
         	                    </div>
@@ -157,7 +157,7 @@
 				var fetched_cause_id = {!! json_encode($cause->id) !!}
 					if(fetched_cause_id == cause_id){
 						var data = 
-							'<select name="subcause" id="subcause" class="form-control">'+
+							'<select name="subcause" id="subcause" required class="form-control">'+
 								'<option value="">--Select--</option>'+
 								'@foreach($cause->subcauses as $sub)'+
 									'<option value="{{$sub->id}}">{{$sub->name}}</option>'+
