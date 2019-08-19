@@ -260,7 +260,7 @@
     </div>
     <!--/ stats -->
     <!--/ project charts -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-8 col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -518,7 +518,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     
 
