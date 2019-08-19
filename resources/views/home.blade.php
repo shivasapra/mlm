@@ -214,8 +214,8 @@
                                         <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                             <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->premium_amount}}">
                                             <input type="hidden" class="packagee" name="package" value="Premium">
-                                            <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->where('used_by',null)->premium_amount)->first()) 
-                                                                                            value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->where('used_by',null)->premium_amount)->first()->epin}}"
+                                            <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->where('used_by',null)->first()) 
+                                                                                            value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->where('used_by',null)->first()->epin}}"
                                                                                         @endif
                                             >
                                         </a>
