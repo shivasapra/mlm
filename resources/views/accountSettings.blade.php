@@ -277,6 +277,7 @@
                   <th>Created On</th>
                   <th>Proof For</th>
                   <th>Document Type</th>
+                  <th>View</th>
                 </tr>
               </thead>
               <tbody>
@@ -288,6 +289,11 @@
                     <td>{{$k->created_at}}</td>
                     <td>{{$k->proof_for}}</td>
                     <td>{{$k->type}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
+                            <input type="hidden" class="proof" value="{{$k}}">
+                        </button>
+                    </td>
                   </tr>
                 @endforeach
                 @endif
@@ -298,4 +304,42 @@
         </div>
         </div>
         </div>
+
+        <button type="button" id="modalButton" data-toggle="modal" data-target="#Modal" style="display:none;"></button>
+        <div id="modalDisplay"></div>
 @stop
+@section('js')
+    <script>
+      function proof(temp){
+              var proof = JSON.parse($(temp).find('.proof').val());
+              var base_url = window.location.origin;
+              var attachment = base_url+"/"+proof["proof"];
+              
+              var modal =
+              '<div class="modal fade" id="Modal">'+
+              '<div class="modal-dialog">'+
+                  '<div class="modal-content">'+
+                      '<!-- Modal Header -->'+
+                      '<div class="modal-header">'+
+                      '<h4 class="modal-title">Attachment</h4>'+
+                      '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                      '</div>'+
+
+                      '<!-- Modal body -->'+
+                      '<div class="modal-body">'+
+                          '<iframe src="'+attachment+'" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                      '</div>'+
+              
+                      '<!-- Modal footer -->'+
+                      '<div class="modal-footer">'+
+                      '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
+                      '</div>'+
+
+                  '</div>'+
+              '</div>'+
+          '</div>';
+          $('#modalDisplay').html(modal);
+          $('#modalButton').click();
+        }
+    </script>
+@endsection

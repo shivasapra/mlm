@@ -109,7 +109,6 @@ class UserController extends Controller
         }
 
 
-        $kyc->proof = 'test';
         $kyc->save();
         Session::flash('success','Identity Poof Uploaded');
         return redirect()->route('account.settings',$user);
