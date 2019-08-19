@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif(Auth::user()->commissions->pluck('amount')->sum() >= App\Settings::first()->upgrade_wallet_amount_standard )
+                    @elseif(Auth::user()->commissions->pluck('amount')->sum() >= App\Settings::first()->upgrade_wallet_amount_standard and Auth::user()->commissions->pluck('amount')->sum()  < App\Settings::first()->upgrade_wallet_amount_premium)
                         <div class="contribute-div">
                             <div class="media overflow-visible">
                                 <div class="media-body media-middle overflow-visible">
