@@ -103,6 +103,11 @@ class ContributionController extends Controller
                     break;
                 }
             }
+            $parent_amount = Settings::first()->level_three_percentage;
+            $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
+            $contactEmail = $parent_user->email;
+            $collection->push([$data,$contactEmail]);
+            $this->commission($parent_amount,$parent_user,0);
         }
         return $parent_user;
     }
@@ -150,10 +155,10 @@ class ContributionController extends Controller
         $donation->amount = $request->amount;
         $donation->save();
         
-        $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> Settings::first()->admin_amount.$request->a];
+        $temp = 'admin_amount'.$request->a;
+        $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> Settings::first()->$temp];
         $contactEmail = User::where('admin',1)->first()->email;
         $collection->push([$data,$contactEmail]);
-        $temp = 'admin_amount'.$request->a;
         $this->commission(Settings::first()->$temp,User::where('admin',1)->first(),1);
         return $donation;
     }

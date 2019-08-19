@@ -15,15 +15,8 @@ class SettingsController extends Controller
         if(!$settings = Settings::first()){
             $settings = new Settings;
         }
-        if($request->level_one_percentage == 0){
-            $settings->level_one_percentage = 0;
-            $settings->level_one_percentage_standard = 0;
-            $settings->level_one_percentage_premium = 0;
-        }
-        else{
-            $settings->level_one_percentage = $request->level_one_percentage;
-        }
         
+        $settings->level_one_percentage = $request->level_one_percentage;
         $settings->level_two_percentage = $request->level_two_percentage;
         $settings->level_three_percentage = $request->level_three_percentage;
         $settings->admin_amount = $request->admin_amount;
@@ -37,15 +30,7 @@ class SettingsController extends Controller
         if(!$settings = Settings::first()){
             $settings = new Settings;
         }
-        if($request->level_one_percentage_standard == 0){
-            $settings->level_one_percentage = 0;
-            $settings->level_one_percentage_standard = 0;
-            $settings->level_one_percentage_premium = 0;
-        }
-        else{
-            $settings->level_one_percentage_standard = $request->level_one_percentage_standard;
-        }
-        $settings->level_one_percentage_standard = $request->level_one_percentage_standard;
+        $settings->level_one_percdentage_standar = $request->level_one_percentage_standard;
         $settings->level_two_percentage_standard = $request->level_two_percentage_standard;
         $settings->level_three_percentage_standard = $request->level_three_percentage_standard;
         $settings->admin_amount_standard = $request->admin_amount_standard;
@@ -58,14 +43,6 @@ class SettingsController extends Controller
     public function savePremium(Request $request){
         if(!$settings = Settings::first()){
             $settings = new Settings;
-        }
-        if($request->level_one_percentage_premium == 0){
-            $settings->level_one_percentage = 0;
-            $settings->level_one_percentage_standard = 0;
-            $settings->level_one_percentage_premium = 0;
-        }
-        else{
-            $settings->level_one_percentage_premium = $request->level_one_percentage_premium;
         }
         $settings->level_one_percentage_premium = $request->level_one_percentage_premium;
         $settings->level_two_percentage_premium = $request->level_two_percentage_premium;
