@@ -314,6 +314,7 @@
               var proof = JSON.parse($(temp).find('.proof').val());
               var base_url = window.location.origin;
               var attachment = base_url+"/"+proof["proof"];
+              console.log(attachment);
               
               var modal =
               '<div class="modal fade" id="Modal">'+
