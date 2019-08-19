@@ -112,7 +112,25 @@ Route::get('/approve-ticket/{t}','UserController@approveTicket')->name('approve.
 Route::get('/rewards','HomeController@rewards')->name('rewards');
 Route::get('/users','HomeController@users')->name('users');
 
+Route::get('/resend-verification',function(){
+    Auth::user()->details->verify_token = null;
+    Auth::user()->details->save();
 
+    do{
+        $verify_token = str_random();
+    }while(App\Details::where('verify_token',$verify_token)->first());
+    Auth::user()->details->verify_token = $verify_token;
+    Auth::user()->details->save();
+    
+    $contactEmail = Auth::user()->email;
+    $data = ['user' => Auth::user(), 'security_pin'=> Auth::user()->details->security_pin, 'verify_token'=> Auth::user()->details->verify_token];
+    \Mail::send('emails.registered', $data, function($message) use ($contactEmail)
+    {  
+        $message->to($contactEmail)->subject('Registered!!');
+    });
+    \Session::flash('success','Verification Resent');
+    return redirect()->back();
+})->name('resend.verification');
 
 Route::get('/buy',function(Request $request){
     $e = Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first();

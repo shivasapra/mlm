@@ -19,7 +19,7 @@
     @endif
     @if(!Auth::user()->details->email_verification)
         <div class="alert alert-warning text-center alert-dismissible show" role="alert">
-        Your Email is not verified. Please verify your Email. 
+        Your Email is not verified. Please verify your Email.  <a href="{{route('resend.verification')}}"><u> Resend Verification</u></a> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
