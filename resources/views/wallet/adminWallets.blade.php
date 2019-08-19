@@ -32,7 +32,9 @@
                     <tr>
                         <th>Sno.</th>
                         <th>Username</th>
+                        <th>Name</th>
                         <th>Amount</th>
+                        <th>Level</th>
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -41,7 +43,9 @@
                         <tr>
                             <th>{{$loop->index + 1}}</th>
                             <td>{{App\User::find($c->from)->username}}</td>
+                            <td>{{App\User::find($c->from)->name}}</td>
                             <td>{{$c->amount}}</td>
+                            <td>{{App\User::find($c->from)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
                             <td><strong>{{Carbon\Carbon::parse($c->created_at)->diffForHumans()}}</strong> <br>({{$c->created_at}})</td>
                         </tr>
                     @endforeach
@@ -78,7 +82,9 @@
                     <tr>
                         <th>Sno.</th>
                         <th>Username</th>
+                        <th>Name</th>
                         <th>Amount</th>
+                        <th>Level</th>
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -87,7 +93,9 @@
                         <tr>
                             <th>{{$loop->index + 1}}</th>
                             <td>{{App\User::find($c->from)->username}}</td>
+                            <td>{{App\User::find($c->from)->name}}</td>
                             <td>{{$c->amount}}</td>
+                            <td>{{App\User::find($c->from)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
                             <td><strong>{{Carbon\Carbon::parse($c->created_at)->diffForHumans()}}</strong> <br>({{$c->created_at}})</td>
                         </tr>
                     @endforeach
@@ -111,8 +119,10 @@
                     <tr>
                         <th>Sno.</th>
                         <th>Username</th>
+                        <th>Name</th>
                         <th>Epin</th>
                         <th>Amount</th>
+                        <th>Level</th>
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -121,8 +131,10 @@
                         <tr>
                             <th>{{$loop->index + 1}}</th>
                             <td>{{App\User::find($p->user_id)->username}}</td>
+                            <td>{{App\User::find($p->user_id)->name}}</td>
                             <td>{{$p->epin->epin}}</td>
                             <td>{{$p->epin->EpinCategory->rate}}</td>
+                            <td>{{App\User::find($p->user_id)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
                             <td><strong>{{Carbon\Carbon::parse($p->created_at)->diffForHumans()}}</strong> <br>({{$p->created_at}})</td>
                         </tr>
                     @endforeach
