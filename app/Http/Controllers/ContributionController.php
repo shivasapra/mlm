@@ -236,7 +236,7 @@ class ContributionController extends Controller
                 $data = ['user'=>Auth::user()];
                 Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
                     {  
-                        $message->to(Auth::user()->email)->subject('Thankyou')->from($contactEmail);
+                        $message->to(Auth::user()->email)->subject('Thankyou');
                     });
 
         }catch (exception $e) {
