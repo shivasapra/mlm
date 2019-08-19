@@ -131,7 +131,7 @@ $activation_amount = 0;
                                     <td>{{$e->EpinCategory->name}}</td>
                                     <td>{{$e->EpinCategory->rate}}</td>
                                     <td>
-                                        <strong>{{App\User::find(App\Transfer::where('epin_id',$e->id)->where('from',Auth::id())->first()->to)->details->username}}</strong>
+                                        <strong>{{App\User::find(App\Transfer::where('epin_id',$e->id)->where('from',Auth::id())->first()->to)->username}} ({{App\User::find(App\Transfer::where('epin_id',$e->id)->where('from',Auth::id())->first()->to)->name}})</strong>
                                     </td>
                                     <td>
                                         <strong>{{Carbon\Carbon::parse(App\Transfer::where('from',Auth::id())->where('epin_id',$e->id)->first()->created_at)->diffForHumans()}}</strong><br>
@@ -171,6 +171,7 @@ $activation_amount = 0;
                             <th>Sno.</th>
                             <th>Contribution By</th>
                             <th>Amount</th>
+                            <th>Level</th>
                             <th>Contributed</th>
                         </tr>
                     </thead>
@@ -179,12 +180,13 @@ $activation_amount = 0;
                         @foreach($commissions as $c)
                             <tr>
                                 <th>{{$i++}}.</th>
-                                <td>{{App\User::find($c->from)->details->username}}</td>
+                                <td>{{App\User::find($c->from)->details->username}} ({{App\User::find($c->from)->name}})</td>
                                 <td>{{$c->amount}}</td>
                                 <td>
                                     <strong>{{Carbon\Carbon::parse($c->created_at)->diffForHumans()}}</strong><br>
                                     ({{$c->created_at}})
                                 </td>
+                                <td>{{App\User::find($c->from)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
                             </tr>
                         @endforeach
                     </tbody>
