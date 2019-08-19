@@ -17,7 +17,7 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="active_users" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-                <table class="table table-bordered" class="myTable">
+                <table class="table table-bordered" id="myTable">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -53,7 +53,7 @@
 
         <div class="tab-pane fade show" id="inactive_users" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-                <table class="table table-bordered" class="myTable">
+                <table class="table table-bordered" id="myTablee">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -95,7 +95,13 @@
 
 <script>
         $(document).ready(function() {
-      $('.myTable').DataTable( {
+      $('#myTable').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+          ]
+      } );
+
+      $('#myTablee').DataTable( {
           dom: 'Bfrtip',
           buttons: [
           ]
