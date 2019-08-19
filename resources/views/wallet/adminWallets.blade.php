@@ -27,7 +27,7 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered">
+            <table class="table table-bordered myTable">
                 <thead>
                     <tr>
                         <th>Sno.</th>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered">
+            <table class="table table-bordered myTable">
                 <thead>
                     <tr>
                         <th>Sno.</th>
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered">
+            <table class="table table-bordered myTable">
                 <thead>
                     <tr>
                         <th>Sno.</th>
@@ -142,4 +142,16 @@
             </table>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script>
+        $(document).ready(function() {
+      $('.myTable').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+          ]
+      } );
+  } );
+</script>
 @endsection
