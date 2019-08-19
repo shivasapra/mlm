@@ -1,6 +1,23 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Reset Password</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<!-- Bootstrap CSS -->
+		<link href="{{asset('auth/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+		<!-- CSS Start -->
+		<link href="{{asset("auth/css/style.css")}}" rel="stylesheet" type="text/css"/>
+		<!-- <link href="css/responsive.css" rel="stylesheet" type="text/css"/> -->
+		<!-- font Awsome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	</head>
+	<body>
+            <section>
+                <div class="login-bg h-100vh">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -62,4 +79,13 @@
         </div>
     </div>
 </div>
-@endsection
+</div>  
+</section>
+	<!-- required javascript -->
+	<script src="{{asset('auth/js/jquery-3.3.1.slim.min.js')}}"></script>
+	<script src="{{asset('auth/js/popper.min.js')}}"></script>
+	<script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
+	<!-- close -->
+	
+	</body>
+</html>	
