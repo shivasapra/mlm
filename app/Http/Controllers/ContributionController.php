@@ -33,7 +33,7 @@ class ContributionController extends Controller
         $parent_user = User::find(Auth::user()->coordinates->parent);
         $temp = 'level_three_percentage'.$request->a;
         $parent_amount = Settings::first()->$temp;
-        $this->commission($parent_amount,$parent_user);
+        $this->commission($parent_amount,$parent_user,0);
 
         $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
         $contactEmail = $parent_user->email;
@@ -42,7 +42,7 @@ class ContributionController extends Controller
         if($super_parent_user = User::find($parent_user->coordinates->parent)){
             $temp = 'level_two_percentage'.$request->a;
             $super_parent_amount = Settings::first()->$temp;
-            $this->commission($super_parent_amount,$super_parent_user);
+            $this->commission($super_parent_amount,$super_parent_user,0);
 
             $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
             $contactEmail = $super_parent_user->email;
@@ -51,7 +51,7 @@ class ContributionController extends Controller
             if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
                 $temp = 'level_one_percentage'.$request->a;
                 $super_duper_parent_amount = Settings::first()->$temp;
-                $this->commission($super_duper_parent_amount,$super_duper_parent_user);
+                $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
 
                 $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = $super_duper_parent_user->email;
@@ -64,7 +64,7 @@ class ContributionController extends Controller
         $parent_user = User::find(Auth::user()->coordinates->parent);
         $temp = 'level_three_percentage'.$request->a;
         $parent_amount = Settings::first()->$temp;
-        $this->commission($parent_amount,$parent_user);
+        $this->commission($parent_amount,$parent_user,0);
 
         $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
         $contactEmail = $parent_user->email;
@@ -73,7 +73,7 @@ class ContributionController extends Controller
         if($super_parent_user = User::find($parent_user->coordinates->parent)){
             $temp = 'level_two_percentage'.$request->a;
             $super_parent_amount = Settings::first()->$temp;
-            $this->commission($super_parent_amount,$super_parent_user);
+            $this->commission($super_parent_amount,$super_parent_user,0);
 
             $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
             $contactEmail = $super_parent_user->email;
@@ -82,7 +82,7 @@ class ContributionController extends Controller
             if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
                 $temp = 'level_one_percentage'.$request->a;
                 $super_duper_parent_amount = Settings::first()->$temp;
-                $this->commission($super_duper_parent_amount,$super_duper_parent_user);
+                $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
 
                 $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = $super_duper_parent_user->email;
