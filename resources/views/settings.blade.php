@@ -127,8 +127,45 @@
                 <button type="submit" class="btn btn-sm btn-info">Save</button>
             </div>
         </div><br><br><br>
-    </form>
-    <hr><br>
+    </form><br>
+
+<h1>Rewards</h1><hr>
+    <form action="">
+        @csrf
+        <div class="row">
+            <div class="col-md-4">
+                <label for="reward_one_prize">Reward 1 Prize</label>
+                <textarea name="reward_one_prize" class="form-control">@if($settings != null){{$settings->reward_one_prize}}@endif</textarea>
+            </div>
+            <div class="col-md-4">
+                <label for="reward_two_prize">Reward 2 Prize</label>
+                <textarea name="reward_two_prize" class="form-control">@if($settings != null){{$settings->reward_two_prize}}@endif</textarea>
+            </div>
+            <div class="col-md-4">
+                <label for="reward_three_prize">Reward 3 Prize</label>
+                <textarea name="reward_three_prize" class="form-control">@if($settings != null){{$settings->reward_three_prize}}@endif</textarea>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="reward_one_tc">Reward 1 T&C</label>
+                <textarea name="reward_one_tc" class="form-control">@if($settings != null){{$settings->reward_one_tc}}@endif</textarea>
+            </div>
+            <div class="col-md-4">
+                <label for="reward_two_tc">Reward 2 T&C</label>
+                <textarea name="reward_two_tc" class="form-control">@if($settings != null){{$settings->reward_two_tc}}@endif</textarea>
+            </div>
+            <div class="col-md-4">
+                <label for="reward_three_tc">Reward 3 T&C</label>
+                <textarea name="reward_three_tc" class="form-control">@if($settings != null){{$settings->reward_three_tc}}@endif</textarea>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="text-right">
+                <button type="submit" class="btn btn-sm btn-info">Save</button>
+            </div>
+        </div>
+    </form><br>
 <div class="row">
     <div class="col-md-6">
         <form action="{{route('save.cause')}}" method="post" id="form">
