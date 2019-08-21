@@ -23,17 +23,35 @@ class CampaignController extends Controller
 
 
     public function create(User $user){
-        $short_url = 'http://'.str_random(7).'.com';
-        return view('campaign.create')->with('user',$user)->with('short_url',$short_url);
+        if(Auth::user()->campaign){
+            $short_url = 'http://'.str_random(7).'.com';
+            return view('campaign.create')->with('user',$user)->with('short_url',$short_url);
+        }else{
+            Session::flash('error','You Do Not Have Permissions To Access This Route');
+            return redirect()->back();
+        }
     }
 
     public function index(){
-        $user = Auth::user();
-        return view('campaign.index')->with('user',$user)->with('campaigns',Campaign::where('user_id',$user->id)->paginate(3));
+
+        if(Auth::user()->campaign){
+            $user = Auth::user();
+            return view('campaign.index')->with('user',$user)->with('campaigns',Campaign::where('user_id',$user->id)->paginate(3));
+        }else{
+            Session::flash('error','You Do Not Have Permissions To Access This Route');
+            return redirect()->back();
+        }
+        
     }
 
     public function campaigns(){
-        return view('campaign.campaigns')->with('campaigns',Campaign::paginate(3));
+        if(Auth::user()->campaign){
+            return view('campaign.campaigns')->with('campaigns',Campaign::paginate(3));
+        }else{
+            Session::flash('error','You Do Not Have Permissions To Access This Route');
+            return redirect()->back();
+        }
+        
     }
 
     public function store(User $user, Campaign $campaign,Request $request){
