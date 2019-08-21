@@ -56,7 +56,7 @@
 
         <div class="tab-pane fade show" id="inactive_users" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-                <table class="table table-bordered" id="myTablee">
+                <table class="table table-bordered myTablee" id="myTablee">
                     <thead>
                         <tr>
                             <th>Sno.</th>
