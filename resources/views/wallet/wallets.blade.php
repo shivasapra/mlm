@@ -318,10 +318,10 @@ $activation_amount = 0;
                     title: "Purchased!!",
                     icon: "success",
                 })
+                location.reload();
             }
         })
        @endif
-       location.reload();
     }
 </script>
 @stop
