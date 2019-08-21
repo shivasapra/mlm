@@ -159,7 +159,15 @@
 	<!-- required javascript -->
 	<script src="{{asset('auth/js/jquery-3.3.1.slim.min.js')}}"></script>
 	<script src="{{asset('auth/js/popper.min.js')}}"></script>
-	<script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        @if(Session::has('oops'))
+            <script>
+                swal(`{{Session::get('oops')}}`, "", "error");
+            </script>
+        @endif
+    </script>
 	<!-- close -->
 	
 	</body>
