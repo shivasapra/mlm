@@ -2,7 +2,9 @@
 use App\Settings;
 $activation_amount = 0;
  foreach($used_epins as $e)   {
-    $activation_amount = $activation_amount + $e->EpinCategory->rate;
+     if($e->used_by == Auth::id()){
+         $activation_amount = $activation_amount + $e->EpinCategory->rate;
+     }
  }
 
  $transferred_amount = 0;
@@ -68,12 +70,12 @@ $activation_amount = 0;
                                 <th>Rate</th>
                                 <th>Remarks</th>
                                 <th>Used</th>
-                                <th>Used By</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php $i =1; @endphp
                             @foreach($used_epins as $e)
+                            @if($e->used_by == Auth::id())
                                 <tr>
                                     <th>{{$i++}}.</th>
                                     <td>{{$e->epin}}</td>
@@ -91,10 +93,8 @@ $activation_amount = 0;
                                     <td>
                                         <strong>{{Carbon\Carbon::parse($e->used_at)->diffForHumans()}}</strong> <br>({{$e->used_at}})
                                     </td>
-                                    <td>
-                                        {{App\User::find($e->used_by)->username}} <strong>({{App\User::find($e->used_by)->name}})</strong>
-                                    </td>
                                 </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
