@@ -18,12 +18,14 @@
         <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#change-security-pin" role="tab" aria-controls="contact">Change Security Pin</a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#bank-transfer" role="tab" aria-controls="contact">Bank Transfer</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verify-identity" role="tab" aria-controls="contact">Verify Identity/KYC</a>
-        </li>
+        @if(!Auth::user()->admin)
+          <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#bank-transfer" role="tab" aria-controls="contact">Bank Transfer</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verify-identity" role="tab" aria-controls="contact">Verify Identity/KYC</a>
+          </li>
+        @endif
         </ul>
         <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">

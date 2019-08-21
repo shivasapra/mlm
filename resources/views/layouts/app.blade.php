@@ -60,7 +60,7 @@
                 <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5"></i></a></li>
                 </ul>
                 <ul class="nav navbar-nav float-xs-right">
-                <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-bell4"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
+                {{-- <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-bell4"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">
                         <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">5 New</span></h6>
@@ -147,10 +147,10 @@
                         </div></a></li>
                     <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="{{asset('app/images/portrait/small/avatar-s-1.png')}}" alt="avatar"><i></i></span><span class="user-name">{{Auth::user()->name}}</span></a>
-                    <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="icon-mail6"></i> My Inbox</a><a href="#" class="dropdown-item"><i class="icon-clipboard2"></i> Task</a><a href="#" class="dropdown-item"><i class="icon-calendar5"></i> Calender</a>
-                    {{-- <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="icon-power3"></i> Logout</a> --}}
+                    <div class="dropdown-menu dropdown-menu-right"><a href="{{route('account.settings',Auth::user())}}" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a>
+                    <div class="dropdown-divider"></div><a href="javascript:void(0)" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-power3"></i> Logout</a>
                     </div>
                 </li>
                 </ul>
@@ -159,42 +159,54 @@
         </div>
         </nav>
 
-        <!-- ////////////////////////////////////////////////////////////////////////////-->
-
-
-        <!-- main menu-->
+        
         <div data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
-        <!-- / main menu header-->
-        <!-- main menu content-->
         <div class="main-menu-content">
             <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-            <li class="nav-item"><a href="{{route('home')}}"><i class="icon-home3"></i><span class="menu-title">Dashboard</span><!-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">2</span> --></a>
-            </li>
-            @if(Auth::user()->admin)
-                <li class=" nav-item"><a href="{{route('users')}}"><i class="icon-users"></i><span class="menu-title">Users</span></a>
-            @endif
-            <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a>
-                <!--<ul class="menu-content">-->
-                <!--  <li><a href="#" class="menu-item">1 column</a>-->
-                <!--  </li>-->
-                <!--  <li><a href="#" class="menu-item">2 columns</a>-->
-                <!--  </li>-->
-                <!--</ul>-->
-            </li>
+
+                <li class="nav-item"><a href="{{route('home')}}"><i class="icon-home3"></i><span class="menu-title">Dashboard</span></a></li>
+
+                @if(Auth::user()->admin)
+                    <li class=" nav-item"><a href="{{route('users')}}"><i class="icon-users"></i><span class="menu-title">Users</span></a></li>
+                    <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>
+                    <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a></li>
+                    <li class=" nav-item"><a href="{{route('view.KYC')}}"><i class="icon-diagram"></i><span class="menu-title">KYC</span></a></li>
+                    <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a></li>
+                    <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
+                    <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
+                    <li class=" nav-item"><a href="{{route('admin.ticket')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a></li>
+                @else
+                    <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>
+                    <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a></li>
+                    <li class=" nav-item"><a href="{{route('my.campaign',Auth::user())}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a></li>
+                    <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
+                    <li class=" nav-item"><a href="{{route('admin.wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
+                    @if(Auth::user()->coordinates)
+                        @if(Auth::user()->coordinates->eligible_for_reward)
+                            <li class=" nav-item"><a href="{{route('rewards')}}"><i class="icon-gift"></i><span class="menu-title">Rewards</span></a>
+                            </li>
+                        @endif
+                    @endif
+                    <li class=" nav-item"><a href="{{route('support.createTickets')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a></li>
+                @endif
+
+                <li class=" nav-item">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" >@csrf</form>
+                    <a class="nav-link"  href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-sign-out"></i>{{ __('Logout') }}</a>
+                </li>
+            </ul>
+             
             {{-- <li class=" nav-item"><a href="{{route('assignment.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Assignment Settings</span></a>
             </li> --}}
-            <li class=" nav-item"><a href="{{route('my.campaign',Auth::user())}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a>
-            </li>
             
+            {{-- <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i></li> --}}
             {{-- <li class=" nav-item"><a href="{{route('contribution.packages',Auth::user())}}"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
             </li> --}}
 
             {{-- <li class=" nav-item"><a href="pending-assignments.php"><i class="icon-compass3"></i><span class="menu-title">My Assignments</span></a>
             </li> --}}
 
-            <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a>
-            </li>
-
+            
             {{-- <li class=" nav-item"><a href="withdrawals.php"><i class="icon-eye6"></i><span class="menu-title">Withdrawals</span></a>
             </li>
 
@@ -206,51 +218,12 @@
 
             <li class=" nav-item"><a href="#"><i class="icon-bar-graph-2"></i><span class="menu-title">Security</span></a>
             </li> --}}
-            @if(Auth::user()->admin)
-                <li class=" nav-item"><a href="{{route('view.KYC')}}"><i class="icon-diagram"></i><span class="menu-title">KYC</span></a>
-                </li>
-                <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a>
-                </li>
-            @endif
-            <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a>
-            </li>
             {{-- <li class=" nav-item"><a href="{{route('epin.requests')}}"><i class="icon-compass2"></i><span class="menu-title">Epin Requests</span></a>
             </li> --}}
-            @if(!Auth::user()->admin)
-                <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
-                </li>
-            @else
-                <li class=" nav-item"><a href="{{route('admin.wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a>
-                </li>
-            @endif
-            @if(Auth::user()->coordinates)
-                @if(Auth::user()->coordinates->eligible_for_reward)
-                    <li class=" nav-item"><a href="{{route('rewards')}}"><i class="icon-gift"></i><span class="menu-title">Rewards</span></a>
-                    </li>
-                @endif
-            @endif
             {{-- 
                 <li class=" nav-item"><a href="#"><i class="icon-document-text"></i><span class="menu-title">Latest Updates</span></a>
                 </li> --}}
-                <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i>
-                </li>
-                @if(!Auth::user()->admin)
-                    <li class=" nav-item"><a href="{{route('support.createTickets')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a>
-                    </li>
-                @else
-                    <li class=" nav-item"><a href="{{route('admin.ticket')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a>
-                    </li>
-                @endif
             
-            <li class=" nav-item">
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                            @csrf
-                          </form>
-                          <a class="nav-link"  href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                <i class="icon-sign-out"></i>
-                                <p>{{ __('Logout') }}</p><a href="#"></a>
-            </li>
-            </ul>
         </div>
         </div>
         <div class="app-content content container-fluid">

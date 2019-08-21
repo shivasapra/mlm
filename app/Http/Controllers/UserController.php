@@ -100,6 +100,13 @@ class UserController extends Controller
         return view('viewKYC')->with('kycs',Kyc::all());
     }
 
+    public function approveKYC(KYC $k){
+        $k->approved = 1;
+        $k->save();
+        Session::flash('success','KYC Approved!!');
+        return redirect()->back();
+    }
+
     public function identityProof(Request $request, User $user, KYC $kyc){
         $kyc->user_id = $user->id;
         $kyc->proof_for = 'Identity';

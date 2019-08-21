@@ -32,7 +32,7 @@
                                 @if($k->approved)
                                     <span class="text-success"><strong>Approved</strong></span>
                                 @else
-                                    <a href="" class="btn btn-sm btn-success">Approve</a>
+                                    <a href="{{route('approve.kyc',$k)}}" class="btn btn-sm btn-success">Approve</a>
                                 @endif
                             </td>
                         </tr>
