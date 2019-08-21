@@ -1,8 +1,8 @@
 @extends('layouts.app', ['titlePage' => __('Dashboard')])
 @section('content-header')
-    {{-- <div class="alert alert-success text-center" role="alert">
-        Your Profile Link: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->details->promotional_url}}</a>
-    </div> --}}
+    <div class="alert alert-success text-center" role="alert">
+        Username: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->username}}</a>
+    </div>
     @if(!Auth::user()->admin)
         @if(Auth::user()->coordinates)
             @if(!Auth::user()->coordinates->eligible_for_reward)
