@@ -24,14 +24,14 @@
             </button>
             </div>
         @endif
-    @endif
-    @if(Auth::user()->KYC->count()<3)
-        <div class="alert alert-danger text-center alert-dismissible show" role="alert">
-        Your KYC document is not verified, Please verify your KYC document. 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
+        @if(Auth::user()->KYC->count()<3)
+            <div class="alert alert-danger text-center alert-dismissible show" role="alert">
+            Your KYC document is not verified, Please verify your KYC document. 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        @endif
     @endif
 @endsection
 
