@@ -83,6 +83,7 @@ class UserController extends Controller
             }
             else{
                 $user->password = bcrypt($request->password);
+                $user->save();
                 Session::flash('success','Password Changed!!');
                 return redirect()->back()->with('user',$user);
             }
