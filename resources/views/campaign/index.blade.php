@@ -1,12 +1,12 @@
 @extends('layouts.app', ['titlePage' => __('My Campaigns')])
 @section('content-body')
-<h1>Campaigns</h1><hr>
+<h1>Campaigns</h1>
 <div class="row">
-  <div class="col-md-9">
+  {{-- <div class="col-md-9">
     <form class="form-inline">
       <h4>Search by</h4>
       <input type="text" placeholder="Search Item" class="form-control" name="" value=""/>
-      {{-- <select class="form-control">
+      <select class="form-control">
         <option value="">All</option>
         <option value="13">Abuse</option>
         <option value="10">Cancelled</option>
@@ -21,14 +21,15 @@
         <option value="2">Submitted</option>
         <option value="11">Unpublished</option>
         <option value="12">Unsuccess</option>
-      </select> --}}
+      </select>
       <button type="submit" class="btn btn-primary">Search</button>
     </form>
-  </div>
-  <div class="col-md-3 text-right">
+  </div> --}}
+  <div class="col-md-12 text-right">
     <a href="{{route('add.campaign',$user)}}" class="btn btn-success mt-2">Add Campaign</a>
   </div>
-</div><hr>
+</div>
+<hr>
 
 @foreach($user->campaigns as $campaign)
     <div class="row">
@@ -41,7 +42,7 @@
         <span class="mr-1"><b>Last Updated On</b> : {{$campaign->updated_at}}</span>
         {{-- <span><b>Status</b> : Published</span> --}}
         <p class="mt-1"><b>Fund</b> : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_target}} </p>
-        <p><b>Campaign URL</b> : {{$user->details->promotional_url}}/{{$campaign->campaign_id}}</p>
+        <p><b>Campaign URL</b> : {{'www.galaxycrowd.com'}}/{{$campaign->campaign_id}}</p>
         <a href="{{route('campaign.edit',$campaign)}}" class="btn btn-danger">Edit</a>
         <a href="{{route('campaign.view',$campaign)}}" class="btn btn-primary">View</a>
     </div>
