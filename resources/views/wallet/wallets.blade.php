@@ -273,10 +273,10 @@ $activation_amount = 0;
 
     function buyPin(){
        @if(App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->count())
-        @php 
-            $ep =  floor($commission_amount / App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first()->EpinCategory->rate );
+        // @php 
+        //     $ep =  floor($commission_amount / App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first()->EpinCategory->rate );
        
-        @endphp
+        // @endphp
         swal({
             title: "Buy Epins",
             text: `Enter Number Of Epins To Buy\n You can Buy Max `+ {{$ep}} +` epins`,
