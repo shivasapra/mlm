@@ -1,6 +1,6 @@
 @extends('layouts.app', ['titlePage' => __('My Campaigns')])
 @section('content-body')
-<h1>Campaigns</h1>
+<h1>My Campaigns</h1>
 <div class="row">
   {{-- <div class="col-md-9">
     <form class="form-inline">
@@ -31,7 +31,7 @@
 </div>
 <hr>
 
-@foreach($user->campaigns as $campaign)
+@foreach($campaigns as $campaign)
     <div class="row">
     <div class="col-md-4">
         <img src="{{asset($campaign->image)}}" alt="portfolio" class="img-fluid"/>
@@ -48,6 +48,9 @@
     </div>
     </div>
     <hr>
+    <div class="text-right">
+        {{$campaigns->links()}}
+    </div>
 @endforeach
 
 {{-- <div class="row">

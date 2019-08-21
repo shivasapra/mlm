@@ -7,20 +7,33 @@ use App\User;
 use App\Campaign;
 use App\Perk;
 use App\Shipping;
+use Auth;
 use Session;
 use App\Images;
 use App\CampaignUpdates;
 
 
 class CampaignController extends Controller
-{
+{   
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function create(User $user){
         $short_url = 'http://'.str_random(7).'.com';
         return view('campaign.create')->with('user',$user)->with('short_url',$short_url);
     }
 
-    public function index(User $user){
-        return view('campaign.index')->with('user',$user);
+    public function index(){
+        $user = Auth::user();
+        return view('campaign.index')->with('user',$user)->with('campaigns',Campaign::where('user_id',$user->id)->paginate(3));
+    }
+
+    public function campaigns(){
+        return view('campaign.campaigns')->with('campaigns',Campaign::paginate(3));
     }
 
     public function store(User $user, Campaign $campaign,Request $request){
@@ -48,7 +61,7 @@ class CampaignController extends Controller
         $campaign->facebook_url = $request->facebook_url;
         $campaign->save();
         Session::flash('success','Campaign Added!!!');
-        return redirect()->route('my.campaign',$user);
+        return redirect()->route('my.campaign');
 
     }
 

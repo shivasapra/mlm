@@ -17,132 +17,126 @@
 	</head>
 	<body>
 		<section>
-				<form class="form" method="POST" action="{{ route('register') }}">
-						@csrf
-	        <div class="login-bg h-100vh">
-	            <div class="container">
-	            <div class="row justify-content-center h-100vh">
-	                <div class="col-md-8 p-0 align-self-center">
-	                    <div class="login-box">
-						<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/><hr>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Referral Code</label>
-									<input type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" required/>
-								</div>
-							</div>
-							{{-- <div class="col-md-3">
-								<div class="form-group">
-									<label>Epin</label>
-									<input type="text" class="form-control @error('epin') is-invalid @enderror" name="epin" value="{{ old('epin') }}" placeholder="Epin" required/>
-								</div>
-							</div> --}}
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Cause</label>
-									<select name="cause" id="cause" required class="form-control" onchange="insertSubcauses(this);">
-										<option value="">--Select--</option>
-										@foreach(App\Cause::all() as $cause)
-											<option value="{{$cause->id}}">{{$cause->name}}</option>
-										@endforeach
-									</select>
+			<form class="form" method="POST" action="{{ route('register') }}">
+				@csrf
+				<div class="login-bg h-100vh">
+					<div class="container">
+						<div class="row justify-content-center h-100vh">
+							<div class="col-md-8 p-0 align-self-center">
+								<div class="login-box">
+									<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/>
+									<div class="text-right">
+										<input type="radio" name="for" value="campaign" onclick="checkFor();" id="crowd_funding" checked>Crowd Funding &nbsp;
+										<input type="radio" name="for" value="campaign" onclick="checkFor();" id="campaign">Campaign
+									</div>
+									<hr>
+									<div class="row toggle">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Referral Code</label>
+												<input type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" required/>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Cause</label>
+												<select name="cause" id="cause" required class="form-control" onchange="insertSubcauses(this);">
+													<option value="">--Select--</option>
+													@foreach(App\Cause::all() as $cause)
+														<option value="{{$cause->id}}">{{$cause->name}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 toggle">
+											<div class="form-group">
+												<label>Sub Cause</label>
+												{{-- <input id="name" type="text" placeholder="Enter Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  required autocomplete="username" autofocus> --}}
+												<div id="insertSubcauses"></div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Full Name</label>
+												<input id="name" type="text" placeholder="Enter Full Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Email id</label>
+												<input id="email" type="email" placeholder="Enter Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Mobile Number</label>
+												<input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Country</label>
+												<input type="text" name="country" class="form-control" placeholder="Country" value="{{ old('country') }}" required/>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>City</label>
+												<input type="text" name="city" class="form-control" placeholder="City" value="{{ old('city') }}" required/>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Password</label>
+												<input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Confirm Password</label>
+												<input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control"  name="password_confirmation" required autocomplete="new-password">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="custom-control custom-checkbox mt-3 mt-4">
+												<input type="checkbox" class="custom-control-input" required id="customControlInline" checked>
+												<label class="custom-control-label text-muted" for="customControlInline">By signing up you agree to our Terms of Use and Privacy Policy.</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<button type="submit" class="btn btn-primary btn-lg w-100">SignUp</button>
+										</div>
+										</div>
+									</div>     
+									<div class="row">
+										<div class="col-md-12 text-center">
+											<ul class="social-media m-0 p-0">
+													<li><a href="#"><img src="{{asset('auth/images/facebook.png')}}" alt="facebook"/></a></li>
+													<li><a href="#"><img src="{{asset('auth/images/twitter.png')}}" alt="twitter"/></a></li>
+													<li><a href="#"><img src="{{asset('auth/images/google-plus.png')}}" alt="google-plus"/></a></li>
+													<li><a href="#"><img src="{{asset('auth/images/linkedin.png')}}" alt="linkedin"/></a></li>
+											</ul>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Sub Cause</label>
-									{{-- <input id="name" type="text" placeholder="Enter Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  required autocomplete="username" autofocus> --}}
-									<div id="insertSubcauses"></div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Full Name</label>
-									<input id="name" type="text" placeholder="Enter Full Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Email id</label>
-									<input id="email" type="email" placeholder="Enter Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Mobile Number</label>
-									<input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Country</label>
-									<input type="text" name="country" class="form-control" placeholder="Country" value="{{ old('country') }}" required/>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>City</label>
-									<input type="text" name="city" class="form-control" placeholder="City" value="{{ old('city') }}" required/>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Password</label>
-									<input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Confirm Password</label>
-									<input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control"  name="password_confirmation" required autocomplete="new-password">
-								</div>
-							</div>
-						</div>
-	                    <div class="row">
-        	                <div class="col-md-12">
-        	                    <div class="form-group">
-        	                        <div class="custom-control custom-checkbox mt-3 mt-4">
-                                    <input type="checkbox" class="custom-control-input" required id="customControlInline" checked>
-                                    <label class="custom-control-label text-muted" for="customControlInline">By signing up you agree to our Terms of Use and Privacy Policy.</label>
-                                    </div>
-        	                    </div>
-        	                </div>
-        	                <div class="col-md-12">
-        	                    <div class="form-group">
-        	                        <button type="submit" class="btn btn-primary btn-lg w-100">SignUp</button>
-        	                   </div>
-        	                </div>
-        	           </div>     
-        	           <div class="row">
-        	               <div class="col-md-12 text-center">
-        	                   <ul class="social-media m-0 p-0">
-        							<li><a href="#"><img src="{{asset('auth/images/facebook.png')}}" alt="facebook"/></a></li>
-        							<li><a href="#"><img src="{{asset('auth/images/twitter.png')}}" alt="twitter"/></a></li>
-        							<li><a href="#"><img src="{{asset('auth/images/google-plus.png')}}" alt="google-plus"/></a></li>
-        							<li><a href="#"><img src="{{asset('auth/images/linkedin.png')}}" alt="linkedin"/></a></li>
-        					   </ul>
-        	               </div>
-        	           </div>
-        	           
-        	           
-	                   <!-- <div>
-	                   <a href="#" class="float-right">Login <i class="fas fa-arrow-right"></i></a>
-	                   </div> -->
-	                </div>
-	                </div>
-	            </div>
-	            </div>
-			</div> 
-				</form> 
+					</div>
+				</div> 
+			</form> 
 		</section>
 
 	<!-- required javascript -->
@@ -150,6 +144,17 @@
 	<script src="{{asset('auth/js/popper.min.js')}}"></script>
 	<script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
 	<!-- close -->
+
+	<script>
+		function checkFor(){
+			if (document.getElementById("crowd_funding").checked == true) {
+				$('.toggle').show();
+			}
+			if (document.getElementById("campaign").checked == true) {
+				$('.toggle').hide();
+			}
+		}
+	</script>
 	<script>
 		function insertSubcauses(temp){
 			var cause_id = temp.value;

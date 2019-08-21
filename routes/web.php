@@ -47,11 +47,13 @@ Route::post('/address-proof/upload/{user}','UserController@addressProof')->name(
 Route::post('/tax-proof/upload/{user}','UserController@taxProof')->name('tax.proof.upload');
 
 Route::get('/add-campaign/{user}','CampaignController@create')->name('add.campaign');
-Route::get('/MyCampaign/{user}','CampaignController@index')->name('my.campaign');
+Route::get('/MyCampaign','CampaignController@index')->name('my.campaign');
 Route::post('/Campaign/Store/{user}','CampaignController@store')->name('campaign.store');
 Route::get('/Campaign/view/{campaign}','CampaignController@show')->name('campaign.view');
 Route::get('/Campaign/edit/{campaign}','CampaignController@edit')->name('campaign.edit');
 Route::post('/Campaign/update/{campaign}','CampaignController@update')->name('campaign.update');
+
+Route::get('/Campaigns','CampaignController@campaigns')->name('campaigns');
 
 Route::get('/add-perk/{campaign}','CampaignController@addPerk')->name('add.perk');
 Route::post('/store-perk/{campaign}','CampaignController@storePerk')->name('perk.store');

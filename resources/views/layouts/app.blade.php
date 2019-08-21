@@ -175,10 +175,13 @@
                     <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
                     <li class=" nav-item"><a href="{{route('admin.wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
                     <li class=" nav-item"><a href="{{route('admin.ticket')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a></li>
+                @elseif(Auth::user()->campaign)
+                    <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>
+                    <li class=" nav-item"><a href="{{route('my.campaign')}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaigns</span></a></li>
+                    <li class=" nav-item"><a href="{{route('campaigns')}}"><i class="icon-diagram"></i><span class="menu-title">Browse Campaigns</span></a></li>
                 @else
                     <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>
                     <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a></li>
-                    <li class=" nav-item"><a href="{{route('my.campaign',Auth::user())}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a></li>
                     <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
                     <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
                     @if(Auth::user()->coordinates)
