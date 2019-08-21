@@ -1,25 +1,25 @@
 @php
 use App\Settings;
-$activation_amount = 0;
- foreach($used_epins as $e)   {
-    $activation_amount = $activation_amount + $e->EpinCategory->rate;
- }
+// $activation_amount = 0;
+//  foreach($used_epins as $e)   {
+//     $activation_amount = $activation_amount + $e->EpinCategory->rate;
+//  }
 
- $transferred_amount = 0;
- foreach($transferred_epins as $e)   {
-    $transferred_amount = $transferred_amount + $e->EpinCategory->rate;
- }
+//  $transferred_amount = 0;
+//  foreach($transferred_epins as $e)   {
+//     $transferred_amount = $transferred_amount + $e->EpinCategory->rate;
+//  }
 
- $purchase_amount = 0;
- foreach(App\purchaseEpin::where('user_id',Auth::id())->get() as $e)   {
-    $purchase_amount = $purchase_amount + $e->epin->EpinCategory->rate;
- }
+//  $purchase_amount = 0;
+//  foreach(App\purchaseEpin::where('user_id',Auth::id())->get() as $e)   {
+//     $purchase_amount = $purchase_amount + $e->epin->EpinCategory->rate;
+//  }
 
- $commission_amount = 0;
- foreach($commissions as $c)   {
-    $commission_amount = $commission_amount + $c->amount;
- }
- $commission_amount = $commission_amount - $purchase_amount;
+//  $commission_amount = 0;
+//  foreach($commissions as $c)   {
+//     $commission_amount = $commission_amount + $c->amount;
+//  }
+//  $commission_amount = $commission_amount - $purchase_amount;
 
 @endphp
 
@@ -273,10 +273,10 @@ $activation_amount = 0;
 
     function buyPin(){
        @if(App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->count())
-        // @php 
-        //     $ep =  floor($commission_amount / App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first()->EpinCategory->rate );
+        @php 
+            $ep =  floor($commission_amount / App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first()->EpinCategory->rate );
        
-        // @endphp
+        @endphp
         swal({
             title: "Buy Epins",
             text: `Enter Number Of Epins To Buy\n You can Buy Max `+ {{$ep}} +` epins`,
