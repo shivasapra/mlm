@@ -122,7 +122,7 @@
                       </select>
                     </div>
                   </div>
-                  <input type="number" name="fundraising_target" class="form-control" name="" value="">
+                  <input type="number" name="fundraising_target" class="form-control" min="50000" name="" value="">
                 </div>
                 <span class="text-danger">Enter Minimum target amount 50000 INR ₹</span>
                 </div>
@@ -144,7 +144,7 @@
               <div class="row">
                 <div class="col-md-3"><label>Upload your campaign image</label></div>
                 <div class="col-md-9">
-                  <input type="file" id="upload_campaign_image" name="image" value style="display:none;"/>
+                  <input type="file" id="upload_campaign_image" name="image" value style="display:none;" accept="image/*"/>
                   <label for="upload_campaign_image" class="btn btn-danger"><i class="icon-upload"></i> Upload</label><br>
                   <img src="{{asset('app/images/upload-image.jpg')}}" alt="upload image" class="img-fluid"/>
                   <div class="bg-light p-1 mt-2"><p class="m-0">TIP Project image needs to be at least 1200px by 650px. We suggest using a photograph with a clean and simple design. File dimensions : at least 1200px (wide) by 650px (high) - Max file size : 5MB - Accepted file formats : JPG, PNG or GIF.</p></div>
@@ -220,8 +220,8 @@
             </div><hr>
             <div class="form-group">
              <p><b>I have read and agree to the Terms & Conditions.</b></p>
-             <div><input type="checkbox" name=""/> I hereby confirm and agree with the company's terms and policies and declare that I have understood all the terms carefully. I also agree that I am creating my own campaign and all the contents, facts, figures, circumstances, rewards and promises that I might have published in my campaign, are the sole responsibility of me myself and company does not have any role to play in that. Content of my campaign cannot be held against the company in any situation whatsoever.</div>
-             <div class="mt-1 mb-1"><input type="checkbox" name=""/> I also agree and understand that OnlineSensor is not any kind of business opportunity and I have signed up on this platform to raise funds for my campaigns/projects and that I have signed up after carefully understanding the entire business model. I clearly understand that there are no investment or returns involved on this platform and I may or may not be able to raise money.</div>
+             <div><input type="checkbox" checked name=""/> I hereby confirm and agree with the company's terms and policies and declare that I have understood all the terms carefully. I also agree that I am creating my own campaign and all the contents, facts, figures, circumstances, rewards and promises that I might have published in my campaign, are the sole responsibility of me myself and company does not have any role to play in that. Content of my campaign cannot be held against the company in any situation whatsoever.</div>
+             <div class="mt-1 mb-1"><input type="checkbox" checked name=""/> I also agree and understand that OnlineSensor is not any kind of business opportunity and I have signed up on this platform to raise funds for my campaigns/projects and that I have signed up after carefully understanding the entire business model. I clearly understand that there are no investment or returns involved on this platform and I may or may not be able to raise money.</div>
              <div class="bg-light p-1">
                <p class="p-0"><b>Review/Feedback</b><br> Once you submit your campaigns/projects for review, we sometimes offer tips and advice to help give it the best chance of succeeding. When we provide the review/feedback, you'll find it here.
                </p>

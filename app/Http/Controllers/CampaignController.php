@@ -28,7 +28,7 @@ class CampaignController extends Controller
        $campaign->campaign_id = str_random(10);
        $campaign->category = $request->category;
        $campaign->title = $request->title;
-       $campaign->fundraising_targe = $request->fundraising_target;
+       $campaign->fundraising_target = $request->fundraising_target;
        $campaign->short_url = $request->short_url;
        $campaign->currency = $request->currency;
        $campaign->description = $request->description;
@@ -62,7 +62,7 @@ class CampaignController extends Controller
 
     public function update(Request $request, Campaign $campaign){
        $campaign->title = $request->title;
-       $campaign->fundraising_targe = $request->fundraising_target;
+       $campaign->fundraising_target = $request->fundraising_target;
        $campaign->description = $request->description;
        if($request->video == 'vimeo'){
            $campaign->video = $request->vimeo_value;

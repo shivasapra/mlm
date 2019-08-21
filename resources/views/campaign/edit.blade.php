@@ -1,13 +1,13 @@
 @extends('layouts.app', ['titlePage' => __('Edit Campaign')])
 @section('content-body')
     <h1>Edit Campaign</h1><hr>
-      <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
+      {{-- <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#edit-campaign" role="tab">Edit/Update Campaign</a>
         </li>
-        {{-- <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#campaign-preferences" role="tab">Campaign Preferences</a>
-        </li> --}}
+        </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#campaign-perks" role="tab">Campaign Perks</a>
         </li>
@@ -23,16 +23,16 @@
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#campaign-subscriber" role="tab">Campaign Subscriber</a>
         </li>
-      </ul>
+      </ul> --}}
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="edit-campaign" role="tabpanel" aria-labelledby="home-tab">
-          <h3 class="mt-2">Recipient</h3>
+          {{-- <h3 class="mt-2">Recipient</h3> --}}
           {{-- <p class="text-muted">TIP Who should funds be sent to?</p> --}}
-          <ul class="nav nav-tabs tabs-design mt-2" id="myTab" role="tablist">
+          {{-- <ul class="nav nav-tabs tabs-design mt-2" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#all" role="tab">All</a>
             </li>
-            {{-- <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#someone-else" role="tab">Someone Else</a>
             </li>
             <li class="nav-item">
@@ -40,8 +40,8 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#charity" role="tab">A Charity</a>
-            </li> --}}
-          </ul>
+            </li>
+          </ul> --}}
           <div id="myTabContent1" class="tab-content">
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="home-tab">
                 <form method="post" action="{{route('campaign.update',$campaign)}}" enctype="multipart/form-data">
@@ -94,7 +94,7 @@
                                 <input type="text" class="form-control" name="currency" value="{{$campaign->currency}}" readonly>
                           </div>
                         </div>
-                        <input type="number" class="form-control" name="fundraising_target" value="{{$campaign->fundraising_targe}}">
+                        <input type="number" class="form-control" name="fundraising_target" value="{{$campaign->fundraising_target}}">
                       </div>
                       {{-- <span class="text-danger">Enter Minimum target amount 50000 INR ₹</span> --}}
                     </div>
@@ -192,8 +192,8 @@
                 </div><hr>
                 <div class="form-group">
                   <p><b>I have read and agree to the Terms & Conditions.</b></p>
-                  <div><input type="checkbox" name=""/> I hereby confirm and agree with the company's terms and policies and declare that I have understood all the terms carefully. I also agree that I am creating my own campaign and all the contents, facts, figures, circumstances, rewards and promises that I might have published in my campaign, are the sole responsibility of me myself and company does not have any role to play in that. Content of my campaign cannot be held against the company in any situation whatsoever.</div>
-                  <div class="mt-1 mb-1"><input type="checkbox" name=""/> I also agree and understand that OnlineSensor is not any kind of business opportunity and I have signed up on this platform to raise funds for my campaigns/projects and that I have signed up after carefully understanding the entire business model. I clearly understand that there are no investment or returns involved on this platform and I may or may not be able to raise money.</div>
+                  <div><input type="checkbox" checked name=""/> I hereby confirm and agree with the company's terms and policies and declare that I have understood all the terms carefully. I also agree that I am creating my own campaign and all the contents, facts, figures, circumstances, rewards and promises that I might have published in my campaign, are the sole responsibility of me myself and company does not have any role to play in that. Content of my campaign cannot be held against the company in any situation whatsoever.</div>
+                  <div class="mt-1 mb-1"><input type="checkbox" checked name=""/> I also agree and understand that OnlineSensor is not any kind of business opportunity and I have signed up on this platform to raise funds for my campaigns/projects and that I have signed up after carefully understanding the entire business model. I clearly understand that there are no investment or returns involved on this platform and I may or may not be able to raise money.</div>
                   <div class="bg-light p-1">
                     <p class="p-0"><b>Review/Feedback</b><br> Once you submit your campaigns/projects for review, we sometimes offer tips and advice to help give it the best chance of succeeding. When we provide the review/feedback, you'll find it here.
                     </p>
@@ -900,13 +900,13 @@
 
         <div class="tab-pane fade show" id="campaign-perks" role="tabpanel">
             <div class="row mt-2">
-                  <div class="col-md-9">
+                  {{-- <div class="col-md-9">
                     <form class="form-inline">
                       <input type="text" placeholder="Search Item" class="form-control" name="" value=""/>
                       <button type="submit" class="btn btn-primary">Search</button>
                     </form>
-                  </div>
-                  <div class="col-md-3 text-right">
+                  </div> --}}
+                  <div class="col-md-12 text-right">
                     <a href="{{route('add.perk',$campaign)}}" class="btn btn-success">Add Perk</a>
                   </div>
                 </div><hr>
@@ -930,7 +930,7 @@
                     </div>
                   </div><hr>
                 @endforeach
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col-md-12 text-right">
                     <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-left"></i> Previous</a></li>
@@ -940,7 +940,7 @@
                   <li class="page-item"><a class="page-link" href="#">Next <i class="icon-angle-right"></i></a></li>
                     </ul>
                   </div>
-                </div>
+                </div> --}}
         </div>
             
         <div class="tab-pane fade show" id="campaign-images-videos" role="tabpanel">
@@ -990,7 +990,7 @@
                     </div>
                 </div>
             </div><hr>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12 text-right">
                 <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-left"></i> Previous</a></li>
@@ -1000,18 +1000,18 @@
                 <li class="page-item"><a class="page-link" href="#">Next <i class="icon-angle-right"></i></a></li>
                 </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
             
         <div class="tab-pane fade show" id="campaign-updates" role="tabpanel">
             <div class="row mt-2">
-            <div class="col-md-9">
+            {{-- <div class="col-md-9">
                 <form class="form-inline">
                     <input type="text" placeholder="Search Item" class="form-control" name="" value=""/>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
-                </div>
-                <div class="col-md-3 text-right">
+                </div> --}}
+                <div class="col-md-12 text-right">
                 <a href="javascript:void(0)" class="btn btn-success" data-toggle="modal" data-target="#addUpdate">Add Update</a>
                 </div>
             </div><hr>
@@ -1055,7 +1055,7 @@
                     </div>
                 </div>
             </div><hr>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12 text-right">
                 <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-left"></i> Previous</a></li>
@@ -1065,17 +1065,17 @@
                 <li class="page-item"><a class="page-link" href="#">Next <i class="icon-angle-right"></i></a></li>
                 </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
             
         <div class="tab-pane fade show" id="campaign-comments" role="tabpanel">
             <div class="row mt-2">
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
                 <form class="form-inline">
                     <input type="text" placeholder="Search Item" class="form-control" name="" value=""/>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
-                </div>
+                </div> --}}
             </div><hr>
             <div class="row">
                 <div class="col-md-12">
@@ -1095,7 +1095,7 @@
                     </div>
                 </div>
             </div><hr>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12 text-right">
                 <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-left"></i> Previous</a></li>
@@ -1105,17 +1105,17 @@
                 <li class="page-item"><a class="page-link" href="#">Next <i class="icon-angle-right"></i></a></li>
                 </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
             
         <div class="tab-pane fade show" id="campaign-subscriber" role="tabpanel">
          <div class="row mt-2">
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
                 <form class="form-inline">
                     <input type="text" placeholder="Search Item" class="form-control" name="" value=""/>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
-                </div>
+                </div> --}}
             </div><hr>
             <div class="row">
                 <div class="col-md-12">
@@ -1137,7 +1137,7 @@
                     </div>
                 </div>
             </div><hr>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12 text-right">
                 <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-left"></i> Previous</a></li>
@@ -1147,7 +1147,7 @@
                 <li class="page-item"><a class="page-link" href="#">Next <i class="icon-angle-right"></i></a></li>
                 </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
