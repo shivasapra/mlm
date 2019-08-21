@@ -51,7 +51,7 @@ use App\Settings;
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
-                            <h2>INR {{$activation_amount}}</h2>
+                            <h2>INR </h2>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ use App\Settings;
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
-                            <h2>INR {{$transferred_amount}}</h2>
+                            <h2>INR</h2>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ use App\Settings;
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2>INR {{$commission_amount}}</h2>
+                        <h2>INR </h2>
                     </div>
                 </div>
             </div>
