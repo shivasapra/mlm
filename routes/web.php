@@ -28,6 +28,7 @@ Route::post('/update-email/{user}', 'UserController@updateEmail')->name('update.
 Route::post('/update-mobile/{user}', 'UserController@updateMobile')->name('update.mobile');
 Route::post('/update-pin/{user}', 'UserController@updatePin')->name('update.pin');
 Route::get('/KYC/{user}', 'UserController@KYC')->name('KYC');
+Route::get('/View-KYC', 'UserController@viewKYC')->name('view.KYC');
 
 Route::get('/assignment-settings/{user}', 'AssignmentController@index')->name('assignment.settings');
 Route::post('/update-BankTransfer/{user}', 'AssignmentController@updateBankTransfer')->name('update.bankTransfer');

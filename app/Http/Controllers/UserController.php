@@ -96,6 +96,10 @@ class UserController extends Controller
         return view('KYC')->with('user',$user);
     }
 
+    public function viewKYC(){
+        return view('viewKYC')->with('kycs',Kyc::all());
+    }
+
     public function identityProof(Request $request, User $user, KYC $kyc){
         $kyc->user_id = $user->id;
         $kyc->proof_for = 'Identity';
@@ -165,6 +169,7 @@ class UserController extends Controller
     public function supportViewTickets(){
         return view('support.viewTickets');
     }
+
 
     public function storeTicket(Request $request, Ticket $ticket){
         $ticket->user_id = Auth::id();
