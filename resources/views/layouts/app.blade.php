@@ -173,14 +173,14 @@
                     <li class=" nav-item"><a href="{{route('view.KYC')}}"><i class="icon-diagram"></i><span class="menu-title">KYC</span></a></li>
                     <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a></li>
                     <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
-                    <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
+                    <li class=" nav-item"><a href="{{route('admin.wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
                     <li class=" nav-item"><a href="{{route('admin.ticket')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a></li>
                 @else
                     <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>
                     <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a></li>
                     <li class=" nav-item"><a href="{{route('my.campaign',Auth::user())}}"><i class="icon-briefcase4"></i><span class="menu-title">My Campaign</span></a></li>
                     <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
-                    <li class=" nav-item"><a href="{{route('admin.wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
+                    <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
                     @if(Auth::user()->coordinates)
                         @if(Auth::user()->coordinates->eligible_for_reward)
                             <li class=" nav-item"><a href="{{route('rewards')}}"><i class="icon-gift"></i><span class="menu-title">Rewards</span></a>
