@@ -4,6 +4,7 @@ use App\EpinRequests;
 use App\Epin;
 use Illuminate\Http\Request;
 use App\EpinCategory;
+use App\purchaseEpin;
 
 /*
 |--------------------------------------------------------------------------
