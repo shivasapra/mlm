@@ -68,6 +68,7 @@ $activation_amount = 0;
                                 <th>Rate</th>
                                 <th>Remarks</th>
                                 <th>Used</th>
+                                <th>Used By</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,6 +90,9 @@ $activation_amount = 0;
                                     </td>
                                     <td>
                                         <strong>{{Carbon\Carbon::parse($e->used_at)->diffForHumans()}}</strong> <br>({{$e->used_at}})
+                                    </td>
+                                    <td>
+                                        {{App\User::find($e->used_by)->username}} <strong>({{App\User::find($e->used_by)->name}})</strong>
                                     </td>
                                 </tr>
                             @endforeach
