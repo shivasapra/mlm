@@ -300,7 +300,7 @@ $activation_amount = 0;
                 });
             }
             else{
-                return fetch(`http://127.0.0.1:8000/buy?amount=${amount}`);
+                return fetch(`http://galaxycrowd.com/app/galaxycrowd/public/buy?amount=${amount}`);
             }
         })
         .then(results => {
