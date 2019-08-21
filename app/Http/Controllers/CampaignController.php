@@ -27,7 +27,7 @@ class CampaignController extends Controller
             $short_url = 'http://'.str_random(7).'.com';
             return view('campaign.create')->with('user',$user)->with('short_url',$short_url);
         }else{
-            Session::flash('oops','You Do Not Have Permissions Browse Campaigns. Please Login As a Campaign User');
+            Session::flash('oops','You Do Not Have Permissions To Browse Campaigns. Please Login As a Campaign User');
             Auth::logout();
             return redirect('/login');
         }
@@ -39,7 +39,7 @@ class CampaignController extends Controller
             $user = Auth::user();
             return view('campaign.index')->with('user',$user)->with('campaigns',Campaign::where('user_id',$user->id)->paginate(3));
         }else{
-            Session::flash('oops','You Do Not Have Permissions Browse Campaigns. Please Login As a Campaign User');
+            Session::flash('oops','You Do Not Have Permissions To Browse Campaigns. Please Login As a Campaign User');
             Auth::logout();
             return redirect('/login');
         }
@@ -50,7 +50,7 @@ class CampaignController extends Controller
         if(Auth::user()->campaign){
             return view('campaign.campaigns')->with('campaigns',Campaign::paginate(3));
         }else{
-            Session::flash('oops','You Do Not Have Permissions Browse Campaigns. Please Login As a Campaign User');
+            Session::flash('oops','You Do Not Have Permissions To Browse Campaigns. Please Login As a Campaign User');
             Auth::logout();
             return redirect('/login');
         }
