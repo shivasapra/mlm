@@ -315,12 +315,13 @@ $activation_amount = 0;
             }else{
                 
                 swal({
-                    title: "Request Sent!!",
+                    title: "Purchased!!",
                     icon: "success",
                 })
             }
         })
        @endif
+       location.reload();
     }
 </script>
 @stop
