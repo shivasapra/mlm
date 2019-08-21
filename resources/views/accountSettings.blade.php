@@ -35,8 +35,10 @@
             <h4><span>Signed Up on</span> : {{$user->created_at}}</h4>
             <h4><span>Username</span> : {{$user->details->username}}</h4>
             <h4><span>Email Address</span> : {{$user->email}}</h4>
-            <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
-            <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
+            @if(!Auth::user()->campaign)
+              <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
+              <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
+            @endif
             <h4><span>Promotional URL</span> : {{$user->details->promotional_url}}</h4>
             <h4><span>Name </span> : {{$user->name}}</h4>
             <h4><span>My Campaign Category </span> :  {{$user->details->campaign_category}}</h4>
@@ -62,8 +64,10 @@
                 <h4><span>Signed Up on</span> : {{$user->created_at}}</h4>
                 <h4><span>Username</span> : {{$user->details->username}}</h4>
                 <h4><span>Email Address</span> : {{$user->email}}</h4>
-                <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
-                <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
+                @if(!Auth::user()->campaign)
+                  <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
+                  <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
+                @endif
                 <h4><span>Promotional URL</span> : {{$user->details->promotional_url}}</h4>
                 <h4><span>Full Name </span> : <input type="text" placeholder="" value="{{$user->details->full_name}}" required disabled class="form-control"/></h4>
                 <h4><span>Sex </span> : <select class="form-control" name="sex"><option>---Select---</option><option value="Male" {{($user->details->sex == "Male")?'selected':''}}>Male</option><option value="Female" {{($user->details->sex == "Female")?'selected':''}}>Female</option><option value="Transgender" {{($user->details->sex == "Transgender")?'selected':''}}>Transgender</option></select></h4>

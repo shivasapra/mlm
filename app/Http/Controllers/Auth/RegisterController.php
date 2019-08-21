@@ -49,7 +49,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validatorCrowdFunding(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -59,15 +59,23 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function validatorCampaign(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function createCrowdFunding(array $data)
     {   
-
         do{
             $username = 'GCF'.mt_rand(1000000, 9999999);
         }while(User::where('username',$username)->first());
@@ -89,6 +97,44 @@ class RegisterController extends Controller
         $detail->mobile = $data['mobile'];
         $detail->invited_by = $data['referral_code'];
         $detail->invited_by_email = Details::where('username',$detail->invited_by)->first()->user->email;
+        $detail->promotional_url = 'http://galaxycrowd.com/'.$username;
+        $detail->security_pin = mt_rand(1000000, 9999999);
+        do{
+            $verify_token = str_random();
+        }while(Details::where('verify_token',$verify_token)->first());
+        $detail->verify_token = $verify_token;
+        $detail->save();
+        
+        $contactEmail = $data['email'];
+        $data = ['user' => $user, 'security_pin'=> $detail->security_pin, 'verify_token'=> $detail->verify_token];
+        Mail::send('emails.registered', $data, function($message) use ($contactEmail)
+        {  
+            $message->to($contactEmail)->subject('Registered!!');
+        });
+        
+        return $user;
+    }
+
+    protected function createCampaign(array $data){
+        do{
+            $username = 'GCF'.mt_rand(1000000, 9999999);
+        }while(User::where('username',$username)->first());
+        
+        $user = new User;
+        $user->name = $data['name'];
+        $user->username = $username;
+        $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);
+        $user->campaign = 1;
+        $user->save();
+
+        $detail = new Details;
+        $detail->user_id = $user->id;
+        $detail->username = $username;
+        $detail->full_name = $data['name'];
+        $detail->country = $data['country'];
+        $detail->city = $data['city'];
+        $detail->mobile = $data['mobile'];
         $detail->promotional_url = 'http://galaxycrowd.com/'.$username;
         $detail->security_pin = mt_rand(1000000, 9999999);
         do{

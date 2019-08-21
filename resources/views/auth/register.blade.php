@@ -26,7 +26,7 @@
 								<div class="login-box">
 									<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/>
 									<div class="text-right">
-										<input type="radio" name="for" value="campaign" onclick="checkFor();" id="crowd_funding" checked>Crowd Funding &nbsp;
+										<input type="radio" name="for" value="crowd_funding" onclick="checkFor();" id="crowd_funding" checked>Crowd Funding &nbsp;
 										<input type="radio" name="for" value="campaign" onclick="checkFor();" id="campaign">Campaign
 									</div>
 									<hr>
@@ -34,13 +34,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Referral Code</label>
-												<input type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" required/>
+												<input type="text" class="form-control re @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" required/>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Cause</label>
-												<select name="cause" id="cause" required class="form-control" onchange="insertSubcauses(this);">
+												<select name="cause" id="cause" required class="form-control re" onchange="insertSubcauses(this);">
 													<option value="">--Select--</option>
 													@foreach(App\Cause::all() as $cause)
 														<option value="{{$cause->id}}">{{$cause->name}}</option>
@@ -149,9 +149,11 @@
 		function checkFor(){
 			if (document.getElementById("crowd_funding").checked == true) {
 				$('.toggle').show();
+				$('.re').attr('required','required');
 			}
 			if (document.getElementById("campaign").checked == true) {
 				$('.toggle').hide();
+				$('.re').removeAttr('required');
 			}
 		}
 	</script>
