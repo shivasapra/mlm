@@ -182,11 +182,11 @@ $activation_amount = 0;
                                 <th>{{$i++}}.</th>
                                 <td>{{App\User::find($c->from)->details->username}} ({{App\User::find($c->from)->name}})</td>
                                 <td>{{$c->amount}}</td>
+                                <td>{{App\User::find($c->from)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
                                 <td>
                                     <strong>{{Carbon\Carbon::parse($c->created_at)->diffForHumans()}}</strong><br>
                                     ({{$c->created_at}})
                                 </td>
-                                <td>{{App\User::find($c->from)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
                             </tr>
                         @endforeach
                     </tbody>
