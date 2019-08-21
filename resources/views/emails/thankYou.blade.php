@@ -90,7 +90,7 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                               <tr>
                                  <td align="center" valign="top">
                                     <font face="'Source Sans Pro', sans-serif" color="#868686" style="font-size: 17px; line-height: 20px;">
-                                       <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;">Copyright &copy; 2017-2018 Cloud Travel. All&nbsp;Rights&nbsp;Reserved.</span>
+                                       <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;">Copyright &copy; Galaxy Crowd. All&nbsp;Rights&nbsp;Reserved.</span>
                                     </font>
                                     <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
                                     

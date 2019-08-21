@@ -558,7 +558,7 @@
                         '<input type="hidden" value="'+ amount +'" name="amount">'+
                         '<input type="hidden" value="'+a+'" name="a">'+
                         '<input type="text" class="form-control" placeholder="Enter Epin" value="'+epin+'" name="epin"><br>'+
-                        '<p>Are You Sure You Want To Invest INR '+amount+' in '+packages+' Package?</p>'+
+                        '<p>Are You Sure You Want To Donate INR '+amount+' in '+packages+' Package?</p>'+
                         '</div>'+
                 
                         '<!-- Modal footer -->'+

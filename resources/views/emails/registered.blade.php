@@ -74,7 +74,7 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                                 <strong>{{$security_pin}}</strong><br>
 
                                  Please Click <a href="{{route('verify.email',$verify_token)}}">HERE</a> to verify Your Email.
-                                <br> Visit Our Website: <a href="www.cloudtravels.co.uk">www.galaxycrowd.com</a></span>
+                                {{-- <br> Visit Our Website: <a href="www.cloudtravels.co.uk">www.galaxycrowd.com</a></span> --}}
                            </font>
                            <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                            <div style="height: 75px; line-height: 75px; font-size: 73px;">&nbsp;</div>
@@ -90,7 +90,7 @@ html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
                               <tr>
                                  <td align="center" valign="top">
                                     <font face="'Source Sans Pro', sans-serif" color="#868686" style="font-size: 17px; line-height: 20px;">
-                                       <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;">Copyright &copy; 2017-2018 Cloud Travel. All&nbsp;Rights&nbsp;Reserved.</span>
+                                       <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;">Copyright &copy; Galaxy Crowd. All&nbsp;Rights&nbsp;Reserved.</span>
                                     </font>
                                     <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
                                     
