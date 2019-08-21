@@ -12,6 +12,9 @@
         <li class="nav-item">
             <a class="nav-link" id="home-tab" data-toggle="tab" href="#inactive_users" role="tab" aria-controls="home">Inactive Users</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#campaign_users" role="tab" aria-controls="home">Campaign Users</a>
+        </li>
     </ul>
 
     <div class="tab-content" id="myTabContent">
@@ -33,7 +36,7 @@
                     <tbody>
                         @php $i = 1; @endphp
                         @foreach($users as $user)
-                            @if($user->coordinates)
+                            @if($user->coordinates and !$user->campaign)
                                 <tr>
                                     <th>{{$i++}}.</th>
                                     <td>{{$user->username}}</td>
@@ -69,12 +72,46 @@
                     <tbody>
                         @php $i = 1; @endphp
                         @foreach($users as $user)
-                            @if(!$user->coordinates)
+                            @if(!$user->coordinates and !$user->campaign)
                                 <tr>
                                     <th>{{$i++}}.</th>
                                     <td>{{$user->username}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->details->invited_by}} ({{ App\User::where('username',$user->details->invited_by)->first()->name}})</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->details->mobile}}</td>
+                                    <td>{{$user->details->security_pin}}</td>
+                                    <th>{{$user->created_at->diffForHumans()}}</th>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-pane fade show" id="campaign_users" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <table class="table table-bordered myTablee" id="myTablee">
+                    <thead>
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Security Pin</th>
+                            <th>Signed Up</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $i = 1; @endphp
+                        @foreach($users as $user)
+                            @if($user->campaign)
+                                <tr>
+                                    <th>{{$i++}}.</th>
+                                    <td>{{$user->username}}</td>
+                                    <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->details->mobile}}</td>
                                     <td>{{$user->details->security_pin}}</td>
@@ -101,7 +138,7 @@
           ]
       } );
 
-      $('#myTablee').DataTable( {
+      $('.myTablee').DataTable( {
           dom: 'Bfrtip',
           buttons: [
           ]
