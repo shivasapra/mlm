@@ -46,16 +46,16 @@ class CampaignController extends Controller
         
     }
 
-    public function campaigns(){
-        if(Auth::user()->campaign){
-            return view('campaign.campaigns')->with('campaigns',Campaign::paginate(3));
-        }else{
-            Session::flash('oops','You Do Not Have Permissions To Browse Campaigns. Please Login As a Campaign User');
-            Auth::logout();
-            return redirect('/login');
-        }
+    // public function campaigns(){
+    //     if(Auth::user()->campaign){
+    //         return view('campaign.campaigns')->with('campaigns',Campaign::paginate(3));
+    //     }else{
+    //         Session::flash('oops','You Do Not Have Permissions To Browse Campaigns. Please Login As a Campaign User');
+    //         Auth::logout();
+    //         return redirect('/login');
+    //     }
         
-    }
+    // }
 
     public function store(User $user, Campaign $campaign,Request $request){
        $campaign->user_id = $user->id;

@@ -62,7 +62,9 @@ Route::get('/Campaign/view/{campaign}','CampaignController@show')->name('campaig
 Route::get('/Campaign/edit/{campaign}','CampaignController@edit')->name('campaign.edit');
 Route::post('/Campaign/update/{campaign}','CampaignController@update')->name('campaign.update');
 
-Route::get('/Campaigns','CampaignController@campaigns')->name('campaigns');
+Route::get('/Campaigns',function(){
+    return view('campaign.campaigns');
+})->name('campaigns');
 
 Route::get('/add-perk/{campaign}','CampaignController@addPerk')->name('add.perk');
 Route::post('/store-perk/{campaign}','CampaignController@storePerk')->name('perk.store');
