@@ -1,18 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>CloudReach Services Pvt. Ltd.</title>
+		<title>Campaigns</title>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<!-- Bootstrap CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<link href="{{asset('campaign/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 		<!-- CSS Start -->
-		<link href="css/style.css" rel="stylesheet" type="text/css"/>
-		<link href="css/responsive.css" rel="stylesheet" type="text/css"/>
-		<link type="text/css" rel="stylesheet" href="css/lightslider.css" /> 
+		<link href="{{asset('campaign/css/style.css')}}" rel="stylesheet" type="text/css"/>
+		<link href="{{asset('campaign/css/responsive.css')}}" rel="stylesheet" type="text/css"/>
+		<link type="text/css" rel="stylesheet" href="{{asset('campaign/css/lightslider.css')}}" /> 
 		<!-- font Awsome -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	</head>
@@ -39,7 +39,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="navbar navbar-expand-lg">
-								<a class="navbar-brand p-0" href="index.php"><img src="images/galaxy-crowd.png" alt="logo" class="logo"/></a>
+								<a class="navbar-brand p-0" href="index.php"><img src="{{asset('campaign/images/galaxy-crowd.png')}}" alt="logo" class="logo"/></a>
 								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 								<span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
 								</button>
@@ -90,151 +90,151 @@
                                 <ul id="content-slider" class="content-slider">
                                     <a href="#">
                                         <li>
-                                            <img src="images/adoption.png" alt="adoption"/>
+                                            <img src="{{asset("campaign/images/adoption.png")}}" alt="adoption"/>
                                             <span class="d-block mt-2">Adoption</span>
                                         </li>
                                     </a>    
                                     <a href="#">
                                         <li>
-                                            <img src="images/animals.png" alt="animals"/>
+                                            <img src="{{asset("campaign/images/animals.png")}}" alt="animals"/>
                                             <span class="d-block mt-2">Animals</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/art.png" alt="adoption"/>
+                                            <img src="{{asset("campaign/images/art.png")}}" alt="adoption"/>
                                             <span class="d-block mt-2">Art</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/organization.png" alt="organization"/>
+                                            <img src="{{asset("campaign/images/organization.png")}}" alt="organization"/>
                                             <span class="d-block mt-2">Organization</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/community.png" alt="community"/>
+                                            <img src="{{asset("campaign/images/community.png")}}" alt="community"/>
                                             <span class="d-block mt-2">Community</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/projects.png" alt="projects"/>
+                                            <img src="{{asset("campaign/images/projects.png")}}" alt="projects"/>
                                             <span class="d-block mt-2">Projects</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/dance.png" alt="dance"/>
+                                            <img src="i{{asset('campaign/mages/dance.png')}}" alt="dance"/>
                                             <span class="d-block mt-2">Dance</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/software.png" alt="software"/>
+                                            <img src="i{{asset('campaign/mages/software.png')}}" alt="software"/>
                                             <span class="d-block mt-2">Software</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/education.png" alt="education"/>
+                                            <img src="i{{asset('campaign/mages/education.png')}}" alt="education"/>
                                             <span class="d-block mt-2">Education</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/emergencies.png" alt="emergencies"/>
+                                            <img src="{{asset('campaign/images/emergencies.png')}}" alt="emergencies"/>
                                             <span class="d-block mt-2">Emergencies</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/events.png" alt="events"/>
+                                            <img src="{{asset('campaign/images/events.png')}}" alt="events"/>
                                             <span class="d-block mt-2">Events</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/family.png" alt="family"/>
+                                            <img src="{{asset('campaign/images/family.png')}}" alt="family"/>
                                             <span class="d-block mt-2">Family</span>
                                         </li>
                                     </a>
                                      <a href="#">
                                         <li>
-                                            <img src="images/fashion.png" alt="fashion"/>
+                                            <img src="{{asset('campaign/images/fashion.png')}}" alt="fashion"/>
                                             <span class="d-block mt-2">Fashion</span>
                                         </li>
                                     </a>
                                      <a href="#">
                                         <li>
-                                            <img src="images/film-video.png" alt="film video"/>
+                                            <img src="{{asset('campaign/images/film-video.png')}}" alt="film video"/>
                                             <span class="d-block mt-2">Film/Video</span>
                                         </li>
                                     </a>
                                      <a href="#">
                                         <li>
-                                            <img src="images/food.png" alt="food"/>
+                                            <img src="{{asset('campaign/images/food.png')}}" alt="food"/>
                                             <span class="d-block mt-2">Food</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/holidays.png" alt="holidays"/>
+                                            <img src="{{asset('campaign/images/holidays.png')}}" alt="holidays"/>
                                             <span class="d-block mt-2">Holidays</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/health.png" alt="health"/>
+                                            <img src="{{asset('campaign/images/health.png')}}" alt="health"/>
                                             <span class="d-block mt-2">Health</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/memorials.png" alt="Memorials"/>
+                                            <img src="{{asset('campaign/images/memorials.png')}}" alt="Memorials"/>
                                             <span class="d-block mt-2">Memorials</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/military-veterans.png" alt="military veterans"/>
+                                            <img src="{{asset('campaign/images/military-veterans.png')}}" alt="military veterans"/>
                                             <span class="d-block mt-2">Military Veterans</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/charity.png" alt="charity"/>
+                                            <img src="{{asset('campaign/images/charity.png')}}" alt="charity"/>
                                             <span class="d-block mt-2">Charity</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/pets.png" alt="pets"/>
+                                            <img src="{{asset('campaign/images/pets.png')}}" alt="pets"/>
                                             <span class="d-block mt-2">Pets</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/books.png" alt="books"/>
+                                            <img src="{{asset('campaign/images/books.png')}}" alt="books"/>
                                             <span class="d-block mt-2">Books</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/rides.png" alt="Rides"/>
+                                            <img src="{{asset('campaign/images/rides.png')}}" alt="Rides"/>
                                             <span class="d-block mt-2">Rides</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/sports.png" alt="sports"/>
+                                            <img src="{{asset('campaign/images/sports.png')}}" alt="sports"/>
                                             <span class="d-block mt-2">Sports</span>
                                         </li>
                                     </a>
                                     <a href="#">
                                         <li>
-                                            <img src="images/trips.png" alt="trips"/>
+                                            <img src="{{asset('campaign/images/trips.png')}}" alt="trips"/>
                                             <span class="d-block mt-2">Trips</span>
                                         </li>
                                     </a>
@@ -244,12 +244,13 @@
                     </div>
                 </div>
 
+                @yield('content')
 
             <footer>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="images/galaxy-crowd-white.png" alt="logo" class="img-fluid"/>
+                                <img src="{{asset('campaign/images/galaxy-crowd-white.png')}}" alt="logo" class="img-fluid"/>
                                 <p align="justify">CloudReach Services Pvt. Ltd. is a company founded by a group of industry experts that have decades of experience between them. Each of them has spent years understanding the needs of the people around them and knowing how to ensure the financial freedom of the people around them.</p>
                             </div>
                             <div class="col-md-3">
@@ -281,15 +282,15 @@
                                 </ul>
                                 <h4>Payment Methods</h4>
                                 <ul class="social-media hover-disable">
-                                    <li><a href="javascript:void(0)"><img src="images/visa.png" alt="visa"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="images/master-card.png" alt="master-card"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="images/mastero.png" alt="mastero"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="images/paypal.png" alt="paypal"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="images/paytm.png" alt="paytm"></a></li>
-                                    <li><a href="#javascript:void(0)"><img src="images/rupay.png" alt="rupay"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="images/solid-truest-pay.png" alt="solid truest pay"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="images/upi.png" alt="upi"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="images/net-banking.png" alt="net-banking"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/visa.png')}}" alt="visa"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="i{{asset('campaign/mages/master-card.png')}}" alt="master-card"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/mastero.png')}}" alt="mastero"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/paypal.png')}}" alt="paypal"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/paytm.png')}}" alt="paytm"></a></li>
+                                    <li><a href="#javascript:void(0)"><img src="{{asset('campaign/images/rupay.png')}}" alt="rupay"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/solid-truest-pay.png')}}" alt="solid truest pay"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/upi.png')}}" alt="upi"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/net-banking.png')}}" alt="net-banking"></a></li>
                                 </ul>
                             </div>
                         </div><hr>
@@ -309,10 +310,10 @@
             </section>
     
         <!-- required javascript -->
-        <script src="js/jquery-3.3.1.slim.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/lightslider.js"></script>
+        <script src="{{asset('campaign/js/jquery-3.3.1.slim.min.js')}}"></script>
+        <script src="{{asset('campaign/js/popper.min.js')}}"></script>
+        <script src="{{asset('campaign/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('campaign/js/lightslider.js')}}"></script>
         <!-- close -->
         
         <script>
