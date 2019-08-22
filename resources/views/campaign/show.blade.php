@@ -22,13 +22,13 @@
                 </div> --}}
                 <hr>
                 <div class="row">
-                    <div class="col-md-6 text-center mb-2">
-                        <div class="bg-light border-right">
+                    <div class="col-md-6 text-center mb-2 p-2">
+                        <div class="bg-light p-2">
                             <a href="javascript:void(0)" id="embedShow" class="badge bg-info text-white">Embed</a><br>
                             <small>Share The Campaign on Your Blog or Website</small>
                         </div>
                     </div>
-                    <div class="col-md-6 text-center mb-2">
+                    <div class="col-md-6 text-center mb-2 p-2">
                             <div class="bg-light">
                                 <a href="{{$campaign->short_url}}" class="badge bg-danger text-white">{{$campaign->short_url}}</a><br>
                                 <small>Campaign's short URL</small>
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                    <div class="bg-light p-1">
+                    <div class="bg-light p-3">
                         <h5 class="text-primary">Campaign ID : {{$campaign->campaign_id}}</h5>
                         <span><i class="icon-location"></i> {{$campaign->user->details->country}}</span><br>
                         <span><i class="icon-tag"></i> {{$campaign->category}}</span>
@@ -91,7 +91,7 @@
                         <a href="#" class="btn btn-success w-100 mt-1">Share With Friends</a>
                     </div>
                     
-                    <div class="bg-light p-1 mt-1">
+                    <div class="bg-light p-3 mt-1">
                        <div class="media">
                            <div class="media-left"><img src="images/blank_img.jpg" alt="" class="img-object" style="width:70px;"/></div>
                            <div class="media-body">
@@ -108,7 +108,7 @@
                     
                     <a href="#" class="btn btn-danger w-100 mt-1">Report this Campaign <br>  <small>If you feel this contains prohibited content.</small></a>
                     
-                    <div class="bg-light p-1 mt-1">
+                    <div class="bg-light p-3 mt-1">
                        <div class="media">
                            <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>
                            <div class="media-body">
