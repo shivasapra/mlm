@@ -1,7 +1,7 @@
 @extends('layouts.app', ['titlePage' => __('Dashboard')])
 @section('content-header')
     <div class="alert alert-success text-center" role="alert">
-        Username: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->username}}</a>
+        Username: <a href="javascript:void(0)" class="alert-link">{{Auth::user()->username}} ({{Auth::user()->name}})</a>
     </div>
     @if(!Auth::user()->details->email_verification)
         <div class="alert alert-warning text-center alert-dismissible show" role="alert">
