@@ -40,17 +40,17 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="navbar navbar-expand-lg">
-								<a class="navbar-brand p-0" href="index.php"><img src="{{asset('campaign/images/galaxy-crowd.png')}}" alt="logo" class="logo"/></a>
+								<a class="navbar-brand p-0" href="http://galaxycrowd.com"><img src="{{asset('campaign/images/galaxy-crowd.png')}}" alt="logo" class="logo"/></a>
 								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 								<span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
 								</button>
 								<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item active">
-											<a class="nav-link" href="index.php">Home</a>
+											<a class="nav-link" href="http://galaxycrowd.com">Home</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="about.php">About Galaxy Crowd</a>
+											<a class="nav-link" href="http://galaxycrowd.com/about.php">About Galaxy Crowd</a>
 										</li>
 									<!--	<li class="nav-item">
 											<a class="nav-link" href="promotion-rules.php">Promotion Rules</a>
@@ -59,7 +59,7 @@
 											<a class="nav-link" href="project-rules.php">Project Rules</a>
 										</li> -->
 										<li class="nav-item">
-											<a class="nav-link" href="contact.php">Contact Us</a>
+											<a class="nav-link" href="http://galaxycrowd.com/contact.php">Contact Us</a>
 										</li>
 									</ul>
 								</div>
