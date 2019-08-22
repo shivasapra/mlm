@@ -23,6 +23,7 @@ Route::get('/test','ContributionController@matrix');
 Auth::routes();
 
 Route::get('/campaign/register',function(){
+    Auth::logout();
     return view('auth.campaignRegister');
 });
 
