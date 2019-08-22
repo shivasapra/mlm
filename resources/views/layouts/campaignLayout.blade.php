@@ -27,10 +27,10 @@
 								<span><i class="fas fa-envelope"></i> support@galaxycrowd.com</span> &nbsp; | &nbsp;
 								<span><i class="fas fa-phone"></i> (+91) 0000 000 000</span>
 							</div>
-							<div class="col-md-6 text-center text-md-right">
+							{{-- <div class="col-md-6 text-center text-md-right">
 								<span><a href="http://galaxycrowd.com/app/galaxycrowd/public/login"><i class="fas fa-sign-in-alt"></i> Login</a></span>&nbsp; | &nbsp;
 								<span><a href="http://galaxycrowd.com/app/galaxycrowd/public/register"><i class="fas fa-edit"></i> Register Now</a></span>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
