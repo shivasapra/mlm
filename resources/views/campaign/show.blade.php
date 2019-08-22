@@ -1,15 +1,6 @@
-@extends('layouts.app', ['titlePage' => __('View Campaign')])
-@section('css')
-<style>
-        body.vertical-layout.vertical-menu.menu-expanded .main-menu{
-            display:none;
-        }
-        body.vertical-layout.vertical-menu.menu-expanded .content, body.vertical-layout.vertical-menu.menu-expanded .footer{
-            margin-left:0;
-        }
-    </style>
-@stop
-@section('content-body')
+@extends('layouts.campaignLayout')
+
+@section('content')
 <div class="container">
         <div class="row">
             <div class="col-md-9">
