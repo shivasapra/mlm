@@ -1,8 +1,8 @@
 @extends('layouts.campaignLayout')
 
 @section('content')
-<div class="container">
-        <div class="row">
+<div class="container-fluid block-md mb-5 ">
+        <div class="row justify-content-center mb-5">
             <div class="col-md-9">
                 <img src="{{asset($campaign->image)}}" alt="" class="img-fluid"/>
                 <h1 class="mt-3">{{$campaign->title}}</h1> <hr>
