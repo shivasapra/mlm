@@ -13,8 +13,7 @@
                 <img src="{{asset($campaign->image)}}" alt="img" class="img-fluid"/>
                 <h3 class="my-3 font-weight-bold">{{$campaign->title}}</h3>
                 <h5><b>{{$campaign->currency}} 00000 of {{$campaign->currency}}{{$campaign->fundraising_target}}</b>
-                <p>{!! Str::limit($campaign->description, $limit = 20, $end = '</p>') !!}</p>
-                <p>{!! $campaign->description !!}</p>
+                <p>{!! Str::limit($campaign->description, $limit = 50, $end = '</p>') !!}</p>
                 <a href="{{route('campaign.view',$campaign)}}">Read More <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         @endforeach
