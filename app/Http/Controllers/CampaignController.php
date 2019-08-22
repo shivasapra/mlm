@@ -104,10 +104,13 @@ class CampaignController extends Controller
        if($request->video == 'youtube'){
             $campaign->video = $request->youtube_value;
         }
-        $image = $request->image;
-        $image_new_name = time().$image->getClientOriginalName();
-        $image->move('uploads/campaign',$image_new_name);
-        $campaign->image = 'uploads/campaign/'.$image_new_name;
+        if($request->hasFile('image')){
+
+            $image = $request->image;
+            $image_new_name = time().$image->getClientOriginalName();
+            $image->move('uploads/campaign',$image_new_name);
+            $campaign->image = 'uploads/campaign/'.$image_new_name;
+        }
         $campaign->website_url = $request->website_url;
         $campaign->twitter_url = $request->twitter_url;
         $campaign->linkedin_url = $request->linkedin_url;
