@@ -131,6 +131,7 @@ class RegisterController extends Controller
         $detail = new Details;
         $detail->user_id = $user->id;
         $detail->username = $username;
+        $detail->cause = Cause::find($data['cause'])->name;
         $detail->full_name = $data['name'];
         $detail->country = $data['country'];
         $detail->city = $data['city'];

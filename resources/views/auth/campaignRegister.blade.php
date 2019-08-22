@@ -8,9 +8,9 @@
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<!-- Bootstrap CSS -->
-		<link href="{{('auth/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+		<link href="{{asset('auth/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 		<!-- CSS Start -->
-		<link href="{{('auth/css/style.css')}}" rel="stylesheet" type="text/css"/>
+		<link href="{{asset('auth/css/style.css')}}" rel="stylesheet" type="text/css"/>
 		<!-- <link href="css/responsive.css" rel="stylesheet" type="text/css"/> -->
 		<!-- font Awsome -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -26,31 +26,23 @@
 								<div class="login-box">
 									<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="logo"/>
 									<div class="text-right">
-										<h1>Crowd Funding</h1>
-										<input type="hidden" name="for" value="crowd_funding"  id="crowd_funding">
+										<h1>Campaign</h1>
+										<input type="hidden" name="for" value="campaign"  id="campaign">
 									</div>
 									<hr>
-									<div class="row toggle">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Referral Code</label>
-												<input type="text" class="form-control re @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" required/>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Cause</label>
-												<select name="cause" id="cause" required class="form-control re" onchange="insertSubcauses(this);">
-													<option value="">--Select--</option>
-													@foreach(App\Cause::all() as $cause)
-														<option value="{{$cause->id}}">{{$cause->name}}</option>
-													@endforeach
-												</select>
-											</div>
-										</div>
-									</div>
 									<div class="row">
-										<div class="col-md-6 toggle">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Cause</label>
+                                                <select name="cause" id="cause" required class="form-control re" onchange="insertSubcauses(this);">
+                                                    <option value="">--Select--</option>
+                                                    @foreach(App\Cause::all() as $cause)
+                                                        <option value="{{$cause->id}}">{{$cause->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+										<div class="col-md-3 toggle">
 											<div class="form-group">
 												<label>Sub Cause</label>
 												{{-- <input id="name" type="text" placeholder="Enter Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  required autocomplete="username" autofocus> --}}
