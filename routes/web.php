@@ -5,6 +5,7 @@ use App\Epin;
 use Illuminate\Http\Request;
 use App\EpinCategory;
 use App\purchaseEpin;
+use App\Campaign;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,7 @@ Route::get('/Campaign/edit/{campaign}','CampaignController@edit')->name('campaig
 Route::post('/Campaign/update/{campaign}','CampaignController@update')->name('campaign.update');
 
 Route::get('/Campaigns',function(){
-    return view('campaign.campaigns');
+    return view('campaign.campaigns')->with('campaigns',App\Campaign::paginate(12));
 })->name('campaigns');
 
 Route::get('/add-perk/{campaign}','CampaignController@addPerk')->name('add.perk');
