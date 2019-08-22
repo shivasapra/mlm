@@ -116,11 +116,23 @@
 									<div class="row">
 										<div class="col-md-12 text-center">
 											<ul class="social-media m-0 p-0">
-													<li><a href="#"><img src="{{asset('auth/images/facebook.png')}}" alt="facebook"/></a></li>
-													<li><a href="#"><img src="{{asset('auth/images/twitter.png')}}" alt="twitter"/></a></li>
-													<li><a href="#"><img src="{{asset('auth/images/google-plus.png')}}" alt="google-plus"/></a></li>
-													<li><a href="#"><img src="{{asset('auth/images/linkedin.png')}}" alt="linkedin"/></a></li>
+												<li><a href="#"><img src="{{asset('auth/images/facebook.png')}}" alt="facebook"/></a></li>
+												<li><a href="#"><img src="{{asset('auth/images/twitter.png')}}" alt="twitter"/></a></li>
+												<li><a href="#"><img src="{{asset('auth/images/google-plus.png')}}" alt="google-plus"/></a></li>
+												<li><a href="#"><img src="{{asset('auth/images/linkedin.png')}}" alt="linkedin"/></a></li>
 											</ul>
+										</div>
+									</div><br> 
+									<div class="row">
+										<div class="col-md-8">
+											<div class="text-right"><br>
+												Already Have An Account?
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<a href="{{route('login')}}"  class="btn btn-primary btn-lg w-100">Login</a>
+											</div>
 										</div>
 									</div>
 								</div>

@@ -24,6 +24,12 @@ Auth::routes();
 Route::get('/campaign/register',function(){
     return view('auth.campaignRegister');
 });
+
+Route::get('/campaign',function(){
+    Auth::logout();
+    return redirect('/campaign/register');
+});
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/account-settings/{user}', 'UserController@accountSettings')->name('account.settings');
 Route::post('/update-profile/{user}', 'UserController@updateProfile')->name('update.profile');
