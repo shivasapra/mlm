@@ -21,13 +21,15 @@
                     </div>
                 </div> --}}
                 <hr>
-                <div class="bg-light p-1 col-md-6 text-center mb-2 border-right">
-                    <a href="javascript:void(0)" id="embedShow" class="badge bg-info">Embed</a><br>
-                    <small>Share The Campaign on Your Blog or Website</small>
-                </div>
-                <div class="bg-light p-1 col-md-6 text-center mb-2">
-                    <a href="{{$campaign->short_url}}" class="badge bg-danger">{{$campaign->short_url}}</a><br>
-                    <small>Campaign's short URL</small>
+                <div class="row">
+                    <div class="bg-light col-md-6 text-center mb-2 border-right">
+                        <a href="javascript:void(0)" id="embedShow" class="badge bg-info">Embed</a><br>
+                        <small>Share The Campaign on Your Blog or Website</small>
+                    </div>
+                    <div class="bg-light col-md-6 text-center mb-2">
+                        <a href="{{$campaign->short_url}}" class="badge bg-danger">{{$campaign->short_url}}</a><br>
+                        <small>Campaign's short URL</small>
+                    </div>
                 </div>
                 <div id="embedDiv" class="col-md-12 bg-light pt-1 pb-1 mb-2" style="display:none;">
                     <div class="row">
