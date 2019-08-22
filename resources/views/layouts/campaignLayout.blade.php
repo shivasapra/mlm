@@ -283,7 +283,7 @@
                                 <h4>Payment Methods</h4>
                                 <ul class="social-media hover-disable">
                                     <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/visa.png')}}" alt="visa"></a></li>
-                                    <li><a href="javascript:void(0)"><img src="i{{asset('campaign/mages/master-card.png')}}" alt="master-card"></a></li>
+                                    <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/master-card.png')}}" alt="master-card"></a></li>
                                     <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/mastero.png')}}" alt="mastero"></a></li>
                                     <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/paypal.png')}}" alt="paypal"></a></li>
                                     <li><a href="javascript:void(0)"><img src="{{asset('campaign/images/paytm.png')}}" alt="paytm"></a></li>
