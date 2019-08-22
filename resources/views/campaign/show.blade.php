@@ -1,5 +1,12 @@
 @extends('layouts.campaignLayout')
 
+@section('css')
+    <style>
+    .btn{
+        border-radius:5px;
+    }
+    </style>
+@endsection
 @section('content')
 <div class="container-fluid block-md mb-5 ">
         <div class="row justify-content-center mb-5">
@@ -22,14 +29,14 @@
                 </div> --}}
                 <hr>
                 <div class="row">
-                    <div class="col-md-6 text-center mb-2 p-2">
+                    <div class="col-md-6 text-center mb-2">
                         <div class="bg-light p-2">
                             <a href="javascript:void(0)" id="embedShow" class="badge bg-info text-white">Embed</a><br>
                             <small>Share The Campaign on Your Blog or Website</small>
                         </div>
                     </div>
-                    <div class="col-md-6 text-center mb-2 p-2">
-                            <div class="bg-light">
+                    <div class="col-md-6 text-center mb-2">
+                            <div class="bg-light p-2">
                                 <a href="{{$campaign->short_url}}" class="badge bg-danger text-white">{{$campaign->short_url}}</a><br>
                                 <small>Campaign's short URL</small>
                             </div>
@@ -75,7 +82,7 @@
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <select class="form-control">
+                              <select class="form-control" style="height: 30px;padding: 2px;">
                                 <option value="2" data-minigoal="50000" selected="selected">INR ₹</option>
                                 <option value="1" data-minigoal="1000">USD $</option>
                                 <option value="9" data-minigoal="1000">EUR €</option>
@@ -91,7 +98,7 @@
                         <a href="#" class="btn btn-success w-100 mt-1">Share With Friends</a>
                     </div>
                     
-                    <div class="bg-light p-3 mt-1">
+                    <div class="bg-light p-3 my-3">
                        <div class="media">
                            <div class="media-left"><img src="images/blank_img.jpg" alt="" class="img-object" style="width:70px;"/></div>
                            <div class="media-body">
@@ -99,14 +106,14 @@
                                <span><i class="icon-envelope"></i> {{$campaign->user->details->username}}</span>
                            </div>
                        </div><hr>
-                       <ul class="pl-1 small text-danger m-0">
+                       <ul class="pl-3 small text-danger m-0">
                             <li>This person will receive your donation directly.</li>
                             <li>All payments are final and cannot be refunded.</li>
                             <li>Please donate only to the people you know.</li>
                        </ul>
                     </div>
                     
-                    <a href="#" class="btn btn-danger w-100 mt-1">Report this Campaign <br>  <small>If you feel this contains prohibited content.</small></a>
+                    <a href="#" class="btn btn-danger w-100 mb-3">Report this Campaign <br>  <small>If you feel this contains prohibited content.</small></a>
                     
                     <div class="bg-light p-3 mt-1">
                        <div class="media">
