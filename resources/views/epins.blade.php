@@ -89,7 +89,7 @@
             </form>
             <br><br>
         <h1>Epins</h1><hr>
-            <table class="table tabel-bordered">
+            <table class="table tabel-bordered datatable">
                 <thead>
                     <tr>
                         <th>Sno.</th>
@@ -120,7 +120,7 @@
 @else
     @section('content-body')
             <h1>Epins</h1><hr>
-            <table class="table table-bordered">
+            <table class="table table-bordered datatable">
                 <thead>
                     <tr>
                         <th>Sno.</th>

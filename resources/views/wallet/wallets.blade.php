@@ -61,7 +61,7 @@ $activation_amount = 0;
             <br>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered datatable">
                         <thead>
                             <tr>
                                 <th>Sno.</th>
@@ -115,7 +115,7 @@ $activation_amount = 0;
             <br>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered datatable">
                         <thead>
                             <tr>
                                 <th>Sno.</th>
@@ -169,7 +169,7 @@ $activation_amount = 0;
         <br>
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered">
+                <table class="table table-bordered datatable">
                     <thead>
                         <tr>
                             <th>Sno.</th>

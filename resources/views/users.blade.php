@@ -1,8 +1,4 @@
 @extends('layouts.app', ['titlePage' => __('users')])
-@section('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-@stop
 @section('content-body')
     <h1>Users</h1><hr>
     <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
@@ -20,7 +16,7 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="active_users" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-                <table class="table table-bordered" id="myTable">
+                <table class="table table-bordered datatable">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -56,7 +52,7 @@
 
         <div class="tab-pane fade show" id="inactive_users" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-                <table class="table table-bordered myTablee" id="myTablee">
+                <table class="table table-bordered datatable">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -92,7 +88,7 @@
 
         <div class="tab-pane fade show" id="campaign_users" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-                <table class="table table-bordered myTablee" id="myTablee">
+                <table class="table table-bordered datatable">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -125,24 +121,4 @@
         </div>
     </div>
     
-@endsection
-@section('js')
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
-<script>
-        $(document).ready(function() {
-      $('#myTable').DataTable( {
-          dom: 'Bfrtip',
-          buttons: [
-          ]
-      } );
-
-      $('.myTablee').DataTable( {
-          dom: 'Bfrtip',
-          buttons: [
-          ]
-      } );
-  } );
-  </script>
 @endsection

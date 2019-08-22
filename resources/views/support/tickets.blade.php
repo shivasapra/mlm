@@ -1,11 +1,7 @@
 @extends('layouts.app', ['titlePage' => __('Tickets')])
-@section('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-@stop
 @section('content-body')
 <h1>Tickets</h1><hr>
-    <table class="table table-bordered" id="myTable">
+    <table class="table table-bordered datatable">
         <thead class="bg-light">
             <tr>
                 <th>Sno.</th>
@@ -119,16 +115,5 @@
             $('#modalButton').click();
             }
         </script>
-        <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         
-        <script>
-                $(document).ready(function() {
-              $('#myTable').DataTable( {
-                  dom: 'Bfrtip',
-                  buttons: [
-                  ]
-              } );
-          } );
-          </script>
 @endsection

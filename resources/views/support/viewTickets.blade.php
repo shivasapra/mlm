@@ -10,7 +10,7 @@
         </li>
     </ul>
         <div class="table-responsive mt-2">
-            <table class="table table-bordered">
+            <table class="table table-bordered datatable">
                 <thead class="bg-light">
                     <tr>
                         <th>Sno.</th>

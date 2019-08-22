@@ -14,6 +14,9 @@
     <link rel="apple-touch-icon" sizes="152x152" href=" {{asset('app/images/ico/apple-icon-152.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href=" {{asset('app/images/ico/favicon.ico')}}">
     <link rel="shortcut icon" type="image/png" href=" {{asset('app/images/ico/favicon-32.png')}}">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
     
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href=" {{asset('app/css/bootstrap.css')}}">
@@ -334,6 +337,20 @@
                 swal(`{{Session::get('oops')}}`, "", "error");
             </script>
         @endif
+
+        <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+        
+        <script>
+            $(document).ready(function() {
+                $('.myTable').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                    ]
+                });
+           });
+        </script>
         @yield('js')
     </body>
 </html>

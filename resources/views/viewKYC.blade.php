@@ -3,7 +3,7 @@
     <h1>KYC</h1><hr>
     <div class="row">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered datatable">
                 <thead>
                     <tr>
                     <th>Sno.</th>

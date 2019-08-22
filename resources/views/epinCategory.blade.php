@@ -2,7 +2,7 @@
 <?php use App\User; ?>
 @section('content-body')
 <h1>{{$category->name}}</h1><hr>
-<table class="table table-bordered">
+<table class="table table-bordered datatable">
     <thead>
         <tr>
             <th>Sno.</th>
@@ -73,7 +73,7 @@
                                 '</div>'+
                                 '<!-- Modal body -->'+
                                 '<div class="modal-body">'+
-                                        '<table class="table table-bordered">'+
+                                        '<table class="table table-bordered datatable">'+
                                             '<thead>'+
                                                 '<tr>'+
                                                     '<th>Sno.</th>'+

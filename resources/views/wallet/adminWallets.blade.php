@@ -1,8 +1,5 @@
 @extends('layouts.app', ['titlePage' => __('Wallets')])
 @section('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-@stop
 @section('content-body')
     <h1>Wallets</h1><hr>
     <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
@@ -31,7 +28,7 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered myTable">
+            <table class="table table-bordered datatable">
                 <thead>
                     <tr>
                         <th>Sno.</th>
@@ -81,7 +78,7 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered myTable">
+            <table class="table table-bordered datatable">
                 <thead>
                     <tr>
                         <th>Sno.</th>
@@ -118,7 +115,7 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered myTable">
+            <table class="table table-bordered datatable">
                 <thead>
                     <tr>
                         <th>Sno.</th>
@@ -146,19 +143,4 @@
             </table>
         </div>
     </div>
-@endsection
-
-@section('js')
-
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script>
-        $(document).ready(function() {
-      $('.myTable').DataTable( {
-          dom: 'Bfrtip',
-          buttons: [
-          ]
-      } );
-  } );
-</script>
 @endsection
