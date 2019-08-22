@@ -144,10 +144,10 @@
               <div class="row">
                 <div class="col-md-3"><label>Upload your campaign image</label></div>
                 <div class="col-md-9">
-                  <input type="file" id="upload_campaign_image" name="image" value style="display:none;" accept="image/*"/>
-                  <label for="upload_campaign_image" class="btn btn-danger"><i class="icon-upload"></i> Upload</label><br>
-                  <img src="{{asset('app/images/upload-image.jpg')}}" alt="upload image" class="img-fluid"/>
-                  <div class="bg-light p-1 mt-2"><p class="m-0">TIP Project image needs to be at least 1200px by 650px. We suggest using a photograph with a clean and simple design. File dimensions : at least 1200px (wide) by 650px (high) - Max file size : 5MB - Accepted file formats : JPG, PNG or GIF.</p></div>
+                  <input type="file" id="upload_campaign_image" name="image" value onchange="readURL(this);" required accept="image/*"/><br>
+                  {{-- <label for="upload_campaign_image" class="btn btn-danger"><i class="icon-upload"></i> Upload</label><br> --}}
+                  <img id="blah" src="{{asset('app/images/upload-image.jpg')}}" alt="upload image" class="img-fluid"/>
+                  
                 </div>
               </div>
             </div>
@@ -900,3 +900,17 @@
 
       </div>
 @stop
+@section('js')
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+  </script>
+@endsection
