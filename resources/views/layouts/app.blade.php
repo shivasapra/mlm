@@ -344,7 +344,7 @@
         
         <script>
             $(document).ready(function() {
-                $('.myTable').DataTable( {
+                $('.datatable').DataTable( {
                     dom: 'Bfrtip',
                     buttons: [
                     ]
