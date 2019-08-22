@@ -30,6 +30,13 @@ class UserController extends Controller
             $details->postal_code = $request->postal_code;
             $details->skype_id = $request->skype_id;
             $details->pan_no = $request->pan_no;
+
+            if($request->hasFile('avatar')){
+                $avatar = $request->avatar;
+                $avatar_new_name = time().$avatar->getClientOriginalName();
+                $avatar->move('uploads/avatar',$avatar_new_name);
+                $details->avatar = 'uploads/avatar/'.$avatar_new_name;
+            }
             $details->save();
             Session::flash('success','Details Updated!!');
         }

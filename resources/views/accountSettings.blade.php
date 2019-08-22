@@ -30,7 +30,14 @@
         <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
         <div class="row">
-        <div class="col-md-3"><img src="{{asset('app/images/profile-user.jpg')}}" alt="profile user" class="img-fluid"/></div>
+        <div class="col-md-3"><img 
+          @if($user->details->avatar)
+            src="{{asset($user->details->avatar)}}"
+          @else
+            src="{{asset('app/images/profile-user.jpg')}}"
+          @endif
+          alt="profile user" class="img-fluid"/>
+        </div>
         <div class="col-md-9 details">
             <h4><span>Signed Up on</span> : {{$user->created_at}}</h4>
             <h4><span>Username</span> : {{$user->details->username}}</h4>
@@ -57,7 +64,7 @@
         </div>
         <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="profile-tab">
         <div class="row">
-        <form method="post" action="{{route('update.profile',$user)}}" class="form-inline">
+        <form method="post" action="{{route('update.profile',$user)}}" enctype="multipart/form-data" class="form-inline">
             @csrf
             @method('POST')
             <div class="col-md-9 details">
@@ -90,9 +97,14 @@
             </div>
             <div class="col-md-3">
                 <div class="image-outer-div">
-                    <img src="{{asset('app/images/profile-user.jpg')}}" alt="profile user" class="img-fluid"/>
+                    <img id="blah" @if($user->details->avatar)
+                      src="{{asset($user->details->avatar)}}"
+                    @else
+                      src="{{asset('app/images/profile-user.jpg')}}"
+                    @endif
+                   alt="profile user" class="img-fluid"/>
                     <label for="avatar" class="upload-icon"><i class="icon-camera"></i></label>
-                    <input type="file" id="avatar" name="avatar" onchange="readURL(this);" class="form-control" style="display:none;">
+                    <input type="file"  id="avatar" name="avatar" onchange="readURL(this);" class="form-control" style="display:none;">
                 </div>
             </div>
         </form>
@@ -349,4 +361,17 @@
           $('#modalButton').click();
         }
     </script>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+  </script>
 @endsection
