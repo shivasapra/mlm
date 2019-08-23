@@ -65,7 +65,7 @@ Route::get('/Campaign/edit/{campaign}','CampaignController@edit')->name('campaig
 Route::post('/Campaign/update/{campaign}','CampaignController@update')->name('campaign.update');
 Route::get('/Campaign/sdminList',function(){
     return view('campaign.adminList');
-})->name('campaign.adminList');
+})->name('campaigns.adminList');
 
 Route::get('/Campaigns',function(){
     return view('campaign.campaigns')->with('campaigns',App\Campaign::paginate(12));
