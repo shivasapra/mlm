@@ -112,4 +112,8 @@ class User extends Authenticatable
     public function EpinRequests(){
         return $this->hasMany('App\EpinRequests');
     }
+
+    public function UpgradeWallet(){
+        return $this->hasMany('App\UpgradeWallet');
+    }
 }
