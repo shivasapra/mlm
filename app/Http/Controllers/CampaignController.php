@@ -90,6 +90,20 @@ class CampaignController extends Controller
         return view('campaign.show')->with('campaign',$campaign);
     }
 
+    public function approve(Campaign $campaign){
+        $campaign->status = 1;
+        $campaign->save();
+        Session::flash('success','Campaign Approved!!');
+        return redirect()->back();
+    }
+
+    public function reject(Campaign $campaign){
+        $campaign->status = 0;
+        $campaign->save();
+        Session::flash('success','Campaign Rejected!!');
+        return redirect()->back();
+    }
+
     public function edit(Campaign $campaign){
         return view('campaign.edit')->with('campaign',$campaign);
     }
