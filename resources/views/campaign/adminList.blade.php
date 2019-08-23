@@ -2,7 +2,7 @@
 @section('content-body')
 <h1>Campaigns</h1>
 <hr>
-@foreach(App\Campaigns::all() as $campaign)
+@foreach(App\Campaign::all() as $campaign)
     <div class="row">
     <div class="col-md-4">
         <img src="{{asset($campaign->image)}}" alt="portfolio" class="img-fluid"/>
