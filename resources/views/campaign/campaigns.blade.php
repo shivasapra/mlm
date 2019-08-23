@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row">
-        @foreach($campaigns as $campaign)
+        @foreach($campaigns->where('status',1) as $campaign)
             <div class="col-lg-3 col-md-6 mb-5">
                 <img src="{{asset($campaign->image)}}" alt="img" class="img-fluid"/>
                 <h3 class="my-3 font-weight-bold">{{$campaign->title}}</h3>
