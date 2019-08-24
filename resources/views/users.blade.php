@@ -26,6 +26,8 @@
                             <th>Email</th>
                             <th>Mobile</th>
                             <th>Security Pin</th>
+                            <th>Current Package</th>
+                            <th>Upgrade Wallet Amount</th>
                             <th>Signed Up</th>
                         </tr>
                     </thead>
@@ -41,6 +43,8 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->details->mobile}}</td>
                                     <td>{{$user->details->security_pin}}</td>
+                                    <th>{{$user->donations->last()->package}}</th>
+                                    <td>{{$user->UpgradeWallet->pluck('amount')->sum()}}</td>
                                     <th>{{$user->created_at->diffForHumans()}}</th>
                                 </tr>
                             @endif

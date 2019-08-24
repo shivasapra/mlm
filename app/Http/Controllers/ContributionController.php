@@ -159,7 +159,7 @@ class ContributionController extends Controller
             $users = User::where('username','LIKE','%'.$request->search."%")->where('campaign',0)->get();
             if($users){
                     foreach ($users as $key => $user) {
-                        $output.='<option onClick="UsernameAssign(this)" value="'.$user->username.'">'.$user->username.'</option>';
+                        $output.='<option onClick="UsernameAssign(this)" value="'.$user->username.'">'.$user->username.' ('.$user->name.')</option>';
                     }
                 return Response($output);
             }
