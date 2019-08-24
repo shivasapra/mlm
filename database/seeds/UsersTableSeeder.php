@@ -38,6 +38,26 @@ class UsersTableSeeder extends Seeder
         $coordinates->column = 1000;
         $coordinates->save();
 
+        $user = new App\User;
+        $user->name = 'Shiva Sapra';
+        $user->username = 'GCF240798';
+        $user->email = 'shivasapra24@gmail.com';
+        $user->admin = 0;
+        $user->password = bcrypt('password');
+        $user->save();
+
+        $detail = new App\Details;
+        $detail->user_id = $user->id;
+        $detail->username = $user->username;
+        $detail->full_name = 'Shiva Sapra';
+        $detail->country = 'India';
+        $detail->mobile = '123456789';
+        $detail->invited_by = 'admin';
+        $detail->invited_by_email = 'galaxycrowd@gmail.com';
+        $detail->promotional_url = 'http://galaxycrowd.com/'.$user->username;
+        $detail->security_pin = 240798;
+        $detail->save();
+
         
 
         // $user = new App\User;
