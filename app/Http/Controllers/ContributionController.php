@@ -31,9 +31,10 @@ class ContributionController extends Controller
 
         $this->setCoordinates($p[0]);
 
-        foreach($p[1] as $cd){
-            sendMail($cd[0],$cd[1]);
-        }
+        // foreach($p[1] as $cd){
+        //     sendMail($cd[0],$cd[1]);
+        //     sleep(1);
+        // }
         return redirect()->back();
     }
 

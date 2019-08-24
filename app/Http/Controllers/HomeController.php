@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Commision; 
 use App\User;
+use App\Settings;
 use Auth;
 use Carbon\Carbon;
 use App\Donation;
@@ -51,8 +52,8 @@ class HomeController extends Controller
                 }
 
                 $collection = collect();
-                if($user->UpgradeWallet->pluck('amount')->sum() >= App\Settings::first()->upgrade_to_standard){
-                    if($user->UpgradeWallet->pluck('amount')->sum() < App\Settings::first()->upgrade_to_premium){
+                if($user->UpgradeWallet->pluck('amount')->sum() >= Settings::first()->upgrade_to_standard){
+                    if($user->UpgradeWallet->pluck('amount')->sum() < Settings::first()->upgrade_to_premium){
                         if($user->donations->pluck('package')->contains('BASIC')){
                             if(!$user->donations->pluck('package')->contains('STANDARD')){
                                 $collection = donate('STANDARD', Settings::first()->upgrade_to_standard, '_standard' , $collection);
@@ -67,17 +68,17 @@ class HomeController extends Controller
                     }
                 }
 
-                if($user->UpgradeWallet->pluck('amount')->sum() >= App\Settings::first()->upgrade_to_premium){
+                if($user->UpgradeWallet->pluck('amount')->sum() >= Settings::first()->upgrade_to_premium){
                     if($user->donations->pluck('package')->contains('BASIC')){
                         if($user->donations->pluck('package')->contains('STANDARD')){
                             if(!$user->donations->pluck('package')->contains('Premium')){
                                 $collection = donate('Premium', Settings::first()->upgrade_to_standard, '_premium' , $collection);
                                 $collection = OtherContribution($collection,'_premium');
 
-                                foreach($collection as $cd){
-                                    sendMail($cd[0],$cd[1]);
-                                    sleep(1);
-                                }
+                                // foreach($collection as $cd){
+                                //     sendMail($cd[0],$cd[1]);
+                                //     sleep(1);
+                                // }
                             }
                         }
                     }
