@@ -17,96 +17,6 @@ use App\Commision;
 class ContributionController extends Controller
 {   
 
-    public function packages(User $user){
-        return view('contribution.packages')->with('user',$user)->with('packages',ContributionPackages::all());
-    }
-    public function donations(User $user){
-        return view('contribution.donations')->with('user',$user);
-    }
-
-    private function BasicContribution($collection){
-        $parent_user = $this->findParentUser();
-        $coordinates = $this->setCoordinates($parent_user, $collection);
-    }
-
-    private function StandardContribution($collection,$request){
-        $parent_user = User::find(Auth::user()->coordinates->parent);
-        $temp = 'level_three_percentage'.$request->a;
-        $parent_amount = Settings::first()->$temp;
-        $this->commission($parent_amount,$parent_user,0);
-
-        $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-        $contactEmail = $parent_user->email;
-        $collection->push([$data,$contactEmail]);
-
-        if($super_parent_user = User::find($parent_user->coordinates->parent)){
-            $temp = 'level_two_percentage'.$request->a;
-            $super_parent_amount = Settings::first()->$temp;
-            $this->commission($super_parent_amount,$super_parent_user,0);
-
-            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
-            $contactEmail = $super_parent_user->email;
-            $collection->push([$data,$contactEmail]);
-
-            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
-                $temp = 'level_one_percentage'.$request->a;
-                $super_duper_parent_amount = Settings::first()->$temp;
-                $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
-
-                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-                $contactEmail = $super_duper_parent_user->email;
-                $collection->push([$data,$contactEmail]);
-            }
-        }
-    }
-
-    private function PremiumContribution($collection,$request){
-        $parent_user = User::find(Auth::user()->coordinates->parent);
-        $temp = 'level_three_percentage'.$request->a;
-        $parent_amount = Settings::first()->$temp;
-        $this->commission($parent_amount,$parent_user,0);
-
-        $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-        $contactEmail = $parent_user->email;
-        $collection->push([$data,$contactEmail]);
-
-        if($super_parent_user = User::find($parent_user->coordinates->parent)){
-            $temp = 'level_two_percentage'.$request->a;
-            $super_parent_amount = Settings::first()->$temp;
-            $this->commission($super_parent_amount,$super_parent_user,0);
-
-            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
-            $contactEmail = $super_parent_user->email;
-            $collection->push([$data,$contactEmail]);
-
-            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
-                $temp = 'level_one_percentage'.$request->a;
-                $super_duper_parent_amount = Settings::first()->$temp;
-                $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
-
-                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-                $contactEmail = $super_duper_parent_user->email;
-                $collection->push([$data,$contactEmail]);
-            }
-        }
-    }
-
-    private function findParentUser(){
-        $temp = Details::where('username',Auth::user()->details->invited_by)->first()->user;
-        if(count(explode(',',$temp->coordinates->children)) < 5){
-            $parent_user = $temp;
-        }else{
-            $collection = collect(explode(',',$temp->coordinates->children))->concat(collect(explode(',',$temp->coordinates->super_children)))->concat(collect(explode(',',$temp->coordinates->super_duper_children)));
-            foreach($collection as $c){
-                if(count(explode(',',User::find($c)->coordinates->children)) < 5){
-                    $parent_user = User::find($c);
-                    break;
-                }
-            }
-        }
-        return $parent_user;
-    }
-
     public function contribute(Request $request, Donation $donation){
         $collection = collect();
         $epin = $this->verifyEpin($request);
@@ -114,24 +24,18 @@ class ContributionController extends Controller
             Session::flash('warning','Wrong Epin!!');
             return redirect()->back();
         }
-
-        $d = $this->donate($request, $donation, $collection);
-
+        $this->donate($request, $donation, $collection);
         if($request->package == 'BASIC'){
             $this->BasicContribution($collection);
-        }elseif($request->package == 'STANDARD'){
-            $this->StandardContribution($collection,$request);
-        }elseif($request->package == 'Premium'){
-            $this->PremiumContribution($collection,$request);
+        }else{
+            $this->OtherContribution($collection,$request);
         }
-
         foreach($collection as $cd){
             $this->sendMail($cd[0],$cd[1]);
         }
-        
-        
         return redirect()->back();
     }
+
     private function verifyEpin($request){
         $epin = Epin::where('epin',$request->epin)->first();
         if(!$epin or $epin->used_by != null){
@@ -144,6 +48,7 @@ class ContributionController extends Controller
         $epin->save();
         return $epin;
     }
+
     private function donate($request, $donation, $collection){
         $donation->user_id = Auth::user()->id;
         $donation->package = $request->package;
@@ -158,7 +63,6 @@ class ContributionController extends Controller
         return $donation;
     }
     
-    
     private function commission($amount,$user,$ac){
         $commission = new Commision;
         $commission->user_id = $user->id;
@@ -167,6 +71,123 @@ class ContributionController extends Controller
         $commission->ac = $ac;
         $commission->save();
     }
+
+    private function BasicContribution($collection){
+        $parent_user = $this->findParentUser($collection);
+        $this->setCoordinates($parent_user, $collection);
+    }
+
+    private function OtherContribution($collection,$request){
+        $parent_user = User::find(Auth::user()->coordinates->parent);
+        $temp = 'level_three_percentage'.$request->a;
+        $parent_amount = Settings::first()->$temp;
+        $this->commission($parent_amount,$parent_user,0);
+
+        $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
+        $contactEmail = $parent_user->email;
+        $collection->push([$data,$contactEmail]);
+
+        if($super_parent_user = User::find($parent_user->coordinates->parent)){
+            $temp = 'level_two_percentage'.$request->a;
+            $super_parent_amount = Settings::first()->$temp;
+            $this->commission($super_parent_amount,$super_parent_user,0);
+
+            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+            $contactEmail = $super_parent_user->email;
+            $collection->push([$data,$contactEmail]);
+
+            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
+                $temp = 'level_one_percentage'.$request->a;
+                $super_duper_parent_amount = Settings::first()->$temp;
+                $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
+
+                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+                $contactEmail = $super_duper_parent_user->email;
+                $collection->push([$data,$contactEmail]);
+            }else{
+                $temp = 'level_one_percentage'.$request->a;
+                $super_duper_parent_amount = Settings::first()->$temp;
+                $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+                $contactEmail = User::where('admin',1)->first()->email;
+                $collection->push([$data,$contactEmail]);
+                $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+            }
+        }else{
+            $temp = 'level_two_percentage'.$request->a;
+            $super_parent_amount = Settings::first()->$temp;
+            $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+            $contactEmail = User::where('admin',1)->first()->email;
+            $collection->push([$data,$contactEmail]);
+            $this->commission($super_parent_amount,User::where('admin',1)->first(),0);
+
+            $temp = 'level_one_percentage'.$request->a;
+            $super_duper_parent_amount = Settings::first()->$temp;
+            $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+            $contactEmail = User::where('admin',1)->first()->email;
+            $collection->push([$data,$contactEmail]);
+            $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+        }
+    }
+
+    private function findParentUser($collection){
+        $temp = Details::where('username',Auth::user()->details->invited_by)->first()->user;
+
+            $parent_amount = Settings::first()->level_three_percentage;
+            $data = ['name' => $temp->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
+            $contactEmail = $temp->email;
+            $collection->push([$data,$contactEmail]);
+            $this->commission($parent_amount,$temp,0);
+
+        if($super_parent_user = User::find($temp->coordinates->parent)){
+            $super_parent_amount = Settings::first()->level_two_percentage;
+            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+            $contactEmail = $super_parent_user->email;
+            $collection->push([$data,$contactEmail]);
+            $this->commission($super_parent_amount,$super_parent_user,0);
+
+            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
+                $super_duper_parent_amount = Settings::first()->level_one_percentage;
+                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+                $contactEmail = $super_duper_parent_user->email;
+                $collection->push([$data,$contactEmail]);
+                $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
+            }else{
+                $super_duper_parent_amount = Settings::first()->level_one_percentage;
+                $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+                $contactEmail = User::where('admin',1)->first()->email;
+                $collection->push([$data,$contactEmail]);
+                $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+            }
+        }else{
+            $super_parent_amount = Settings::first()->level_two_percentage;
+            $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
+            $contactEmail = User::where('admin',1)->first()->email;
+            $collection->push([$data,$contactEmail]);
+            $this->commission($super_parent_amount,User::where('admin',1)->first(),0);
+
+            $super_duper_parent_amount = Settings::first()->level_one_percentage;
+            $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
+            $contactEmail = User::where('admin',1)->first()->email;
+            $collection->push([$data,$contactEmail]);
+            $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+        }
+
+
+        if(count(explode(',',$temp->coordinates->children)) < 5){
+            $parent_user = $temp;
+        }else{
+            $collection = collect(explode(',',$temp->coordinates->children))->concat(collect(explode(',',$temp->coordinates->super_children)))->concat(collect(explode(',',$temp->coordinates->super_duper_children)));
+            foreach($collection as $c){
+                if(count(explode(',',User::find($c)->coordinates->children)) < 5){
+                    $parent_user = User::find($c);
+                    break;
+                }
+            }
+        }
+        return $parent_user;
+    }
+
+    
     private function setCoordinates($parent_user, $collection){
         $coordinates = new Coordinates;
         $coordinates->user_id = Auth::user()->id;
@@ -181,34 +202,40 @@ class ContributionController extends Controller
         }
         $parent_user->coordinates->children = ($parent_user->coordinates->children == null) ? Auth::user()->id : $parent_user->coordinates->children.','.Auth::user()->id;
         $parent_user->coordinates->save();
-        $parent_amount = Settings::first()->level_three_percentage;
-        $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-        $contactEmail = $parent_user->email;
-        $collection->push([$data,$contactEmail]);
-        $this->commission($parent_amount,$parent_user,0);
+        
         
         if($super_parent_user = User::find($parent_user->coordinates->parent)){
             $coordinates->super_parent = $super_parent_user->id;
             $super_parent_user->coordinates->super_children = ($super_parent_user->coordinates->super_children == null) ? Auth::user()->id : $super_parent_user->coordinates->super_children.','.Auth::user()->id;
             $super_parent_user->coordinates->save();
-            $super_parent_amount = Settings::first()->level_two_percentage;
-            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
-            $contactEmail = $super_parent_user->email;
-            $collection->push([$data,$contactEmail]);
-            $this->commission($super_parent_amount,$super_parent_user,0);
+
             if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
                 $coordinates->super_duper_parent = $super_duper_parent_user->id;
                 $super_duper_parent_user->coordinates->super_duper_children = ($super_duper_parent_user->coordinates->super_duper_children == null) ? Auth::user()->id : $super_duper_parent_user->coordinates->super_duper_children.','.Auth::user()->id;
                 $super_duper_parent_user->coordinates->save();
-                $super_duper_parent_amount = Settings::first()->level_one_percentage;
-                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-                $contactEmail = $super_duper_parent_user->email;
-                $collection->push([$data,$contactEmail]);
-                $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
+
             }
         }
+
         $coordinates->save();
         return $coordinates;
+    }
+
+    private function sendMail($data, $contactEmail){
+        try{
+                Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
+                    {  
+                        $message->to($contactEmail)->subject('Contribution Amount!!');
+                    });
+                $data = ['user'=>Auth::user()];
+                Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
+                    {  
+                        $message->to(Auth::user()->email)->subject('Thankyou');
+                    });
+
+        }catch (exception $e) {
+            Session::flash('oops','Donation Successfull!! But Unable to Send Mail! Please Contact Support');
+        }
     }
     
     
@@ -227,22 +254,7 @@ class ContributionController extends Controller
             }
         }
     }
-    private function sendMail($data, $contactEmail){
-        try{
-                Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
-                    {  
-                        $message->to($contactEmail)->subject('Contribution Amount!!');
-                    });
-                $data = ['user'=>Auth::user()];
-                Mail::send('emails.thankYou', $data, function($message) use ($contactEmail)
-                    {  
-                        $message->to(Auth::user()->email)->subject('Thankyou');
-                    });
-
-        }catch (exception $e) {
-            Session::flash('oops','Donation Successfull!! But Unable to Send Mail! Please Contact Support');
-        }
-    }
+    
     // public function matrix(){
     //     $user = Auth::user();
     //     $arr = array(
@@ -253,6 +265,13 @@ class ContributionController extends Controller
     //     //     'vineet Chauhan'=>['Ashish Sapra','Jagdish Ranjha']
     //     // );
     //     dd($arr);
+    // }
+
+    // public function packages(User $user){
+    //     return view('contribution.packages')->with('user',$user)->with('packages',ContributionPackages::all());
+    // }
+    // public function donations(User $user){
+    //     return view('contribution.donations')->with('user',$user);
     // }
     // private function findChildren($id){
     //     $children = array();
