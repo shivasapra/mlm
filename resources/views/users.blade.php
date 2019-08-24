@@ -44,7 +44,7 @@
                                     <td>{{$user->details->mobile}}</td>
                                     <td>{{$user->details->security_pin}}</td>
                                     <th>{{$user->donations->last()->package}}</th>
-                                    <td>{{$user->UpgradeWallet->pluck('amount')->sum()}}</td>
+                                    <td>{{$user->UpgradeWallet->pluck('amount')->sum() - $user->donations->pluck('amount')->sum() + $user->donations->where('package','BASIC')->first()->amount}}</td>
                                     <th>{{$user->created_at->diffForHumans()}}</th>
                                 </tr>
                             @endif

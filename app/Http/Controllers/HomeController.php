@@ -72,7 +72,7 @@ class HomeController extends Controller
                     if($user->donations->pluck('package')->contains('BASIC')){
                         if($user->donations->pluck('package')->contains('STANDARD')){
                             if(!$user->donations->pluck('package')->contains('Premium')){
-                                $collection = donate('Premium', Settings::first()->upgrade_to_standard, '_premium' , $collection, $user);
+                                $collection = donate('Premium', Settings::first()->upgrade_to_premium, '_premium' , $collection, $user);
                                 $collection = PaiseBaato($collection, $user->coordinates,'_premium', $user);
 
                                 foreach($collection as $cd){
