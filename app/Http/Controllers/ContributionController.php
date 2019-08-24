@@ -25,13 +25,13 @@ class ContributionController extends Controller
             Session::flash('warning','Wrong Epin!!');
             return redirect()->back();
         }
-        donate($request->package, $request->amount, $request->a, $collection);
+        $collection = donate($request->package, $request->amount, $request->a, $collection);
 
-        
-        $this->BasicContribution($collection);
+        $p = $this->findParentUser($collection);
 
+        $this->setCoordinates($p[0]);
 
-        foreach($collection as $cd){
+        foreach($p[1] as $cd){
             sendMail($cd[0],$cd[1]);
         }
         return redirect()->back();
@@ -50,24 +50,17 @@ class ContributionController extends Controller
         return $epin;
     }
 
-    
-
-    private function BasicContribution($collection){
-        $parent_user = $this->findParentUser($collection);
-        $this->setCoordinates($parent_user, $collection);
-    }
-
 
     private function findParentUser($collection){
-        $temp = Details::where('username',Auth::user()->details->invited_by)->first()->user;
+        $parent_user = Details::where('username',Auth::user()->details->invited_by)->first()->user;
 
             $parent_amount = Settings::first()->level_three_percentage;
-            $data = ['name' => $temp->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-            $contactEmail = $temp->email;
+            $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
+            $contactEmail = $parent_user->email;
             $collection->push([$data,$contactEmail]);
-            commission($parent_amount,$temp,0);
+            commission($parent_amount,$parent_user,0);
 
-        if($super_parent_user = User::find($temp->coordinates->parent)){
+        if($super_parent_user = User::find($parent_user->coordinates->parent)){
             $super_parent_amount = Settings::first()->level_two_percentage;
             $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
             $contactEmail = $super_parent_user->email;
@@ -106,22 +99,22 @@ class ContributionController extends Controller
         }
 
 
-        if(count(explode(',',$temp->coordinates->children)) < 5){
-            $parent_user = $temp;
+        if(count(explode(',',$parent_user->coordinates->children)) < 5){
+            return [$parent_user,$collection];
         }else{
-            $collection = collect(explode(',',$temp->coordinates->children))->concat(collect(explode(',',$temp->coordinates->super_children)))->concat(collect(explode(',',$temp->coordinates->super_duper_children)));
+            $collection = collect(explode(',',$parent_user->coordinates->children))->concat(collect(explode(',',$parent_user->coordinates->super_children)))->concat(collect(explode(',',$parent_user->coordinates->super_duper_children)));
             foreach($collection as $c){
                 if(count(explode(',',User::find($c)->coordinates->children)) < 5){
                     $parent_user = User::find($c);
                     break;
                 }
             }
+            return [$parent_user,$collection];
         }
-        return $parent_user;
     }
 
     
-    private function setCoordinates($parent_user, $collection){
+    private function setCoordinates($parent_user){
         $coordinates = new Coordinates;
         $coordinates->user_id = Auth::user()->id;
         $coordinates->row = $parent_user->coordinates->row + 1 ;

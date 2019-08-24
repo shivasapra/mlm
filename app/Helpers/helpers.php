@@ -7,9 +7,9 @@ use App\Commision;
 use App\UpgradeWallet;
 use App\Donation;
 
-    function OtherContribution($collection,$request){
+    function OtherContribution($collection,$a){
         $parent_user = User::find(Auth::user()->coordinates->parent);
-        $temp = 'level_three_percentage'.$request->a;
+        $temp = 'level_three_percentage'.$a;
         $parent_amount = Settings::first()->$temp;
         commission($parent_amount,$parent_user,0);
 
@@ -18,7 +18,7 @@ use App\Donation;
         $collection->push([$data,$contactEmail]);
 
         if($super_parent_user = User::find($parent_user->coordinates->parent)){
-            $temp = 'level_two_percentage'.$request->a;
+            $temp = 'level_two_percentage'.$a;
             $super_parent_amount = Settings::first()->$temp;
             commission($super_parent_amount,$super_parent_user,0);
 
@@ -27,44 +27,45 @@ use App\Donation;
             $collection->push([$data,$contactEmail]);
 
             if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
-                $temp = 'level_one_percentage'.$request->a;
+                $temp = 'level_one_percentage'.$a;
                 $super_duper_parent_amount = Settings::first()->$temp;
                 commission($super_duper_parent_amount,$super_duper_parent_user,0);
                 
-                $foo = 'upgrade_wallet_amount'.$request->a;
+                $foo = 'upgrade_wallet_amount'.$a;
                 upgradeWalletAmount(Settings::first()->$foo,$super_duper_parent_user->id);
                 
                 $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = $super_duper_parent_user->email;
                 $collection->push([$data,$contactEmail]);
             }else{
-                $temp = 'level_one_percentage'.$request->a;
+                $temp = 'level_one_percentage'.$a;
                 $super_duper_parent_amount = Settings::first()->$temp;
                 $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = User::where('admin',1)->first()->email;
                 $collection->push([$data,$contactEmail]);
                 commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
 
-                $foo = 'upgrade_wallet_amount'.$request->a;
+                $foo = 'upgrade_wallet_amount'.$a;
                 upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id);
             }
         }else{
-            $temp = 'level_two_percentage'.$request->a;
+            $temp = 'level_two_percentage'.$a;
             $super_parent_amount = Settings::first()->$temp;
             $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
             $contactEmail = User::where('admin',1)->first()->email;
             $collection->push([$data,$contactEmail]);
             commission($super_parent_amount,User::where('admin',1)->first(),0);
 
-            $temp = 'level_one_percentage'.$request->a;
+            $temp = 'level_one_percentage'.$a;
             $super_duper_parent_amount = Settings::first()->$temp;
             $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
             $contactEmail = User::where('admin',1)->first()->email;
             $collection->push([$data,$contactEmail]);
             commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
-            $foo = 'upgrade_wallet_amount'.$request->a;
+            $foo = 'upgrade_wallet_amount'.$a;
             upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id);
         }
+        return $collection;
     }
 
     function commission($amount,$user,$ac){
@@ -95,7 +96,7 @@ use App\Donation;
         $contactEmail = User::where('admin',1)->first()->email;
         $collection->push([$data,$contactEmail]);
         commission(Settings::first()->$temp,User::where('admin',1)->first(),1);
-        return $donation;
+        return $collection;
     }
 
     function sendMail($data, $contactEmail){
