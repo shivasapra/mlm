@@ -157,7 +157,7 @@
             @if(!Auth::user()->admin)
                 @if(App\Details::where('username',Auth::user()->details->invited_by)->first()->user->coordinates != null)
                     <div class="col-xl-3 col-lg-6 col-xs-12">
-                        @if(Auth::user()->commissions->pluck('amount')->sum() < App\Settings::first()->upgrade_wallet_amount)
+                        @if(Auth::user()->UpgradeWallet->pluck('amount')->sum() < App\Settings::first()->upgrade_to_standard)
                             <div class="contribute-div">
                                 <div class="media overflow-visible">
                                     <div class="media-body media-middle overflow-visible">
@@ -181,7 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif(Auth::user()->commissions->pluck('amount')->sum() >= App\Settings::first()->upgrade_wallet_amount and Auth::user()->commissions->pluck('amount')->sum()  < App\Settings::first()->upgrade_wallet_amount_standard )
+                        @elseif(Auth::user()->UpgradeWallet->pluck('amount')->sum() < App\Settings::first()->upgrade_to_premium)
                             <div class="contribute-div">
                                 <div class="media overflow-visible">
                                     <div class="media-body media-middle overflow-visible">
@@ -205,7 +205,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif(Auth::user()->commissions->pluck('amount')->sum() >= App\Settings::first()->upgrade_wallet_amount_standard and Auth::user()->commissions->pluck('amount')->sum()  < App\Settings::first()->upgrade_wallet_amount_premium)
+                        @elseif(Auth::user()->UpgradeWallet->pluck('amount')->sum() >= App\Settings::first()->upgrade_to_premium)
                             <div class="contribute-div">
                                 <div class="media overflow-visible">
                                     <div class="media-body media-middle overflow-visible">

@@ -17,8 +17,8 @@ class SettingsTableSeeder extends Seeder
         $settings->level_one_percentage = 500;
         $settings->level_two_percentage = 500;
         $settings->level_three_percentage = 500;
-        $settings->upgrade_to_standard = 400; 
-        $settings->upgrade_wallet_amount = 50000;
+        $settings->upgrade_wallet_amount = 400;
+        $settings->upgrade_to_standard = 50000; 
         
         
         $settings->standard_amount = 5000;
@@ -26,8 +26,8 @@ class SettingsTableSeeder extends Seeder
         $settings->level_one_percentage_standard = 1000;
         $settings->level_two_percentage_standard = 1000;
         $settings->level_three_percentage_standard = 1000;
-        $settings->upgrade_to_standard = 800;
-        $settings->upgrade_wallet_amount_standard = 100000;
+        $settings->upgrade_wallet_amount_standard = 800;
+        $settings->upgrade_to_premium = 100000;
         
         
         $settings->premium_amount = 10000;
