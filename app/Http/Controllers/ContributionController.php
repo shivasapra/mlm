@@ -25,16 +25,17 @@ class ContributionController extends Controller
             Session::flash('warning','Wrong Epin!!');
             return redirect()->back();
         }
-        $collection = donate($request->package, $request->amount, $request->a, $collection);
+        $collection = donate($request->package, $request->amount, $request->a, $collection, Auth::user());
 
-        $p = $this->findParentUser($collection);
+        $parent_user = $this->findParentUser();
 
-        $this->setCoordinates($p[0]);
+        $coordinates = $this->setCoordinates($parent_user);
 
-        // foreach($p[1] as $cd){
-        //     sendMail($cd[0],$cd[1]);
-        //     sleep(1);
-        // }
+        $collection = PaiseBaato($collection, $coordinates,'', Auth::user());
+        foreach($collection as $cd){
+            sendMail($cd[0],$cd[1],$user);
+            sleep(1);
+        }
         return redirect()->back();
     }
 
@@ -52,56 +53,10 @@ class ContributionController extends Controller
     }
 
 
-    private function findParentUser($collection){
+    private function findParentUser(){
         $parent_user = Details::where('username',Auth::user()->details->invited_by)->first()->user;
-
-            $parent_amount = Settings::first()->level_three_percentage;
-            $data = ['name' => $parent_user->name, 'user' => Auth::user(), 'amount'=> $parent_amount];
-            $contactEmail = $parent_user->email;
-            $collection->push([$data,$contactEmail]);
-            commission($parent_amount,$parent_user,0);
-
-        if($super_parent_user = User::find($parent_user->coordinates->parent)){
-            $super_parent_amount = Settings::first()->level_two_percentage;
-            $data = ['name' => $super_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
-            $contactEmail = $super_parent_user->email;
-            $collection->push([$data,$contactEmail]);
-            commission($super_parent_amount,$super_parent_user,0);
-
-            if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
-                $super_duper_parent_amount = Settings::first()->level_one_percentage;
-                $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-                $contactEmail = $super_duper_parent_user->email;
-                $collection->push([$data,$contactEmail]);
-                commission($super_duper_parent_amount,$super_duper_parent_user,0);
-                upgradeWalletAmount(Settings::first()->upgrade_wallet_amount,$super_duper_parent_user->id);
-                
-            }else{
-                $super_duper_parent_amount = Settings::first()->level_one_percentage;
-                $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-                $contactEmail = User::where('admin',1)->first()->email;
-                $collection->push([$data,$contactEmail]);
-                commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
-                upgradeWalletAmount(Settings::first()->upgrade_wallet_amount,User::where('admin',1)->first()->id);
-            }
-        }else{
-            $super_parent_amount = Settings::first()->level_two_percentage;
-            $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_parent_amount];
-            $contactEmail = User::where('admin',1)->first()->email;
-            $collection->push([$data,$contactEmail]);
-            commission($super_parent_amount,User::where('admin',1)->first(),0);
-
-            $super_duper_parent_amount = Settings::first()->level_one_percentage;
-            $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
-            $contactEmail = User::where('admin',1)->first()->email;
-            $collection->push([$data,$contactEmail]);
-            commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
-            upgradeWalletAmount(Settings::first()->upgrade_wallet_amount,User::where('admin',1)->first()->id);
-        }
-
-
         if(count(explode(',',$parent_user->coordinates->children)) < 5){
-            return [$parent_user,$collection];
+            return $parent_user;
         }else{
             $collection = collect(explode(',',$parent_user->coordinates->children))->concat(collect(explode(',',$parent_user->coordinates->super_children)))->concat(collect(explode(',',$parent_user->coordinates->super_duper_children)));
             foreach($collection as $c){
@@ -110,7 +65,7 @@ class ContributionController extends Controller
                     break;
                 }
             }
-            return [$parent_user,$collection];
+            return $parent_user;
         }
     }
 

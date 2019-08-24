@@ -56,11 +56,11 @@ class HomeController extends Controller
                     if($user->UpgradeWallet->pluck('amount')->sum() < Settings::first()->upgrade_to_premium){
                         if($user->donations->pluck('package')->contains('BASIC')){
                             if(!$user->donations->pluck('package')->contains('STANDARD')){
-                                $collection = donate('STANDARD', Settings::first()->upgrade_to_standard, '_standard' , $collection);
-                                $collection = OtherContribution($collection,'_standard');
+                                $collection = donate('STANDARD', Settings::first()->upgrade_to_standard, '_standard' , $collection, $user);
+                                $collection = PaiseBaato($collection, $user->coordinates,'_standard', $user);
 
                                 foreach($collection as $cd){
-                                    sendMail($cd[0],$cd[1]);
+                                    sendMail($cd[0],$cd[1],$user);
                                     sleep(1);
                                 }
                             }
@@ -72,13 +72,13 @@ class HomeController extends Controller
                     if($user->donations->pluck('package')->contains('BASIC')){
                         if($user->donations->pluck('package')->contains('STANDARD')){
                             if(!$user->donations->pluck('package')->contains('Premium')){
-                                $collection = donate('Premium', Settings::first()->upgrade_to_standard, '_premium' , $collection);
-                                $collection = OtherContribution($collection,'_premium');
+                                $collection = donate('Premium', Settings::first()->upgrade_to_standard, '_premium' , $collection, $user);
+                                $collection = PaiseBaato($collection, $user->coordinates,'_premium', $user);
 
-                                // foreach($collection as $cd){
-                                //     sendMail($cd[0],$cd[1]);
-                                //     sleep(1);
-                                // }
+                                foreach($collection as $cd){
+                                    sendMail($cd[0],$cd[1],$user);
+                                    sleep(1);
+                                }
                             }
                         }
                     }
