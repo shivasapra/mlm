@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\Transfer;
 use Session;
 use App\Commision;
+use App\UpgradeWallet;
 class ContributionController extends Controller
 {   
 
@@ -72,6 +73,13 @@ class ContributionController extends Controller
         $commission->save();
     }
 
+    private function upgradeWalletAmount($amount,$id){
+        $upgrade_wallet = new UpgradeWallet;
+        $upgrade_wallet->user_id = $id;
+        $upgrade_wallet->amount = $amount;
+        $upgrade_wallet->save(); 
+    }
+
     private function BasicContribution($collection){
         $parent_user = $this->findParentUser($collection);
         $this->setCoordinates($parent_user, $collection);
@@ -100,7 +108,10 @@ class ContributionController extends Controller
                 $temp = 'level_one_percentage'.$request->a;
                 $super_duper_parent_amount = Settings::first()->$temp;
                 $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
-
+                
+                $foo = 'upgrade_wallet_amount'.$request->a;
+                $this->upgradeWalletAmount(Settings::first()->$foo,$super_duper_parent_user->id);
+                
                 $data = ['name' => $super_duper_parent_user->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = $super_duper_parent_user->email;
                 $collection->push([$data,$contactEmail]);
@@ -111,6 +122,9 @@ class ContributionController extends Controller
                 $contactEmail = User::where('admin',1)->first()->email;
                 $collection->push([$data,$contactEmail]);
                 $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+
+                $foo = 'upgrade_wallet_amount'.$request->a;
+                $this->upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id);
             }
         }else{
             $temp = 'level_two_percentage'.$request->a;
@@ -126,6 +140,8 @@ class ContributionController extends Controller
             $contactEmail = User::where('admin',1)->first()->email;
             $collection->push([$data,$contactEmail]);
             $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+            $foo = 'upgrade_wallet_amount'.$request->a;
+            $this->upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id);
         }
     }
 
@@ -151,12 +167,15 @@ class ContributionController extends Controller
                 $contactEmail = $super_duper_parent_user->email;
                 $collection->push([$data,$contactEmail]);
                 $this->commission($super_duper_parent_amount,$super_duper_parent_user,0);
+                $this->upgradeWalletAmount(Settings::first()->upgrade_wallet_amount,$super_duper_parent_user->id);
+                
             }else{
                 $super_duper_parent_amount = Settings::first()->level_one_percentage;
                 $data = ['name' => User::where('admin',1)->first()->name, 'user' => Auth::user(), 'amount'=> $super_duper_parent_amount];
                 $contactEmail = User::where('admin',1)->first()->email;
                 $collection->push([$data,$contactEmail]);
                 $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+                $this->upgradeWalletAmount(Settings::first()->upgrade_wallet_amount,User::where('admin',1)->first()->id);
             }
         }else{
             $super_parent_amount = Settings::first()->level_two_percentage;
@@ -170,6 +189,7 @@ class ContributionController extends Controller
             $contactEmail = User::where('admin',1)->first()->email;
             $collection->push([$data,$contactEmail]);
             $this->commission($super_duper_parent_amount,User::where('admin',1)->first(),0);
+            $this->upgradeWalletAmount(Settings::first()->upgrade_wallet_amount,User::where('admin',1)->first()->id);
         }
 
 
