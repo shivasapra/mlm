@@ -245,10 +245,10 @@ class ContributionController extends Controller
     public function UsernameSearch(Request $request){
         if($request->ajax()){
             $output= "";
-            $usernames = Details::where('username','LIKE','%'.$request->search."%")->get();
-            if($usernames){
-                    foreach ($usernames as $key => $product) {
-                        $output.='<option onClick="UsernameAssign(this)" value="'.$product->username.'">'.$product->username.'</option>';
+            $users = User::where('username','LIKE','%'.$request->search."%")->where('campaign',0)->get();
+            if($users){
+                    foreach ($users as $key => $user) {
+                        $output.='<option onClick="UsernameAssign(this)" value="'.$user->username.'">'.$user->username.'</option>';
                     }
                 return Response($output);
             }
