@@ -33,7 +33,7 @@ class ContributionController extends Controller
 
         $collection = PaiseBaato($collection, $coordinates,'', Auth::user());
         foreach($collection as $cd){
-            sendMail($cd[0],$cd[1],$user);
+            sendMail($cd[0],$cd[1],Auth::user());
             sleep(1);
         }
         return redirect()->back();
