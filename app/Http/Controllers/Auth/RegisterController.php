@@ -117,7 +117,7 @@ class RegisterController extends Controller
 
     protected function createCampaign(array $data){
         do{
-            $username = 'GCF'.mt_rand(1000000, 9999999);
+            $username = 'GCC'.mt_rand(1000000, 9999999);
         }while(User::where('username',$username)->first());
         
         $user = new User;
