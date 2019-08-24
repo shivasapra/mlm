@@ -22,6 +22,7 @@ class SettingsController extends Controller
         $settings->admin_amount = $request->admin_amount;
         $settings->basic_amount = $request->basic_amount;
         $settings->upgrade_wallet_amount = $request->upgrade_wallet_amount;
+        $settings->upgrade_to_standard = $request->upgrade_to_standard;
         $settings->save();
         Session::flash('success','Saved!!');
         return redirect()->back();
@@ -30,12 +31,13 @@ class SettingsController extends Controller
         if(!$settings = Settings::first()){
             $settings = new Settings;
         }
-        $settings->level_one_percdentage_standar = $request->level_one_percentage_standard;
+        $settings->level_one_percentage_standard = $request->level_one_percentage_standard;
         $settings->level_two_percentage_standard = $request->level_two_percentage_standard;
         $settings->level_three_percentage_standard = $request->level_three_percentage_standard;
         $settings->admin_amount_standard = $request->admin_amount_standard;
         $settings->standard_amount = $request->standard_amount;
         $settings->upgrade_wallet_amount_standard = $request->upgrade_wallet_amount_standard;
+        $settings->upgrade_to_premium = $request->upgrade_to_premium;
         $settings->save();
         Session::flash('success','Saved!!');
         return redirect()->back();

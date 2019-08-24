@@ -4,11 +4,11 @@
 <form action="{{route('settings.saveBasic')}}" method="post">
     @csrf
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="basic_amount">Basic Package Amount</label>
             <input type="number" name="basic_amount" @if($settings != null) value="{{$settings->basic_amount}}" @endif class="form-control">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="admin_amount">Admin Amount</label>
             <input type="number" name="admin_amount" @if($settings != null) value="{{$settings->admin_amount}}" @endif class="form-control">
         </div>
@@ -26,27 +26,31 @@
             <label for="level_three_percentage">Level Three Amount</label>
             <input type="number" name="level_three_percentage" @if($settings != null) value="{{$settings->level_three_percentage}}" @endif class="form-control">
         </div>
-        <div class="col-md-2">
-            <label for="upgrade_wallet_amount">Upgrade Wallet Amount</label>
-            <input type="number" name="upgrade_wallet_amount" @if($settings != null) value="{{$settings->upgrade_wallet_amount}}" @endif class="form-control">
-        </div>
     </div>
     <div class="row">
-        <div class="text-right">
+        <div class="col-md-3">
+            <label for="upgrade_wallet_amount">Amount To Add In Upgrade Wallet</label>
+            <input type="number" name="upgrade_wallet_amount" @if($settings != null) value="{{$settings->upgrade_wallet_amount}}" @endif class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label for="upgrade_to_standard">Upgrade To Standard Amount</label>
+            <input type="number" name="upgrade_to_standard" @if($settings != null) value="{{$settings->upgrade_to_standard}}" @endif class="form-control">
+        </div>
+        <div class="col-md-3"><br>
             <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
-</form><br>
+</form><br><br>
 
 <h1>Standard Package</h1><hr>
 <form action="{{route('settings.saveStandard')}}" method="post">
     @csrf
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="standard_amount">Standard Package Amount</label>
             <input type="number" name="standard_amount" @if($settings != null) value="{{$settings->standard_amount}}" @endif class="form-control">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="admin_amount_standard">Admin Amount</label>
             <input type="number" name="admin_amount_standard" @if($settings != null) value="{{$settings->admin_amount_standard}}" @endif class="form-control">
         </div>
@@ -64,17 +68,21 @@
             <label for="level_three_percentage_standard">Level Three Amount</label>
             <input type="number" name="level_three_percentage_standard" @if($settings != null) value="{{$settings->level_three_percentage_standard}}" @endif class="form-control">
         </div>
-        <div class="col-md-2">
-            <label for="upgrade_wallet_amount_standard">Upgrade Wallet Amount</label>
-            <input type="number" name="upgrade_wallet_amount_standard" @if($settings != null) value="{{$settings->upgrade_wallet_amount_standard}}" @endif class="form-control">
-        </div>
     </div>
     <div class="row">
-        <div class="text-right">
+        <div class="col-md-3">
+            <label for="upgrade_wallet_amount_standard">Amount To Add In Upgrade Wallet</label>
+            <input type="number" name="upgrade_wallet_amount_standard" @if($settings != null) value="{{$settings->upgrade_wallet_amount_standard}}" @endif class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label for="upgrade_to_premium">Upgrade To Premium Amount</label>
+            <input type="number" name="upgrade_to_premium" @if($settings != null) value="{{$settings->upgrade_to_premium}}" @endif class="form-control">
+        </div>
+        <div class="col-md-3"><br>
             <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
-</form><br>
+</form><br><br>
 
 
 <h1>Premium Package</h1><hr>
