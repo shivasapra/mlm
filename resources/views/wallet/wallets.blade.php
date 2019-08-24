@@ -86,7 +86,7 @@ $activation_amount = 0;
                                             @if($e->sent_to == Auth::id())
                                                 {{__('Admin')}}
                                             @else
-                                                {{App\User::find(App\Transfer::where('epin_id',$e->id)->where('to',Auth::id())->first()->from)->details->username}}
+                                                {{App\User::find(App\Transfer::where('epin_id',$e->id)->where('to',Auth::id())->first()->from)->details->username}} ({{App\User::find(App\Transfer::where('epin_id',$e->id)->where('to',Auth::id())->first()->from)->name}})
                                             @endif
                                         </strong>
                                     </td>

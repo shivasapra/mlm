@@ -154,7 +154,7 @@
                             </td>
                             <td class="text-center">
                                 @if(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->get()->count())
-                                    <strong>{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->first()->to)->details->username}}</strong>
+                                    <strong>{{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->first()->to)->details->username}} ({{App\User::find(App\Transfer::where('epin_id',$epin->id)->where('from',Auth::id())->first()->to)->name}})</strong>
                                 @else
                                     @if($epin->used_by == null)
                                         <button onclick="transfer(this)" class="btn btn-sm btn-info">Transfer
@@ -167,7 +167,7 @@
                             </td>
                             <td>
                                 @if($epin->used_by)
-                                    {{App\User::find($epin->used_by)->details->username}}@if($epin->used_by == Auth::id()) (You) @endif
+                                    {{App\User::find($epin->used_by)->details->username}} ({{App\User::find($epin->used_by)->name}})@if($epin->used_by == Auth::id()) (You) @endif
                                 @else
                                     {{__('N/A')}}
                                 @endif

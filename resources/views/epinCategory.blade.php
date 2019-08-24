@@ -23,14 +23,14 @@
                 <td>{{$category->rate}}</td>
                 <td>
                     @if($epin->sent_to)
-                        {{App\User::find($epin->sent_to)->details->username}}
+                        {{App\User::find($epin->sent_to)->details->username}} ({{App\User::find($epin->sent_to)->name}})
                     @else
                         {{__('N/A')}}
                     @endif
                 </td>
                 <td>
                     @if($epin->used_by)
-                        {{App\User::find($epin->used_by)->details->username}}
+                        {{App\User::find($epin->used_by)->details->username}} ({{App\User::find($epin->used_by)->name}})
                     @else
                         {{__('N/A')}}
                     @endif
@@ -88,8 +88,8 @@
                                                         '@foreach($epin->transfers as $transfer)'+
                                                         '<tr>'+
                                                             '<td><b>{{$j++}}</b></td>'+
-                                                            '<td>{{User::find($transfer->from)->details->username}}</td>'+
-                                                            '<td>{{User::find($transfer->to)->details->username}}</td>'+
+                                                            '<td>{{User::find($transfer->from)->details->username}} ({{User::find($transfer->from)->name}})</td>'+
+                                                            '<td>{{User::find($transfer->to)->details->username}} ({{User::find($transfer->to)->name}})</td>'+
                                                             '<td>{{$transfer->created_at}}</td>'+
                                                         '</tr>'+
                                                         '@endforeach'+

@@ -20,7 +20,7 @@
             @foreach($tickets as $t)
                 <tr>
                     <th>{{$i++}}.</th>
-                    <td>{{$t->user->username}}</td>
+                    <td>{{$t->user->username}} ({{$t->user->name}})</td>
                     <td>{{$t->category}}</td>
                     <td>{{$t->priority}}</td>
                     <td>{{$t->subject}}</td>
