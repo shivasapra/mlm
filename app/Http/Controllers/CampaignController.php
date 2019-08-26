@@ -37,7 +37,6 @@ class CampaignController extends Controller
     public function index(){
 
         // dd(Carbon::parse('2019-08-25')->between(Carbon::parse('2019-08-26'),Carbon::parse('2019-08-28')));
-        
         if(Auth::user()->campaign){
             $user = Auth::user();
             return view('campaign.index')->with('user',$user)->with('campaigns',Campaign::where('user_id',$user->id)->paginate(3));
