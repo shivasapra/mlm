@@ -9,8 +9,8 @@
     </div>
     <div class="col-md-8">
         <h2>Help me raise funds ({{$campaign->campaign_id}})</h2>
-        <span class="mr-1"><b>Created On</b> : {{$campaign->created_at}}</span>
-        <span class="mr-1"><b>Last Updated On</b> : {{$campaign->updated_at}}</span>
+        <span class="mr-1"><b>From</b> : {{$campaign->start_date}}</span>
+        <span class="mr-1"><b>To</b> : {{$campaign->end_date}}</span>
         <span><b>Status</b> : 
             @if($campaign->status == 1)
                 <span class="text-success"><strong>Published</strong></span>

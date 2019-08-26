@@ -47,6 +47,18 @@
             </div>
             <div class="form-group">
               <div class="row">
+                <div class="col-md-3"><label>Campaign Start Date*</label></div>
+                <div class="col-md-9"><input type="date" placeholder=""  value="" name="campaign_start_date" class="form-control"/></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-3"><label>Campaign End Date*</label></div>
+                <div class="col-md-9"><input type="date" placeholder=""  value="" name="campaign_end_date" class="form-control"/></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
                 <div class="col-md-3"><label>My Campaign Category *</label></div>
                 <div class="col-md-9">
                   <select class="form-control" name="category">
