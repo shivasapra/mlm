@@ -15,6 +15,9 @@
         <li class="nav-item">
             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#epin" role="tab" aria-controls="contact">Epin Wallet</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#otherPayment" role="tab" aria-controls="contact">Other Payment (Upgrade Wallet)</a>
+        </li>
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="administration_charges" role="tabpanel" aria-labelledby="home-tab">
@@ -136,6 +139,37 @@
                             <td>{{$p->epin->epin}}</td>
                             <td>{{$p->epin->EpinCategory->rate}}</td>
                             <td>{{App\User::find($p->user_id)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
+                            <td><strong>{{Carbon\Carbon::parse($p->created_at)->diffForHumans()}}</strong> <br>({{$p->created_at}})</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade show" id="otherPayment" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>INR {{Auth::user()->UpgradeWallet->pluck('amount')->sum()}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <table class="table table-bordered datatable">
+                <thead>
+                    <tr>
+                        <th>Sno.</th>
+                        <th>Amount</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(Auth::user()->UpgradeWallet as $p)
+                        <tr>
+                            <th>{{$loop->index + 1}}</th>
+                            <td>{{$p->amount}}</td>
                             <td><strong>{{Carbon\Carbon::parse($p->created_at)->diffForHumans()}}</strong> <br>({{$p->created_at}})</td>
                         </tr>
                     @endforeach
