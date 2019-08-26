@@ -102,8 +102,8 @@
                        <div class="media">
                            <div class="media-left"><img src="images/blank_img.jpg" alt="" class="img-object" style="width:70px;"/></div>
                            <div class="media-body">
-                               <span>Created On {{$campaign->created_at->toDateString()}}</span><br>
-                               <span><i class="icon-envelope"></i> {{$campaign->user->details->username}}</span>
+                               <span><strong>Duration:</strong><br> ({{$campaign->start_date}} to {{$campaign->end_date}})</span><br><br>
+                               <span><strong>User:</strong><br>{{$campaign->user->username}} ({{$campaign->user->name}})</span>
                            </div>
                        </div><hr>
                        <ul class="pl-3 small text-danger m-0">

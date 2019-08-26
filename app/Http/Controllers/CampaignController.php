@@ -68,8 +68,8 @@ class CampaignController extends Controller
        $campaign->short_url = $request->short_url;
        $campaign->currency = $request->currency;
        $campaign->description = $request->description;
-       $campaign->campaign_start_date = $request->campaign_start_date;
-       $campaign->campaign_end_date = $request->campaign_end_date;
+       $campaign->start_date = $request->campaign_start_date;
+       $campaign->end_date = $request->campaign_end_date;
        if($request->video == 'vimeo'){
            $campaign->video = $request->vimeo_value;
        }
