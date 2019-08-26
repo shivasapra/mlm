@@ -38,7 +38,7 @@ use App\Donation;
     
                     if($a != '_premium'){
                         $foo = 'upgrade_wallet_amount'.$a;
-                        upgradeWalletAmount(Settings::first()->$foo,$super_duper_parent_user->id);
+                        upgradeWalletAmount(Settings::first()->$foo,$super_duper_parent_user->id, $user);
                     }
                     
                     $data = ['name' => $super_duper_parent_user->name, 'user' => $user, 'amount'=> $super_duper_parent_amount];
@@ -53,7 +53,7 @@ use App\Donation;
                     commission($super_duper_parent_amount,User::where('admin',1)->first(),0, $user);
                     if($a != '_premium'){
                         $foo = 'upgrade_wallet_amount'.$a;
-                        upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id);
+                        upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id, $user);
                     }
                 }
             }else{
@@ -73,7 +73,7 @@ use App\Donation;
     
                 if($a != '_premium'){
                     $foo = 'upgrade_wallet_amount'.$a;
-                    upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id);
+                    upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id, $user);
                 }
             }
         
@@ -90,9 +90,10 @@ use App\Donation;
         $commission->save();
     }
 
-    function upgradeWalletAmount($amount,$id){
+    function upgradeWalletAmount($amount,$id, $user){
         $upgrade_wallet = new UpgradeWallet;
         $upgrade_wallet->user_id = $id;
+        $upgrade_wallet->from = $user->id;
         $upgrade_wallet->amount = $amount;
         $upgrade_wallet->save(); 
     }
