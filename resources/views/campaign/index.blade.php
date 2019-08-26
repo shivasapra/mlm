@@ -37,7 +37,7 @@
         <img src="{{asset($campaign->image)}}" alt="portfolio" class="img-fluid"/>
     </div>
     <div class="col-md-8">
-        <h2>Help me raise funds ({{$campaign->campaign_id}})</h2>
+        <h2>{{$campaign->title}} ({{$campaign->campaign_id}})</h2>
         <span class="mr-1"><b>From</b> : {{$campaign->start_date}}</span>
         <span class="mr-1"><b>To</b> : {{$campaign->end_date}}</span>
         <span><b>Status</b> : 
