@@ -74,7 +74,7 @@
                         <span><i class="icon-location"></i> {{$campaign->user->details->country}}</span><br>
                         <span><i class="icon-tag"></i> {{$campaign->category}}</span>
                         <hr>
-                        <h3>{{$campaign->currency}}0000 <small>of {{$campaign->currency}}{{$campaign->fundraising_targe}}</small></h3>
+                        <h3>{{$campaign->currency}}0000 <small>of {{$campaign->currency}}{{$campaign->fundraising_target}}</small></h3>
                         <h6>Received 16 Contributions</h6>
                         <div class="progress">
                           <div class="progress-bar progress-bar-striped bg-success" style="width:20%"></div>
