@@ -47,6 +47,8 @@
               <span class="text-danger"><strong>Rejected</strong></span>
           @elseif($campaign->status == 2)
               <span class="text-warning"><strong>Pending</strong></span>
+          @elseif($campaign->status == 3)
+              <span class="text-warning"><strong>Paused</strong></span>
           @endif
         </span> 
         <p class="mt-1"><b>Fund</b> : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_target}} </p>

@@ -11,6 +11,7 @@ use Auth;
 use Session;
 use App\Images;
 use App\CampaignUpdates;
+use Carbon\Carbon;
 
 
 class CampaignController extends Controller
@@ -35,6 +36,8 @@ class CampaignController extends Controller
 
     public function index(){
 
+        // dd(Carbon::parse('2019-08-25')->between(Carbon::parse('2019-08-26'),Carbon::parse('2019-08-28')));
+        
         if(Auth::user()->campaign){
             $user = Auth::user();
             return view('campaign.index')->with('user',$user)->with('campaigns',Campaign::where('user_id',$user->id)->paginate(3));
@@ -94,6 +97,20 @@ class CampaignController extends Controller
         $campaign->status = 1;
         $campaign->save();
         Session::flash('success','Campaign Approved!!');
+        return redirect()->back();
+    }
+
+    public function pause(Campaign $campaign){
+        $campaign->status = 3;
+        $campaign->save();
+        Session::flash('success','Campaign Paused!!');
+        return redirect()->back();
+    }
+
+    public function resume(Campaign $campaign){
+        $campaign->status = 1;
+        $campaign->save();
+        Session::flash('success','Campaign Resumed!!');
         return redirect()->back();
     }
 

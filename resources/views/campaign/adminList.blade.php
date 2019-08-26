@@ -18,6 +18,8 @@
                 <span class="text-danger"><strong>Rejected</strong></span>
             @elseif($campaign->status == 2)
                 <span class="text-warning"><strong>Pending</strong></span>
+            @elseif($campaign->status == 3)
+                <span class="text-warning"><strong>Paused</strong></span>
             @endif
         </span>
         <p class="mt-1"><b>Fund</b> : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_target}} </p>
@@ -26,6 +28,12 @@
         @if($campaign->status == 2)
             <a href="{{route('campaign.approve',$campaign)}}" class="btn btn-success">Approve</a>
             <a href="{{route('campaign.reject',$campaign)}}" class="btn btn-danger">Reject</a>
+        @endif
+        @if($campaign->status == 1)
+            <a href="{{route('campaign.pause',$campaign)}}" class="btn btn-warning">Pause Campaign</a>
+        @endif
+        @if($campaign->status == 3)
+            <a href="{{route('campaign.resume',$campaign)}}" class="btn btn-success">Resume Campaign</a>
         @endif
     </div>
     </div>

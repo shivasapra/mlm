@@ -62,6 +62,8 @@ Route::get('/MyCampaign','CampaignController@index')->name('my.campaign');
 Route::post('/Campaign/Store/{user}','CampaignController@store')->name('campaign.store');
 Route::get('/Campaign/view/{campaign}','CampaignController@show')->name('campaign.view');
 Route::get('/Campaign/approve/{campaign}','CampaignController@approve')->name('campaign.approve');
+Route::get('/Campaign/pause/{campaign}','CampaignController@pause')->name('campaign.pause');
+Route::get('/Campaign/resume/{campaign}','CampaignController@resume')->name('campaign.resume');
 Route::get('/Campaign/reject/{campaign}','CampaignController@reject')->name('campaign.reject');
 Route::get('/Campaign/edit/{campaign}','CampaignController@edit')->name('campaign.edit');
 Route::post('/Campaign/update/{campaign}','CampaignController@update')->name('campaign.update');

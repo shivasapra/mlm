@@ -14,7 +14,7 @@ class AddStatusColumnToCampaignsTable extends Migration
     public function up()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->integer('status')->default(2); // 0 for rejected  // 1 for approved  //2 for hold
+            $table->integer('status')->default(2); // 0 for rejected  // 1 for approved  //2 for hold //3 for pause
         });
     }
 

@@ -9,13 +9,15 @@
     </div>
     <div class="row">
         @foreach($campaigns->where('status',1) as $campaign)
-            <div class="col-lg-3 col-md-6 mb-5">
-                <img src="{{asset($campaign->image)}}" alt="img" class="img-fluid"/>
-                <h3 class="my-3 font-weight-bold">{{$campaign->title}}</h3>
-                <h5><b>{{$campaign->currency}} 00000 of {{$campaign->currency}}{{$campaign->fundraising_target}}</b>
-                <p>{!! $campaign->description !!}</p>
-                <a href="{{route('campaign.view',$campaign)}}">Read More <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
+            @if( Carbon\Carbon::parse(Carbon\Carbon::now()->toDateString())->between(Carbon\Carbon::parse($campaign->start_date), Carbon\Carbon::parse($campaign->end_date) ))
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <img src="{{asset($campaign->image)}}" alt="img" class="img-fluid"/>
+                    <h3 class="my-3 font-weight-bold">{{$campaign->title}}</h3>
+                    <h5><b>{{$campaign->currency}} 00000 of {{$campaign->currency}}{{$campaign->fundraising_target}}</b>
+                    <p>{!! $campaign->description !!}</p>
+                    <a href="{{route('campaign.view',$campaign)}}">Read More <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            @endif
         @endforeach
     </div>
 </div>
