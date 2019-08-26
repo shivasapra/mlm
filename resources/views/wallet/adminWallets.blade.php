@@ -161,6 +161,8 @@
                 <thead>
                     <tr>
                         <th>Sno.</th>
+                        <th>Username</th>
+                        <th>Name</th>
                         <th>Amount</th>
                         <th>Time</th>
                     </tr>
@@ -169,6 +171,8 @@
                     @foreach(Auth::user()->UpgradeWallet as $p)
                         <tr>
                             <th>{{$loop->index + 1}}</th>
+                            <td>{{App\User::find($p->from)->username}}</td>
+                            <td>{{App\User::find($p->from)->name}}</td>
                             <td>{{$p->amount}}</td>
                             <td><strong>{{Carbon\Carbon::parse($p->created_at)->diffForHumans()}}</strong> <br>({{$p->created_at}})</td>
                         </tr>
