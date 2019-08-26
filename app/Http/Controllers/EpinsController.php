@@ -74,6 +74,13 @@ class EpinsController extends Controller
         return redirect()->back();
     }
 
+    public function revert(Epin $epin){
+        $epin->sent_to = null;
+        $epin->save();
+        Session::flash('success','Epin Reverted!!');
+        return redirect()->back();
+    }
+
     public function wallets(){
             $used_epins = Epin::where('sent_to',Auth::id())->where('used_by','!=',null)->get();
             $transferred_used_epins = array();

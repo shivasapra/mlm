@@ -12,6 +12,7 @@
             <th>Used By</th>
             <th>Used At</th>
             <th class="text-center">Transfer History</th>
+            <th class="text-center">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +47,13 @@
                     <button class="btn btn-sm btn-info" onclick="history(this)">View
                         <input type="hidden" class="epin_id" value={{$epin->id}}>
                     </button>
+                </td>
+                <td>
+                    @if(!$epin->transfers->count() and !$epin->used_by and $epin->sent_to)
+                        <a href="{{route('revert.epin',$epin)}}" class="btn btn-sm btn-danger">Revert</a>
+                    @else
+                        {{__('--')}}
+                    @endif
                 </td>
             </tr>
         @endforeach
