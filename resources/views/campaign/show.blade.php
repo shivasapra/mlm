@@ -82,12 +82,8 @@
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <select class="form-control" style="height: 30px;padding: 2px;">
+                              <select class="form-control" style="height: 30px;padding: 2px;" disabled>
                                 <option value="2" data-minigoal="50000" selected="selected">INR ₹</option>
-                                <option value="1" data-minigoal="1000">USD $</option>
-                                <option value="9" data-minigoal="1000">EUR €</option>
-                                <option value="10" data-minigoal="1000">GBP £</option>
-                                <option value="13" data-minigoal="1">BTC ฿</option>
                               </select>
                             </div>
                           </div>
@@ -113,33 +109,10 @@
                        </ul>
                     </div>
                     
-                    <a href="#" class="btn btn-danger w-100 mb-3">Report this Campaign <br>  <small>If you feel this contains prohibited content.</small></a>
-                    
                     <div class="bg-light p-3 mt-1">
-                       <div class="media">
-                           <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>
-                           <div class="media-body">
-                               <span>2 years ago</span><br>
-                               <h5 class="text-primary">₹780.00</h5>
-                               <span>DHILLONTRAVEL</span>
-                           </div>
-                       </div><hr>
-                       <div class="media">
-                           <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>
-                           <div class="media-body">
-                               <span>2 years ago</span><br>
-                               <h5 class="text-primary">₹780.00</h5>
-                               <span>DHILLONTRAVEL</span>
-                           </div>
-                       </div><hr>
-                       <div class="media">
-                           <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>
-                           <div class="media-body">
-                               <span>2 years ago</span><br>
-                               <h5 class="text-primary">₹780.00</h5>
-                               <span>DHILLONTRAVEL</span>
-                           </div>
-                       </div><hr>
+                        <div class="text-center">
+                            <h1>Contributors</h1><hr>
+                        </div>
                        <div class="media">
                            <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>
                            <div class="media-body">
@@ -148,15 +121,6 @@
                                <span>DHILLONTRAVEL</span>
                            </div>
                        </div>
-                    </div>
-                    <div class="text-center">
-                            <ul class="pagination">
-                              <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-left"></i> Previous</a></li>
-                              <li class="page-item"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item"><a class="page-link" href="#">Next <i class="icon-angle-right"></i></a></li>
-                            </ul>  
                     </div>
                 </div>
         </div>
