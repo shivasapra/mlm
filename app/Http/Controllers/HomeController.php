@@ -52,8 +52,9 @@ class HomeController extends Controller
                 }
 
                 $collection = collect();
-                if($user->UpgradeWallet->pluck('amount')->sum() >= Settings::first()->upgrade_to_standard){
-                    if($user->UpgradeWallet->pluck('amount')->sum() < Settings::first()->upgrade_to_premium){
+                $check_amount = $user->UpgradeWallet->pluck('amount')->sum() - $user->donations->pluck('amount')->sum() + $user->donations->where('package','BASIC')->first()->amount;
+                if($check_amount >= Settings::first()->upgrade_to_standard){
+                    if($check_amount < Settings::first()->upgrade_to_premium){
                         if($user->donations->pluck('package')->contains('BASIC')){
                             if(!$user->donations->pluck('package')->contains('STANDARD')){
                                 $collection = donate('STANDARD', Settings::first()->upgrade_to_standard, '_standard' , $collection, $user);
@@ -68,7 +69,7 @@ class HomeController extends Controller
                     }
                 }
 
-                if($user->UpgradeWallet->pluck('amount')->sum() >= Settings::first()->upgrade_to_premium){
+                if($check_amount >= Settings::first()->upgrade_to_premium){
                     if($user->donations->pluck('package')->contains('BASIC')){
                         if($user->donations->pluck('package')->contains('STANDARD')){
                             if(!$user->donations->pluck('package')->contains('Premium')){
