@@ -12,7 +12,7 @@
                         <ul style="margin-top: 20px;">
                             @foreach(collect($user->findChildren($user->id)) as $name)
                                 <li style="border-left: 1px solid gray;">
-                                    <a  href="javascript:void(0)" onclick="clickContributors(this);" style="font-weight: normal; color: rgb(66, 139, 202);"><span class="@if($name != 'N/A') @if(Details::where('username',$name)->first()->invited_by == $user->details->username) text-danger @endif @endif">{{$name}} 
+                                    <a  href="javascript:void(0)" onclick="clickContributors(this);" style="font-weight: normal; color: rgb(66, 139, 202);"><span class="@if($name != 'N/A') @if(Details::where('username',$name)->first()->invited_by == $user->details->username) text-danger @endif @endif">  {{$name}} 
                                         @if($name != 'N/A')
                                             ({{App\User::where('username',$name)->first()->name}})
                                             ({{ ((App\User::where('username',$name)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->children)): 0)  + ((App\User::where('username',$name)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$name)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->super_duper_children)) : 0)}})    
@@ -20,13 +20,13 @@
 
 
                                         @if($name != 'N/A') @if(Details::where('username',$name)->first()->user->donations->pluck('package')->contains('BASIC'))
-                                            <div class="heading-tag" style="margin-left:10px;">Basic</div> 
+                                            <div class="heading-tag" style="margin-left:10px;margin-bottom:0;">Basic</div> 
                                         @endif @endif
                                         @if($name != 'N/A') @if(Details::where('username',$name)->first()->user->donations->pluck('package')->contains('STANDARD'))
-                                            <div class="heading-tag standard-gradient" style="margin-left:10px;">STANDARD</div> 
+                                            <div class="heading-tag standard-gradient" style="margin-left:10px;margin-bottom:0;">STANDARD</div> 
                                         @endif @endif
                                         @if($name != 'N/A') @if(Details::where('username',$name)->first()->user->donations->pluck('package')->contains('Premium'))
-                                            <div class="heading-tag premium-gradient" style="margin-left:10px;">PREMIUM</div>
+                                            <div class="heading-tag premium-gradient" style="margin-left:10px;margin-bottom:0;">PREMIUM</div>
                                         @endif @endif
                                     </span></a>
                                     @if($name != 'N/A')
@@ -40,13 +40,13 @@
 
 
                                                     @if($c != 'N/A') @if(Details::where('username',$c)->first()->user->donations->pluck('package')->contains('BASIC'))
-                                                        <div class="heading-tag" style="margin-left:10px;">Basic</div> 
+                                                        <div class="heading-tag" style="margin-left:10px;margin-bottom:0;">Basic</div> 
                                                     @endif @endif
                                                     @if($c != 'N/A') @if(Details::where('username',$c)->first()->user->donations->pluck('package')->contains('STANDARD'))
-                                                        <div class="heading-tag standard-gradient" style="margin-left:10px;">STANDARD</div> 
+                                                        <div class="heading-tag standard-gradient" style="margin-left:10px;margin-bottom:0;">STANDARD</div> 
                                                     @endif @endif
                                                     @if($c != 'N/A') @if(Details::where('username',$c)->first()->user->donations->pluck('package')->contains('Premium'))
-                                                        <div class="heading-tag premium-gradient" style="margin-left:10px;">PREMIUM</div>
+                                                        <div class="heading-tag premium-gradient" style="margin-left:10px;margin-bottom:0;">PREMIUM</div>
                                                     @endif @endif
                                                 </span></a>
                                                     @if($c != 'N/A')
@@ -60,10 +60,10 @@
 
 
                                                                     @if($d != 'N/A') @if(Details::where('username',$d)->first()->user->donations->pluck('package')->contains('BASIC'))
-                                                                    <div class="heading-tag" style="margin-left:10px;">Basic</div> 
+                                                                    <div class="heading-tag" style="margin-left:10px;margin-bottom:0;">Basic</div> 
                                                                     @endif @endif
                                                                     @if($d != 'N/A') @if(Details::where('username',$d)->first()->user->donations->pluck('package')->contains('STANDARD'))
-                                                                        <div class="heading-tag standard-gradient" style="margin-left:10px;">STANDARD</div> 
+                                                                        <div class="heading-tag standard-gradient" style="margin-left:10px;margin-bottom:0;">STANDARD</div> 
                                                                     @endif @endif
                                                                     @if($d != 'N/A') @if(Details::where('username',$d)->first()->user->donations->pluck('package')->contains('Premium'))
                                                                         <div class="heading-tag premium-gradient" style="margin-left:10px;">PREMIUM</div>

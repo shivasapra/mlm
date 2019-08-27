@@ -231,9 +231,14 @@ table{
 }
 
 .tree-view li a {
-    padding:0 0 0 10px;
     position: relative;
-    top:1em;
+    top: 1em;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #f3f3f3;
+    color: #000 !important;
 }
 
 .tree-view li a:hover {
