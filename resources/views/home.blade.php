@@ -268,10 +268,10 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th class="text-center"></th>
                                     <th class="text-center">Level 1</th>
                                     <th class="text-center">Level 2</th>
                                     <th class="text-center">Level 3</th>
-                                    <th class="text-center">Level 4</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -317,7 +317,7 @@
                         <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Level 2</h4>
+                                <h4 class="modal-title">Level 1</h4>
                             </div>
                         
                             <!-- Modal body -->
@@ -352,7 +352,7 @@
                         <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Level 3</h4>
+                                <h4 class="modal-title">Level 2</h4>
                             </div>
                         
                             <!-- Modal body -->
@@ -387,7 +387,7 @@
                         <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Level 4</h4>
+                                <h4 class="modal-title">Level 3</h4>
                             </div>
                         
                             <!-- Modal body -->
