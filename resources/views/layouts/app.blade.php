@@ -178,6 +178,7 @@
                     <li class=" nav-item"><a href="{{route('settings')}}"><i class="icon-settings"></i><span class="menu-title">Settings</span></a></li>
                     <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
                     <li class=" nav-item"><a href="{{route('admin.wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
+                    <li class=" nav-item"><a href="{{route('bank.report')}}"><i class="icon-paper"></i><span class="menu-title">Bank Report</span></a></li>
                     <li class=" nav-item"><a href="{{route('admin.ticket')}}"><i class="icon-support"></i><span class="menu-title">Support Tickets</span></a></li>
                 @elseif(Auth::user()->campaign)
                     <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>

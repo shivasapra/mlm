@@ -97,4 +97,8 @@ class HomeController extends Controller
     public function users(){
         return view('users')->with('users',User::where('admin',0)->get());
     }
+
+    public function bankReport(){
+        return view('bankReport');
+    }
 }

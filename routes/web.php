@@ -129,7 +129,7 @@ Route::get('/wallets','EpinsController@wallets')->name('wallets');
 Route::get('/admin-wallets','EpinsController@adminWallets')->name('admin.wallets');
 
 Route::get('/verify-email/{verify_token}','UserController@verify')->name('verify.email');
-
+Route::get('/bank-report','HomeController@bankReport')->name('bank.report');
 Route::get('/support-create-tickets','UserController@supportCreateTickets')->name('support.createTickets');
 Route::get('/support-view-tickets','UserController@supportViewTickets')->name('support.viewTickets');
 Route::post('/store-ticket','UserController@storeTicket')->name('store.ticket');
