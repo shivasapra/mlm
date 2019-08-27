@@ -323,15 +323,17 @@
                             <!-- Modal body -->
                             <div class="modal-body">
                                 @if(Auth::user()->coordinates->children != null)
-                                    @foreach(App\User::find(explode(',',Auth::user()->coordinates->children)) as $u)
-                                        <img 
-                                        @if($u->details->avatar)
-                                            src="{{$u->details->avatar}}"
-                                        @else
-                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                        @endif
-                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach(App\User::find(explode(',',Auth::user()->coordinates->children)) as $u)
+                                            <img 
+                                            @if($u->details->avatar)
+                                                src="{{$u->details->avatar}}"
+                                            @else
+                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                            @endif
+                                            alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
+                                        @endforeach
+                                    </div>
                                 @endif
                             </div>
                     
@@ -354,15 +356,17 @@
                             <!-- Modal body -->
                             <div class="modal-body">
                                 @if(Auth::user()->coordinates->super_children != null)
-                                    @foreach(App\User::find(explode(',',Auth::user()->coordinates->super_children)) as $u)
-                                        <img 
-                                        @if($u->details->avatar)
-                                            src="{{$u->details->avatar}}"
-                                        @else
-                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                        @endif
-                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach(App\User::find(explode(',',Auth::user()->coordinates->super_children)) as $u)
+                                            <img 
+                                            @if($u->details->avatar)
+                                                src="{{$u->details->avatar}}"
+                                            @else
+                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                            @endif
+                                            alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
+                                        @endforeach
+                                    </div>
                                 @endif
                             </div>
                     
@@ -385,6 +389,7 @@
                             <!-- Modal body -->
                             <div class="modal-body">
                                 @if(Auth::user()->coordinates->super_duper_children != null)
+                                <div class="row">
                                     @foreach(App\User::find(explode(',',Auth::user()->coordinates->super_duper_children)) as $u)
                                         <img 
                                         @if($u->details->avatar)
@@ -394,6 +399,7 @@
                                         @endif
                                         alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
                                     @endforeach
+                                </div>
                                 @endif
                             </div>
                     
