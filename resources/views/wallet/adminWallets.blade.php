@@ -37,8 +37,11 @@
                         <th>Sno.</th>
                         <th>Username</th>
                         <th>Name</th>
-                        <th>Amount</th>
                         <th>Level</th>
+                        <th>Admin Charges</th>
+                        <th>GST (18%)</th>
+                        <th>Reward</th>
+                        <th>Total</th>
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -48,8 +51,11 @@
                             <th>{{$loop->index + 1}}</th>
                             <td>{{App\User::find($c->from)->username}}</td>
                             <td>{{App\User::find($c->from)->name}}</td>
-                            <td>{{$c->amount}}</td>
                             <td>{{App\User::find($c->from)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
+                            <td>{{($c->amount/2) - (18/100 * ($c->amount / 2))}}</td>
+                            <td>{{18/100 * ($c->amount / 2)}}</td>
+                            <td>{{$c->amount/2}}</td>
+                            <td>{{$c->amount}}</td>
                             <td><strong>{{Carbon\Carbon::parse($c->created_at)->diffForHumans()}}</strong> <br>({{$c->created_at}})</td>
                         </tr>
                     @endforeach
@@ -87,8 +93,8 @@
                         <th>Sno.</th>
                         <th>Username</th>
                         <th>Name</th>
-                        <th>Amount</th>
                         <th>Level</th>
+                        <th>Amount</th>
                         <th>Time</th>
                     </tr>
                 </thead>

@@ -261,6 +261,151 @@
                 </div>
             @endif
         </div>
+        @if(!Auth::user()->admin)
+            @if(Auth::user()->coordinates)
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Level 1</th>
+                                    <th class="text-center">Level 2</th>
+                                    <th class="text-center">Level 3</th>
+                                    <th class="text-center">Level 4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width:300px;">
+                                        <img 
+                                        @if(Auth::user()->details->avatar)
+                                            src="{{Auth::user()->details->avatar}}"
+                                        @else
+                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                        @endif
+                                        alt="avatar" style="border-radius:50%;width:50px;"><strong> {{Auth::user()->username}}</strong> ({{Auth::user()->name}})
+                                    </td>
+                                    <th class="text-center">
+                                        @if(Auth::user()->coordinates->children != null)
+                                            <a href="javascript:void(0)" data-target="#modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->children)).' Persons'}}</a>
+                                        @else
+                                            {{__("0 Persons")}}
+                                        @endif
+                                    </th>
+                                    <th class="text-center">
+                                        @if(Auth::user()->coordinates->super_children != null)
+                                            <a href="javascript:void(0)" data-target="#super_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_children)).' Persons'}}</a>
+                                        @else
+                                            {{__("0 Persons")}}
+                                        @endif
+                                    </th>
+                                    <th class="text-center">
+                                        @if(Auth::user()->coordinates->super_duper_children != null)
+                                            <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_super_children)).' Persons'}}</a>
+                                        @else
+                                            {{__("0 Persons")}}
+                                        @endif
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Level 2</h4>
+                            </div>
+                        
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                @if(Auth::user()->coordinates->children != null)
+                                    @foreach(App\User::find(explode(',',Auth::user()->coordinates->children)) as $u)
+                                        <img 
+                                        @if($u->details->avatar)
+                                            src="{{$u->details->avatar}}"
+                                        @else
+                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                        @endif
+                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
+                                    @endforeach
+                                @endif
+                            </div>
+                    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">  
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="super_modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Level 2</h4>
+                            </div>
+                        
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                @if(Auth::user()->coordinates->super_children != null)
+                                    @foreach(App\User::find(explode(',',Auth::user()->coordinates->super_children)) as $u)
+                                        <img 
+                                        @if($u->details->avatar)
+                                            src="{{$u->details->avatar}}"
+                                        @else
+                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                        @endif
+                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
+                                    @endforeach
+                                @endif
+                            </div>
+                    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">  
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="super_duper_modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Level 2</h4>
+                            </div>
+                        
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                @if(Auth::user()->coordinates->super_duper_children != null)
+                                    @foreach(App\User::find(explode(',',Auth::user()->coordinates->super_duper_children)) as $u)
+                                        <img 
+                                        @if($u->details->avatar)
+                                            src="{{$u->details->avatar}}"
+                                        @else
+                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                        @endif
+                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
+                                    @endforeach
+                                @endif
+                            </div>
+                    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">  
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endif
         <!--/ stats -->
         <!--/ project charts -->
         {{-- <div class="row">

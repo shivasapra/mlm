@@ -151,7 +151,14 @@
                     <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                     </ul>
                 </li> --}}
-                <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="{{asset('app/images/portrait/small/avatar-s-1.png')}}" alt="avatar"><i></i></span><span class="user-name">{{Auth::user()->name}}</span></a>
+                <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online">
+                    <img
+                        @if(Auth::user()->details->avatar) 
+                            src="{{Auth::user()->details->avatar}}"
+                        @else
+                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                        @endif
+                        alt="avatar"><i></i></span><span class="user-name">{{Auth::user()->name}}</span></a>
                     <div class="dropdown-menu dropdown-menu-right"><a href="{{route('account.settings',Auth::user())}}" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a>
                     <div class="dropdown-divider"></div><a href="javascript:void(0)" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-power3"></i> Logout</a>
                     </div>
