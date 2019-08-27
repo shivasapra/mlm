@@ -333,7 +333,7 @@
                                                     src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
                                                 @endif
                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                            </div>
+                                            </div><br>
                                         @endforeach
                                     </div>
                                 @endif
@@ -368,7 +368,7 @@
                                                     src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
                                                 @endif
                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                            </div>
+                                            </div><br>
                                         @endforeach
                                     </div>
                                 @endif
@@ -403,7 +403,7 @@
                                                 src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
                                             @endif
                                             alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                        </div>
+                                        </div><br>
                                     @endforeach
                                 </div>
                                 @endif
