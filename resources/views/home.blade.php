@@ -301,7 +301,7 @@
                                     </th>
                                     <th class="text-center">
                                         @if(Auth::user()->coordinates->super_duper_children != null)
-                                            <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_super_children)).' Persons'}}</a>
+                                            <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_duper_children)).' Persons'}}</a>
                                         @else
                                             {{__("0 Persons")}}
                                         @endif
@@ -348,7 +348,7 @@
                         <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Level 2</h4>
+                                <h4 class="modal-title">Level 3</h4>
                             </div>
                         
                             <!-- Modal body -->
@@ -379,7 +379,7 @@
                         <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Level 2</h4>
+                                <h4 class="modal-title">Level 4</h4>
                             </div>
                         
                             <!-- Modal body -->
