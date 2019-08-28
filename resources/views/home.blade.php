@@ -723,7 +723,7 @@
                 
                         '<!-- Modal footer -->'+
                         '<div class="modal-footer">'+
-                        '<button type="submit" class="btn btn-info">Yes</button>  '+
+                        '<input type="submit" value="Yes" onclick="this.form.submit();  this.value=`Verifying...`; this.disabled=true;"  class="btn btn-info">&nbsp;'+
                         '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
                         '</div>'+
                     '</form>'+
