@@ -1,142 +1,139 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-<title>Galaxy Crowd</title>
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-<style type="text/css">
-html { -webkit-text-size-adjust: none; -ms-text-size-adjust: none;}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	@media only screen and (min-device-width: 750px) {
-		.table750 {width: 750px !important;}
-	}
-	@media only screen and (max-device-width: 750px), only screen and (max-width: 750px){
-      table[class="table750"] {width: 100% !important;}
-      .mob_b {width: 93% !important; max-width: 93% !important; min-width: 93% !important;}
-      .mob_b1 {width: 100% !important; max-width: 100% !important; min-width: 100% !important;}
-      .mob_left {text-align: left !important;}
-      .mob_soc {width: 50% !important; max-width: 50% !important; min-width: 50% !important;}
-      .mob_menu {width: 50% !important; max-width: 50% !important; min-width: 50% !important; box-shadow: inset -1px -1px 0 0 rgba(255, 255, 255, 0.2); }
-      .mob_center {text-align: center !important;}
-      .top_pad {height: 15px !important; max-height: 15px !important; min-height: 15px !important;}
-      .mob_pad {width: 15px !important; max-width: 15px !important; min-width: 15px !important;}
-      .mob_div {display: block !important;}
- 	}
-   @media only screen and (max-device-width: 550px), only screen and (max-width: 550px){
-      .mod_div {display: block !important;}
-   }
-	.table750 {width: 750px;}
-</style>
-</head>
-<body style="margin: 0; padding: 0;">
+    <title>Thank You</title>
+    <style>
+    	@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap');
+    	body{margin:0;padding:0;font-family: 'Open Sans', sans-serif;background-color:#ffedc3;word-break:break-word;}
+    	h1 {
+	    background: linear-gradient(to left, #61dec7 0%, #8e2ef7 50%);
+	    -webkit-linear-gradient(to left, #c9fe90 0%, #4ac1b6 50%): ;
+	    -moz-linear-gradient(to left, #c9fe90 0%, #4ac1b6 50%): ;
+	    -o-linear-gradient(to left, #c9fe90 0%, #4ac1b6 50%): ;
+	    -ms-linear-gradient(to left, #c9fe90 0%, #4ac1b6 50%): ;
+	    -webkit-background-clip: text;
+	    -webkit-text-fill-color: transparent;
+	    font-size:50px;
+	    font-weight:900;}
+	    .container{
+	    	width:900px;
+	    	margin:50px auto;
+	    	background-color:#fff;
+	    	padding:30px;
+	    }
+	    .text-center {
+    		text-align: center;
+		}
+	    hr{
+	    	border-top:#ddd;
+	    }
+	    .fw-600{font-weight:600;}
+	    p.card-text {color: #787878;}
 
-<table cellpadding="0" cellspacing="0" border="0" width="100%" style="background: #f3f3f3; min-width: 350px; font-size: 1px; line-height: normal;">
- 	<tr>
-   	<td align="center" valign="top">
-   		<table cellpadding="0" cellspacing="0" border="0" width="750" class="table750" style="width: 100%; max-width: 750px; min-width: 350px; background: #f3f3f3;">
-   			<tr>
-               <td class="mob_pad" width="25" style="width: 25px; max-width: 25px; min-width: 25px;">&nbsp;</td>
-   				<td align="center" valign="top" style="background: #ffffff;">
-
-                  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100% !important; min-width: 100%; max-width: 100%; background: #f3f3f3;">
-                     <tr>
-                        <td align="right" valign="top">
-                           <div class="top_pad" style="height: 25px; line-height: 25px; font-size: 23px;">&nbsp;</div>
-                        </td>
-                     </tr>
-                  </table>
-
-                  {{-- <table cellpadding="0" cellspacing="0" border="0" width="88%" style="width: 88% !important; min-width: 88%; max-width: 88%;">
-                     <tr>
-                        <td align="left" valign="top">
-                           <div style="height: 39px; line-height: 39px; font-size: 37px;">&nbsp;</div>
-                           <a href="{{'www.galaxycrowd.com'}}" target="_blank" style="display: block;">
-                              Galaxy Crowd
-                           </a>
-                           <div style="height: 40px; line-height: 40px; font-size: 71px;">&nbsp;</div>
-                        </td>
-                     </tr>
-                  </table> --}}
-
-                  <table cellpadding="0" cellspacing="0" border="0" width="88%" style="width: 88% !important; min-width: 88%; max-width: 88%;">
-                     <tr>
-                        <td align="left" valign="top">
-                           <font face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 52px; line-height: 60px; font-weight: 300; letter-spacing: -1.5px;">
-                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 40px; line-height: 50px; font-weight: 300; letter-spacing: -1.5px;">Hi <b>{{$user->name}}</b>,</span><hr>
-                           </font>
-                           <font>
-                           <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #26ace2;font-weight:700; font-size: 50px;text-transform:uppercase;">You Have Been Registered</span><br>
-                              {{-- <span style="color:#333;font-size:23px;font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif;font-weight:600;">For Your Support!!</span> --}}
-                           </font>
-                           <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
-                           <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
-                              <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">Your Security Pin Is:<br>
-                                <strong>{{$security_pin}}</strong><br>
-
-                                 Please Click <a href="{{route('verify.email',$verify_token)}}">HERE</a> to verify Your Email.
-                                {{-- <br> Visit Our Website: <a href="www.cloudtravels.co.uk">www.galaxycrowd.com</a></span> --}}
-                           </font>
-                           <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
-                           <div style="height: 75px; line-height: 75px; font-size: 73px;">&nbsp;</div>
-                        </td>
-                     </tr>
-                  </table>
-
-                  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100% !important; min-width: 100%; max-width: 100%; background: #f3f3f3;">
-                     <tr>
-                        <td align="center" valign="top">
-                           <div style="height: 34px; line-height: 34px; font-size: 32px;">&nbsp;</div>
-                           <table cellpadding="0" cellspacing="0" border="0" width="88%" style="width: 88% !important; min-width: 88%; max-width: 88%;">
-                              <tr>
-                                 <td align="center" valign="top">
-                                    <font face="'Source Sans Pro', sans-serif" color="#868686" style="font-size: 17px; line-height: 20px;">
-                                       <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;">Copyright &copy; Galaxy Crowd. All&nbsp;Rights&nbsp;Reserved.</span>
-                                    </font>
-                                    <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
-                                    
-                                    <div style="height: 35px; line-height: 35px; font-size: 33px;">&nbsp;</div>
-                                    {{-- <table cellpadding="0" cellspacing="0" border="0">
-                                       <tr>
-                                          <td align="center" valign="top">
-                                             <a href="#" target="_blank" style="display: block; max-width: 19px;">
-                                                <img src="{{asset('/images/soc_1.png')}}" alt="img" width="19" border="0" style="display: block; width: 19px;" />
-                                             </a>
-                                          </td>
-                                          <td width="45" style="width: 45px; max-width: 45px; min-width: 45px;">&nbsp;</td>
-                                          <td align="center" valign="top">
-                                             <a href="#" target="_blank" style="display: block; max-width: 18px;">
-                                                <img src="{{asset('/images/soc_2.png')}}" alt="img" width="18" border="0" style="display: block; width: 18px;" />
-                                             </a>
-                                          </td>
-                                          <td width="45" style="width: 45px; max-width: 45px; min-width: 45px;">&nbsp;</td>
-                                          <td align="center" valign="top">
-                                             <a href="#" target="_blank" style="display: block; max-width: 21px;">
-                                                <img src="{{asset('/images/soc_3.png')}}" alt="img" width="21" border="0" style="display: block; width: 21px;" />
-                                             </a>
-                                             src="{{asset('/uploads/logo.jpg')}}"
-                                          </td>
-                                          <td width="45" style="width: 45px; max-width: 45px; min-width: 45px;">&nbsp;</td>
-                                          <td align="center" valign="top">
-                                             <a href="#" target="_blank" style="display: block; max-width: 25px;">
-                                                <img src="{{asset('/images/soc_4.png')}}" alt="img" width="25" border="0" style="display: block; width: 25px;" />
-                                             </a>
-                                          </td>
-                                       </tr>
-                                    </table> --}}
-                                    <div style="height: 35px; line-height: 35px; font-size: 33px;">&nbsp;</div>
-                                 </td>
-                              </tr>
-                           </table>
-                        </td>
-                     </tr>
-                  </table>  
-
-               </td>
-               <td class="mob_pad" width="25" style="width: 25px; max-width: 25px; min-width: 25px;">&nbsp;</td>
-            </tr>
-         </table>
-      </td>
-   </tr>
-</table>
-</body>
+		h5 {
+		    font-size: 1.25rem;
+		    font-weight: 400;
+		    color: #444242;
+		}
+		.footer{
+			margin:0;
+			padding:0;
+			list-style:none;
+			margin-bottom:0.5rem;
+		}
+		.footer li{
+			display:inline-block;
+			padding:5px 5px;
+		}
+		.footer li a {
+			display: block;
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			text-align: center;
+			color: #fff;
+			border: 1px solid rgba(255,255,255,0.1);
+			padding-top: 6px;
+		}
+		.footer li a:hover{
+			background-color:#fff;
+			color:#333;
+		}
+		.border-radius0{
+			border-radius:0;
+		}
+		.border0{
+			border:0;
+		}
+		.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.card-footer {
+    margin-top: 3rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration:none;
+    font-size:16px;
+}
+.text-center{
+	text-align: center;
+}
+    </style>
+  </head>
+  <body>
+    <div class="container text-center">
+		<div class="card-header bg-white border-radius0 border0" style="width:100%; float:left;margin-bottom:15px;">
+			<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="img-fluid" style="width:280px;float:left;"/>
+		</div><hr>
+	  <div class="card-body">
+	  	<h1><b>THANK YOU!</b> {{$user->name}}</h1>
+	  	<p>Congratulations on becoming a part of the Galaxy Crowd Community.</p>
+	  	<img src="{{asset('app/images/welcome.png')}}" alt="logo" class="img-fluid" style="width:280px;"/>
+	  	<div class="" style="background-color:#d6e7f0;padding:20px;margin-top:20px;">
+	  	<p style="line-height:35px;font-size:22px;">Details : <br>
+		Username:   <b>{{$user->username}}</b> <br>
+		Security PIN: <b> {{$security_pin}} </b></p>
+		<p style="line-height:35px;font-size:22px;">Verify your Email ID: <a href="{{route('verify.email',$verify_token)}}"><b>Verify</b></a></p>
+	</div>
+	    <h2 style="margin-bottom:10px;color:#2190e3;font-size:35px;">Let's start an amazing journey together!!! </h2>
+		<h5 style="margin-top:0px;">Don't share your Security Pin with anyone else </h5>
+	  </div>
+	  <div class="card-footer text-center bg-dark text-white border-radius0 border0">
+		  <ul class="footer">
+			  <li><a href="#" target="blank"><img src="{{asset('auth/images/facebook.png')}}"/></a></li>
+			  <li><a href="#" target="blank"><img src="{{asset('auth/images/linkedin.png')}}"/></a></li>
+			  <li><a href="#" target="blank"><img src="{{asset('auth/images/twitter.png')}}"/></a></li>
+		  </ul>
+		  <p class="mb-1 mt-3">Knowledge city, Sector 81, SAS Nagar, Mohali, India – 160055 <br>
+	  	© 2019 All Right Reserved | <a href="https://galaxycrowd.com" class="text-white">www.galaxycrowd.com<a></p>
+	  </div>
+    </div>
+  </body>
 </html>
