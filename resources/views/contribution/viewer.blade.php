@@ -12,6 +12,9 @@
                         <ul style="margin-top: 20px;">
                             @foreach(collect($user->findChildren($user->id)) as $name)
                                 <li style="border-left: 1px solid gray;">
+                                    @if(Auth::user()->admin and $name != 'N/A')
+                                    <a href="{{route('contribution.viewer',App\User::where('username',$name)->first())}}" style="background-image:none !important; color:#000 !important;">View</a>
+                                    @endif
                                     <a  href="javascript:void(0)" onclick="clickContributors(this);" style="font-weight: normal; color: rgb(66, 139, 202);"><span class="@if($name != 'N/A') @if(Details::where('username',$name)->first()->invited_by == $user->details->username)  @endif @endif">  {{$name}} 
                                         @if($name != 'N/A')
                                             ({{App\User::where('username',$name)->first()->name}})
@@ -29,13 +32,15 @@
                                             <div class="heading-tag premium-gradient" style="margin-left:10px;margin-bottom:0;">PREMIUM</div>
                                         @endif @endif
                                     </span></a>
-                                    @if(Auth::user()->admin and $name != 'N/A')
-                                        <a href="{{route('contribution.viewer',App\User::where('username',$name)->first())}}" class="" style="background-image:none !important; color:#000 !important;">View</a>
-                                    @endif
+                                    
                                     @if($name != 'N/A')
                                         <ul class="openContributors" style="display:none;border-left: 1px solid gray; margin-top: 30px;">
                                             @foreach(collect($user->findChildren(Details::where('username',$name)->first()->user->id)) as $c)
-                                                <li><a href="javascript:void(0)" onclick="clickContributors(this);"><span class="@if($c != 'N/A') @if(Details::where('username',$c)->first()->invited_by == $user->details->username)  @endif @endif">{{$c}} 
+                                                <li>
+                                                    @if(Auth::user()->admin and $c != 'N/A')
+                                                        <a href="{{route('contribution.viewer',App\User::where('username',$c)->first())}}" style="background-image:none !important; color:#000 !important;">View</a>
+                                                    @endif
+                                                    <a href="javascript:void(0)" onclick="clickContributors(this);"><span class="@if($c != 'N/A') @if(Details::where('username',$c)->first()->invited_by == $user->details->username)  @endif @endif">{{$c}} 
                                                     @if($c != 'N/A')
                                                         ({{App\User::where('username',$c)->first()->name}}) 
                                                         ({{ ((App\User::where('username',$c)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->children)): 0)  + ((App\User::where('username',$c)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$c)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->super_duper_children)) : 0)}})    
@@ -52,13 +57,15 @@
                                                         <div class="heading-tag premium-gradient" style="margin-left:10px;margin-bottom:0;">PREMIUM</div>
                                                     @endif @endif
                                                 </span></a>
-                                                @if(Auth::user()->admin and $c != 'N/A')
-                                                    <a href="{{route('contribution.viewer',App\User::where('username',$c)->first())}}" class="" style="background-image:none !important; color:#000 !important;">View</a>
-                                                @endif
+                                                
                                                     @if($c != 'N/A')
                                                         <ul class="openContributors" style="display:none;border-left: 1px solid gray; margin-top: 30px;">
                                                             @foreach(collect($user->findChildren(Details::where('username',$c)->first()->user->id)) as $d)
-                                                                <li><a href="javascript:void(0)"><span class="@if($d != 'N/A') @if(Details::where('username',$d)->first()->invited_by == $user->details->username)  @endif @endif">{{$d}} 
+                                                                <li>
+                                                                    @if(Auth::user()->admin and $d != 'N/A')
+                                                                        <a href="{{route('contribution.viewer',App\User::where('username',$d)->first())}}" style="background-image:none !important; color:#000 !important;">View</a>
+                                                                    @endif
+                                                                    <a href="javascript:void(0)"><span class="@if($d != 'N/A') @if(Details::where('username',$d)->first()->invited_by == $user->details->username)  @endif @endif">{{$d}} 
                                                                     @if($d != 'N/A')
                                                                         ({{App\User::where('username',$d)->first()->name}})
                                                                         ({{ ((App\User::where('username',$d)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->children)): 0)  + ((App\User::where('username',$d)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$d)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->super_duper_children)) : 0)}})    
@@ -75,9 +82,7 @@
                                                                         <div class="heading-tag premium-gradient" style="margin-left:10px;">PREMIUM</div>
                                                                     @endif @endif
                                                                 </span></a></li>
-                                                                @if(Auth::user()->admin and $d != 'N/A')
-                                                                    <a href="{{route('contribution.viewer',App\User::where('username',$d)->first())}}" class="" style="background-image:none !important; color:#000 !important;">View</a>
-                                                                @endif
+                                                               
                                                             @endforeach
                                                         </ul>
                                                     @endif
