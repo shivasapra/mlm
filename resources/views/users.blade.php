@@ -12,11 +12,42 @@
             <a class="nav-link" id="home-tab" data-toggle="tab" href="#campaign_users" role="tab" aria-controls="home">Campaign Users</a>
         </li>
     </ul>
+@php
 
+use App\User;
+use Carbon\Carbon;
+    $active_users = collect();
+    foreach($users as $user){
+        if($user->coordinates and !$user->campaign){
+            $active_users->push($user);
+        }
+    }
+
+    $inactive_users = collect();
+    foreach($users as $user){
+        if(!$user->coordinates and !$user->campaign){
+            $inactive_users->push($user);
+        }
+    }
+
+    $campaign_users = collect();
+    foreach($users as $user){
+        if($user->campaign){
+            $campaign_users->push($user);
+        }
+    }
+    @endphp
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="active_users" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
-                <table class="table table-bordered datatable">
+                <div class="col-md-12 text-right">
+                    <input type="date" class="from">
+                    <input type="date" class="to">
+                    <button class="btn btn-info btn-sm" onclick="find(this)">Search</button>
+                </div>
+            </div><br>
+            <div class="text-right">
+                <table class="table table-bordered datatable" id="active">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -33,21 +64,19 @@
                     </thead>
                     <tbody>
                         @php $i = 1; @endphp
-                        @foreach($users as $user)
-                            @if($user->coordinates and !$user->campaign)
-                                <tr>
-                                    <th>{{$i++}}.</th>
-                                    <td>{{$user->username}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->details->invited_by}} ({{ App\User::where('username',$user->details->invited_by)->first()->name}})</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->details->mobile}}</td>
-                                    <td>{{$user->details->security_pin}}</td>
-                                    <th>{{$user->donations->last()->package}}</th>
-                                    <td>{{$user->UpgradeWallet->pluck('amount')->sum() - $user->donations->pluck('amount')->sum() + $user->donations->where('package','BASIC')->first()->amount}}</td>
-                                    <th>{{$user->created_at->diffForHumans()}}</th>
-                                </tr>
-                            @endif
+                        @foreach($active_users as $user)
+                            <tr>
+                                <th>{{$i++}}.</th>
+                                <td>{{$user->username}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->details->invited_by}} ({{ App\User::where('username',$user->details->invited_by)->first()->name}})</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->details->mobile}}</td>
+                                <td>{{$user->details->security_pin}}</td>
+                                <th>{{$user->donations->last()->package}}</th>
+                                <td>{{$user->UpgradeWallet->pluck('amount')->sum() - $user->donations->pluck('amount')->sum() + $user->donations->where('package','BASIC')->first()->amount}}</td>
+                                <th>{{$user->created_at->diffForHumans()}}</th>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -71,19 +100,17 @@
                     </thead>
                     <tbody>
                         @php $i = 1; @endphp
-                        @foreach($users as $user)
-                            @if(!$user->coordinates and !$user->campaign)
-                                <tr>
-                                    <th>{{$i++}}.</th>
-                                    <td>{{$user->username}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->details->invited_by}} ({{ App\User::where('username',$user->details->invited_by)->first()->name}})</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->details->mobile}}</td>
-                                    <td>{{$user->details->security_pin}}</td>
-                                    <th>{{$user->created_at->diffForHumans()}}</th>
-                                </tr>
-                            @endif
+                        @foreach($inactive_users as $user)
+                            <tr>
+                                <th>{{$i++}}.</th>
+                                <td>{{$user->username}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->details->invited_by}} ({{ App\User::where('username',$user->details->invited_by)->first()->name}})</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->details->mobile}}</td>
+                                <td>{{$user->details->security_pin}}</td>
+                                <th>{{$user->created_at->diffForHumans()}}</th>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -106,23 +133,22 @@
                     </thead>
                     <tbody>
                         @php $i = 1; @endphp
-                        @foreach($users as $user)
-                            @if($user->campaign)
-                                <tr>
-                                    <th>{{$i++}}.</th>
-                                    <td>{{$user->username}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->details->mobile}}</td>
-                                    <td>{{$user->details->security_pin}}</td>
-                                    <th>{{$user->created_at->diffForHumans()}}</th>
-                                </tr>
-                            @endif
+                        @foreach($campaign_users as $user)
+                            <tr>
+                                <th>{{$i++}}.</th>
+                                <td>{{$user->username}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->details->mobile}}</td>
+                                <td>{{$user->details->security_pin}}</td>
+                                <th>{{$user->created_at->diffForHumans()}}</th>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    
     
 @endsection

@@ -101,4 +101,9 @@ class HomeController extends Controller
     public function bankReport(){
         return view('bankReport');
     }
+
+    public function foo(Request $request){
+        $coll = dd($request->foo);
+        return $coll;
+    }
 }

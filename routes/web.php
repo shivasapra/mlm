@@ -183,3 +183,6 @@ Route::get('/buy',function(Request $request){
 
     return $epin;
 });
+
+
+Route::get('/foo','HomeController@foo');
