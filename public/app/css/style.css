@@ -237,8 +237,8 @@ table{
     margin-bottom: 10px;
     display: inline-block;
     border-radius: 50px;
-    background-color: #f3f3f3;
-    color: #000 !important;
+    background-image: linear-gradient(153deg, #fb8332 0%, #f8c332 95%);
+    color: #fff !important;
 }
 
 .tree-view li a:hover {
