@@ -81,8 +81,8 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Country</label>
-												<input type="text" name="country" class="form-control" placeholder="Country" value="{{ old('country') }}" required/>
+												<label>State</label>
+												<input type="text" name="state" class="form-control" placeholder="state" value="{{ old('state') }}" required/>
 											</div>
 										</div>
 										<div class="col-md-6">

@@ -92,7 +92,7 @@ class RegisterController extends Controller
         $detail->username = $username;
         $detail->cause = Cause::find($data['cause'])->name;
         $detail->full_name = $data['name'];
-        $detail->country = $data['country'];
+        $detail->state = $data['state'];
         $detail->city = $data['city'];
         $detail->mobile = $data['mobile'];
         $detail->invited_by = $data['referral_code'];
@@ -133,7 +133,7 @@ class RegisterController extends Controller
         $detail->username = $username;
         $detail->cause = Cause::find($data['cause'])->name;
         $detail->full_name = $data['name'];
-        $detail->country = $data['country'];
+        $detail->state = $data['state'];
         $detail->city = $data['city'];
         $detail->mobile = $data['mobile'];
         $detail->promotional_url = 'http://galaxycrowd.com/'.$username;
