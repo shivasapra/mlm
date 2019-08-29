@@ -327,27 +327,27 @@
                                 <tr>
                                     <th class="text-center">
                                         @if($ids)
-                                            {{-- <a href="javascript:void(0)" data-target="#modal" data-toggle="modal"> --}}
+                                            <a href="javascript:void(0)" data-target="#basic_modal" data-toggle="modal">
                                                 {{$ids->count() .' Persons'}}
-                                            {{-- </a> --}}
+                                            </a>
                                         @else
                                             {{__("0 Persons")}}
                                         @endif
                                     </th>
                                     <th class="text-center">
                                         @if($standards->count())
-                                            {{-- <a href="javascript:void(0)" data-target="#super_modal" data-toggle="modal"> --}}
+                                            <a href="javascript:void(0)" data-target="#standard_modal" data-toggle="modal">
                                                 {{$standards->count(). ' Persons'}}
-                                            {{-- </a> --}}
+                                            </a>
                                         @else
                                             {{__("0 Persons")}}
                                         @endif
                                     </th>
                                     <th class="text-center">
                                         @if($premiums->count())
-                                            {{-- <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal"> --}}
+                                            <a href="javascript:void(0)" data-target="#premium_modal" data-toggle="modal">
                                                 {{$premiums->count(). ' Persons'}}
-                                            {{-- </a> --}}
+                                            </a>
                                         @else
                                             {{__("0 Persons")}}
                                         @endif
@@ -357,6 +357,120 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="modal fade" id="basic_modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Basic</h4>
+                                </div>
+                            
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    @if($ids->count())
+                                        <div class="row">
+                                            @foreach($ids as $i)
+                                            @php
+                                                $user = App\User::find($i);
+                                            @endphp
+                                                <div class="col-md-4">
+                                                    <img 
+                                                    @if($user->details->avatar)
+                                                        src="{{$user->details->avatar}}"
+                                                    @else
+                                                        src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                    @endif
+                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                </div><br>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
+                        
+                                <!-- Modal footer -->
+                                <div class="modal-footer">  
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="standard_modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">STANDARD</h4>
+                                    </div>
+                                
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        @if($standards->count())
+                                            <div class="row">
+                                                @foreach($standards as $i)
+                                                @php
+                                                    $user = App\User::find($i);
+                                                @endphp
+                                                    <div class="col-md-4">
+                                                        <img 
+                                                        @if($user->details->avatar)
+                                                            src="{{$user->details->avatar}}"
+                                                        @else
+                                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                        @endif
+                                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                    </div><br>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
+                            
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">  
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="modal fade" id="premium_modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">PREMIUM</h4>
+                                    </div>
+                                
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        @if($premiums->count())
+                                            <div class="row">
+                                                @foreach($premiums as $i)
+                                                @php
+                                                    $user = App\User::find($i);
+                                                @endphp
+                                                    <div class="col-md-4">
+                                                        <img 
+                                                        @if($user->details->avatar)
+                                                            src="{{$user->details->avatar}}"
+                                                        @else
+                                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                        @endif
+                                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                    </div><br>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
+                            
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">  
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                 <div class="modal fade" id="modal">
                     <div class="modal-dialog">
