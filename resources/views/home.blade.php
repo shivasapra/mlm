@@ -309,6 +309,46 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        {{-- <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">BASIC</th>
+                                    <th class="text-center">STANDARD</th>
+                                    <th class="text-center">PREMIUM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $total = ((Auth::user()->coordinates->children != null)? count(explode(',',Auth::user()->coordinates->children)): 0)  + ((Auth::user()->coordinates->super_children != null)? count(explode(',',Auth::user()->coordinates->super_children)): 0) + ((Auth::user()->coordinates->super_duper_children != null)? count(explode(',',Auth::user()->coordinates->super_duper_children)) : 0))    
+                                @endphp
+                                <tr>
+                                    <th class="text-center">
+                                        @if($total)
+                                            <a href="javascript:void(0)" data-target="#modal" data-toggle="modal">
+                                                {{$total .' Persons'}}
+                                            </a>
+                                        @else
+                                            {{__("0 Persons")}}
+                                        @endif
+                                    </th>
+                                    <th class="text-center">
+                                        @if(Auth::user()->coordinates->super_children != null)
+                                            <a href="javascript:void(0)" data-target="#super_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_children)).' Persons'}}</a>
+                                        @else
+                                            {{__("0 Persons")}}
+                                        @endif
+                                    </th>
+                                    <th class="text-center">
+                                        @if(Auth::user()->coordinates->super_duper_children != null)
+                                            <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_duper_children)).' Persons'}}</a>
+                                        @else
+                                            {{__("0 Persons")}}
+                                        @endif
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table> --}}
                     </div>
                 </div>
 

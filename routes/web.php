@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\EpinCategory;
 use App\purchaseEpin;
 use App\Campaign;
+use Illuminate\Support\Facades\Auth;
+use App\Coordinates;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,12 @@ use App\Campaign;
 */
 
 
-Route::get('/test','ContributionController@matrix');
+Route::get('/test',function(){
+    $total = ((Auth::user()->coordinates->children != null)? count(explode(',',Auth::user()->coordinates->children)): 0)  + ((Auth::user()->coordinates->super_children != null)? count(explode(',',Auth::user()->coordinates->super_children)): 0) + ((Auth::user()->coordinates->super_duper_children != null)? count(explode(',',Auth::user()->coordinates->super_duper_children)) : 0);
+    $total_two = Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->count();
+    dd($total, $total_two);
+});
+
 Auth::routes();
 
 Route::get('/campaign/register',function(){
