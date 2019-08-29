@@ -369,22 +369,24 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     @if($ids->count())
-                                        <div class="row">
-                                            @foreach($ids as $i)
-                                            @php
-                                                $user = App\User::find($i);
-                                            @endphp
-                                                <div class="col-md-4">
-                                                    <img 
-                                                    @if($user->details->avatar)
+                                        @foreach($ids->chunk(3) as $id)
+                                            <div class="row">
+                                                @foreach($id as $i)
+                                                    @php
+                                                    $user = App\User::find($i);
+                                                    @endphp
+                                                    <div class="col-md-4">
+                                                        <img 
+                                                        @if($user->details->avatar)
                                                         src="{{$user->details->avatar}}"
-                                                    @else
+                                                        @else
                                                         src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                    @endif
-                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
-                                                </div><br>
-                                            @endforeach
-                                        </div>
+                                                        @endif
+                                                        alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                    </div>
+                                                @endforeach
+                                            </div><hr><br>
+                                        @endforeach
                                     @endif
                                 </div>
                         
