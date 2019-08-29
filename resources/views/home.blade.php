@@ -798,10 +798,10 @@
                                                 $j = 0;
                                             @endphp 
                                                 <tr>
+                                                    @foreach($id as $i)
                                                     @php
                                                         $j++
                                                     @endphp
-                                                    @foreach($id as $i)
                                                         <td>
                                                             <img 
                                                                 @if($i->details->avatar)
@@ -858,10 +858,10 @@
                                                 $j = 0;
                                             @endphp 
                                                 <tr>
+                                                    @foreach($id as $i)
                                                         @php
                                                         $j++
                                                     @endphp
-                                                    @foreach($id as $i)
                                                         <td>
                                                             <img 
                                                                 @if($i->details->avatar)
