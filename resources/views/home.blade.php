@@ -362,26 +362,6 @@
                                     @endif
                                 </tbody>
                             </table>
-                            {{-- @if($admin_basics->count())
-                                @foreach($admin_basics->chunk(3) as $id)
-                                    <div class="row">
-                                        @foreach($id as $i)
-                                            @php
-                                            $user = App\User::find($i);
-                                            @endphp
-                                            <div class="col-md-4">
-                                                <img 
-                                                @if($user->details->avatar)
-                                                src="{{$user->details->avatar}}"
-                                                @else
-                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                @endif
-                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
-                                            </div>
-                                        @endforeach
-                                    </div><hr><br>
-                                @endforeach
-                            @endif --}}
                         </div>
                 
                         <!-- Modal footer -->
@@ -413,9 +393,13 @@
                                 <tbody>
                                     @if($admin_standards->count())
                                         @foreach($admin_standards->chunk(3) as $id)
+                                        @php
+                                            $j = 0;
+                                        @endphp 
                                             <tr>
                                                 @foreach($id as $i)
                                                     @php
+                                                        $j++;
                                                         $user = App\User::find($i);
                                                     @endphp
                                                     <td>
@@ -428,6 +412,11 @@
                                                             alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
                                                     </td>
                                                 @endforeach
+                                                @if($j < 3)
+                                                    @for($k = 0; $k < 3- $k ; $k++ )
+                                                        <td>&nbsp;</td>
+                                                    @endfor
+                                                @endif
                                             </tr>
                                         @endforeach
                                     @endif
@@ -464,9 +453,13 @@
                                 <tbody>
                                     @if($admin_premiums->count())
                                         @foreach($admin_premiums->chunk(3) as $id)
+                                        @php
+                                            $j = 0;
+                                        @endphp 
                                             <tr>
                                                 @foreach($id as $i)
                                                     @php
+                                                        $j++;
                                                         $user = App\User::find($i);
                                                     @endphp
                                                     <td>
@@ -479,6 +472,11 @@
                                                             alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
                                                     </td>
                                                 @endforeach
+                                                @if($j < 3)
+                                                    @for($k = 0; $k < 3- $k ; $k++ )
+                                                        <td>&nbsp;</td>
+                                                    @endfor
+                                                @endif
                                             </tr>
                                         @endforeach
                                     @endif
@@ -611,9 +609,13 @@
                                     <tbody>
                                         @if($ids->count())
                                             @foreach($ids->chunk(3) as $id)
+                                            @php
+                                                $j = 0;
+                                            @endphp 
                                                 <tr>
                                                     @foreach($id as $i)
                                                         @php
+                                                            $j++;
                                                             $user = App\User::find($i);
                                                         @endphp
                                                         <td>
@@ -626,6 +628,11 @@
                                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
                                                         </td>
                                                     @endforeach
+                                                    @if($j < 3)
+                                                        @for($k = 0; $k < 3- $k ; $k++ )
+                                                            <td>&nbsp;</td>
+                                                        @endfor
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -662,9 +669,14 @@
                                     <tbody>
                                         @if($standards->count())
                                             @foreach($standards->chunk(3) as $id)
+                                            @php
+                                                
+                                                $j = 0;
+                                            @endphp 
                                                 <tr>
                                                     @foreach($id as $i)
                                                         @php
+                                                            $j++;
                                                             $user = App\User::find($i);
                                                         @endphp
                                                         <td>
@@ -677,6 +689,11 @@
                                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
                                                         </td>
                                                     @endforeach
+                                                    @if($j < 3)
+                                                        @for($k = 0; $k < 3- $k ; $k++ )
+                                                            <td>&nbsp;</td>
+                                                        @endfor
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -713,9 +730,14 @@
                                     <tbody>
                                         @if($premiums->count())
                                             @foreach($premiums->chunk(3) as $id)
+                                            @php
+                                                
+                                                $j = 0;
+                                            @endphp 
                                                 <tr>
                                                     @foreach($id as $i)
                                                         @php
+                                                        $j++;
                                                             $user = App\User::find($i);
                                                         @endphp
                                                         <td>
@@ -728,6 +750,11 @@
                                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
                                                         </td>
                                                     @endforeach
+                                                    @if($j < 3)
+                                                        @for($k = 0; $k < 3- $k ; $k++ )
+                                                            <td>&nbsp;</td>
+                                                        @endfor
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -766,7 +793,15 @@
                                     <tbody>
                                         @if(Auth::user()->coordinates->children != null)
                                             @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->children)))->chunk(3) as $id)
+                                            @php
+                                                
+                                                $j = 0;
+                                            @endphp 
                                                 <tr>
+                                                    @php
+                                                        $j++
+                                                    @endphp
+                                                    @endphp
                                                     @foreach($id as $i)
                                                         <td>
                                                             <img 
@@ -778,6 +813,11 @@
                                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$i->username}} <br> </strong> ({{$i->name}})
                                                         </td>
                                                     @endforeach
+                                                    @if($j < 3)
+                                                        @for($k = 0; $k < 3- $k ; $k++ )
+                                                            <td>&nbsp;</td>
+                                                        @endfor
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -814,7 +854,14 @@
                                     <tbody>
                                         @if(Auth::user()->coordinates->super_children != null)
                                             @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_children)))->chunk(3) as $id)
+                                            @php
+                                                
+                                                $j = 0;
+                                            @endphp 
                                                 <tr>
+                                                        @php
+                                                        $j++
+                                                    @endphp
                                                     @foreach($id as $i)
                                                         <td>
                                                             <img 
@@ -826,6 +873,11 @@
                                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$i->username}} <br> </strong> ({{$i->name}})
                                                         </td>
                                                     @endforeach
+                                                            @if($j < 3)
+                                                        @for($k = 0; $k < 3- $k ; $k++ )
+                                                            <td>&nbsp;</td>
+                                                        @endfor
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -862,8 +914,15 @@
                                     <tbody>
                                         @if(Auth::user()->coordinates->super_duper_children != null)
                                             @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_duper_children)))->chunk(3) as $id)
+                                            @php
+                                                
+                                                $j = 0;
+                                            @endphp 
                                                 <tr>
                                                     @foreach($id as $i)
+                                                    @php
+                                                        $j++
+                                                    @endphp
                                                         <td>
                                                             <img 
                                                                 @if($i->details->avatar)
@@ -874,6 +933,11 @@
                                                                 alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$i->username}} <br> </strong> ({{$i->name}})
                                                         </td>
                                                     @endforeach
+                                                    @if($j < 3)
+                                                        @for($k = 0; $k < 3- $k ; $k++ )
+                                                            <td>&nbsp;</td>
+                                                        @endfor
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @endif
