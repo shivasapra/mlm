@@ -320,28 +320,34 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $ids = App\Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->pluck('user_id'); 
+                                    $ids = App\Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->pluck('user_id');
+                                    $standards = App\Donations::where('package','STANDARD')->pluck('user_id')->concat($ids)->duplicates(); 
+                                    $premiums = App\Donations::where('package','Premium')->pluck('user_id')->concat($ids)->duplicates(); 
                                 @endphp
                                 <tr>
                                     <th class="text-center">
                                         @if($ids)
-                                            <a href="javascript:void(0)" data-target="#modal" data-toggle="modal">
+                                            {{-- <a href="javascript:void(0)" data-target="#modal" data-toggle="modal"> --}}
                                                 {{$ids->count() .' Persons'}}
-                                            </a>
+                                            {{-- </a> --}}
                                         @else
                                             {{__("0 Persons")}}
                                         @endif
                                     </th>
                                     <th class="text-center">
-                                        @if(Auth::user()->coordinates->super_children != null)
-                                            <a href="javascript:void(0)" data-target="#super_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_children)).' Persons'}}</a>
+                                        @if($standards)
+                                            {{-- <a href="javascript:void(0)" data-target="#super_modal" data-toggle="modal"> --}}
+                                                {{$standards->count(). ' Persons'}}
+                                            {{-- </a> --}}
                                         @else
                                             {{__("0 Persons")}}
                                         @endif
                                     </th>
                                     <th class="text-center">
-                                        @if(Auth::user()->coordinates->super_duper_children != null)
-                                            <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal">{{count(explode(',',Auth::user()->coordinates->super_duper_children)).' Persons'}}</a>
+                                        @if($premiums)
+                                            {{-- <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal"> --}}
+                                                {{$premiums->count()}}
+                                            {{-- </a> --}}
                                         @else
                                             {{__("0 Persons")}}
                                         @endif
