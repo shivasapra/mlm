@@ -23,7 +23,7 @@ use App\Coordinates;
 
 Route::get('/test',function(){
     $total = ((Auth::user()->coordinates->children != null)? count(explode(',',Auth::user()->coordinates->children)): 0)  + ((Auth::user()->coordinates->super_children != null)? count(explode(',',Auth::user()->coordinates->super_children)): 0) + ((Auth::user()->coordinates->super_duper_children != null)? count(explode(',',Auth::user()->coordinates->super_duper_children)) : 0);
-    $total_two = Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->count();
+    $total_two = Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->pluck('user_id');
     dd($total, $total_two);
 });
 

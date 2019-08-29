@@ -310,7 +310,7 @@
                             </tbody>
                         </table>
 
-                        {{-- <table class="table table-bordered">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th class="text-center">BASIC</th>
@@ -320,13 +320,13 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $total = ((Auth::user()->coordinates->children != null)? count(explode(',',Auth::user()->coordinates->children)): 0)  + ((Auth::user()->coordinates->super_children != null)? count(explode(',',Auth::user()->coordinates->super_children)): 0) + ((Auth::user()->coordinates->super_duper_children != null)? count(explode(',',Auth::user()->coordinates->super_duper_children)) : 0))    
+                                    $ids = App\Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->pluck('user_id'); 
                                 @endphp
                                 <tr>
                                     <th class="text-center">
-                                        @if($total)
+                                        @if($ids)
                                             <a href="javascript:void(0)" data-target="#modal" data-toggle="modal">
-                                                {{$total .' Persons'}}
+                                                {{$ids->count() .' Persons'}}
                                             </a>
                                         @else
                                             {{__("0 Persons")}}
@@ -348,7 +348,7 @@
                                     </th>
                                 </tr>
                             </tbody>
-                        </table> --}}
+                        </table>
                     </div>
                 </div>
 
