@@ -160,10 +160,26 @@ $activation_amount = 0;
                 </div>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-sm btn-info" type="button" id="withdraw" onclick="withdraw();">Withdraw Now</button>
-                @if(!Auth::user()->admin)
-                    <button class="btn btn-sm btn-info" type="button" id="buyPin" onclick="buyPin();">Buy Pin</button>
-                @endif
+                <button class="btn btn-info" type="button" id="buyPin" onclick="buyPin();">Buy Pin</button>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{route('withdraw')}}" method="post">
+                            @csrf
+                            <label for="amount">Amount:</label>
+                            <input type="number" name="amount" placeholder="Enter Amount To Withdraw..." onkeyup="calculateFacilitaion(this);" max="{{$commission_amount}}" class="form-control"><br>
+                            <label for="facilitation_charges">Facilitation Charges:</label>
+                            <input type="text" readonly name="facilitation_charges" class="form-control" id="facilitation"><br>
+                            <div class="text-right">
+                                <button class="btn btn-sm btn-info" type="submit" id="withdraw"">Withdraw</button>     
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <br>
@@ -231,6 +247,11 @@ $activation_amount = 0;
 
 @section('js')
 <script>
+    function calculateFacilitaion(temp){
+        var amount = temp.value;
+        var fac = {{Settings::first()->facilitation_percentage}}
+        $('#facilitation').val((fac/100)*amount);
+    }
     function withdraw(){
         
         var fac = {{Settings::first()->facilitation_percentage}}

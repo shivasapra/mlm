@@ -117,4 +117,8 @@ class EpinsController extends Controller
         return view('epinRequests');
     }
 
+    public function withdraw(Request $request){
+        dd($request->amount, $request->facilitation_charges);
+    }
+
 }

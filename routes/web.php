@@ -67,7 +67,12 @@ Route::post('/tax-proof/upload/{user}','UserController@taxProof')->name('tax.pro
 Route::get('/add-campaign/{user}','CampaignController@create')->name('add.campaign');
 Route::get('/MyCampaign','CampaignController@index')->name('my.campaign');
 Route::post('/Campaign/Store/{user}','CampaignController@store')->name('campaign.store');
-Route::get('/Campaign/view/{campaign}','CampaignController@show')->name('campaign.view');
+
+Route::get('/Campaign/view/{campaign}',function($campaign){
+    return view('campaign.show')->with('campaign',$campaign);
+})->name('campaign.view');
+
+
 Route::get('/Campaign/approve/{campaign}','CampaignController@approve')->name('campaign.approve');
 Route::get('/Campaign/pause/{campaign}','CampaignController@pause')->name('campaign.pause');
 Route::get('/Campaign/resume/{campaign}','CampaignController@resume')->name('campaign.resume');
@@ -108,6 +113,7 @@ Route::post('/Save-Facilitation','SettingsController@saveFacilitation')->name('s
 Route::post('/Save-Reward-Condition','SettingsController@saveRewardCondition')->name('settings.saveRewardCondition');
 Route::post('/Save-Rewards','SettingsController@saveRewards')->name('settings.saveRewards');
 
+Route::post('/withdraw','EpinsController@withdraw')->name('withdraw');
 
 Route::get('/Cause-Delete/{id}','SettingsController@CauseDelete')->name('cause.delete');
 Route::post('/save-cause','SettingsController@CauseSave')->name('save.cause');
