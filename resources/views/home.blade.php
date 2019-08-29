@@ -321,8 +321,8 @@
                             <tbody>
                                 @php
                                     $ids = App\Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->pluck('user_id');
-                                    $standards = App\Donations::where('package','STANDARD')->pluck('user_id')->concat($ids)->duplicates(); 
-                                    $premiums = App\Donations::where('package','Premium')->pluck('user_id')->concat($ids)->duplicates(); 
+                                    $standards = App\Donation::where('package','STANDARD')->pluck('user_id')->concat($ids)->duplicates(); 
+                                    $premiums = App\Donation::where('package','Premium')->pluck('user_id')->concat($ids)->duplicates(); 
                                 @endphp
                                 <tr>
                                     <th class="text-center">
