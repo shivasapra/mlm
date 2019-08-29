@@ -12,6 +12,7 @@ use App\User;
 use Auth;
 use App\Commission;
 use App\Transfer;
+use App\WithdrawRequest;
 
 class EpinsController extends Controller
 {   
@@ -117,8 +118,13 @@ class EpinsController extends Controller
         return view('epinRequests');
     }
 
-    public function withdraw(Request $request){
-        dd($request->amount, $request->facilitation_charges);
+    public function withdraw(Request $request, WithdrawRequest $w){
+        $w->user_id = Auth::id();
+        $w->amount = $request->amount;
+        $w->facilitation_charges = $request->facilitation_charges;
+        $w->save();
+        Session::flash('success','Request Sent!!');
+        return redirect()->back();
     }
 
 }

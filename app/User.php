@@ -116,4 +116,8 @@ class User extends Authenticatable
     public function UpgradeWallet(){
         return $this->hasMany('App\UpgradeWallet');
     }
+
+    public function WithdrawRequest(){
+        return $this->hasMany('App\WithdrawRequest');
+    }
 }
