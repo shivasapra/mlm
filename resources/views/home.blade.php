@@ -335,7 +335,7 @@
                                         @endif
                                     </th>
                                     <th class="text-center">
-                                        @if($standards)
+                                        @if($standards->count())
                                             {{-- <a href="javascript:void(0)" data-target="#super_modal" data-toggle="modal"> --}}
                                                 {{$standards->count(). ' Persons'}}
                                             {{-- </a> --}}
@@ -344,9 +344,9 @@
                                         @endif
                                     </th>
                                     <th class="text-center">
-                                        @if($premiums)
+                                        @if($premiums->count())
                                             {{-- <a href="javascript:void(0)" data-target="#super_duper_modal" data-toggle="modal"> --}}
-                                                {{$premiums->count()}}
+                                                {{$premiums->count(). ' Persons'}}
                                             {{-- </a> --}}
                                         @else
                                             {{__("0 Persons")}}
