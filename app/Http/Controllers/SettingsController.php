@@ -6,7 +6,13 @@ use App\Cause;
 use App\Subcause;
 use Session;
 class SettingsController extends Controller
-{
+{   
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function settings(){
         return view('settings')->with('settings',Settings::first())
                                 ->with('causes',Cause::all());

@@ -135,7 +135,6 @@ Route::get('/searchUsername','ContributionController@UsernameSearch');
 Route::get('/wallets','EpinsController@wallets')->name('wallets');
 Route::get('/admin-wallets','EpinsController@adminWallets')->name('admin.wallets');
 
-Route::get('/verify-email/{verify_token}','UserController@verify')->name('verify.email');
 Route::get('/bank-report','HomeController@bankReport')->name('bank.report');
 Route::get('/support-create-tickets','UserController@supportCreateTickets')->name('support.createTickets');
 Route::get('/support-view-tickets','UserController@supportViewTickets')->name('support.viewTickets');
@@ -145,6 +144,17 @@ Route::get('/approve-ticket/{t}','UserController@approveTicket')->name('approve.
 
 Route::get('/rewards','HomeController@rewards')->name('rewards');
 Route::get('/users','HomeController@users')->name('users');
+
+
+
+Route::get('/verify-email/{verify_token}',function($verify_token){
+    $detail = Details::where('verify_token',$verify_token)->firstOrFail();
+    $detail->email_verification = 1;
+    $detail->verify_token = null;
+    $detail->save();
+    return redirect()->route('home');
+})->name('verify.email');
+
 
 Route::get('/resend-verification',function(){
     Auth::user()->details->verify_token = null;
@@ -164,7 +174,7 @@ Route::get('/resend-verification',function(){
     });
     \Session::flash('success','Verification Resent');
     return redirect()->back();
-})->name('resend.verification');
+})->name('resend.verification')->middleware('auth');
 
 Route::get('/buy',function(Request $request){
     $e = Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first();
@@ -189,7 +199,7 @@ Route::get('/buy',function(Request $request){
     }
 
     return $epin;
-});
+})->middleware('auth');
 
 
 Route::get('/foo','HomeController@foo');

@@ -14,7 +14,12 @@ use App\Commission;
 use App\Transfer;
 
 class EpinsController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function epins(){
         if(Auth::user()->admin){
             return view('epins')->with('categories',EpinCategory::all());

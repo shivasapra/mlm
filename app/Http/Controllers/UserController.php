@@ -13,7 +13,12 @@ use App\KYC;
 use App\Ticket;
 
 class UserController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function accountSettings(User $user){
         return view('accountSettings')->with('user',$user);
     }
@@ -169,13 +174,7 @@ class UserController extends Controller
         return redirect()->route('account.settings',$user);
     }
 
-    public function verify($verify_token){
-        $detail = Details::where('verify_token',$verify_token)->firstOrFail();
-        $detail->email_verification = 1;
-        $detail->verify_token = null;
-        $detail->save();
-        return redirect()->route('home');
-    }
+    
 
     public function supportCreateTickets(){
         return view('support.createTickets');

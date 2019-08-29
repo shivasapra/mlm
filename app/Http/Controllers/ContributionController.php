@@ -17,7 +17,12 @@ use App\Commision;
 use App\UpgradeWallet;
 class ContributionController extends Controller
 {   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
+    
     public function contribute(Request $request){
         $collection = collect();
         $epin = $this->verifyEpin($request);

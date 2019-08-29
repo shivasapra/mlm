@@ -13,7 +13,12 @@ use App\SolidTrust;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(User $user){
         return view('assignmentSettings')->with('user',$user);
     }
