@@ -232,6 +232,7 @@ $activation_amount = 0;
 @section('js')
 <script>
     function withdraw(){
+        
         var fac = {{Settings::first()->facilitation_percentage}}
         swal({
             title: 'Withdraw Amount',
@@ -250,13 +251,6 @@ $activation_amount = 0;
             swal({
                 title: "Withdraw",
                 text: `Amount: ${amount}\n Facilitation Charges: `+(fac/100)*amount,
-                // content: {
-                //     element: "input",
-                //     attributes: {
-                //     type: 'checkbox',
-                //     className: "form-control",
-                //     },
-                // },
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

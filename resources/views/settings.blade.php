@@ -1,48 +1,53 @@
 @extends('layouts.app', ['titlePage' => __('Settings')])
 @section('content-body')
-<h1>Basic Package</h1><hr>
-<form action="{{route('settings.saveBasic')}}" method="post">
-    @csrf
-    <div class="row">
-        <div class="col-md-3">
-            <label for="basic_amount">Basic Package Amount</label>
-            <input type="number" name="basic_amount" @if($settings != null) value="{{$settings->basic_amount}}" @endif class="form-control">
-        </div>
-        <div class="col-md-3">
-            <label for="admin_amount">Admin Amount</label>
-            <input type="number" name="admin_amount" @if($settings != null) value="{{$settings->admin_amount}}" @endif class="form-control">
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="level_one_percentage">Level One Amount</label>
-                <input type="number" name="level_one_percentage" @if($settings != null) value="{{$settings->level_one_percentage}}" @endif class="form-control">
+<div class="card">
+    <div class="card-header">Basic Package</div>
+    <div class="card-body">
+        <form action="{{route('settings.saveBasic')}}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="basic_amount">Basic Package Amount</label>
+                    <input type="number" name="basic_amount" @if($settings != null) value="{{$settings->basic_amount}}" @endif class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="admin_amount">Admin Amount</label>
+                    <input type="number" name="admin_amount" @if($settings != null) value="{{$settings->admin_amount}}" @endif class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="level_one_percentage">Level One Amount</label>
+                    <input type="number" name="level_one_percentage" @if($settings != null) value="{{$settings->level_one_percentage}}" @endif class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="level_two_percentage">Level Two Amount</label>
+                    <input type="number" name="level_two_percentage" @if($settings != null) value="{{$settings->level_two_percentage}}" @endif class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="level_three_percentage">Level Three Amount</label>
+                    <input type="number" name="level_three_percentage" @if($settings != null) value="{{$settings->level_three_percentage}}" @endif class="form-control">
+                </div>
+            
+                <div class="col-md-3">
+                    <label for="upgrade_wallet_amount">Amount To Add In Upgrade Wallet</label>
+                    <input type="number" name="upgrade_wallet_amount" @if($settings != null) value="{{$settings->upgrade_wallet_amount}}" @endif class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="upgrade_to_standard">Upgrade To Standard Amount</label>
+                    <input type="number" name="upgrade_to_standard" @if($settings != null) value="{{$settings->upgrade_to_standard}}" @endif class="form-control">
+                </div>
+                <div class="col-md-3">
+                        <label>&nbsp;</label><br>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <label for="level_two_percentage">Level Two Amount</label>
-            <input type="number" name="level_two_percentage" @if($settings != null) value="{{$settings->level_two_percentage}}" @endif class="form-control">
-        </div>
-        <div class="col-md-2">
-            <label for="level_three_percentage">Level Three Amount</label>
-            <input type="number" name="level_three_percentage" @if($settings != null) value="{{$settings->level_three_percentage}}" @endif class="form-control">
-        </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <label for="upgrade_wallet_amount">Amount To Add In Upgrade Wallet</label>
-            <input type="number" name="upgrade_wallet_amount" @if($settings != null) value="{{$settings->upgrade_wallet_amount}}" @endif class="form-control">
-        </div>
-        <div class="col-md-3">
-            <label for="upgrade_to_standard">Upgrade To Standard Amount</label>
-            <input type="number" name="upgrade_to_standard" @if($settings != null) value="{{$settings->upgrade_to_standard}}" @endif class="form-control">
-        </div>
-        <div class="col-md-3"><br>
-            <button type="submit" class="btn btn-sm btn-info">Save</button>
-        </div>
-    </div>
-</form><br><br>
+</div>
 
-<h1>Standard Package</h1><hr>
+
+<div class="card">
+    <div class="card-header">Standard Package</div>
+    <div class="card-body">
 <form action="{{route('settings.saveStandard')}}" method="post">
     @csrf
     <div class="row">
@@ -82,10 +87,15 @@
             <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
-</form><br><br>
+</form>
+</div>
+</div>
 
 
-<h1>Premium Package</h1><hr>
+
+<div class="card">
+    <div class="card-header">Premium Package</div>
+    <div class="card-body">
 <form action="{{route('settings.savePremium')}}" method="post">
     @csrf
     <div class="row">
@@ -121,9 +131,14 @@
             <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </div>
-</form><br>
+</form>
+</div>
+</div>
 
-<h1>Facilitation Percentage</h1><hr>
+
+<div class="card">
+    <div class="card-header">Facilitation Percentage</div>
+    <div class="card-body">
     <form action="{{route('settings.saveFacilitation')}}" method="post">
         @csrf
         <div class="row">
@@ -135,9 +150,14 @@
                 <button type="submit" class="btn btn-sm btn-info">Save</button>
             </div>
         </div><br><br><br>
-    </form><br>
+    </form>
+</div>
+</div>
 
-<h1>Rewards</h1><hr>
+
+<div class="card">
+    <div class="card-header">Rewards</div>
+    <div class="card-body">
     <form action="{{route('settings.saveRewards')}}" method="post">
         @csrf
         <div class="row">
@@ -173,12 +193,20 @@
                 <button type="submit" class="btn btn-sm btn-info">Save</button>
             </div>
         </div>
-    </form><br>
+    </form>
+</div>
+</div>
+
+
+
+
 <div class="row">
     <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Causes</div>
+            <div class="card-body">
         <form action="{{route('save.cause')}}" method="post" id="form">
             @csrf
-            <h1>Causes</h1><hr>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -209,10 +237,16 @@
             <button id="button" type="submit" class="btn btn-md btn-info">Save</button>
         </form>
     </div>
+</div>
+</div>
+
+
     <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Sub Causes</div>
+            <div class="card-body">
         <form action="{{route('save.subcause')}}" method="post">
             @csrf
-            <h1>Sub Causes</h1><hr>
             <div class="row">
                 <div class="col-md-5">
                     <select name="cause" id="" class="form-control">
@@ -232,6 +266,10 @@
         </form>
     </div>
 </div>
+    </div>
+</div>
+
+
 <button type="button" id="modalButton" data-toggle="modal" data-target="#Modal" style="display:none;"></button>
 <div id="modalDisplay"></div>
 @stop
