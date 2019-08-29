@@ -322,7 +322,47 @@
                     
                         <!-- Modal body -->
                         <div class="modal-body">
-                            @if($admin_basics->count())
+                            <table class="table table-bordered datatable_wo_buttons">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($admin_basics->count())
+                                        @foreach($admin_basics->chunk(3) as $id)
+                                           @php
+                                               $j = 0;
+                                           @endphp 
+                                            <tr>
+                                                @foreach($id as $i)
+                                                    @php
+                                                        $j++;
+                                                        $user = App\User::find($i);;
+                                                    @endphp
+                                                    <td>
+                                                        <img 
+                                                            @if($user->details->avatar)
+                                                            src="{{$user->details->avatar}}"
+                                                            @else
+                                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                            @endif
+                                                            alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                    </td>
+                                                    @endforeach
+                                                    @if($j < 3)
+                                                        @for($k = 0; $k < 3- $k ; $k++ )
+                                                            <td>&nbsp;</td>
+                                                        @endfor
+                                                    @endif
+                                                </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                            {{-- @if($admin_basics->count())
                                 @foreach($admin_basics->chunk(3) as $id)
                                     <div class="row">
                                         @foreach($id as $i)
@@ -341,7 +381,7 @@
                                         @endforeach
                                     </div><hr><br>
                                 @endforeach
-                            @endif
+                            @endif --}}
                         </div>
                 
                         <!-- Modal footer -->
@@ -362,26 +402,37 @@
                     
                         <!-- Modal body -->
                         <div class="modal-body">
-                            @if($admin_standards->count())
-                                @foreach($admin_standards->chunk(3) as $id)
-                                    <div class="row">
-                                        @foreach($id as $i)
-                                            @php
-                                            $user = App\User::find($i);
-                                            @endphp
-                                            <div class="col-md-4">
-                                                <img 
-                                                @if($user->details->avatar)
-                                                src="{{$user->details->avatar}}"
-                                                @else
-                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                @endif
-                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
-                                            </div>
+                            <table class="table table-bordered datatable_wo_buttons">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($admin_standards->count())
+                                        @foreach($admin_standards->chunk(3) as $id)
+                                            <tr>
+                                                @foreach($id as $i)
+                                                    @php
+                                                        $user = App\User::find($i);
+                                                    @endphp
+                                                    <td>
+                                                        <img 
+                                                            @if($user->details->avatar)
+                                                            src="{{$user->details->avatar}}"
+                                                            @else
+                                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                            @endif
+                                                            alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                    </td>
+                                                @endforeach
+                                            </tr>
                                         @endforeach
-                                    </div><hr><br>
-                                @endforeach
-                            @endif
+                                    @endif
+                                </tbody>
+                            </table>
                         </div>
                 
                         <!-- Modal footer -->
@@ -402,26 +453,37 @@
                     
                         <!-- Modal body -->
                         <div class="modal-body">
-                            @if($admin_premiums->count())
-                                @foreach($admin_premiums->chunk(3) as $id)
-                                    <div class="row">
-                                        @foreach($id as $i)
-                                            @php
-                                            $user = App\User::find($i);
-                                            @endphp
-                                            <div class="col-md-4">
-                                                <img 
-                                                @if($user->details->avatar)
-                                                src="{{$user->details->avatar}}"
-                                                @else
-                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                @endif
-                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
-                                            </div>
+                            <table class="table table-bordered datatable_wo_buttons">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($admin_premiums->count())
+                                        @foreach($admin_premiums->chunk(3) as $id)
+                                            <tr>
+                                                @foreach($id as $i)
+                                                    @php
+                                                        $user = App\User::find($i);
+                                                    @endphp
+                                                    <td>
+                                                        <img 
+                                                            @if($user->details->avatar)
+                                                            src="{{$user->details->avatar}}"
+                                                            @else
+                                                            src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                            @endif
+                                                            alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                    </td>
+                                                @endforeach
+                                            </tr>
                                         @endforeach
-                                    </div><hr><br>
-                                @endforeach
-                            @endif
+                                    @endif
+                                </tbody>
+                            </table>
                         </div>
                 
                         <!-- Modal footer -->
@@ -538,26 +600,37 @@
                         
                             <!-- Modal body -->
                             <div class="modal-body">
-                                @if($ids->count())
-                                    @foreach($ids->chunk(3) as $id)
-                                        <div class="row">
-                                            @foreach($id as $i)
-                                                @php
-                                                $user = App\User::find($i);
-                                                @endphp
-                                                <div class="col-md-4">
-                                                    <img 
-                                                    @if($user->details->avatar)
-                                                    src="{{$user->details->avatar}}"
-                                                    @else
-                                                    src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                    @endif
-                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
-                                                </div>
+                                <table class="table table-bordered datatable_wo_buttons">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if($ids->count())
+                                            @foreach($ids->chunk(3) as $id)
+                                                <tr>
+                                                    @foreach($id as $i)
+                                                        @php
+                                                            $user = App\User::find($i);
+                                                        @endphp
+                                                        <td>
+                                                            <img 
+                                                                @if($user->details->avatar)
+                                                                src="{{$user->details->avatar}}"
+                                                                @else
+                                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                                @endif
+                                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
                                             @endforeach
-                                        </div><hr><br>
-                                    @endforeach
-                                @endif
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                     
                             <!-- Modal footer -->
@@ -578,26 +651,37 @@
                         
                             <!-- Modal body -->
                             <div class="modal-body">
-                                @if($standards->count())
-                                    @foreach($standards->chunk(3) as $id)
-                                        <div class="row">
-                                            @foreach($id as $i)
-                                                @php
-                                                $user = App\User::find($i);
-                                                @endphp
-                                                <div class="col-md-4">
-                                                    <img 
-                                                    @if($user->details->avatar)
-                                                    src="{{$user->details->avatar}}"
-                                                    @else
-                                                    src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                    @endif
-                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
-                                                </div>
+                                <table class="table table-bordered datatable_wo_buttons">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if($standards->count())
+                                            @foreach($standards->chunk(3) as $id)
+                                                <tr>
+                                                    @foreach($id as $i)
+                                                        @php
+                                                            $user = App\User::find($i);
+                                                        @endphp
+                                                        <td>
+                                                            <img 
+                                                                @if($user->details->avatar)
+                                                                src="{{$user->details->avatar}}"
+                                                                @else
+                                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                                @endif
+                                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
                                             @endforeach
-                                        </div><hr><br>
-                                    @endforeach
-                                @endif
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                     
                             <!-- Modal footer -->
@@ -618,26 +702,37 @@
                         
                             <!-- Modal body -->
                             <div class="modal-body">
-                                @if($premiums->count())
-                                    @foreach($premiums->chunk(3) as $id)
-                                        <div class="row">
-                                            @foreach($id as $i)
-                                                @php
-                                                $user = App\User::find($i);
-                                                @endphp
-                                                <div class="col-md-4">
-                                                    <img 
-                                                    @if($user->details->avatar)
-                                                    src="{{$user->details->avatar}}"
-                                                    @else
-                                                    src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                    @endif
-                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
-                                                </div>
+                                <table class="table table-bordered datatable_wo_buttons">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if($premiums->count())
+                                            @foreach($premiums->chunk(3) as $id)
+                                                <tr>
+                                                    @foreach($id as $i)
+                                                        @php
+                                                            $user = App\User::find($i);
+                                                        @endphp
+                                                        <td>
+                                                            <img 
+                                                                @if($user->details->avatar)
+                                                                src="{{$user->details->avatar}}"
+                                                                @else
+                                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                                @endif
+                                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$user->username}} <br> </strong> ({{$user->name}})
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
                                             @endforeach
-                                        </div><hr><br>
-                                    @endforeach
-                                @endif
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                     
                             <!-- Modal footer -->
@@ -660,23 +755,34 @@
                         
                             <!-- Modal body -->
                             <div class="modal-body">
-                                @if(Auth::user()->coordinates->children != null)
-                                    @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->children)))->chunk(3) as $users)
-                                        <div class="row">
-                                            @foreach($users as $u)
-                                                <div class="col-md-4">
-                                                    <img 
-                                                    @if($u->details->avatar)
-                                                        src="{{$u->details->avatar}}"
-                                                    @else
-                                                        src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                    @endif
-                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                                </div>
+                                <table class="table table-bordered datatable_wo_buttons">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(Auth::user()->coordinates->children != null)
+                                            @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->children)))->chunk(3) as $id)
+                                                <tr>
+                                                    @foreach($id as $i)
+                                                        <td>
+                                                            <img 
+                                                                @if($i->details->avatar)
+                                                                src="{{$i->details->avatar}}"
+                                                                @else
+                                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                                @endif
+                                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$i->username}} <br> </strong> ({{$i->name}})
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
                                             @endforeach
-                                        </div><hr><br>
-                                    @endforeach
-                                @endif
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                     
                             <!-- Modal footer -->
@@ -697,23 +803,34 @@
                         
                             <!-- Modal body -->
                             <div class="modal-body">
-                                @if(Auth::user()->coordinates->super_children != null)
-                                    @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_children)))->chunk(3) as $users)
-                                        <div class="row">
-                                            @foreach($users as $u)
-                                                <div class="col-md-4">
-                                                    <img 
-                                                    @if($u->details->avatar)
-                                                        src="{{$u->details->avatar}}"
-                                                    @else
-                                                        src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                    @endif
-                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                                </div>
+                                <table class="table table-bordered datatable_wo_buttons">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(Auth::user()->coordinates->super_children != null)
+                                            @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_children)))->chunk(3) as $id)
+                                                <tr>
+                                                    @foreach($id as $i)
+                                                        <td>
+                                                            <img 
+                                                                @if($i->details->avatar)
+                                                                src="{{$i->details->avatar}}"
+                                                                @else
+                                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                                @endif
+                                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$i->username}} <br> </strong> ({{$i->name}})
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
                                             @endforeach
-                                        </div><hr><br>
-                                    @endforeach
-                                @endif
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                     
                             <!-- Modal footer -->
@@ -734,23 +851,34 @@
                         
                             <!-- Modal body -->
                             <div class="modal-body">
-                                @if(Auth::user()->coordinates->super_duper_children != null)
-                                    @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_duper_children)))->chunk(3) as $users)
-                                        <div class="row">
-                                            @foreach($users as $u)
-                                                <div class="col-md-4">
-                                                    <img 
-                                                    @if($u->details->avatar)
-                                                        src="{{$u->details->avatar}}"
-                                                    @else
-                                                        src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
-                                                    @endif
-                                                    alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$u->username}} <br> </strong> ({{$u->name}})
-                                                </div>
+                                <table class="table table-bordered datatable_wo_buttons">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(Auth::user()->coordinates->super_duper_children != null)
+                                            @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_duper_children)))->chunk(3) as $id)
+                                                <tr>
+                                                    @foreach($id as $i)
+                                                        <td>
+                                                            <img 
+                                                                @if($i->details->avatar)
+                                                                src="{{$i->details->avatar}}"
+                                                                @else
+                                                                src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
+                                                                @endif
+                                                                alt="avatar" style="border-radius:50%;width:50px;"> <br><strong> {{$i->username}} <br> </strong> ({{$i->name}})
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
                                             @endforeach
-                                        </div><hr><br>
-                                    @endforeach
-                                @endif
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                     
                             <!-- Modal footer -->

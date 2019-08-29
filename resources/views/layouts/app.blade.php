@@ -369,6 +369,12 @@
                 } );
             } );
       </script>
+      <script>
+            $(document).ready(function() {
+                $('.datatable_wo_buttons').DataTable( {
+                } );
+            } );
+      </script>
         @yield('js')
     </body>
 </html>
