@@ -801,7 +801,6 @@
                                                     @php
                                                         $j++
                                                     @endphp
-                                                    @endphp
                                                     @foreach($id as $i)
                                                         <td>
                                                             <img 
