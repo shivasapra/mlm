@@ -372,6 +372,7 @@
       <script>
             $(document).ready(function() {
                 $('.datatable_wo_buttons').DataTable( {
+                    dom: 'Bfrtip',
                 } );
             } );
       </script>
