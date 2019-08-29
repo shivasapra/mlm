@@ -84,7 +84,7 @@
             <input type="number" name="upgrade_to_premium" @if($settings != null) value="{{$settings->upgrade_to_premium}}" @endif class="form-control">
         </div>
         <div class="col-md-3"><br>
-            <button type="submit" class="btn btn-sm btn-info">Save</button>
+            <button type="submit" class="btn btn-success">Save</button>
         </div>
     </div>
 </form>
@@ -128,7 +128,7 @@
     </div>
     <div class="row">
         <div class="text-right">
-            <button type="submit" class="btn btn-sm btn-info">Save</button>
+            <button type="submit" class="btn btn-success">Save</button>
         </div>
     </div>
 </form>
@@ -147,7 +147,7 @@
                     <input type="text" id="facilitation_percentage" @if($settings != null) value="{{$settings->facilitation_percentage}}" @endif  placeholder="Enter Percentage..." name="facilitation_percentage" class="form-control">
             </div><br>
             <div class="text-center col-md-1">
-                <button type="submit" class="btn btn-sm btn-info">Save</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </div>
         </div><br><br><br>
     </form>
@@ -190,7 +190,7 @@
         </div><br>
         <div class="row">
             <div class="text-right">
-                <button type="submit" class="btn btn-sm btn-info">Save</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </div>
         </div>
     </form>
@@ -226,7 +226,7 @@
                                     {{$cause->name}}
                                 </a>
                             </td>
-                            <td><a href="{{route('cause.delete',['id'=> $cause->id])}}" class="btn btn-sm btn-danger">Delete</a></td>
+                            <td><a href="{{route('cause.delete',['id'=> $cause->id])}}" class="btn btn-danger">Delete</a></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -234,7 +234,7 @@
             <div class="col-md-10">
                 <input type="text" id="cause" placeholder="Enter Cause..." onkeyup="test(this)" class="form-control" name="cause">
             </div>
-            <button id="button" type="submit" class="btn btn-md btn-info">Save</button>
+            <button id="button" type="submit" class="btn btn-md btn-success">Save</button>
         </form>
     </div>
 </div>
@@ -260,7 +260,7 @@
                     <input type="text" placeholder="Enter Sub Cause..." class="form-control" name="subcause">
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-md btn-info">Save</button>
+                    <button type="submit" class="btn btn-md btn-success">Save</button>
                 </div>
             </div>
         </form>
