@@ -73,6 +73,16 @@ class SettingsController extends Controller
         return redirect()->back();
     }
 
+    public function saveRewardCondition(Request $request){
+        if(!$settings = Settings::first()){
+            $settings = new Settings;
+        }
+        $settings->reward_condition = $request->reward_condition;
+        $settings->save();
+        Session::flash('success','Saved!!');
+        return redirect()->back();
+    }
+
     public function saveRewards(Request $request){
         if(!$settings = Settings::first()){
             $settings = new Settings;

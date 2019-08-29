@@ -16,9 +16,9 @@
         @if(Auth::user()->coordinates)
             @if(!Auth::user()->coordinates->eligible_for_reward)
                 @php
-                    $days = 7 - Carbon\Carbon::parse(Carbon\Carbon::now()->toDateString())->diffIndays(Carbon\Carbon::parse(Auth::user()->created_at->toDateString()))
+                    $days = App\Settings::first()->reward_condition - Carbon\Carbon::parse(Carbon\Carbon::now()->toDateString())->diffIndays(Carbon\Carbon::parse(Auth::user()->created_at->toDateString()))
                 @endphp
-                @if($days <= 7 and $days > 0)
+                @if($days <= App\Settings::first()->reward_condition and $days > 0)
                     <div class="alert alert-info text-center" role="alert">
                         Complete 5 Members in level one within {{$days}} days to unlock Reward Section.
                     </div>

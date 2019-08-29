@@ -154,6 +154,24 @@
 </div>
 </div>
 
+<div class="card">
+        <div class="card-header">Reward Condition</div>
+        <div class="card-body">
+        <form action="{{route('settings.saveRewardCondition')}}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-md-3">
+                        <label for="reward_condition"><b>Days:</b></label>
+                        <input type="text" id="reward_condition" @if($settings != null) value="{{$settings->reward_condition}}" @endif  placeholder="Enter Days..." name="reward_condition" class="form-control">
+                </div><br>
+                <div class="text-center col-md-1">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </div><br><br><br>
+        </form>
+    </div>
+</div>
+
 
 <div class="card">
     <div class="card-header">Rewards</div>

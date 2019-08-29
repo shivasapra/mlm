@@ -105,6 +105,7 @@ Route::post('/Save-Basic-Settings','SettingsController@saveBasic')->name('settin
 Route::post('/Save-Standard-Settings','SettingsController@saveStandard')->name('settings.saveStandard');
 Route::post('/Save-Premium-Settings','SettingsController@savePremium')->name('settings.savePremium');
 Route::post('/Save-Facilitation','SettingsController@saveFacilitation')->name('settings.saveFacilitation');
+Route::post('/Save-Reward-Condition','SettingsController@saveRewardCondition')->name('settings.saveRewardCondition');
 Route::post('/Save-Rewards','SettingsController@saveRewards')->name('settings.saveRewards');
 
 

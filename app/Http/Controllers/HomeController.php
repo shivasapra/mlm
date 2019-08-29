@@ -32,7 +32,7 @@ class HomeController extends Controller
         foreach(User::where('admin',0)->where('campaign',0)->get() as $user){
             if($user->coordinates){   
                 if(collect(explode(',',$user->coordinates->children))->count() == 5){
-                    if( (Carbon::parse($user->coordinates->created_at->toDateString())->diffInDays(Carbon::parse(User::find(collect(explode(',',$user->coordinates->children))->last())->coordinates->created_at->toDateString())))  <=7 ){
+                    if( (Carbon::parse($user->coordinates->created_at->toDateString())->diffInDays(Carbon::parse(User::find(collect(explode(',',$user->coordinates->children))->last())->coordinates->created_at->toDateString())))  <= Settings::first()->reward_condition ){
                         $user->coordinates->eligible_for_reward = 1;
                         $user->coordinates->save();
                     }
