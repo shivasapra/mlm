@@ -68,7 +68,7 @@ Route::get('/add-campaign/{user}','CampaignController@create')->name('add.campai
 Route::get('/MyCampaign','CampaignController@index')->name('my.campaign');
 Route::post('/Campaign/Store/{user}','CampaignController@store')->name('campaign.store');
 
-Route::get('/Campaign/view/{campaign}',function($campaign){
+Route::get('/Campaign/view/{campaign}',function(Campaign $campaign){
     return view('campaign.show')->with('campaign',$campaign);
 })->name('campaign.view');
 
