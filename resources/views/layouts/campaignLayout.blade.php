@@ -87,7 +87,7 @@
                             <div class="input-group">
                               <input type="text" class="form-control" placeholder="Search by name,title, or categories"  name="">
                               <div class="input-group-append">
-                                <a href="#" class="btn btn-primary">Search</a>
+                                <a href="javascript:void(0)" class="btn btn-primary">Search</a>
                               </div>
                             </div>
                         </div>
@@ -99,151 +99,151 @@
                         <div class="col-md-12">
                             <div class="item campaign-slider">
                                 <ul id="content-slider" class="content-slider">
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset("campaign/images/adoption.png")}}" alt="adoption"/>
                                             <span class="d-block mt-2">Adoption</span>
                                         </li>
                                     </a>    
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset("campaign/images/animals.png")}}" alt="animals"/>
                                             <span class="d-block mt-2">Animals</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset("campaign/images/art.png")}}" alt="adoption"/>
                                             <span class="d-block mt-2">Art</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset("campaign/images/organization.png")}}" alt="organization"/>
                                             <span class="d-block mt-2">Organization</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset("campaign/images/community.png")}}" alt="community"/>
                                             <span class="d-block mt-2">Community</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset("campaign/images/projects.png")}}" alt="projects"/>
                                             <span class="d-block mt-2">Projects</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
-                                            <img src="i{{asset('campaign/mages/dance.png')}}" alt="dance"/>
+                                            <img src="{{asset('campaign/images/dance.png')}}" alt="dance"/>
                                             <span class="d-block mt-2">Dance</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
-                                            <img src="i{{asset('campaign/mages/software.png')}}" alt="software"/>
+                                            <img src="{{asset('campaign/images/software.png')}}" alt="software"/>
                                             <span class="d-block mt-2">Software</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
-                                            <img src="i{{asset('campaign/mages/education.png')}}" alt="education"/>
+                                            <img src="{{asset('campaign/images/education.png')}}" alt="education"/>
                                             <span class="d-block mt-2">Education</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/emergencies.png')}}" alt="emergencies"/>
                                             <span class="d-block mt-2">Emergencies</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/events.png')}}" alt="events"/>
                                             <span class="d-block mt-2">Events</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/family.png')}}" alt="family"/>
                                             <span class="d-block mt-2">Family</span>
                                         </li>
                                     </a>
-                                     <a href="#">
+                                     <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/fashion.png')}}" alt="fashion"/>
                                             <span class="d-block mt-2">Fashion</span>
                                         </li>
                                     </a>
-                                     <a href="#">
+                                     <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/film-video.png')}}" alt="film video"/>
                                             <span class="d-block mt-2">Film/Video</span>
                                         </li>
                                     </a>
-                                     <a href="#">
+                                     <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/food.png')}}" alt="food"/>
                                             <span class="d-block mt-2">Food</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/holidays.png')}}" alt="holidays"/>
                                             <span class="d-block mt-2">Holidays</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/health.png')}}" alt="health"/>
                                             <span class="d-block mt-2">Health</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/memorials.png')}}" alt="Memorials"/>
                                             <span class="d-block mt-2">Memorials</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/military-veterans.png')}}" alt="military veterans"/>
                                             <span class="d-block mt-2">Military Veterans</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/charity.png')}}" alt="charity"/>
                                             <span class="d-block mt-2">Charity</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/pets.png')}}" alt="pets"/>
                                             <span class="d-block mt-2">Pets</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/books.png')}}" alt="books"/>
                                             <span class="d-block mt-2">Books</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/rides.png')}}" alt="Rides"/>
                                             <span class="d-block mt-2">Rides</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/sports.png')}}" alt="sports"/>
                                             <span class="d-block mt-2">Sports</span>
                                         </li>
                                     </a>
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <li>
                                             <img src="{{asset('campaign/images/trips.png')}}" alt="trips"/>
                                             <span class="d-block mt-2">Trips</span>
@@ -287,9 +287,9 @@
                             <div class="col-md-3">
                                 <h3 class="after-underline">Follow Us</h3>
                                 <ul class="social-media">
-                                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-facebook-square"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-twitter-square"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a></li>
                                 </ul>
                                 <h4>Payment Methods</h4>
                                 <ul class="social-media hover-disable">

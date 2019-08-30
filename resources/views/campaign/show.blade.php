@@ -13,16 +13,16 @@
             <div class="col-md-9">
                 <img src="{{asset($campaign->image)}}" alt="" class="img-fluid"/>
                 <h1 class="mt-3">{{$campaign->title}}</h1> <hr>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6">
-                        {{-- <b>0 Shares</b> &nbsp;&nbsp;  --}}
+                        <b>0 Shares</b> &nbsp;&nbsp; 
                     </div>
                     <div class="col-md-6 text-right">
                             <b><a href="#"><i class="icon-thumbs-up"></i></a> 0 Likes</b>
-                        {{-- <a href="#" class="btn btn-primary bg-facebook"><i class="icon-facebook-square"></i> Share</a> --}}
-                    {{-- <a href="#" class="btn btn-primary bg-twitter"><i class="icon-twitter"></i> Tweet</a> --}}
+                        <a href="#" class="btn btn-primary bg-facebook"><i class="icon-facebook-square"></i> Share</a>
+                    <a href="#" class="btn btn-primary bg-twitter"><i class="icon-twitter"></i> Tweet</a>
                     </div>
-                </div> <hr>
+                </div> <hr> --}}
                 <p>Hi Everyone, <br> {!!$campaign->description!!} </p>
                 {{-- <div class="row">
                     <div class="col-md-12 text-right">

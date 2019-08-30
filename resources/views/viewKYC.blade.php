@@ -1,44 +1,135 @@
 @extends('layouts.app', ['titlePage' => __('KYCs')])
 @section('content-body')
     <h1>KYC</h1><hr>
-    <div class="row">
-        <div class="table-responsive">
-            <table class="table table-bordered datatable">
-                <thead>
-                    <tr>
-                    <th>Sno.</th>
-                    <th>Username</th>
-                    <th>Proof For</th>
-                    <th>Document Type</th>
-                    <th>Created On</th>
-                    <th>View</th>
-                    <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($kycs as $k)
-                        <tr>
-                            <th>{{$loop->index + 1}}</th>
-                            <td>{{$k->user->username}} ({{$k->user->name}})</td>
-                            <td>{{$k->proof_for}}</td>
-                            <td>{{$k->type}}</td>
-                            <td>{{$k->created_at}}</td>
-                            <td>
-                                <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
-                                    <input type="hidden" class="proof" value="{{$k}}">
-                                </button>
-                            </td>
-                            <td>
-                                @if($k->approved)
-                                    <span class="text-success"><strong>Approved</strong></span>
-                                @else
-                                    <a href="{{route('approve.kyc',$k)}}" class="btn btn-sm btn-success">Approve</a>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-              </tbody>
-            </table>
+    <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#identity" role="tab" aria-controls="home">Identity Proof</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#address" role="tab" aria-controls="profile">Address Proof</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tax" role="tab" aria-controls="profile">Tax Id Proof</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="identity" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                            <tr>
+                            <th>Sno.</th>
+                            <th>Username</th>
+                            <th>Document Type</th>
+                            <th>Created On</th>
+                            <th>View</th>
+                            <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(App\Kyc::where('proof_for','Identity')->get() as $k)
+                                <tr>
+                                    <th>{{$loop->index + 1}}</th>
+                                    <td>{{$k->user->username}} ({{$k->user->name}})</td>
+                                    <td>{{$k->type}}</td>
+                                    <td>{{$k->created_at}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
+                                            <input type="hidden" class="proof" value="{{$k}}">
+                                        </button>
+                                    </td>
+                                    <td>
+                                        @if($k->approved)
+                                            <span class="text-success"><strong>Approved</strong></span>
+                                        @else
+                                            <a href="{{route('approve.kyc',$k)}}" class="btn btn-sm btn-success">Approve</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show" id="address" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                            <tr>
+                            <th>Sno.</th>
+                            <th>Username</th>
+                            <th>Document Type</th>
+                            <th>Created On</th>
+                            <th>View</th>
+                            <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(App\Kyc::where('proof_for','Address')->get() as $k)
+                                <tr>
+                                    <th>{{$loop->index + 1}}</th>
+                                    <td>{{$k->user->username}} ({{$k->user->name}})</td>
+                                    <td>{{$k->type}}</td>
+                                    <td>{{$k->created_at}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
+                                            <input type="hidden" class="proof" value="{{$k}}">
+                                        </button>
+                                    </td>
+                                    <td>
+                                        @if($k->approved)
+                                            <span class="text-success"><strong>Approved</strong></span>
+                                        @else
+                                            <a href="{{route('approve.kyc',$k)}}" class="btn btn-sm btn-success">Approve</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show" id="tax" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                            <tr>
+                            <th>Sno.</th>
+                            <th>Username</th>
+                            <th>Created On</th>
+                            <th>View</th>
+                            <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(App\Kyc::where('proof_for','Tax ID')->get() as $k)
+                                <tr>
+                                    <th>{{$loop->index + 1}}</th>
+                                    <td>{{$k->user->username}} ({{$k->user->name}})</td>
+                                    <td>{{$k->created_at}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
+                                            <input type="hidden" class="proof" value="{{$k}}">
+                                        </button>
+                                    </td>
+                                    <td>
+                                        @if($k->approved)
+                                            <span class="text-success"><strong>Approved</strong></span>
+                                        @else
+                                            <a href="{{route('approve.kyc',$k)}}" class="btn btn-sm btn-success">Approve</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
