@@ -346,6 +346,11 @@
                 swal(`{{Session::get('oops')}}`, "", "error");
             </script>
         @endif
+        @if(Session::has('hogya'))
+            <script>
+                swal(`{{Session::get('hogya')}}`, "", "success");
+            </script>
+        @endif
 
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

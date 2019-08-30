@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\EpinCategory;
 use App\purchaseEpin;
 use App\Campaign;
+use Illuminate\Support\Facades\Session;
+use App\Details;
 use Illuminate\Support\Facades\Auth;
 use App\Coordinates;
 
@@ -159,10 +161,12 @@ Route::get('/users','HomeController@users')->name('users');
 
 
 Route::get('/verify-email/{verify_token}',function($verify_token){
+    Auth::logout();
     $detail = Details::where('verify_token',$verify_token)->firstOrFail();
     $detail->email_verification = 1;
     $detail->verify_token = null;
     $detail->save();
+    \Session::flash('oops','Email Verified. Please Login!!');
     return redirect()->route('home');
 })->name('verify.email');
 
