@@ -23,4 +23,7 @@ class Campaign extends Model
     public function updates(){
         return $this->hasMany('App\CampaignUpdates');
     } 
+    public function CampaignContributions(){
+        return $this->hasMany('App\CampaignContributions');
+    }
 }

@@ -1,128 +1,76 @@
 @extends('layouts.campaignLayout')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">Contribute Now</div>
                 <div class="card-body">
                     <form method="" action="">
-                        {{-- <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <select class="form-control">
-                                                <option value="2" data-minigoal="50000" selected="selected">INR ₹</option>
-                                                <option value="1" data-minigoal="1000">USD $</option>
-                                                <option value="9" data-minigoal="1000">EUR €</option>
-                                                <option value="10" data-minigoal="1000">GBP £</option>
-                                                <option value="13" data-minigoal="1">BTC ฿</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <input type="number" class="form-control" name="" value="0">
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Amount</label></div>
-                                <div class="col-md-9"><input type="number" class="form-control" name="" placeholder="Enter Amount" required/></div>
+                                <div class="col-md-9"><input type="number" class="form-control" name="amount" placeholder="Enter Amount" required/></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Full Name</label></div>
-                                <div class="col-md-9"><input type="text" class="form-control" name="" placeholder="Enter full name" required/></div>
+                                <div class="col-md-9"><input type="text" class="form-control" name="name" placeholder="Enter full name" required/></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Email Address</label></div>
-                                <div class="col-md-9"><input type="email" name="" placeholder="Enter Email Address" class="form-control" required/></div>
+                                <div class="col-md-9"><input type="email" name="email" placeholder="Enter Email Address" class="form-control" required/></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Billing Address:</label></div>
-                                <div class="col-md-9"><textarea name="" class="form-control" placeholder="Enter Address"></textarea></div>
+                                <div class="col-md-9"><textarea name="billing_address" class="form-control" required placeholder="Enter Address"></textarea></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Country</label></div>
-                                <div class="col-md-9">
-                                    <select name="" class="form-control">
-                                    <option>--Select--</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    </select>
-                                </div>
+                                <div class="col-md-9"><input type="text" name="country" placeholder="Enter Country" required class="form-control"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>State/Province</label></div>
-                                <div class="col-md-9">
-                                    <select name="" class="form-control">
-                                    <option>--Select--</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    </select>
-                                </div>
+                                <div class="col-md-9"><input type="text" name="state" placeholder="Enter State" required class="form-control"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>District</label></div>
-                                <div class="col-md-9">
-                                    <select name="" class="form-control">
-                                    <option>--Select--</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    </select>
-                                </div>
+                                <div class="col-md-9"><input type="text" name="district" placeholder="Enter District" required class="form-control"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>City</label></div>
-                                <div class="col-md-9">
-                                    <select name="" class="form-control">
-                                    <option>--Select--</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    </select>
-                                </div>
+                                <div class="col-md-9"><input type="text" name="city" placeholder="Enter City" required class="form-control"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Postal Code</label></div>
-                                <div class="col-md-9"><input type="text" name="" placeholder="Enter Postal Code" class="form-control"/></div>
+                                <div class="col-md-9"><input type="text" name="postal_code" required placeholder="Enter Postal Code" class="form-control"/></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Mobile Number</label></div>
-                                <div class="col-md-9"><input type="text" name="" placeholder="Enter Number" class="form-control"/></div>
+                                <div class="col-md-9"><input type="text" name="mobile" required placeholder="Enter Number" class="form-control"/></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                             <div class="col-md-3"><label>Leave a Comment</label></div>
-                                <div class="col-md-9"><textarea name="" class="form-control mb-1" placeholder="Enter Address" style="height:100px;"></textarea>
+                                <div class="col-md-9"><textarea name="comment" class="form-control mb-1" placeholder="Leave a Comment" style="height:100px;"></textarea>
                                 <p><input type="checkbox" checked required> By continuing, you agree with the OnlineSensor terms and privacy policy.</p></div>
                             </div>
                         </div>
