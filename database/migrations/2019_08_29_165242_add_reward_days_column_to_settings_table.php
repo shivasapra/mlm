@@ -14,7 +14,7 @@ class AddRewardDaysColumnToSettingsTable extends Migration
     public function up()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->float('reward_condition');
+            $table->float('reward_condition')->nullable();
         });
     }
 

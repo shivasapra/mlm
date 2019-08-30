@@ -115,8 +115,8 @@
                 </ul>
             </div>
             {{-- <a href="#" class="btn btn-danger w-100 mt-1">Report this Campaign <br> <small>If you feel this contains prohibited content.</small></a> --}}
-            <div class="col-md-12">
-                <div class="bg-light p-3 mt-1">
+            <div class="col-md-12 bg-light p-3 mt-1 mb-5">
+                <div class="">
                     <div>
                         <h3>Contributors</h3><hr>
                     </div>
@@ -135,6 +135,7 @@
                     @endif
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
