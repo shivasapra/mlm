@@ -13,7 +13,7 @@
                 <div class="col-lg-3 col-md-6 mb-5">
                     <img src="{{asset($campaign->image)}}" alt="img" class="img-fluid"/>
                     <h3 class="my-3 font-weight-bold">{{$campaign->title}}</h3>
-                    <h5><b>{{$campaign->currency}} 00000 of {{$campaign->currency}}{{$campaign->fundraising_target}}</b>
+                    <h5><b>{{$campaign->currency}}{{$campaign->CampaignContributions->pluck('amount')->sum()}} of {{$campaign->currency}}{{$campaign->fundraising_target}}</b>
                     <p>{!! $campaign->description !!}</p>
                     <a href="{{route('campaign.view',$campaign)}}">Read More <i class="fas fa-arrow-circle-right"></i></a>
                 </div>

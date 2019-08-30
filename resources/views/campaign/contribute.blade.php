@@ -91,10 +91,12 @@
                 <hr>
                 <img src="{{asset($campaign->image)}}" alt="kerala floods" class="img-fluid">
                 <h4 class="my-1 font-weight-bold">{{$campaign->title}}</h4>
-                <h5><b>{{$campaign->currency}}0000.00 of {{$campaign->currency}}{{$campaign->fundraising_target}}</b> <span class="float-right"></h5>
-                <h6>Received 16 Contributions</h6>
+                <h5><b>{{$campaign->currency}}{{$campaign->CampaignContributions->pluck('amount')->sum()}} of {{$campaign->currency}}{{$campaign->fundraising_target}}</b> <span class="float-right"></h5>
+                <h6>Received {{$campaign->CampaignContributions->count()}} Contributions</h6>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" style="width:20%"></div>
+                    <div class="progress-bar progress-bar-striped bg-success" 
+                    style="width:{{($campaign->CampaignContributions->pluck('amount')->sum() * 100 ) / $campaign->fundraising_target}}%"
+                    ></div>
                 </div>
             </div>
             
@@ -113,19 +115,24 @@
                 </ul>
             </div>
             {{-- <a href="#" class="btn btn-danger w-100 mt-1">Report this Campaign <br> <small>If you feel this contains prohibited content.</small></a> --}}
-            <div class="col-md-12 bg-light p-3 mt-1 mb-5">
+            <div class="col-md-12">
                 <div class="bg-light p-3 mt-1">
                     <div>
                         <h3>Contributors</h3><hr>
                     </div>
-                    <div class="media">
-                        <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>
-                        <div class="media-body">
-                            <span>2 years ago</span><br>
-                            <h5 class="text-primary">₹780.00</h5>
-                            <span>DHILLONTRAVEL</span>
-                        </div>
-                    </div>
+                    @if($campaign->CampaignContributions->count())
+                        @foreach($campaign->CampaignContributions as $c)
+                            <div class="media">
+                            <div class="media-left"><img src="{{asset('app/images/blank_profile_image.png')}}" alt="icon" class="img-object" style="width:75px;"/></div>
+                            <div class="media-body">
+                                <span>{{$c->created_at->diffForHumans()}}</span><br>
+                                <h5 class="text-primary">{{$campaign->currency}}{{$c->amount}}</h5>
+                                <span>{{$c->name}}</span>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>No Contributions Yet!!</p>
+                    @endif
                 </div>
             </div>
         </div>

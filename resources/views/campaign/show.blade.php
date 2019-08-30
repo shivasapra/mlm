@@ -76,10 +76,12 @@
                         <span><i class="icon-location"></i> {{$campaign->user->details->state}}</span><br>
                         <span><i class="icon-tag"></i> {{$campaign->category}}</span>
                         <hr>
-                        <h5><b>{{$campaign->currency}}0000.00 of {{$campaign->currency}}{{$campaign->fundraising_target}}</b> <span class="float-right"></h5>
-                        <h6>Received 16 Contributions</h6>
+                        <h5><b>{{$campaign->currency}}{{$campaign->CampaignContributions->pluck('amount')->sum()}} of {{$campaign->currency}}{{$campaign->fundraising_target}}</b> <span class="float-right"></h5>
+                        <h6>Received {{$campaign->CampaignContributions->count()}} Contributions</h6>
                         <div class="progress">
-                          <div class="progress-bar progress-bar-striped bg-success" style="width:20%"></div>
+                          <div class="progress-bar progress-bar-striped bg-success"
+                          style="width:{{($campaign->CampaignContributions->pluck('amount')->sum() * 100 ) / $campaign->fundraising_target}}%"
+                           ></div>
                         </div><br>
                         
                         <a href="{{route('campaign.contribute',$campaign)}}" class="btn btn-primary w-100 mt-1">Contribute</a>
@@ -106,13 +108,19 @@
                         <div>
                             <h3>Contributors</h3><hr>
                         </div>
-                       <div class="media">
-                           <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>
-                           <div class="media-body">
-                               <span>2 years ago</span><br>
-                               <h5 class="text-primary">₹780.00</h5>
-                               <span>DHILLONTRAVEL</span>
-                           </div>
+                        @if($campaign->CampaignContributions->count())
+                            @foreach($campaign->CampaignContributions as $c)
+                                <div class="media">
+                                <div class="media-left"><img src="{{asset('app/images/blank_profile_image.png')}}" alt="icon" class="img-object" style="width:75px;"/></div>
+                                <div class="media-body">
+                                    <span>{{$c->created_at->diffForHumans()}}</span><br>
+                                    <h5 class="text-primary">{{$campaign->currency}}{{$c->amount}}</h5>
+                                    <span>{{$c->name}}</span>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>No Contributions Yet!!</p>
+                        @endif
                        </div>
                     </div>
                 </div>
