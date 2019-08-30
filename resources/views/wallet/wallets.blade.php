@@ -168,16 +168,20 @@ $activation_amount = 0;
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('withdraw')}}" method="post">
-                            @csrf
-                            <label for="amount">Amount:</label>
-                            <input type="number" name="amount" placeholder="Enter Amount To Withdraw..." onkeyup="calculateFacilitaion(this);" max="{{$commission_amount}}" class="form-control"><br>
-                            <label for="facilitation_charges">Facilitation Charges:</label>
-                            <input type="text" readonly name="facilitation_charges" class="form-control" id="facilitation"><br>
-                            <div class="text-right">
-                                <button class="btn btn-sm btn-info" type="submit" id="withdraw"">Withdraw</button>     
-                            </div>
-                        </form>
+                        @if(Auth::user()->bankTransfer != null)
+                            <form action="{{route('withdraw')}}" method="post">
+                                @csrf
+                                <label for="amount">Amount:</label>
+                                <input type="number" name="amount" placeholder="Enter Amount To Withdraw..." onkeyup="calculateFacilitaion(this);" max="{{$commission_amount}}" class="form-control"><br>
+                                <label for="facilitation_charges">Facilitation Charges:</label>
+                                <input type="text" readonly name="facilitation_charges" class="form-control" id="facilitation"><br>
+                                <div class="text-right">
+                                    <button class="btn btn-sm btn-info" type="submit" id="withdraw"">Withdraw</button>     
+                                </div>
+                            </form>
+                        @else
+                            <p> <b>Please Fill Your Bank Details in Account Settings To Withdraw.</b></p>
+                        @endif
                     </div>
                 </div>
             </div>
