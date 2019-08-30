@@ -14,10 +14,12 @@
                 <img src="{{asset($campaign->image)}}" alt="" class="img-fluid"/>
                 <h1 class="mt-3">{{$campaign->title}}</h1> <hr>
                 <div class="row">
-                    <div class="col-md-6"><b>0 Shares</b> &nbsp;&nbsp; <b><a href="#"><i class="icon-heart"></i></a> 0 Likes</b></div>
+                    <div class="col-md-6"><b>0 Shares</b> &nbsp;&nbsp; 
+                        {{-- <b><a href="#"><i class="icon-heart"></i></a> 0 Likes</b> --}}
+                    </div>
                     <div class="col-md-6 text-right">
                         <a href="#" class="btn btn-primary bg-facebook"><i class="icon-facebook-square"></i> Share</a>
-                    <a href="#" class="btn btn-primary bg-twitter"><i class="icon-twitter"></i> Tweet</a>
+                    {{-- <a href="#" class="btn btn-primary bg-twitter"><i class="icon-twitter"></i> Tweet</a> --}}
                     </div>
                 </div> <hr>
                 <p>Hi Everyone, <br> {!!$campaign->description!!} </p>
@@ -71,34 +73,25 @@
             <div class="col-md-3">
                     <div class="bg-light p-3">
                         <h5 class="text-primary">Campaign ID : {{$campaign->campaign_id}}</h5>
-                        <span><i class="icon-location"></i> {{$campaign->user->details->country}}</span><br>
+                        <span><i class="icon-location"></i> {{$campaign->user->details->state}}</span><br>
                         <span><i class="icon-tag"></i> {{$campaign->category}}</span>
                         <hr>
-                        <h3>{{$campaign->currency}}0000 <small>of {{$campaign->currency}}{{$campaign->fundraising_target}}</small></h3>
+                        <h5><b>{{$campaign->currency}}0000.00 of {{$campaign->currency}}{{$campaign->fundraising_target}}</b> <span class="float-right"></h5>
                         <h6>Received 16 Contributions</h6>
                         <div class="progress">
                           <div class="progress-bar progress-bar-striped bg-success" style="width:20%"></div>
-                        </div>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              <select class="form-control" style="height: 30px;padding: 2px;" disabled>
-                                <option value="2" data-minigoal="50000" selected="selected">INR ₹</option>
-                              </select>
-                            </div>
-                          </div>
-                          <input type="number" class="form-control" name="" value="0">
-                        </div>
-                        <a href="#" class="btn btn-primary w-100 mt-1">Contribute</a>
-                        <a href="#" class="btn btn-danger w-100 mt-1">Invite Friends</a>
-                        <a href="#" class="btn btn-success w-100 mt-1">Share With Friends</a>
+                        </div><br>
+                        
+                        <a href="{{route('campaign.contribute',$campaign)}}" class="btn btn-primary w-100 mt-1">Contribute</a>
+                        {{-- <a href="#" class="btn btn-danger w-100 mt-1">Invite Friends</a>
+                        <a href="#" class="btn btn-success w-100 mt-1">Share With Friends</a> --}}
                     </div>
                     
                     <div class="bg-light p-3 my-3">
                        <div class="media">
                            <div class="media-left"><img src="images/blank_img.jpg" alt="" class="img-object" style="width:70px;"/></div>
                            <div class="media-body">
-                               <span><strong>Duration:</strong><br> ({{$campaign->start_date}} to {{$campaign->end_date}})</span><br><br>
+                               <span><strong>Duration:</strong><br> {{$campaign->start_date}} to {{$campaign->end_date}}</span><br><br>
                                <span><strong>User:</strong><br>{{$campaign->user->username}} ({{$campaign->user->name}})</span>
                            </div>
                        </div><hr>
@@ -110,8 +103,8 @@
                     </div>
                     
                     <div class="bg-light p-3 mt-1">
-                        <div class="text-center">
-                            <h1>Contributors</h1><hr>
+                        <div>
+                            <h3>Contributors</h3><hr>
                         </div>
                        <div class="media">
                            <div class="media-left"><img src="images/blank_profile_image.png" alt="" class="img-object" style="width:75px;"/></div>

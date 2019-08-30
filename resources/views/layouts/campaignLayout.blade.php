@@ -7,7 +7,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
-		<!-- Bootstrap CSS -->
+        <!-- Bootstrap CSS -->
+        
+        <link rel="apple-touch-icon" sizes="60x60" href=" {{asset('app/images/ico/apple-icon-60.png')}}">
+        <link rel="apple-touch-icon" sizes="76x76" href=" {{asset('app/images/ico/apple-icon-76.png')}}">
+        <link rel="apple-touch-icon" sizes="120x120" href=" {{asset('app/images/ico/apple-icon-120.png')}}">
+        <link rel="apple-touch-icon" sizes="152x152" href=" {{asset('app/images/ico/apple-icon-152.png')}}">
+        <link rel="shortcut icon" type="image/x-icon" href=" {{asset('app/images/ico/favicon.ico')}}">
+        <link rel="shortcut icon" type="image/png" href=" {{asset('app/images/ico/favicon-32.png')}}">
+        <link rel="stylesheet" type="text/css" href=" {{asset('app/fonts/icomoon.css')}}">
+        <link rel="stylesheet" type="text/css" href=" {{asset('app/fonts/flag-icon-css/css/flag-icon.min.css')}}">
+        
 		<link href="{{asset('campaign/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 		<!-- CSS Start -->
 		<link href="{{asset('campaign/css/style.css')}}" rel="stylesheet" type="text/css"/>

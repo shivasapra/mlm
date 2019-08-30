@@ -72,6 +72,10 @@ Route::get('/Campaign/view/{campaign}',function(Campaign $campaign){
     return view('campaign.show')->with('campaign',$campaign);
 })->name('campaign.view');
 
+Route::get('/Campaign/contribute/{campaign}',function(Campaign $campaign){
+    return view('campaign.contribute')->with('campaign',$campaign);
+})->name('campaign.contribute');
+
 
 Route::get('/Campaign/approve/{campaign}','CampaignController@approve')->name('campaign.approve');
 Route::get('/Campaign/pause/{campaign}','CampaignController@pause')->name('campaign.pause');
