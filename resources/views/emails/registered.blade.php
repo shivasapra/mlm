@@ -113,7 +113,7 @@
 			<img src="{{asset('auth/images/galaxy-crowd.png')}}" alt="logo" class="img-fluid" style="width:280px;float:left;"/>
 		</div><hr>
 	  <div class="card-body">
-	  	<h1><b>THANK YOU!</b> {{$user->name}}</h1>
+	  	<h1><b>Welcome!</b> {{$user->name}}</h1>
 	  	<p>Congratulations on becoming a part of the Galaxy Crowd Community.</p>
 	  	<img src="{{asset('app/images/welcome.png')}}" alt="logo" class="img-fluid" style="width:280px;"/>
 	  	<div class="" style="background-color:#d6e7f0;padding:20px;margin-top:20px;">
@@ -131,7 +131,7 @@
 			  <li><a href="#" target="blank"><img src="{{asset('auth/images/linkedin.png')}}"/></a></li>
 			  <li><a href="#" target="blank"><img src="{{asset('auth/images/twitter.png')}}"/></a></li>
 		  </ul>
-		  <p class="mb-1 mt-3">Knowledge city, Sector 81, SAS Nagar, Mohali, India – 160055 <br>
+		  <p class="mb-1 mt-3">SCO 53,First Floor,Sector 47D, Chandigarh-160047 <br>
 	  	© 2019 All Right Reserved | <a href="https://galaxycrowd.com" class="text-white">www.galaxycrowd.com<a></p>
 	  </div>
     </div>
