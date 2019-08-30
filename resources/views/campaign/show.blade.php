@@ -16,9 +16,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         {{-- <b>0 Shares</b> &nbsp;&nbsp;  --}}
-                        <b><a href="#"><i class="icon-heart"></i></a> 0 Likes</b>
                     </div>
                     <div class="col-md-6 text-right">
+                            <b><a href="#"><i class="icon-thumbs-up"></i></a> 0 Likes</b>
                         {{-- <a href="#" class="btn btn-primary bg-facebook"><i class="icon-facebook-square"></i> Share</a> --}}
                     {{-- <a href="#" class="btn btn-primary bg-twitter"><i class="icon-twitter"></i> Tweet</a> --}}
                     </div>
