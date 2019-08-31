@@ -6,7 +6,14 @@
             <div class="card">
                 <div class="card-header">Contribute Now</div>
                 <div class="card-body">
-                    <form method="" action="">
+                    <form method="POST" action="{{route('payment',$campaign)}}">
+                        @csrf
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3"><label>Currency</label></div>
+                                <div class="col-md-9"><input type="text" class="form-control" value="INR" name="currency" placeholder="Enter Currency Ex INR" required/></div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3"><label>Amount</label></div>
@@ -23,12 +30,6 @@
                             <div class="row">
                                 <div class="col-md-3"><label>Email Address</label></div>
                                 <div class="col-md-9"><input type="email" name="email" placeholder="Enter Email Address" class="form-control" required/></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-3"><label>Billing Address:</label></div>
-                                <div class="col-md-9"><textarea name="billing_address" class="form-control" required placeholder="Enter Address"></textarea></div>
                             </div>
                         </div>
                         <div class="form-group">

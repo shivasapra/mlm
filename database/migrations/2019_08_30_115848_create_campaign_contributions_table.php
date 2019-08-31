@@ -17,9 +17,10 @@ class CreateCampaignContributionsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('campaign_id');
             $table->float('amount');
+            $table->string('currency');
+            $table->string('order_id');
             $table->string('name');
             $table->string('email');
-            $table->longText('billing_address');
             $table->string('country');
             $table->string('state');
             $table->string('city');

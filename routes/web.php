@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use App\Details;
 use Illuminate\Support\Facades\Auth;
 use App\Coordinates;
+use App\Http\Controllers\ContributionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,11 @@ Route::get('/Campaign/view/{campaign}',function(Campaign $campaign){
 Route::get('/Campaign/contribute/{campaign}',function(Campaign $campaign){
     return view('campaign.contribute')->with('campaign',$campaign);
 })->name('campaign.contribute');
+
+Route::post('/payment/{campaign}','PaymentController@payment')->name('payment');
+Route::post('/response',function(){
+    return view('response');
+})->name('response');
 
 
 Route::get('/Campaign/approve/{campaign}','CampaignController@approve')->name('campaign.approve');
