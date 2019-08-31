@@ -162,7 +162,7 @@ Route::get('/tickets','UserController@tickets')->name('admin.ticket');
 Route::get('/approve-ticket/{t}','UserController@approveTicket')->name('approve.ticket');
 
 Route::get('/rewards','HomeController@rewards')->name('rewards');
-Route::get('/users','HomeController@users')->name('users');
+Route::get('/users','HomeController@users')->name('users')->middleware('admin');
 
 
 
