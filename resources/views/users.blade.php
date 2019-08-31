@@ -39,13 +39,13 @@ use Carbon\Carbon;
     @endphp
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="active_users" role="tabpanel" aria-labelledby="home-tab">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12 text-right">
                     <input type="date" class="from">
                     <input type="date" class="to">
                     <button class="btn btn-info btn-sm" onclick="find(this)">Search</button>
                 </div>
-            </div><br>
+            </div><br> --}}
             <div class="text-right">
                 <table class="table table-bordered datatable" id="active">
                     <thead>
