@@ -22,7 +22,7 @@
                 <span class="text-warning"><strong>Paused</strong></span>
             @endif
         </span>
-        <p class="mt-1"><b>Fund</b> : {{$campaign->currency}} 0,000.00 of {{$campaign->currency}} {{$campaign->fundraising_target}} </p>
+        <p class="mt-1"><b>Fund</b> : {{$campaign->currency}} {{$campaign->CampaignContributions->pluck('amount')->sum()}}  of {{$campaign->currency}} {{$campaign->fundraising_target}} </p>
         <p><b>Campaign URL</b> : {{'www.galaxycrowd.com'}}/{{$campaign->campaign_id}}</p>
         <a href="{{route('campaign.view',$campaign)}}" class="btn btn-primary">View</a>
         @if($campaign->status == 2)
