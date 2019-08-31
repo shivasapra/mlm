@@ -59,6 +59,7 @@ use Carbon\Carbon;
                             <th>Security Pin</th>
                             <th>Current Package</th>
                             <th>Upgrade Wallet Amount</th>
+                            <th>Action</th>
                             <th>Signed Up</th>
                         </tr>
                     </thead>
@@ -75,6 +76,7 @@ use Carbon\Carbon;
                                 <td>{{$user->details->security_pin}}</td>
                                 <th>{{$user->donations->last()->package}}</th>
                                 <td>{{$user->UpgradeWallet->pluck('amount')->sum() - $user->donations->pluck('amount')->sum() + $user->donations->where('package','BASIC')->first()->amount}}</td>
+                                <td><a href="{{route('account.settings',$user)}}" class="btn btn-sm btn-info">Edit Profile</a></td>
                                 <th>{{$user->created_at->diffForHumans()}}</th>
                             </tr>
                         @endforeach
@@ -95,6 +97,7 @@ use Carbon\Carbon;
                             <th>Email</th>
                             <th>Mobile</th>
                             <th>Security Pin</th>
+                            <th>Action</th>
                             <th>Signed Up</th>
                         </tr>
                     </thead>
@@ -109,6 +112,7 @@ use Carbon\Carbon;
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->details->mobile}}</td>
                                 <td>{{$user->details->security_pin}}</td>
+                                <td><a href="{{route('account.settings',$user)}}" class="btn btn-sm btn-info">Edit Profile</a></td>
                                 <th>{{$user->created_at->diffForHumans()}}</th>
                             </tr>
                         @endforeach
@@ -128,6 +132,7 @@ use Carbon\Carbon;
                             <th>Email</th>
                             <th>Mobile</th>
                             <th>Security Pin</th>
+                            <th>Action</th>
                             <th>Signed Up</th>
                         </tr>
                     </thead>
@@ -141,6 +146,7 @@ use Carbon\Carbon;
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->details->mobile}}</td>
                                 <td>{{$user->details->security_pin}}</td>
+                                <td><a href="{{route('account.settings',$user)}}" class="btn btn-sm btn-info">Edit Profile</a></td>
                                 <th>{{$user->created_at->diffForHumans()}}</th>
                             </tr>
                         @endforeach
