@@ -24,11 +24,11 @@ class CreateCampaignsTable extends Migration
             $table->string('currency');
             $table->longText('description');
             $table->string('image');
-            $table->string('video');
-            $table->string('website_url');
-            $table->string('facebook_url');
-            $table->string('twitter_url');
-            $table->string('linkedin_url');
+            $table->string('video')->nullable();
+            $table->string('website_url')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('twitter_url')->nullable();
+            $table->string('linkedin_url')->nullable();
             $table->timestamps();
         });
     }

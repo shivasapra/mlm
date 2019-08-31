@@ -143,6 +143,8 @@ class CampaignController extends Controller
             $image->move('uploads/campaign',$image_new_name);
             $campaign->image = 'uploads/campaign/'.$image_new_name;
         }
+        $campaign->start_date = $request->campaign_start_date;
+        $campaign->end_date = $request->campaign_end_date;
         $campaign->website_url = $request->website_url;
         $campaign->twitter_url = $request->twitter_url;
         $campaign->linkedin_url = $request->linkedin_url;

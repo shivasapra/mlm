@@ -134,9 +134,9 @@
                       </select>
                     </div>
                   </div>
-                  <input type="number" name="fundraising_target" class="form-control" min="50000" name="" value="">
+                  <input type="number" name="fundraising_target" class="form-control"  name="" value="">
                 </div>
-                <span class="text-danger">Enter Minimum target amount 50000 INR ₹</span>
+                
                 </div>
               </div>
             </div>
