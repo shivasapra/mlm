@@ -92,7 +92,7 @@
                 <h4><span>PAN NO</span> : <input type="text" class="form-control" name="pan_no" value="{{$user->details->pan_no}}"/></h4>
                 <h4 class="mb-2"><span>Security Pin*</span> : <input type="password" class="form-control" name="security_pin" value=" " required/>
                 <i class="text-danger">(To save changes, you must enter your personal pin here)</i></h4>
-                <div><input type="checkbox"> I agree to be a part of the OnlineSensor Reward Fixed Amount Fundraising option and also agree to spend 2/3rd of the funds raised, towards giving rewards to the contributors. I give this right to the company to use 2/3rd of the funds raised by me towards providing rewards to the contributors from any of the third parties associated with the company, as per the terms and policies.</div>
+                <div><input type="checkbox" checked required> I agree to the Terms and Conditions of CloudReach Services Pvt Ltd.</div>
                 <button type="submit" class="btn btn-primary mt-1">Update Profile</button>
             </div>
             <div class="col-md-3">
