@@ -9,7 +9,7 @@
 
 
 <?php
-$mode = "TEST"; //<------------ Change to TEST for test server, PROD for production
+$mode = "PROD"; //<------------ Change to TEST for test server, PROD for production
   $postData = array(
   "appId" => $appId,
   "orderId" => $orderId,

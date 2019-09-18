@@ -33,8 +33,8 @@
 									<div class="row toggle">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Referral Code</label>
-												<input type="text" class="form-control re @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" required/>
+												<label>Referral Code <span id="refree_name"></span></label>
+												<input type="text" class="form-control re @error('referral_code') is-invalid @enderror" name="referral_code" value="{{ old('referral_code') }}" placeholder="Referral Code" onkeyup="getRefree(this)" required/>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -175,6 +175,29 @@
 					}
 				@endforeach
 		}
+	</script>
+	<script>
+	    function getRefree(val){
+	       // console.log(val.value);
+	        var Url = "https://galaxycrowd.com/app/galaxycrowd/public/get-refree/"+ val.value;
+	        console.log(Url)
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', Url, true);
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
+                console.log(JSON.parse(xhr.responseText));
+                function processRequest(e) {
+                    var response1 = JSON.parse(xhr.responseText);
+                    // console.log(response1[0].name);
+                    if(response1[0].name){
+                    $data = '<b><i>('+ response1[0].name + ')</i></b>';
+                    $("#refree_name").html($data);
+                    }
+                    else{
+                        $("#refree_name").html('');
+                    }
+                }
+	    }
 	</script>
 	</body>
 </html>	

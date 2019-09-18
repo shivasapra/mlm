@@ -323,7 +323,7 @@ $activation_amount = 0;
                 });
             }
             else{
-                return fetch(`http://galaxycrowd.com/app/galaxycrowd/public/buy?amount=${amount}`);
+                return fetch(`https://galaxycrowd.com/app/galaxycrowd/public/buy?amount=${amount}`);
             }
         })
         .then(results => {
