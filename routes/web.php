@@ -30,6 +30,13 @@ Route::get('/test',function(){
     dd($total, $total_two);
 });
 
+
+Route::get('/get-refree/{code}',function($code){
+    // return $code;
+    return json_encode(App\User::select('name')->where('username',$code)->get());
+});
+
+
 Auth::routes();
 
 Route::get('/campaign/register',function(){

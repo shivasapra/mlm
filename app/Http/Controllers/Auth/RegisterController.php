@@ -104,7 +104,8 @@ class RegisterController extends Controller
         }while(Details::where('verify_token',$verify_token)->first());
         $detail->verify_token = $verify_token;
         $detail->save();
-        
+        $message = urlencode("Welcome to Galaxy Crowd, " + $data['name'] + ". Your account has been created Successfully");
+        file_get_contents('http://sms.javronsolutions.com/app/smsapi/index.php?key=55D6E290CDEE3F&campaign=8231&routeid=30&type=text&contacts=' + $data['mobile'] + '&senderid=GLAXYC&msg=' + $message);
         $contactEmail = $data['email'];
         $data = ['user' => $user, 'security_pin'=> $detail->security_pin, 'verify_token'=> $detail->verify_token];
         Mail::send('emails.registered', $data, function($message) use ($contactEmail)

@@ -29,8 +29,8 @@ class PaymentController extends Controller
         $cc->save();
 
         
-        $appId = '7806daab5f686610960e46446087';
-        $secretKey = "6d090274d2af32356d1846af7364119ef614f9ff";
+        $appId = '25576c9bc1264998d1e34d56367552';
+        $secretKey = "37bd8bda0ceccb08ff19fe882ad7438b9ecce202";
         $postData = array(
             "appId" => $appId,
             "secretKey" => $secretKey,
