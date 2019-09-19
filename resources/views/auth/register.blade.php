@@ -74,7 +74,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Mobile Number</label>
-												<input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
+												<input type="number" maxlength="10" class="form-control" name="mobile" value="{{ old('mobile') }}" placeholder="Enter Mobile Number" required/>
 											</div>
 										</div>
 									</div>
