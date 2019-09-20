@@ -16,11 +16,11 @@ use App\Donation;
         $data = ['name' => $sponsor->name, 'user' => $user, 'amount'=> $level_three_amount];
         $contactEmail = $sponsor->email;
         $collection->push([$data,$contactEmail]);
-            if($sponsor->id == $coordinates->parent){
+            // if($sponsor->id == $coordinates->parent){
                 $super_parent_user = User::find($sponsor->coordinates->parent);
-            }else{
-                $super_parent_user = User::find($coordinates->parent);
-            }
+            // }else{
+            //     $super_parent_user = User::find($coordinates->parent);
+            // }
 
             if($super_parent_user ){
                 $temp = 'level_two_percentage'.$a;
