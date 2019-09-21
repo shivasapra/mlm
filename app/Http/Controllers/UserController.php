@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Session;
 use Auth;
 use App\Details;
+use Mail;
 use App\KYC;
 use App\Ticket;
 
@@ -60,7 +61,7 @@ class UserController extends Controller
                 $details->verify_token = $verify_token;
                 $details->save();
         
-                $contactEmail = $data['email'];
+                $contactEmail = $details->user->email;
                 $data = ['user' => $user, 'security_pin'=> $details->security_pin, 'verify_token'=> $details->verify_token];
                 Mail::send('emails.registered', $data, function($message) use ($contactEmail)
                 {  
