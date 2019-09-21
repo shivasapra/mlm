@@ -30,25 +30,20 @@ $activation_amount = 0;
 <h1>Wallets</h1><hr>
 
 <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
-    @if(!Auth::user()->admin)
+    <li class="nav-item">
+        <a class="nav-link  active " id="contact-tab" data-toggle="tab" href="#commission" role="tab" aria-controls="contact">Contribution Wallet</a>
+    </li>
         <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#activation" role="tab" aria-controls="home">Activation Wallet</a>
+            <a class="nav-link " id="home-tab" data-toggle="tab" href="#activation" role="tab" aria-controls="home">Activation Wallet</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#transfer" role="tab" aria-controls="profile">Epin Transfer Wallet</a>
         </li>
-    @endif
-    <li class="nav-item">
-        <a class="nav-link @if(Auth::user()->admin) active @endif" id="contact-tab" data-toggle="tab" href="#commission" role="tab" aria-controls="contact">Contribution Wallet</a>
-    </li>
-    {{-- <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#withdrawal" role="tab" aria-controls="contact">Withdrawal Wallet</a>
-    </li> --}}
 </ul>
 
 <div class="tab-content" id="myTabContent">
     @if(!Auth::user()->admin)
-        <div class="tab-pane fade show active" id="activation" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade show " id="activation" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
                 <div class="col-md-3">
                     <div class="card">
@@ -150,7 +145,7 @@ $activation_amount = 0;
         </div>
     @endif
 
-    <div class="tab-pane fade show @if(Auth::user()->admin) active @endif" id="commission" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane fade  show active " id="commission" role="tabpanel" aria-labelledby="home-tab">
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
