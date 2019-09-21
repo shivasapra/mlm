@@ -11,6 +11,7 @@ use App\Details;
 use Illuminate\Support\Facades\Auth;
 use App\Coordinates;
 use App\Http\Controllers\ContributionController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -193,11 +194,11 @@ Route::get('/resend-verification',function(){
     }while(App\Details::where('verify_token',$verify_token)->first());
     Auth::user()->details->verify_token = $verify_token;
     Auth::user()->details->save();
-    
+
     $contactEmail = Auth::user()->email;
     $data = ['user' => Auth::user(), 'security_pin'=> Auth::user()->details->security_pin, 'verify_token'=> Auth::user()->details->verify_token];
     \Mail::send('emails.registered', $data, function($message) use ($contactEmail)
-    {  
+    {
         $message->to($contactEmail)->subject('Registered!!');
     });
     \Session::flash('success','Verification Resent');
@@ -207,7 +208,7 @@ Route::get('/resend-verification',function(){
 Route::get('/buy',function(Request $request){
     $e = Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first();
 
-    for ($i=0; $i <$request->amount ; $i++) { 
+    for ($i=0; $i <$request->amount ; $i++) {
         $epin = new Epin;
         $epin->epin_category_id = $e->epin_category_id;
         $epin->rate = EpinCategory::find($e->epin_category_id)->rate;
@@ -231,3 +232,5 @@ Route::get('/buy',function(Request $request){
 
 
 Route::get('/foo','HomeController@foo');
+
+Route::get('/transaction-history','HomeController@transactionHistory')->name('transaction.history');

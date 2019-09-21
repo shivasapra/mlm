@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Commision; 
+use App\Commision;
 use App\User;
 use App\Settings;
 use Auth;
@@ -28,9 +28,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {       
+    {
         foreach(User::where('admin',0)->where('campaign',0)->get() as $user){
-            if($user->coordinates){   
+            if($user->coordinates){
                 if(collect(explode(',',$user->coordinates->children))->count() == 5){
                     if( (Carbon::parse($user->coordinates->created_at->toDateString())->diffInDays(Carbon::parse(User::find(collect(explode(',',$user->coordinates->children))->last())->coordinates->created_at->toDateString())))  <= Settings::first()->reward_condition ){
                         $user->coordinates->eligible_for_reward = 1;
@@ -105,5 +105,9 @@ class HomeController extends Controller
     public function foo(Request $request){
         $coll = dd($request->foo);
         return $coll;
+    }
+
+    public function transactionHistory(){
+        return view('transactionHistory');
     }
 }

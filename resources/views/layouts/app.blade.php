@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-    
+
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href=" {{asset('app/css/bootstrap.css')}}">
     <!-- font icons-->
@@ -44,7 +44,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
     @yield('css')
   </head>
-  
+
     <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns  fixed-navbar">
 
         <!-- navbar-fixed-top-->
@@ -153,7 +153,7 @@
                 </li> --}}
                 <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online">
                     <img
-                        @if(Auth::user()->details->avatar) 
+                        @if(Auth::user()->details->avatar)
                             src="{{Auth::user()->details->avatar}}"
                         @else
                             src="{{asset('app/images/portrait/small/avatar-s-1.png')}}"
@@ -169,7 +169,7 @@
         </div>
         </nav>
 
-        
+
         <div data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
         <div class="main-menu-content">
             <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
@@ -195,6 +195,7 @@
                     <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>
                     <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a></li>
                     <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
+                    <li class=" nav-item"><a href="{{route('transaction.history')}}"><i class="icon-wallet"></i><span class="menu-title">Trasaction History</span></a></li>
                     <li class=" nav-item"><a href="{{route('wallets')}}"><i class="icon-wallet"></i><span class="menu-title">Wallets</span></a></li>
                     @if(Auth::user()->coordinates)
                         @if(Auth::user()->coordinates->eligible_for_reward)
@@ -210,10 +211,10 @@
                     <a class="nav-link"  href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-sign-out"></i>{{ __('Logout') }}</a>
                 </li>
             </ul>
-             
+
             {{-- <li class=" nav-item"><a href="{{route('assignment.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Assignment Settings</span></a>
             </li> --}}
-            
+
             {{-- <li class=" navigation-header"><span>Support</span><i data-toggle="tooltip" data-placement="right" data-original-title="Support" class="icon-ellipsis icon-ellipsis"></i></li> --}}
             {{-- <li class=" nav-item"><a href="{{route('contribution.packages',Auth::user())}}"><i class="icon-whatshot"></i><span class="menu-title">Contribution</span></a>
             </li> --}}
@@ -221,7 +222,7 @@
             {{-- <li class=" nav-item"><a href="pending-assignments.php"><i class="icon-compass3"></i><span class="menu-title">My Assignments</span></a>
             </li> --}}
 
-            
+
             {{-- <li class=" nav-item"><a href="withdrawals.php"><i class="icon-eye6"></i><span class="menu-title">Withdrawals</span></a>
             </li>
 
@@ -235,10 +236,10 @@
             </li> --}}
             {{-- <li class=" nav-item"><a href="{{route('epin.requests')}}"><i class="icon-compass2"></i><span class="menu-title">Epin Requests</span></a>
             </li> --}}
-            {{-- 
+            {{--
                 <li class=" nav-item"><a href="#"><i class="icon-document-text"></i><span class="menu-title">Latest Updates</span></a>
                 </li> --}}
-            
+
         </div>
         </div>
         <div class="app-content content container-fluid">
@@ -247,25 +248,25 @@
                     @yield('content-header')
                 </div>
                 <div class="content-body">
-                    @yield('content-body')            
+                    @yield('content-body')
                 </div>
             </div>
         </div>
-        
+
 
         <footer class="footer footer-static footer-light navbar-border">
             <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2019 <a href="#" target="_blank" class="text-bold-800 grey darken-2">Galaxy Crowd Funding</a>, All rights reserved. </span><span class="float-md-right d-xs-block d-md-inline-block">Designed by <a href="#">Him Soft Solution </a></span></p>
         </footer>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
         <!-- BEGIN VENDOR JS-->
         <script src=" {{asset('app/js/core/libraries/jquery.min.js')}}" type="text/javascript"></script>
         <script src=" {{asset('app/vendors/js/ui/tether.min.js')}}" type="text/javascript"></script>
@@ -290,7 +291,7 @@
 
         <!-- include summernote css/js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-        
+
         <script>
             $(document).ready(function() {
             $('#summernote').summernote({
@@ -360,7 +361,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 
-        
+
         <script>
             $(document).ready(function() {
                 $('.datatable').DataTable( {
