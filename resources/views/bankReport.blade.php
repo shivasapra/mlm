@@ -59,7 +59,6 @@
                 <tr>
                     <th>Sno.</th>
                     <th>User</th>
-                    <th>Currency</th>
                     <th>Account Type</th>
                     <th>Account Holder Name</th>
                     <th>Account No.</th>
@@ -80,7 +79,6 @@
                         @endphp
                         <th>{{$loop->index + 1}}</th>
                         <td>{{$b->user->username}} ({{$b->user->name}})</td>
-                        <td>{{$bank_transfer->currency}}</td>
                         <td>{{$bank_transfer->account_type}}</td>
                         <td>{{$bank_transfer->account_holder_name}}</td>
                         <td>{{$bank_transfer->account_no}}</td>
