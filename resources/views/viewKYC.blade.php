@@ -23,7 +23,7 @@
                             <th>Username</th>
                             <th>Document Type</th>
                             <th>Created On</th>
-                            <th>View</th>
+                            <th>Download</th>
                             <th>Action</th>
                             </tr>
                         </thead>
@@ -35,9 +35,10 @@
                                     <td>{{$k->type}}</td>
                                     <td>{{$k->created_at}}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
+                                            <a href="{{asset($k->proof)}}" class="btn btn-sm btn-info" download>download</a>
+                                        {{-- <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
                                             <input type="hidden" class="proof" value="{{$k}}">
-                                        </button>
+                                        </button> --}}
                                     </td>
                                     <td>
                                         @if($k->approved)
@@ -63,7 +64,7 @@
                             <th>Username</th>
                             <th>Document Type</th>
                             <th>Created On</th>
-                            <th>View</th>
+                            <th>Download</th>
                             <th>Action</th>
                             </tr>
                         </thead>
@@ -75,9 +76,10 @@
                                     <td>{{$k->type}}</td>
                                     <td>{{$k->created_at}}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
+                                            <a href="{{asset($k->proof)}}" class="btn btn-sm btn-info" download>download</a>
+                                        {{-- <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
                                             <input type="hidden" class="proof" value="{{$k}}">
-                                        </button>
+                                        </button> --}}
                                     </td>
                                     <td>
                                         @if($k->approved)
@@ -102,7 +104,7 @@
                             <th>Sno.</th>
                             <th>Username</th>
                             <th>Created On</th>
-                            <th>View</th>
+                            <th>Download</th>
                             <th>Action</th>
                             </tr>
                         </thead>
@@ -113,9 +115,10 @@
                                     <td>{{$k->user->username}} ({{$k->user->name}})</td>
                                     <td>{{$k->created_at}}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
+                                            <a href="{{asset($k->proof)}}" class="btn btn-sm btn-info" download>download</a>
+                                        {{-- <button class="btn btn-sm btn-info" onclick="proof(this);" id="proof">View
                                             <input type="hidden" class="proof" value="{{$k}}">
-                                        </button>
+                                        </button> --}}
                                     </td>
                                     <td>
                                         @if($k->approved)
@@ -144,7 +147,7 @@
               var base_url = window.location.origin;
               var attachment = base_url+"/app/galaxycrowd/public/"+proof["proof"];
               console.log(attachment);
-              
+
               var modal =
               '<div class="modal fade" id="Modal">'+
               '<div class="modal-dialog">'+
@@ -157,9 +160,9 @@
 
                       '<!-- Modal body -->'+
                       '<div class="modal-body">'+
-                          '<iframe src="'+attachment+'" frameborder="0" style="width:100%;height:500px;"></iframe>'+
+                          '<iframe src="'+attachment+'" frameborder="0" style="width:100%;height:700px;"></iframe>'+
                       '</div>'+
-              
+
                       '<!-- Modal footer -->'+
                       '<div class="modal-footer">'+
                       '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'+
