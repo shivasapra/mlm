@@ -39,7 +39,7 @@
                         <th>Name</th>
                         <th>Level</th>
                         <th>Admin Charges</th>
-                        <th>GST (18%)</th>
+                        <th>GST</th>
                         <th>Reward</th>
                         <th>Total</th>
                         <th>Time</th>
@@ -52,9 +52,9 @@
                             <td>{{App\User::find($c->from)->username}}</td>
                             <td>{{App\User::find($c->from)->name}}</td>
                             <td>{{App\User::find($c->from)->coordinates->row - Auth::user()->coordinates->row + 1}}</td>
-                            <td>{{($c->amount/2) - (18/100 * ($c->amount / 2))}}</td>
-                            <td>{{18/100 * ($c->amount / 2)}}</td>
-                            <td>{{$c->amount/2}}</td>
+                            <td>254.27</td>
+                            <td>45.73</td>
+                            <td>300</td>
                             <td>{{$c->amount}}</td>
                             <td><strong>{{Carbon\Carbon::parse($c->created_at)->diffForHumans()}}</strong> <br>({{$c->created_at}})</td>
                         </tr>
