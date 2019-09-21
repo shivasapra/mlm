@@ -28,13 +28,20 @@ class UserController extends Controller
             $details = $user->details;
             $details->sex = $request->sex;
             $details->DOB = $request->DOB;
+            $details->full_name = $request->full_name;
+            $details->user->name = $request->full_name;
+            $details->user->save();
             $details->address = $request->address;
             $details->state = $request->state;
             $details->district = $request->district;
             $details->city = $request->city;
+            $details->country = $request->country;
+            $details->mobile = $request->mobile;
             $details->postal_code = $request->postal_code;
             $details->skype_id = $request->skype_id;
             $details->pan_no = $request->pan_no;
+
+            
 
             if($request->hasFile('avatar')){
                 $avatar = $request->avatar;
@@ -43,6 +50,24 @@ class UserController extends Controller
                 $details->avatar = 'uploads/avatar/'.$avatar_new_name;
             }
             $details->save();
+            if($request->email != $details->user->email ){
+                $details->user->email = $request->email;
+                $details->user->save();
+                $details->email_verification = 0;
+                do{
+                    $verify_token = str_random();
+                }while(Details::where('verify_token',$verify_token)->first());
+                $details->verify_token = $verify_token;
+                $details->save();
+        
+                $contactEmail = $data['email'];
+                $data = ['user' => $user, 'security_pin'=> $details->security_pin, 'verify_token'=> $details->verify_token];
+                Mail::send('emails.registered', $data, function($message) use ($contactEmail)
+                {  
+                    $message->to($contactEmail)->subject('Registered!!');
+                });
+
+            }
             Session::flash('success','Details Updated!!');
         }
         else{

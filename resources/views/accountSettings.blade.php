@@ -28,87 +28,88 @@
         @endif
         </ul>
         <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
-        <div class="row">
-        <div class="col-md-3"><img 
-          @if($user->details->avatar)
-            src="{{asset($user->details->avatar)}}"
-          @else
-            src="{{asset('app/images/profile-user.jpg')}}"
-          @endif
-          alt="profile user" class="img-fluid"/>
-        </div>
-        <div class="col-md-9 details">
-            <h4><span>Signed Up on</span> : {{$user->created_at}}</h4>
-            <h4><span>Username</span> : {{$user->details->username}}</h4>
-            <h4><span>Email Address</span> : {{$user->email}}</h4>
-            @if(!Auth::user()->campaign)
-              <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
-              <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
-            @endif
-            <h4><span>Promotional URL</span> : {{$user->details->promotional_url}}</h4>
-            <h4><span>Name </span> : {{$user->name}}</h4>
-            <h4><span>My Campaign Category </span> :  {{$user->details->campaign_category}}</h4>
-            <h4><span>Sex </span> : {{$user->details->sex}}</h4>
-            <h4><span>Address </span> : {{$user->details->address}}</h4>
-            <h4><span>City </span> : {{$user->details->city}}</h4>
-            <h4><span>District</span> : {{$user->details->district}}</h4>
-            <h4><span>State </span> : {{$user->details->state}}</h4>
-            <h4><span>Country</span> : {{$user->details->country}}</h4>
-            <h4><span>Mobile</span> : {{$user->details->mobile}}</h4>
-            <h4><span>Postal Code </span> : {{$user->details->postal_code}}</h4>
-            <h4><span>Skype ID</span> : {{$user->details->skype_id}}</h4>
-            <h4><span>PAN NO</span> : {{$user->details->pan_no}}</h4>
-        </div>
-        </div>
-        </div>
-        <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="row">
-        <form method="post" action="{{route('update.profile',$user)}}" enctype="multipart/form-data" class="form-inline">
-            @csrf
-            @method('POST')
-            <div class="col-md-9 details">
-                <h4><span>Signed Up on</span> : {{$user->created_at}}</h4>
-                <h4><span>Username</span> : {{$user->details->username}}</h4>
-                <h4><span>Email Address</span> : {{$user->email}}</h4>
-                @if(!Auth::user()->campaign)
-                  <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
-                  <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
+          <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <div class="col-md-3"><img 
+                @if($user->details->avatar)
+                  src="{{asset($user->details->avatar)}}"
+                @else
+                  src="{{asset('app/images/profile-user.jpg')}}"
                 @endif
-                <h4><span>Promotional URL</span> : {{$user->details->promotional_url}}</h4>
-                <h4><span>Full Name </span> : <input type="text" placeholder="" value="{{$user->details->full_name}}" required disabled class="form-control"/></h4>
-                <h4><span>Sex </span> : <select class="form-control" name="sex"><option>---Select---</option><option value="Male" {{($user->details->sex == "Male")?'selected':''}}>Male</option><option value="Female" {{($user->details->sex == "Female")?'selected':''}}>Female</option><option value="Transgender" {{($user->details->sex == "Transgender")?'selected':''}}>Transgender</option></select></h4>
-                <h4><span>DOB </span> : <input type="date" placeholder="" value="{{Carbon\Carbon::now()->toDateString()}}" class="form-control"/></h4>
-                <h4><span>Address </span> : <textarea name="address" class="form-control" style="width:300px;">{{$user->details->address}}</textarea></h4>
-                <h4><span>Country</span> : <select class="form-control" name="country" disabled><option>{{$user->details->country}}</option></select></h4>
-                <h4><span>State </span> : <input type="text" class="form-control" name="state" value="{{$user->details->state}}"/></h4>
-                <h4><span>District </span> : <input type="text" class="form-control" name="district" value="{{$user->details->district}}"/></h4>
-                <h4><span>City </span> : <input type="text" class="form-control" name="city" value="{{$user->details->city}}"/></h4>
-                <h4><span>Postal Code </span> : <input type="text" class="form-control" value="{{$user->details->postal_code}}" name="postal_code"/></h4>
-                <h4><span>Mobile</span> : <input type="text" class="form-control" name="number" value="{{$user->details->mobile}}" disabled/></h4>
-                <h4><span>My Campaign category</span> : <input type="text" class="form-control" name="campaign_category" value="{{$user->details->campaign_category}}" disabled/></h4>
-                <h4><span>Skype ID</span> : <input type="text" class="form-control" name="skype_id" value="{{$user->details->skype_id}}"/></h4>
-                {{-- <h4><input type="checkbox"> Hide my name, comment from everyone and contribute anonymousl</h4> --}}
-                <h4><span>PAN NO</span> : <input type="text" class="form-control" name="pan_no" value="{{$user->details->pan_no}}"/></h4>
-                <h4 class="mb-2"><span>Security Pin*</span> : <input type="password" class="form-control" name="security_pin" value=" " required/>
-                <i class="text-danger">(To save changes, you must enter your personal pin here)</i></h4>
-                <div><input type="checkbox" checked required> I agree to the Terms and Conditions of CloudReach Services Pvt Ltd.</div>
-                <button type="submit" class="btn btn-primary mt-1">Update Profile</button>
+                alt="profile user" class="img-fluid"/>
+              </div>
+              <div class="col-md-9 details">
+                  <h4><span>Signed Up on</span> : {{$user->created_at}}</h4>
+                  <h4><span>Username</span> : {{$user->details->username}}</h4>
+                  <h4><span>Email Address</span> : {{$user->email}}</h4>
+                  @if(!Auth::user()->campaign)
+                    <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
+                    <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
+                  @endif
+                  <h4><span>Promotional URL</span> : {{$user->details->promotional_url}}</h4>
+                  <h4><span>Name </span> : {{$user->name}}</h4>
+                  <h4><span>My Campaign Category </span> :  {{$user->details->campaign_category}}</h4>
+                  <h4><span>Sex </span> : {{$user->details->sex}}</h4>
+                  <h4><span>Address </span> : {{$user->details->address}}</h4>
+                  <h4><span>City </span> : {{$user->details->city}}</h4>
+                  <h4><span>District</span> : {{$user->details->district}}</h4>
+                  <h4><span>State </span> : {{$user->details->state}}</h4>
+                  <h4><span>Country</span> : {{$user->details->country}}</h4>
+                  <h4><span>Mobile</span> : {{$user->details->mobile}}</h4>
+                  <h4><span>Postal Code </span> : {{$user->details->postal_code}}</h4>
+                  <h4><span>Skype ID</span> : {{$user->details->skype_id}}</h4>
+                  <h4><span>PAN NO</span> : {{$user->details->pan_no}}</h4>
+              </div>
             </div>
-            <div class="col-md-3">
-                <div class="image-outer-div">
-                    <img id="blah" @if($user->details->avatar)
-                      src="{{asset($user->details->avatar)}}"
-                    @else
-                      src="{{asset('app/images/profile-user.jpg')}}"
+          </div>
+        <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="row">
+            <form method="post" action="{{route('update.profile',$user)}}" enctype="multipart/form-data" class="form-inline">
+                @csrf
+                @method('POST')
+                <div class="col-md-9 details">
+                    <h4><span>Signed Up on</span> : {{$user->created_at}}</h4>
+                    <h4><span>Username</span> : {{$user->details->username}}</h4>
+                    
+                    @if(!Auth::user()->campaign)
+                      <h4><span>You are invited by</span> : {{$user->details->invited_by}}</h4>
+                      <h4><span>Email of your invited person</span> : {{$user->details->invited_by_email}}</h4>
                     @endif
-                   alt="profile user" class="img-fluid"/>
-                    <label for="avatar" class="upload-icon"><i class="icon-camera"></i></label>
-                    <input type="file"  id="avatar" name="avatar" onchange="readURL(this);" class="form-control" style="display:none;">
+                    <h4><span>Promotional URL</span> : {{$user->details->promotional_url}}</h4>
+                    <h4><span>Email </span> : <input type="email"  value="{{$user->email}}"name="email" required  class="form-control"/></h4>
+                    <h4><span>Full Name </span> : <input type="text" placeholder="" value="{{$user->details->full_name}}"name="full_name" required  class="form-control"/></h4>
+                    <h4><span>Sex </span> : <select class="form-control" name="sex"><option>---Select---</option><option value="Male" {{($user->details->sex == "Male")?'selected':''}}>Male</option><option value="Female" {{($user->details->sex == "Female")?'selected':''}}>Female</option><option value="Transgender" {{($user->details->sex == "Transgender")?'selected':''}}>Transgender</option></select></h4>
+                    <h4><span>DOB </span> : <input type="date" placeholder="" value="{{Carbon\Carbon::now()->toDateString()}}" class="form-control"/></h4>
+                    <h4><span>Address </span> : <textarea name="address" class="form-control" style="width:300px;">{{$user->details->address}}</textarea></h4>
+                    <h4><span>Country</span> : <input type="text" class="form-control" name="country" value="{{$user->details->country}}"></h4>
+                    <h4><span>State </span> : <input type="text" class="form-control" name="state" value="{{$user->details->state}}"/></h4>
+                    <h4><span>District </span> : <input type="text" class="form-control" name="district" value="{{$user->details->district}}"/></h4>
+                    <h4><span>City </span> : <input type="text" class="form-control" name="city" value="{{$user->details->city}}"/></h4>
+                    <h4><span>Postal Code </span> : <input type="text" class="form-control" value="{{$user->details->postal_code}}" name="postal_code"/></h4>
+                    <h4><span>Mobile</span> : <input type="text" class="form-control" name="mobile" value="{{$user->details->mobile}}"/></h4>
+                    <!-- <h4><span>My Campaign category</span> : <input type="text" class="form-control" name="campaign_category" value="{{$user->details->campaign_category}}" disabled/></h4> -->
+                    <h4><span>Skype ID</span> : <input type="text" class="form-control" name="skype_id" value="{{$user->details->skype_id}}"/></h4>
+                    {{-- <h4><input type="checkbox"> Hide my name, comment from everyone and contribute anonymousl</h4> --}}
+                    <h4><span>PAN NO</span> : <input type="text" class="form-control" name="pan_no" value="{{$user->details->pan_no}}"/></h4>
+                    <h4 class="mb-2"><span>Security Pin*</span> : <input type="password" class="form-control" name="security_pin" value=" " required/>
+                    <i class="text-danger">(To save changes, you must enter your personal pin here)</i></h4>
+                    <div><input type="checkbox" checked required> I agree to the Terms and Conditions of CloudReach Services Pvt Ltd.</div>
+                    <button type="submit" class="btn btn-primary mt-1">Update Profile</button>
                 </div>
-            </div>
-        </form>
-        </div>
+                <div class="col-md-3">
+                    <div class="image-outer-div">
+                        <img id="blah" @if($user->details->avatar)
+                          src="{{asset($user->details->avatar)}}"
+                        @else
+                          src="{{asset('app/images/profile-user.jpg')}}"
+                        @endif
+                      alt="profile user" class="img-fluid"/>
+                        <label for="avatar" class="upload-icon"><i class="icon-camera"></i></label>
+                        <input type="file"  id="avatar" name="avatar" onchange="readURL(this);" class="form-control" style="display:none;">
+                    </div>
+                </div>
+            </form>
+          </div>
         </div>
         <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="contact-tab">
         <div class="row">
