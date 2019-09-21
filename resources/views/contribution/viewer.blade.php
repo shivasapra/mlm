@@ -18,7 +18,7 @@
                                     <a  href="javascript:void(0)" onclick="clickContributors(this);" style="font-weight: normal; color: rgb(66, 139, 202);"><span class="@if($name != 'N/A') @if(Details::where('username',$name)->first()->invited_by == $user->details->username)  @endif @endif">  {{$name}} 
                                         @if($name != 'N/A')
                                             ({{App\User::where('username',$name)->first()->name}})
-                                            ({{ ((App\User::where('username',$name)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->children)): 0)  + ((App\User::where('username',$name)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$name)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->super_duper_children)) : 0)}})    
+                                            - Team({{ ((App\User::where('username',$name)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->children)): 0)  + ((App\User::where('username',$name)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$name)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$name)->first()->coordinates->super_duper_children)) : 0)}}) - Level(1)   
                                         @endif
 
 
@@ -43,7 +43,7 @@
                                                     <a href="javascript:void(0)" onclick="clickContributors(this);"><span class="@if($c != 'N/A') @if(Details::where('username',$c)->first()->invited_by == $user->details->username)  @endif @endif">{{$c}} 
                                                     @if($c != 'N/A')
                                                         ({{App\User::where('username',$c)->first()->name}}) 
-                                                        ({{ ((App\User::where('username',$c)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->children)): 0)  + ((App\User::where('username',$c)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$c)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->super_duper_children)) : 0)}})    
+                                                        - Team({{ ((App\User::where('username',$c)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->children)): 0)  + ((App\User::where('username',$c)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$c)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$c)->first()->coordinates->super_duper_children)) : 0)}}) - Level(2)  
                                                     @endif
 
 
@@ -68,7 +68,7 @@
                                                                     <a href="javascript:void(0)"><span class="@if($d != 'N/A') @if(Details::where('username',$d)->first()->invited_by == $user->details->username)  @endif @endif">{{$d}} 
                                                                     @if($d != 'N/A')
                                                                         ({{App\User::where('username',$d)->first()->name}})
-                                                                        ({{ ((App\User::where('username',$d)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->children)): 0)  + ((App\User::where('username',$d)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$d)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->super_duper_children)) : 0)}})    
+                                                                        - Team({{ ((App\User::where('username',$d)->first()->coordinates->children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->children)): 0)  + ((App\User::where('username',$d)->first()->coordinates->super_children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->super_children)): 0) + ((App\User::where('username',$d)->first()->coordinates->super_duper_children != null)? count(explode(',',App\User::where('username',$d)->first()->coordinates->super_duper_children)) : 0)}}) - Level(3)   
                                                                     @endif
 
 
