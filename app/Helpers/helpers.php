@@ -16,31 +16,28 @@ use App\Donation;
         $data = ['name' => $sponsor->name, 'user' => $user, 'amount'=> $level_three_amount];
         $contactEmail = $sponsor->email;
         $collection->push([$data,$contactEmail]);
-            // if($sponsor->id == $coordinates->parent){
-                $super_parent_user = User::find($sponsor->coordinates->parent);
-            // }else{
-            //     $super_parent_user = User::find($coordinates->parent);
-            // }
+
+        $super_parent_user = User::find($user->coordinates->super_parent);
 
             if($super_parent_user ){
                 $temp = 'level_two_percentage'.$a;
                 $super_parent_amount = Settings::first()->$temp;
                 commission($super_parent_amount,$super_parent_user,0, $user);
-    
+
                 $data = ['name' => $super_parent_user->name, 'user' => $user, 'amount'=> $super_parent_amount];
                 $contactEmail = $super_parent_user->email;
                 $collection->push([$data,$contactEmail]);
-    
+
                 if($super_duper_parent_user = User::find($super_parent_user->coordinates->parent)){
                     $temp = 'level_one_percentage'.$a;
                     $super_duper_parent_amount = Settings::first()->$temp;
                     commission($super_duper_parent_amount,$super_duper_parent_user,0, $user);
-    
+
                     if($a != '_premium'){
                         $foo = 'upgrade_wallet_amount'.$a;
                         upgradeWalletAmount(Settings::first()->$foo,$super_duper_parent_user->id, $user);
                     }
-                    
+
                     $data = ['name' => $super_duper_parent_user->name, 'user' => $user, 'amount'=> $super_duper_parent_amount];
                     $contactEmail = $super_duper_parent_user->email;
                     $collection->push([$data,$contactEmail]);
@@ -63,20 +60,20 @@ use App\Donation;
                 $contactEmail = User::where('admin',1)->first()->email;
                 $collection->push([$data,$contactEmail]);
                 commission($super_parent_amount,User::where('admin',1)->first(),0, $user);
-    
+
                 $temp = 'level_one_percentage'.$a;
                 $super_duper_parent_amount = Settings::first()->$temp;
                 $data = ['name' => User::where('admin',1)->first()->name, 'user' => $user, 'amount'=> $super_duper_parent_amount];
                 $contactEmail = User::where('admin',1)->first()->email;
                 $collection->push([$data,$contactEmail]);
                 commission($super_duper_parent_amount,User::where('admin',1)->first(),0, $user);
-    
+
                 if($a != '_premium'){
                     $foo = 'upgrade_wallet_amount'.$a;
                     upgradeWalletAmount(Settings::first()->$foo,User::where('admin',1)->first()->id, $user);
                 }
             }
-        
+
 
         return $collection;
     }
@@ -95,7 +92,7 @@ use App\Donation;
         $upgrade_wallet->user_id = $id;
         $upgrade_wallet->from = $user->id;
         $upgrade_wallet->amount = $amount;
-        $upgrade_wallet->save(); 
+        $upgrade_wallet->save();
     }
 
     function donate($package, $amount, $a , $collection, $user){
@@ -104,7 +101,7 @@ use App\Donation;
         $donation->package = $package;
         $donation->amount = $amount;
         $donation->save();
-        
+
         $temp = 'admin_amount'.$a;
         $data = ['name' => User::where('admin',1)->first()->name, 'user' => $user, 'amount'=> Settings::first()->$temp];
         $contactEmail = User::where('admin',1)->first()->email;
@@ -115,12 +112,12 @@ use App\Donation;
 
     function sendMail($data, $contactEmail, $user){
         \Mail::send('emails.contribution', $data, function($message) use ($contactEmail)
-            {  
+            {
                 $message->to($contactEmail)->subject('Contribution Amount!!');
             });
         $data = ['user'=>$user];
         \Mail::send('emails.thankYou', $data, function($message) use ($contactEmail,$user)
-            {  
+            {
                 $message->to($user->email)->subject('Thankyou');
             });
     }
