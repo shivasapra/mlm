@@ -109,7 +109,32 @@ class HomeController extends Controller
     }
 
     public function users(){
-        return view('users')->with('users',User::where('admin',0)->get());
+        $users = User::where('admin',0)->get();
+        $active_users = collect();
+        foreach($users as $user){
+            if($user->coordinates and !$user->campaign){
+                $active_users->push($user);
+            }
+        }
+        session(['active_users' => $active_users]);
+
+        $inactive_users = collect();
+        foreach($users as $user){
+            if(!$user->coordinates and !$user->campaign){
+                $inactive_users->push($user);
+            }
+        }
+        session(['inactive_users' => $inactive_users]);
+
+        $campaign_users = collect();
+        foreach($users as $user){
+            if($user->campaign){
+                $campaign_users->push($user);
+            }
+        }
+        session(['campaign_users' => $campaign_users]);
+
+        return view('users');
     }
 
     public function bankReport(){

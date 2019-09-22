@@ -1,6 +1,6 @@
 @extends('layouts.app', ['titlePage' => __('users')])
 @section('content-body')
-@php
+{{-- @php
 
 use App\User;
 use Carbon\Carbon;
@@ -24,17 +24,17 @@ use Carbon\Carbon;
             $campaign_users->push($user);
         }
     }
-    @endphp
+@endphp --}}
     <h1>Users</h1><hr>
     <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#active_users" role="tab" aria-controls="profile">Active Users ( {{ $active_users->count() }} ) </a>
+            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#active_users" role="tab" aria-controls="profile">Active Users </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="home-tab" data-toggle="tab" href="#inactive_users" role="tab" aria-controls="home">Inactive Users ( {{ $inactive_users->count() }} ) </a>
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#inactive_users" role="tab" aria-controls="home">Inactive Users  </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="home-tab" data-toggle="tab" href="#campaign_users" role="tab" aria-controls="home">Campaign Users ( {{ $campaign_users->count() }} )</a>
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#campaign_users" role="tab" aria-controls="home">Campaign Users </a>
         </li>
     </ul>
 
@@ -65,7 +65,7 @@ use Carbon\Carbon;
                         </tr>
                     </thead>
                     <tbody>
-                        @php $i = 1; @endphp
+                        @php $i = 1; $active_users = session('active_users');  @endphp
                         @foreach($active_users as $user)
                             <tr>
                                 <th>{{$i++}}.</th>
@@ -103,7 +103,7 @@ use Carbon\Carbon;
                         </tr>
                     </thead>
                     <tbody>
-                        @php $i = 1; @endphp
+                        @php $i = 1; $inactive_users = session('inactive_users'); @endphp
                         @foreach($inactive_users as $user)
                             <tr>
                                 <th>{{$i++}}.</th>
@@ -138,7 +138,7 @@ use Carbon\Carbon;
                         </tr>
                     </thead>
                     <tbody>
-                        @php $i = 1; @endphp
+                        @php $i = 1; $campaign_users = session('campaign_users'); @endphp
                         @foreach($campaign_users as $user)
                             <tr>
                                 <th>{{$i++}}.</th>
@@ -156,6 +156,6 @@ use Carbon\Carbon;
             </div>
         </div>
     </div>
-    
-    
+
+
 @endsection
