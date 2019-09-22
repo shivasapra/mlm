@@ -105,6 +105,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Commision');
     }
 
+    public function dcomissions(){
+        return $this->hasMany('App\Dcomission');
+    }
+
     public function tickets(){
         return $this->hasMany('App\Ticket');
     }

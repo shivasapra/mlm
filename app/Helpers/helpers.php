@@ -4,6 +4,7 @@ use App\User;
 use App\Commision;
 use App\UpgradeWallet;
 use App\Donation;
+use App\Dcomission;
 
     function PaiseBaato($collection, $coordinates, $a, $user){
 
@@ -22,7 +23,12 @@ use App\Donation;
             if($super_parent_user ){
                 $temp = 'level_two_percentage'.$a;
                 $super_parent_amount = Settings::first()->$temp;
-                commission($super_parent_amount,$super_parent_user,0, $user);
+
+                if($user->coordinates->super_duper_parent == User::where('username',$user->details->invited_by)->first()->id){
+                    dcommission($super_parent_amount, $super_parent_user, $user);
+                }else{
+                    commission($super_parent_amount,$super_parent_user,0, $user);
+                }
 
                 $data = ['name' => $super_parent_user->name, 'user' => $user, 'amount'=> $super_parent_amount];
                 $contactEmail = $super_parent_user->email;
@@ -85,6 +91,14 @@ use App\Donation;
         $commission->from = $u->id;
         $commission->ac = $ac;
         $commission->save();
+    }
+
+    function dcommission($amount,$user, $u){
+        $dcommission = new Dcomission;
+        $dcommission->user_id = $user->id;
+        $dcommission->amount = $amount;
+        $dcommission->from = $u->id;
+        $dcommission->save();
     }
 
     function upgradeWalletAmount($amount,$id, $user){
