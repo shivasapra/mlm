@@ -31,6 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        dd(session('active_users'),session('inactive_users'),session('campaign_users'));
         foreach(User::where('admin',0)->where('campaign',0)->get() as $user){
             if($user->coordinates){
                 if(collect(explode(',',$user->coordinates->children))->count() == 5){
@@ -110,31 +111,7 @@ class HomeController extends Controller
 
     public function users(){
         $users = User::where('admin',0)->get();
-        $active_users = collect();
-        foreach($users as $user){
-            if($user->coordinates and !$user->campaign){
-                $active_users->push($user);
-            }
-        }
-        session(['active_users' => $active_users]);
-
-        $inactive_users = collect();
-        foreach($users as $user){
-            if(!$user->coordinates and !$user->campaign){
-                $inactive_users->push($user);
-            }
-        }
-        session(['inactive_users' => $inactive_users]);
-
-        $campaign_users = collect();
-        foreach($users as $user){
-            if($user->campaign){
-                $campaign_users->push($user);
-            }
-        }
-        session(['campaign_users' => $campaign_users]);
-
-        return view('users');
+        return view('users')->with('users',$users);
     }
 
     public function bankReport(){

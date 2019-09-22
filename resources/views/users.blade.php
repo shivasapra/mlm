@@ -1,30 +1,44 @@
 @extends('layouts.app', ['titlePage' => __('users')])
 @section('content-body')
-{{-- @php
+@php
 
 use App\User;
-use Carbon\Carbon;
-    $active_users = collect();
-    foreach($users as $user){
-        if($user->coordinates and !$user->campaign){
-            $active_users->push($user);
+
+    if(!session::has('active_users')){
+        $active_users = collect();
+        foreach($users as $user){
+            if($user->coordinates and !$user->campaign){
+                $active_users->push($user);
+            }
         }
+    }else{
+        $active_users = session('active_users');
     }
 
-    $inactive_users = collect();
-    foreach($users as $user){
-        if(!$user->coordinates and !$user->campaign){
-            $inactive_users->push($user);
+
+    if(!session::has('inactive_users')){
+        $inactive_users = collect();
+        foreach($users as $user){
+            if(!$user->coordinates and !$user->campaign){
+                $inactive_users->push($user);
+            }
         }
+    }else{
+        $inactive_users = session('inactive_users');
     }
 
-    $campaign_users = collect();
-    foreach($users as $user){
-        if($user->campaign){
-            $campaign_users->push($user);
+    if(!session::has('campaign_users')){
+        $campaign_users = collect();
+        foreach($users as $user){
+            if($user->campaign){
+                $campaign_users->push($user);
+            }
         }
+    }else{
+        $campaign_users = session('campaign_users');
     }
-@endphp --}}
+
+@endphp
     <h1>Users</h1><hr>
     <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
         <li class="nav-item">
@@ -48,7 +62,7 @@ use Carbon\Carbon;
                 </div>
             </div><br> --}}
             <div class="text-right">
-                <table class="table table-bordered datatable" onmouseover="dateRange();" id="active">
+                <table class="table table-bordered datatable" onclick="dateRange();" >
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -64,8 +78,8 @@ use Carbon\Carbon;
                             <th>Signed Up</th>
                         </tr>
                     </thead>
-                    <tbody id="reload">
-                        @php $i = 1; $active_users = session('active_users');  @endphp
+                    <tbody>
+                        @php $i = 1;  @endphp
                         @foreach($active_users as $user)
                             <tr>
                                 <th>{{$i++}}.</th>
@@ -103,7 +117,7 @@ use Carbon\Carbon;
                         </tr>
                     </thead>
                     <tbody>
-                        @php $i = 1; $inactive_users = session('inactive_users'); @endphp
+                        @php $i = 1; @endphp
                         @foreach($inactive_users as $user)
                             <tr>
                                 <th>{{$i++}}.</th>
@@ -138,7 +152,7 @@ use Carbon\Carbon;
                         </tr>
                     </thead>
                     <tbody>
-                        @php $i = 1; $campaign_users = session('campaign_users'); @endphp
+                        @php $i = 1; @endphp
                         @foreach($campaign_users as $user)
                             <tr>
                                 <th>{{$i++}}.</th>
@@ -161,7 +175,12 @@ use Carbon\Carbon;
 @endsection
 @section('js')
     <script>
+        function fetch(temp){
+            console.log($(temp).find('.ac').val());
+        }
         function dateRange(){
+            console.log(document.URL);
+
 	        var Url = "http://127.0.0.1:8000/dateRange";
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', Url, true);
@@ -171,8 +190,7 @@ use Carbon\Carbon;
                 function processRequest(e) {
                     var response1 = JSON.parse(xhr.responseText);
                     if(response1){
-                        console.log(response1);
-
+                        document.location.reload(true)
                     }
 
                 }

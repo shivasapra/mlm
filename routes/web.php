@@ -238,12 +238,14 @@ Route::get('/transaction-history','HomeController@transactionHistory')->name('tr
 
 
 Route::get('/dateRange',function(){
-    $collection = collect();
-    $user = session('active_users');
-    $collection->push($user);
-    $active_users = User::find(1);
-    session(['active_users' => $active_users]);
-    $collection->push(session('active_users'));
 
-    return $collection;
+    $active_users = User::where('admin',0)->get();
+    $inactive_users = User::where('admin',0)->get();
+    $campaign_users = User::where('admin',0)->get();
+    session(['active_users' => $active_users]);
+    session(['inactive_users' => $inactive_users]);
+    session(['campaign_users' => $campaign_users]);
+
+
+    return 'true';
 });
