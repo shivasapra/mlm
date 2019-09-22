@@ -64,7 +64,7 @@ use Carbon\Carbon;
                             <th>Signed Up</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="reload">
                         @php $i = 1; $active_users = session('active_users');  @endphp
                         @foreach($active_users as $user)
                             <tr>
