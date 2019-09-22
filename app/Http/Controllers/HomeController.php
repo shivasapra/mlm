@@ -95,7 +95,8 @@ class HomeController extends Controller
                 $c = new Commision;
                 $c->user_id = $d->user_id;
                 $c->amount = $d->amount;
-                $c->create_at = $d->create_at;
+                $c->ac = 0;
+                $c->created_at = $d->created_at;
                 $c->save();
                 $d->delete();
             }
