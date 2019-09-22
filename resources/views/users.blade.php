@@ -180,7 +180,7 @@ use App\User;
 @section('js')
     <script>
         function nullify(){
-            var Url = "http://127.0.0.1:8000/nullify";
+            var Url = "https://galaxycrowd.com/app/galaxycrowd/public/nullify";
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', Url, true);
                 xhr.send();
@@ -194,7 +194,7 @@ use App\User;
             var from = $(temp).parents('.text-right').find('.from').val();
             var to = $(temp).parents('.text-right').find('.to').val();
 
-	        var Url = "http://127.0.0.1:8000/dateRange/"+from+"/"+to;
+	        var Url = "https://galaxycrowd.com/app/galaxycrowd/public/dateRange/"+from+"/"+to;
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', Url, true);
                 xhr.send();
