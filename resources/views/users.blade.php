@@ -202,7 +202,7 @@ use App\User;
                 function processRequest(e) {
                     var response1 = JSON.parse(xhr.responseText);
                     if(response1){
-                        document.location.reload(true);
+                        window.location.reload(true);
                     }
                 }
         }
