@@ -92,7 +92,12 @@ class HomeController extends Controller
 
         foreach(Dcomission::all() as $d){
             if(Details::where('invited_by',$d->user->username)->count() >= 5){
-                $c = new Commision()
+                $c = new Commision;
+                $c->user_id = $d->user_id;
+                $c->amount = $d->amount;
+                $c->create_at = $d->create_at;
+                $c->save();
+                $d->delete();
             }
         }
         return view('home');
