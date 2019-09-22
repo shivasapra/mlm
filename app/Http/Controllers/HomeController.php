@@ -31,7 +31,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        dd(session('active_users'),session('inactive_users'),session('campaign_users'));
         foreach(User::where('admin',0)->where('campaign',0)->get() as $user){
             if($user->coordinates){
                 if(collect(explode(',',$user->coordinates->children))->count() == 5){

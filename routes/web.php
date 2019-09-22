@@ -237,15 +237,42 @@ Route::get('/foo','HomeController@foo');
 Route::get('/transaction-history','HomeController@transactionHistory')->name('transaction.history');
 
 
-Route::get('/dateRange',function(){
+Route::get('/dateRange/{from}/{to}',function($from,$to){
 
-    $active_users = User::where('admin',0)->get();
-    $inactive_users = User::where('admin',0)->get();
-    $campaign_users = User::where('admin',0)->get();
+    $active_users = collect();
+    foreach(User::where('admin',0)->whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->get() as $user){
+        if($user->coordinates and !$user->campaign){
+            $active_users->push($user);
+        }
+    }
+
+    $inactive_users = collect();
+    foreach(User::where('admin',0)->whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->get() as $user){
+        if(!$user->coordinates and !$user->campaign){
+            $inactive_users->push($user);
+        }
+    }
+
+    $campaign_users = collect();
+    foreach(User::where('admin',0)->whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->get() as $user){
+        if($user->campaign){
+            $campaign_users->push($user);
+        }
+    }
+
+
     session(['active_users' => $active_users]);
     session(['inactive_users' => $inactive_users]);
     session(['campaign_users' => $campaign_users]);
 
+
+    return [$active_users, $inactive_users, $campaign_users];
+});
+
+Route::get('/nullify',function(){
+    session(['active_users' => null]);
+    session(['inactive_users' => null]);
+    session(['campaign_users' => null]);
 
     return 'true';
 });

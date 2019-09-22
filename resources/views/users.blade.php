@@ -4,7 +4,7 @@
 
 use App\User;
 
-    if(!session::has('active_users')){
+    if(session('active_users') == null){
         $active_users = collect();
         foreach($users as $user){
             if($user->coordinates and !$user->campaign){
@@ -16,7 +16,7 @@ use App\User;
     }
 
 
-    if(!session::has('inactive_users')){
+    if(session('inactive_users') == null){
         $inactive_users = collect();
         foreach($users as $user){
             if(!$user->coordinates and !$user->campaign){
@@ -27,7 +27,7 @@ use App\User;
         $inactive_users = session('inactive_users');
     }
 
-    if(!session::has('campaign_users')){
+    if(session('campaign_users') == null){
         $campaign_users = collect();
         foreach($users as $user){
             if($user->campaign){
@@ -54,15 +54,15 @@ use App\User;
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="active_users" role="tabpanel" aria-labelledby="home-tab">
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-md-12 text-right">
                     <input type="date" class="from">
                     <input type="date" class="to">
-                    <button class="btn btn-info btn-sm" onclick="find(this)">Search</button>
+                    <button class="btn btn-info btn-sm" onclick="dateRange(this)">Search</button>
                 </div>
-            </div><br> --}}
+            </div><br>
             <div class="text-right">
-                <table class="table table-bordered datatable" onclick="dateRange();" >
+                <table class="table table-bordered datatable" id="active" >
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -170,32 +170,40 @@ use App\User;
             </div>
         </div>
     </div>
-
-
 @endsection
 @section('js')
     <script>
-        function fetch(temp){
-            console.log($(temp).find('.ac').val());
-        }
-        function dateRange(){
-            console.log(document.URL);
-
-	        var Url = "http://127.0.0.1:8000/dateRange";
+        function nullify(){
+            var Url = "http://127.0.0.1:8000/nullify";
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', Url, true);
                 xhr.send();
                 xhr.onreadystatechange = processRequest;
-                console.log(JSON.parse(xhr.responseText));
+                function processRequest(e) {
+                }
+        }
+
+
+        function dateRange(temp){
+            var from = $(temp).parents('.text-right').find('.from').val();
+            var to = $(temp).parents('.text-right').find('.to').val();
+
+	        var Url = "http://127.0.0.1:8000/dateRange/"+from+"/"+to;
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', Url, true);
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
                 function processRequest(e) {
                     var response1 = JSON.parse(xhr.responseText);
                     if(response1){
-                        document.location.reload(true)
+                        document.location.reload(true);
                     }
-
                 }
-
-
+        }
+    </script>
+    <script>
+        window.onload = function(){
+            nullify();
         }
     </script>
 @endsection
