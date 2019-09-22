@@ -48,7 +48,7 @@ use Carbon\Carbon;
                 </div>
             </div><br> --}}
             <div class="text-right">
-                <table class="table table-bordered datatable" id="active">
+                <table class="table table-bordered datatable" onmouseover="dateRange();" id="active">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -158,4 +158,26 @@ use Carbon\Carbon;
     </div>
 
 
+@endsection
+@section('js')
+    <script>
+        function dateRange(){
+	        var Url = "http://127.0.0.1:8000/dateRange";
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', Url, true);
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
+                console.log(JSON.parse(xhr.responseText));
+                function processRequest(e) {
+                    var response1 = JSON.parse(xhr.responseText);
+                    if(response1){
+                        console.log(response1);
+
+                    }
+
+                }
+
+
+        }
+    </script>
 @endsection

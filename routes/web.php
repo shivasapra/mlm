@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Coordinates;
 use App\Http\Controllers\ContributionController;
 use Illuminate\Support\Facades\Route;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -234,3 +235,15 @@ Route::get('/buy',function(Request $request){
 Route::get('/foo','HomeController@foo');
 
 Route::get('/transaction-history','HomeController@transactionHistory')->name('transaction.history');
+
+
+Route::get('/dateRange',function(){
+    $collection = collect();
+    $user = session('active_users');
+    $collection->push($user);
+    $active_users = User::find(1);
+    session(['active_users' => $active_users]);
+    $collection->push(session('active_users'));
+
+    return $collection;
+});
