@@ -40,6 +40,13 @@ use App\User;
 
 @endphp
     <h1>Users</h1><hr>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <input type="date" class="from">
+            <input type="date" class="to">
+            <button class="btn btn-info btn-sm" onclick="dateRange(this)">Search</button>
+        </div>
+    </div><br>
     <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#active_users" role="tab" aria-controls="profile">Active Users </a>
@@ -54,15 +61,8 @@ use App\User;
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="active_users" role="tabpanel" aria-labelledby="home-tab">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <input type="date" class="from">
-                    <input type="date" class="to">
-                    <button class="btn btn-info btn-sm" onclick="dateRange(this)">Search</button>
-                </div>
-            </div><br>
             <div class="text-right">
-                <table class="table table-bordered datatable" id="active" >
+                <table class="table table-bordered datatable" id="active">
                     <thead>
                         <tr>
                             <th>Sno.</th>
@@ -75,7 +75,8 @@ use App\User;
                             <th>Current Package</th>
                             <th>Upgrade Wallet Amount</th>
                             <th>Action</th>
-                            <th>Signed Up</th>
+                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,7 +93,8 @@ use App\User;
                                 <th>{{$user->donations->last()->package}}</th>
                                 <td>{{$user->UpgradeWallet->pluck('amount')->sum() - $user->donations->pluck('amount')->sum() + $user->donations->where('package','BASIC')->first()->amount}}</td>
                                 <td><a href="{{route('account.settings',$user)}}" class="btn btn-sm btn-info">Edit Profile</a></td>
-                                <th>{{$user->created_at->diffForHumans()}}</th>
+                                <th>{{$user->created_at->toDateString()}}</th>
+                                <th>{{$user->created_at->toTimeString()}}</th>
                             </tr>
                         @endforeach
                     </tbody>
@@ -113,7 +115,8 @@ use App\User;
                             <th>Mobile</th>
                             <th>Security Pin</th>
                             <th>Action</th>
-                            <th>Signed Up</th>
+                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,7 +131,8 @@ use App\User;
                                 <td>@if($user->details) {{$user->details->mobile}} @endif</td>
                                 <td>@if($user->details) {{$user->details->security_pin}} @endif</td>
                                 <td><a href="{{route('account.settings',$user)}}" class="btn btn-sm btn-info">Edit Profile</a></td>
-                                <th>{{$user->created_at->diffForHumans()}}</th>
+                                <th>{{$user->created_at->toDateString()}}</th>
+                                <th>{{$user->created_at->toTimeString()}}</th>
                             </tr>
                         @endforeach
                     </tbody>
@@ -148,7 +152,8 @@ use App\User;
                             <th>Mobile</th>
                             <th>Security Pin</th>
                             <th>Action</th>
-                            <th>Signed Up</th>
+                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -162,7 +167,8 @@ use App\User;
                                 <td>@if($user->details) {{$user->details->mobile}}  @endif</td>
                                 <td>@if($user->details) {{$user->details->security_pin}} @endif</td>
                                 <td><a href="{{route('account.settings',$user)}}" class="btn btn-sm btn-info">Edit Profile</a></td>
-                                <th>{{$user->created_at->diffForHumans()}}</th>
+                                <th>{{$user->created_at->toDateString()}}</th>
+                                <th>{{$user->created_at->toTimeString()}}</th>
                             </tr>
                         @endforeach
                     </tbody>
