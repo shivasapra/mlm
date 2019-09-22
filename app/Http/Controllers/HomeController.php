@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Commision;
+use App\Dcomission;
+use App\Details;
 use App\User;
 use App\Settings;
 use Auth;
@@ -85,6 +87,12 @@ class HomeController extends Controller
                     }
                 }
 
+            }
+        }
+
+        foreach(Dcomission::all() as $d){
+            if(Details::where('invited_by',$d->user->username)->count() >= 5){
+                $c = new Commision()
             }
         }
         return view('home');
