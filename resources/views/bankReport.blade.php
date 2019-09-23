@@ -1,5 +1,13 @@
 @extends('layouts.app', ['titlePage' => __('Bank Report')])
 @section('content-body')
+@php
+    if(session('withdraw_requests') == null){
+        $withdraw_requests = App\WithdrawRequest::all();
+    }else{
+        $withdraw_requests = session('withdraw_requests');
+    }
+
+@endphp
 <h1>Bank Report</h1><hr>
 
 <ul class="nav nav-tabs tabs-design" id="myTab" role="tablist">
@@ -54,6 +62,13 @@
     </div>
 
     <div class="tab-pane fade show" id="withdrawal_requests" role="tabpanel" aria-labelledby="home-tab">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <input type="date" class="from">
+            <input type="date" class="to">
+            <button class="btn btn-info btn-sm" onclick="dateRange(this)">Search</button>
+        </div>
+    </div><br>
         <table class="table table-bordered datatable">
             <thead>
                 <tr>
@@ -72,7 +87,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(App\WithdrawRequest::all() as $b)
+                @foreach($withdraw_requests as $b)
                     <tr>
                         @php
                             $bank_transfer = $b->user->bankTransfer;
@@ -103,5 +118,43 @@
 </div>
 
 
+
+@endsection
+@section('js')
+
+<script>
+    function nullify(){
+        var Url = "https://galaxycrowd.com/app/galaxycrowd/public/nullify";
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', Url, true);
+            xhr.send();
+            xhr.onreadystatechange = processRequest;
+            function processRequest(e) {
+            }
+    }
+
+
+    function dateRange(temp){
+        var from = $(temp).parents('.text-right').find('.from').val();
+        var to = $(temp).parents('.text-right').find('.to').val();
+
+        var Url = "https://galaxycrowd.com/app/galaxycrowd/public/dateRange/"+from+"/"+to;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', Url, true);
+            xhr.send();
+            xhr.onreadystatechange = processRequest;
+            function processRequest(e) {
+                var response1 = JSON.parse(xhr.responseText);
+                if(response1){
+                    window.location.reload(true);
+                }
+            }
+    }
+</script>
+<script>
+    window.onload = function(){
+        nullify();
+    }
+</script>
 
 @endsection

@@ -3,6 +3,7 @@ use App\Http\Controllers\UserController;
 use App\EpinRequests;
 use App\Epin;
 use Illuminate\Http\Request;
+use App\WithdrawRequest;
 use App\EpinCategory;
 use App\purchaseEpin;
 use App\Campaign;
@@ -260,19 +261,22 @@ Route::get('/dateRange/{from}/{to}',function($from,$to){
         }
     }
 
+    $withdraw_requests = WithdrawRequest::whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->get();
+
 
     session(['active_users' => $active_users]);
     session(['inactive_users' => $inactive_users]);
     session(['campaign_users' => $campaign_users]);
 
 
-    return [$active_users, $inactive_users, $campaign_users];
+    return [$active_users, $inactive_users, $campaign_users, $withdraw_requests];
 });
 
 Route::get('/nullify',function(){
     session(['active_users' => null]);
     session(['inactive_users' => null]);
     session(['campaign_users' => null]);
+    session(['withdraw_requests' => null]);
 
     return 'true';
 });
