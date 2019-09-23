@@ -5,7 +5,7 @@
     </div>
     @if(!Auth::user()->details->email_verification)
         <div class="alert alert-warning text-center alert-dismissible show" role="alert">
-        Your Email is not verified. Please verify your Email.  <a href="{{route('resend.verification')}}"><u> Resend Verification</u></a> 
+        Your Email is not verified. Please verify your Email.  <a href="{{route('resend.verification')}}"><u> Resend Verification</u></a>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -13,7 +13,7 @@
     @endif
     @if(Auth::user()->KYC->count()<3)
         <div class="alert alert-danger text-center alert-dismissible show" role="alert">
-        Your KYC document is not verified, Please verify your KYC document. 
+        Your KYC document is not verified, Please verify your KYC document.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -169,7 +169,7 @@
                                             <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                                 <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->basic_amount}}">
                                                 <input type="hidden" class="packagee" name="package" value="BASIC">
-                                                <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->where('used_by',null)->first()) 
+                                                <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->where('used_by',null)->first())
                                                                                                 value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->basic_amount)->where('used_by',null)->first()->epin}}"
                                                                                             @endif
                                                 >
@@ -193,7 +193,7 @@
                                             <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                                 <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->standard_amount}}">
                                                 <input type="hidden" class="packagee" name="package" value="STANDARD">
-                                                <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->where('used_by',null)->first()) 
+                                                <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->where('used_by',null)->first())
                                                                                                 value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->standard_amount)->where('used_by',null)->first()->epin}}"
                                                                                             @endif
                                                 >
@@ -217,7 +217,7 @@
                                             <a href="javascript:void(0)" onclick="contribute(this);"><span class="badge bg-info">Contribute Now</span><input type="hidden" class="package" value="">
                                                 <input type="hidden" class="amount" name="amount" value="{{App\Settings::first()->premium_amount}}">
                                                 <input type="hidden" class="packagee" name="package" value="Premium">
-                                                <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->where('used_by',null)->first()) 
+                                                <input type="hidden" class="ep" name="ep"   @if(App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->where('used_by',null)->first())
                                                                                                 value="{{App\Epin::where('sent_to',Auth::id())->where('rate',App\Settings::first()->premium_amount)->where('used_by',null)->first()->epin}}"
                                                                                             @endif
                                                 >
@@ -250,7 +250,9 @@
                                         <tr>
                                             <th>{{__('Level ')}}{{$r}}</th>
                                             <td>
-                                                {{App\Coordinates::where('row',$r)->count()}}
+                                                <a href="{{route('view.level.users',$r)}}">
+                                                    {{App\Coordinates::where('row',$r)->count()}}
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -275,8 +277,8 @@
                         <tbody>
                             @php
                                 $admin_basics = App\Donation::where('package','BASIC')->pluck('user_id');
-                                $admin_standards = App\Donation::where('package','STANDARD')->pluck('user_id'); 
-                                $admin_premiums = App\Donation::where('package','Premium')->pluck('user_id'); 
+                                $admin_standards = App\Donation::where('package','STANDARD')->pluck('user_id');
+                                $admin_premiums = App\Donation::where('package','Premium')->pluck('user_id');
                             @endphp
                             <tr>
                                 <th class="text-center">
@@ -319,7 +321,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Basic</h4>
                         </div>
-                    
+
                         <!-- Modal body -->
                         <div class="modal-body">
                             <table class="table table-bordered datatable_wo_buttons">
@@ -335,7 +337,7 @@
                                         @foreach($admin_basics->chunk(3) as $id)
                                            @php
                                                $j = 0;
-                                           @endphp 
+                                           @endphp
                                             <tr>
                                                 @foreach($id as $i)
                                                     @php
@@ -343,7 +345,7 @@
                                                         $user = App\User::find($i);;
                                                     @endphp
                                                     <td>
-                                                        <img 
+                                                        <img
                                                             @if($user->details->avatar)
                                                             src="{{$user->details->avatar}}"
                                                             @else
@@ -363,9 +365,9 @@
                                 </tbody>
                             </table>
                         </div>
-                
+
                         <!-- Modal footer -->
-                        <div class="modal-footer">  
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -379,7 +381,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">STANDARD</h4>
                         </div>
-                    
+
                         <!-- Modal body -->
                         <div class="modal-body">
                             <table class="table table-bordered datatable_wo_buttons">
@@ -395,7 +397,7 @@
                                         @foreach($admin_standards->chunk(3) as $id)
                                         @php
                                             $j = 0;
-                                        @endphp 
+                                        @endphp
                                             <tr>
                                                 @foreach($id as $i)
                                                     @php
@@ -403,7 +405,7 @@
                                                         $user = App\User::find($i);
                                                     @endphp
                                                     <td>
-                                                        <img 
+                                                        <img
                                                             @if($user->details->avatar)
                                                             src="{{$user->details->avatar}}"
                                                             @else
@@ -423,15 +425,15 @@
                                 </tbody>
                             </table>
                         </div>
-                
+
                         <!-- Modal footer -->
-                        <div class="modal-footer">  
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-        
+
             <div class="modal fade" id="admin_premium_modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -439,7 +441,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">PREMIUM</h4>
                         </div>
-                    
+
                         <!-- Modal body -->
                         <div class="modal-body">
                             <table class="table table-bordered datatable_wo_buttons">
@@ -455,7 +457,7 @@
                                         @foreach($admin_premiums->chunk(3) as $id)
                                         @php
                                             $j = 0;
-                                        @endphp 
+                                        @endphp
                                             <tr>
                                                 @foreach($id as $i)
                                                     @php
@@ -463,7 +465,7 @@
                                                         $user = App\User::find($i);
                                                     @endphp
                                                     <td>
-                                                        <img 
+                                                        <img
                                                             @if($user->details->avatar)
                                                             src="{{$user->details->avatar}}"
                                                             @else
@@ -483,9 +485,9 @@
                                 </tbody>
                             </table>
                         </div>
-                
+
                         <!-- Modal footer -->
-                        <div class="modal-footer">  
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -507,7 +509,7 @@
                             <tbody>
                                 <tr>
                                     <td style="width:300px;">
-                                        <img 
+                                        <img
                                         @if(Auth::user()->details->avatar)
                                             src="{{Auth::user()->details->avatar}}"
                                         @else
@@ -551,8 +553,8 @@
                             <tbody>
                                 @php
                                     $ids = App\Coordinates::where('parent',Auth::id())->orWhere('super_parent',Auth::id())->orWhere('super_duper_parent',Auth::id())->pluck('user_id');
-                                    $standards = App\Donation::where('package','STANDARD')->pluck('user_id')->concat($ids)->duplicates(); 
-                                    $premiums = App\Donation::where('package','Premium')->pluck('user_id')->concat($ids)->duplicates(); 
+                                    $standards = App\Donation::where('package','STANDARD')->pluck('user_id')->concat($ids)->duplicates();
+                                    $premiums = App\Donation::where('package','Premium')->pluck('user_id')->concat($ids)->duplicates();
                                 @endphp
                                 <tr>
                                     <th class="text-center">
@@ -595,7 +597,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Basic</h4>
                             </div>
-                        
+
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <table class="table table-bordered datatable_wo_buttons">
@@ -611,7 +613,7 @@
                                             @foreach($ids->chunk(3) as $id)
                                             @php
                                                 $j = 0;
-                                            @endphp 
+                                            @endphp
                                                 <tr>
                                                     @foreach($id as $i)
                                                         @php
@@ -619,7 +621,7 @@
                                                             $user = App\User::find($i);
                                                         @endphp
                                                         <td>
-                                                            <img 
+                                                            <img
                                                                 @if($user->details->avatar)
                                                                 src="{{$user->details->avatar}}"
                                                                 @else
@@ -639,9 +641,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                    
+
                             <!-- Modal footer -->
-                            <div class="modal-footer">  
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -655,7 +657,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">STANDARD</h4>
                             </div>
-                        
+
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <table class="table table-bordered datatable_wo_buttons">
@@ -670,9 +672,9 @@
                                         @if($standards->count())
                                             @foreach($standards->chunk(3) as $id)
                                             @php
-                                                
+
                                                 $j = 0;
-                                            @endphp 
+                                            @endphp
                                                 <tr>
                                                     @foreach($id as $i)
                                                         @php
@@ -680,7 +682,7 @@
                                                             $user = App\User::find($i);
                                                         @endphp
                                                         <td>
-                                                            <img 
+                                                            <img
                                                                 @if($user->details->avatar)
                                                                 src="{{$user->details->avatar}}"
                                                                 @else
@@ -700,15 +702,15 @@
                                     </tbody>
                                 </table>
                             </div>
-                    
+
                             <!-- Modal footer -->
-                            <div class="modal-footer">  
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="modal fade" id="premium_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -716,7 +718,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">PREMIUM</h4>
                             </div>
-                        
+
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <table class="table table-bordered datatable_wo_buttons">
@@ -731,9 +733,9 @@
                                         @if($premiums->count())
                                             @foreach($premiums->chunk(3) as $id)
                                             @php
-                                                
+
                                                 $j = 0;
-                                            @endphp 
+                                            @endphp
                                                 <tr>
                                                     @foreach($id as $i)
                                                         @php
@@ -741,7 +743,7 @@
                                                             $user = App\User::find($i);
                                                         @endphp
                                                         <td>
-                                                            <img 
+                                                            <img
                                                                 @if($user->details->avatar)
                                                                 src="{{$user->details->avatar}}"
                                                                 @else
@@ -761,16 +763,16 @@
                                     </tbody>
                                 </table>
                             </div>
-                    
+
                             <!-- Modal footer -->
-                            <div class="modal-footer">  
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                
+
 
                 <div class="modal fade" id="modal">
                     <div class="modal-dialog">
@@ -779,7 +781,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Level 1</h4>
                             </div>
-                        
+
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <table class="table table-bordered datatable_wo_buttons">
@@ -794,16 +796,16 @@
                                         @if(Auth::user()->coordinates->children != null)
                                             @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->children)))->chunk(3) as $id)
                                             @php
-                                                
+
                                                 $j = 0;
-                                            @endphp 
+                                            @endphp
                                                 <tr>
                                                     @foreach($id as $i)
                                                     @php
                                                         $j++
                                                     @endphp
                                                         <td>
-                                                            <img 
+                                                            <img
                                                                 @if($i->details->avatar)
                                                                 src="{{$i->details->avatar}}"
                                                                 @else
@@ -823,9 +825,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                    
+
                             <!-- Modal footer -->
-                            <div class="modal-footer">  
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -839,7 +841,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Level 2</h4>
                             </div>
-                        
+
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <table class="table table-bordered datatable_wo_buttons">
@@ -854,16 +856,16 @@
                                         @if(Auth::user()->coordinates->super_children != null)
                                             @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_children)))->chunk(3) as $id)
                                             @php
-                                                
+
                                                 $j = 0;
-                                            @endphp 
+                                            @endphp
                                                 <tr>
                                                     @foreach($id as $i)
                                                         @php
                                                         $j++
                                                     @endphp
                                                         <td>
-                                                            <img 
+                                                            <img
                                                                 @if($i->details->avatar)
                                                                 src="{{$i->details->avatar}}"
                                                                 @else
@@ -883,9 +885,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                    
+
                             <!-- Modal footer -->
-                            <div class="modal-footer">  
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -899,7 +901,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Level 3</h4>
                             </div>
-                        
+
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <table class="table table-bordered datatable_wo_buttons">
@@ -914,16 +916,16 @@
                                         @if(Auth::user()->coordinates->super_duper_children != null)
                                             @foreach(collect(App\User::find(explode(',',Auth::user()->coordinates->super_duper_children)))->chunk(3) as $id)
                                             @php
-                                                
+
                                                 $j = 0;
-                                            @endphp 
+                                            @endphp
                                                 <tr>
                                                     @foreach($id as $i)
                                                     @php
                                                         $j++
                                                     @endphp
                                                         <td>
-                                                            <img 
+                                                            <img
                                                                 @if($i->details->avatar)
                                                                 src="{{$i->details->avatar}}"
                                                                 @else
@@ -943,9 +945,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                    
+
                             <!-- Modal footer -->
-                            <div class="modal-footer">  
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -1215,7 +1217,7 @@
             </div>
         </div> --}}
 
-        
+
 
         <button type="button" id="modalButton" data-toggle="modal" data-target="#contributeModal" style="display:none;"></button>
         <div id="modalDisplay"></div>
@@ -1224,7 +1226,7 @@
 @section('js')
     <script>
         function contribute(temp){
-            
+
             var amount = $(temp).find('.amount').val();
             var packages = $(temp).find('.packagee').val();
             var epin =  $(temp).find('.ep').val();
@@ -1236,7 +1238,7 @@
             }else if(packages == 'Premium'){
                 var a = '_premium';
             }
-            var modal = 
+            var modal =
             '<div class="modal fade" id="contributeModal">'+
                 '<div class="modal-dialog">'+
                     '<div class="modal-content">'+
@@ -1255,7 +1257,7 @@
                         '<input type="text" class="form-control" placeholder="Enter Epin" value="'+epin+'" name="epin"><br>'+
                         '<p>Are You Sure You Want To Donate INR '+amount+' in '+packages+' Package?</p>'+
                         '</div>'+
-                
+
                         '<!-- Modal footer -->'+
                         '<div class="modal-footer">'+
                         '<input type="submit" value="Yes" onclick="this.form.submit();  this.value=`Verifying...`; this.disabled=true;"  class="btn btn-info">&nbsp;'+

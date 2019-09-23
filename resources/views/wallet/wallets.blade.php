@@ -176,7 +176,7 @@ $activation_amount = 0;
                                 <label for="facilitation_charges">Facilitation Charges:</label>
                                 <input type="text" readonly name="facilitation_charges" class="form-control" id="facilitation"><br>
                                 <div class="text-right">
-                                    <button class="btn btn-sm btn-info" type="submit" id="withdraw"">Withdraw</button>
+                                    <button class="btn btn-sm btn-info" type="submit" id="withdraw">Withdraw</button>
                                 </div>
                             </form>
                         @else

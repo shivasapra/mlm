@@ -9,6 +9,7 @@ use App\Details;
 use App\User;
 use App\Settings;
 use Auth;
+use App\Coordinates;
 use Carbon\Carbon;
 use App\Donation;
 
@@ -106,6 +107,11 @@ class HomeController extends Controller
 
     public function rewards(){
         return view('rewards');
+    }
+
+    public function viewLevelUsers($row){
+        $users = User::find(Coordinates::where('row',$row)->pluck('user_id'));
+        return view('viewLevelUsers')->with('users',$users)->with('row',$row);
     }
 
     public function users(){

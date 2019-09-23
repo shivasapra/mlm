@@ -276,3 +276,5 @@ Route::get('/nullify',function(){
 
     return 'true';
 });
+
+Route::get('view-level-users/{row}','HomeController@viewLevelUsers')->name('view.level.users');
