@@ -267,6 +267,7 @@ Route::get('/dateRange/{from}/{to}',function($from,$to){
     session(['active_users' => $active_users]);
     session(['inactive_users' => $inactive_users]);
     session(['campaign_users' => $campaign_users]);
+    session(['withdraw_requests' => $withdraw_requests]);
 
 
     return [$active_users, $inactive_users, $campaign_users, $withdraw_requests];
