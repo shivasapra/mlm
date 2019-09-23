@@ -193,6 +193,7 @@
                     <li class=" nav-item"><a href="{{route('campaigns')}}"><i class="icon-diagram"></i><span class="menu-title">Browse Campaigns</span></a></li>
                 @else
                     <li class=" nav-item"><a href="{{route('account.settings',Auth::user())}}"><i class="icon-settings"></i><span class="menu-title">Account Settings</span></a></li>
+                    <li class=" nav-item"><a href="{{route('users')}}"><i class="icon-users"></i><span class="menu-title">Users</span></a></li>
                     <li class=" nav-item"><a href="{{route('contribution.viewer',Auth::user())}}"><i class="icon-grid2"></i><span class="menu-title">Contributors</span></a></li>
                     <li class=" nav-item"><a href="{{route('epins')}}"><i class="icon-compass2"></i><span class="menu-title">Epins</span></a></li>
                     <li class=" nav-item"><a href="{{route('transaction.history')}}"><i class="icon-wallet"></i><span class="menu-title">Trasaction History</span></a></li>
