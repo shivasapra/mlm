@@ -17,11 +17,16 @@ $activation_amount = 0;
     $purchase_amount = $purchase_amount + $e->epin->EpinCategory->rate;
  }
 
+ $request_amount = 0;
+ foreach(App\WithdrawRequest::where('user_id',Auth::id())->get() as $r)   {
+    $request_amount = $request_amount + $r->amount;
+ }
+
  $commission_amount = 0;
  foreach($commissions as $c)   {
     $commission_amount = $commission_amount + $c->amount;
  }
- $commission_amount = $commission_amount - $purchase_amount;
+ $commission_amount = $commission_amount - $purchase_amount -$request_amount;
 
 @endphp
 
@@ -171,7 +176,7 @@ $activation_amount = 0;
                                 <label for="facilitation_charges">Facilitation Charges:</label>
                                 <input type="text" readonly name="facilitation_charges" class="form-control" id="facilitation"><br>
                                 <div class="text-right">
-                                    <button class="btn btn-sm btn-info" type="submit" id="withdraw"">Withdraw</button>     
+                                    <button class="btn btn-sm btn-info" type="submit" id="withdraw"">Withdraw</button>
                                 </div>
                             </form>
                         @else
@@ -252,7 +257,7 @@ $activation_amount = 0;
         $('#facilitation').val((fac/100)*amount);
     }
     function withdraw(){
-        
+
         var fac = {{Settings::first()->facilitation_percentage}}
         swal({
             title: 'Withdraw Amount',
@@ -267,7 +272,7 @@ $activation_amount = 0;
         })
         .then(amount => {
             if (!amount) throw null;
-            
+
             swal({
                 title: "Withdraw",
                 text: `Amount: ${amount}\n Facilitation Charges: `+(fac/100)*amount,
@@ -291,9 +296,9 @@ $activation_amount = 0;
 
     function buyPin(){
        @if(App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->count())
-        @php 
+        @php
             $ep =  floor($commission_amount / App\Epin::where('sent_to',Auth::id())->where('used_by',Auth::id())->first()->EpinCategory->rate );
-       
+
         @endphp
         swal({
             title: "Buy Epins",
@@ -329,9 +334,9 @@ $activation_amount = 0;
                 swal({
                     title: "Process Cancelled!!",
                     icon: "error",
-                })    
+                })
             }else{
-                
+
                 swal({
                     title: "Purchased!!",
                     icon: "success",
